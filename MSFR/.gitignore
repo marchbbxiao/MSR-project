@@ -1,0 +1,11 @@
+*.h5
+statepoint.*.h5
+summary.h5
+tallies.out
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.e
+*.exo
+cross_sections/
+openmc_simulation_n*/

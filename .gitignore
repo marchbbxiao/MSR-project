@@ -13,3 +13,11 @@ __pycache__/
 
 # OpenMC 輸出
 openmc_simulation_n*.h5
+
+# NekRS
+*.re2
+*.fld
+restart.fld
+
+# OpenMC 粒子追蹤
+particle_*.h5
