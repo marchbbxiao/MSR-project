@@ -1,0 +1,3 @@
+[submodule "msre"]
+	path = msre
+	url = https://github.com/openmsr/msre.git

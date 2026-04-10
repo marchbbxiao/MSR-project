@@ -1,0 +1,15 @@
+# 大型二進位檔
+*.h5m
+*.h5
+*.e
+statepoint.*.h5
+summary.h5
+tallies.out
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# OpenMC 輸出
+openmc_simulation_n*.h5
