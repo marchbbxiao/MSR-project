@@ -11,69 +11,82 @@ OpenMC + MOOSE RANS TH + Thermochimica + Zapdos PNP
 - Windows 11 + WSL2 Ubuntu 22.04
 - i7-12700, 16GB RAM, RTX A5000
 - Username: bruce, Windows user: i0950B
-- OpenMC 0.15.3 (conda activate openmc)
-- Cardinal: ~/MSR-project/cardinal (branch b1e271b638, ENABLE_NEK=false)
-- 614/614 tests passing, ENDF/B-VII.1
+- Cardinal: ~/MSR-project/cardinal (ENABLE_NEK=false), 614/614 tests
 
 ### RTXWS（主力，公司）
 - Ubuntu 24.04 LTS
 - Dual Xeon Silver 4216 (32 cores), 2x Tesla V100S 32GB
-- 512GB NVMe (/) + 4TB HDD (~/data), IP: 192.168.27.190
-- Cardinal: ~/cardinal (ENABLE_NEK=yes, V100S)
+- IP: 192.168.27.190
+- Cardinal: ~/cardinal (ENABLE_NEK=yes)
 - Tests: Cardinal 783/815, Thermochimica 77/77, Zapdos 58/62
 - Cross-sections: ~/data/cross_sections/endfb-vii.1-hdf5/
-- OpenMC執行: export PATH=/home/ubuntu/cardinal/install/bin:/home/ubuntu/cardinal/install/bin:/usr/local/cuda-12.5/bin:/usr/local/cuda-12.2/bin:/usr/local/cuda-12.2/bin:/home/ubuntu/.local/bin:/home/ubuntu/cardinal/install/bin:/home/ubuntu/miniconda3/bin:/home/ubuntu/miniconda3/condabin:/usr/local/cuda-12.5/bin:/usr/local/cuda-12.2/bin:/usr/local/cuda-12.2/bin:/home/ubuntu/.local/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+- OpenMC 執行: export PATH=/home/ubuntu/cardinal/install/bin:$PATH
 - Run: mpirun -n 4 --mca btl_vader_single_copy_mechanism none openmc
+- IDE: Cursor 3.1.15
+
+## 專案資料夾架構
+~/MSR-project/
+├── MSFR/
+│   ├── msr.e                    # MOOSE TH 網格（Exodus）
+│   ├── msr.h5m                  # OpenMC 幾何（DAGMC，vacuum）
+│   ├── msr_reflecting.h5m       # OpenMC 幾何（DAGMC，reflecting）
+│   ├── materials.xml            # Stage 2 OpenMC 材料定義
+│   ├── geometry.xml             # Stage 2 OpenMC 幾何定義
+│   ├── settings.xml             # Stage 2 OpenMC 設定
+│   ├── tune_keff.py             # Stage 2 濃度調整腳本
+│   ├── stage3_cardinal/         # Stage 3 工作目錄
+│   │   ├── neutronics.i         # OpenMC/Cardinal 輸入檔（完成）
+│   │   └── th.i                 # MOOSE RANS TH 輸入檔（進行中）
+│   ├── results/
+│   │   └── stage2_msfr_openmc/
+│   └── docs/
+├── msre-project/                # Stage 1 MSRE 驗證
+├── scripts/
+│   └── sync.sh                  # 每日 git push
+├── .cursor/rules/
+│   └── msr-context.mdc          # Cursor AI 自動讀取
+└── CLAUDE.md                    # 本檔案
 
 ## 目前進度
 
+### Stage 1 完成
+- MSRE keff = 1.00637 ± 0.00113
+
 ### Stage 2 完成（2026-04-15）
-- MSFR standalone OpenMC keff = 1.047±0.004
-- 使用 msr_reflecting.h5m (boundary:Reflecting)
+- MSFR standalone OpenMC keff = 1.047 ± 0.004
+- 幾何：msr_reflecting.h5m (Reflecting 邊界)
 - 燃料鹽：U233=0.02135 ao, Li7=0.779961, Li6=3.9e-5, F19=1.66, Th232=0.19985
 - 密度：4.1249 g/cm3, T=898K
-- Batches=100 (50 inactive + 50 active), particles=1000
 
-### 下一步：Stage 3
-- Cardinal OpenMC + MOOSE RANS TH 耦合
-- 在 RTXWS 執行
+### Stage 3 進行中（2026-04-17）
+- Phase 3.1 目標：單向傳遞（OpenMC → MOOSE）
+- neutronics.i 完成
+- th.i 進行中，下一步找 heat source FVKernel
 
-## 關鍵技術細節
+## Stage 3 關鍵技術細節
 
-### OpenMC (RTXWS)
-- Python API 不可用 (Python 3.10 incompatible with typing.Self)
-- XML模式：cross_sections 設在 materials.xml (不是 settings.xml)
-- DAGMC geometry: <dagmc_universe id=1 filename=... auto_geom_ids=true/>
-- Neutron source: sphere r=70cm
+### neutronics.i 參數根據
+- scaling = 100.0：msr.e 單位公尺，OpenMC 需要公分（文件確認）
+- temperature_blocks = '1'：msr.e 唯一 block ID=1（netCDF4 確認）
+- cell_level = 0：DAGMC 單層幾何
+- power = 3.0e9：MSFR 設計功率 3 GW
 
-### 已知問題
-- Zapdos: INCORRECT JACOBIAN (2個測試失敗)
-- Cardinal: 783/815 (32個失敗待查)
-- 鄧永宏: PID Control 尚未成功
+### th.i 參考範例
+- ~/cardinal/contrib/moose/modules/navier_stokes/test/tests/postprocessors/rayleigh/natural_convection.i
+- 區塊：[Mesh][Variables][UserObjects][FVKernels][FVBCs][FluidProperties][FunctorMaterials][Executioner]
+- 需要額外加 heat source FVKernel
 
-### 重要檔案
-- msr.h5m, msr_reflecting.h5m, msr.e (MSFR幾何)
-- stage2_msfr_openmc_keff_baseline.ipynb
+### Stage 3 執行計畫
+Phase 3.1：單向傳遞（OpenMC → MOOSE），固定邊界條件，不用 PID
+Phase 3.2：雙向 Picard 迭代，relaxation_factor 防震盪
+Phase 3.3：PID Control，先 P-only，解決鄧永宏卡關點
 
-## 耦合架構（Tano 2025）
-內層迴圈 (Picard):
-  Step 1: OpenMC 計算功率密度
-  Step 2: MOOSE RANS TH 計算溫度場+速度場
-  Step 3: 溫度回傳OpenMC更新截面
-  Step 4: DNP空間漂移
-  Step 5: 密度回饋
-  Step 6: 收斂判斷
-
-外層迴圈 (燃耗):
-  Step 7: openmc.deplete (0.1 MWd/kgHM)
-  Step 8a: Thermochimica (相平衡)
-  Step 8b: Zapdos PNP (腐蝕)
-  Step 9: 更新materials.xml
-  Step 10: UF4補料控制keff≈1.05
-  Step 11: 回到Step 1
+## 已知問題
+- Cardinal 783/815（32個失敗，NekRS 相關，不影響 MOOSE RANS TH）
+- Zapdos INCORRECT JACOBIAN（2個失敗，不影響我們）
+- 鄧永宏 PID Control 尚未成功
 
 ## 每日更新說明
-開發結束後在 Claude.ai 說：
-「今天完成了XXX，遇到YYY，幫我更新CLAUDE.md」
-→ 複製新內容貼回這個檔案
-→ git add CLAUDE.md && git commit -m "更新記憶" && git push
+開發結束後在 Claude.ai 說：「今天完成了XXX，幫我更新 CLAUDE.md」
+→ 在 Cursor 直接編輯 CLAUDE.md
+→ msr-sync "說明"
