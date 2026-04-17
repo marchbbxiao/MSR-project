@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<materials>
+  <material id="1" name="fuel_salt">
+    <density value="4.1249" units="g/cm3" />
+    <nuclide name="Li7" ao="0.779961" />
+    <nuclide name="Li6" ao="3.9e-05" />
+    <nuclide name="U233" ao="0.021" />
+    <nuclide name="F19" ao="1.66" />
+    <nuclide name="Th232" ao="0.19985" />
+  </material>
+  <cross_sections>/home/ubuntu/data/cross_sections/endfb-vii.1-hdf5/cross_sections.xml</cross_sections>
+</materials>
