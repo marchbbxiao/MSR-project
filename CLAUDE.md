@@ -90,3 +90,40 @@ Phase 3.3：PID Control，先 P-only，解決鄧永宏卡關點
 開發結束後在 Claude.ai 說：「今天完成了XXX，幫我更新 CLAUDE.md」
 → 在 Cursor 直接編輯 CLAUDE.md
 → msr-sync "說明"
+## 2026-04-20 今日工作（RTXWS）
+
+### 完成項目
+- neutronics.i 補強：ICs(936K)、密度回饋(ParsedAux)、density_blocks、MoabSkinner、reuse_source
+- 安裝 Coreform Cubit 2026.4（/opt/Coreform-Cubit-2026.4/bin/coreform_cubit）
+- read_mesh.py：分析 msr.e 幾何，找出上下截斷面節點
+- add_sidesets.py：用 Cubit Python API 建立 nodeset
+- msr_with_sidesets.e：產生含 gap_exit_boundary(上,Z>0) + gap_enter_boundary(下,Z<0) 的新幾何檔
+- th.i：完成 Mesh 區塊（載入 msr_with_sidesets.e）
+
+### 明天下一步：繼續寫 th.i
+需要完成的區塊：
+1. [Variables]：vel_x, vel_y, vel_z, pressure, TKE, TKED, T_fluid
+2. [FVKernels]：動量 + 壓力 + k-epsilon + 能量方程式（含熱源）
+3. [FVBCs]：入口速度+溫度(898K)、出口壓力(0)、壁面無滑移
+4. [Executioner]：SIMPLE solver
+
+### 關鍵物性參數（Rouch et al. 2014）
+- rho = 4147.3 kg/m³
+- mu = 0.011266321 Pa-s
+- cp = 1524.86 J/kg/K
+- k = 1.0 W/m/K（暫用）
+- 入口溫度：898K
+- 目標平均溫度：936K
+
+### k-epsilon 參數
+- sigma_k = 1.0, sigma_eps = 1.3
+- C1_eps = 1.44, C2_eps = 1.92, C_mu = 0.09
+- bulk_u = 0.130 m/s（從 Re=4.8e4 推算）
+- intensity = 0.01
+- k_init = 1.5*(0.01*0.130)^2
+- eps_init = 0.09^0.75 * k_init^1.5 / 1.0
+
+### 待確認
+- 熱傳導係數 k 的正確值
+- 入口速度是否正確（需與鄧永宏確認）
+- gap_enter/exit 上下方向是否正確（物理驗證後確認）
