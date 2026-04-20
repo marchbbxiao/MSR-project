@@ -4,7 +4,7 @@
     <density value="4.1249" units="g/cm3" />
     <nuclide name="Li7" ao="0.779961" />
     <nuclide name="Li6" ao="3.9e-05" />
-    <nuclide name="U233" ao="0.021" />
+    <nuclide name="U233" ao="0.02135" />
     <nuclide name="F19" ao="1.66" />
     <nuclide name="Th232" ao="0.19985" />
   </material>
