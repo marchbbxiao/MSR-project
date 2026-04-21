@@ -127,3 +127,28 @@ Phase 3.3：PID Control，先 P-only，解決鄧永宏卡關點
 - 熱傳導係數 k 的正確值
 - 入口速度是否正確（需與鄧永宏確認）
 - gap_enter/exit 上下方向是否正確（物理驗證後確認）
+
+## 2026-04-21 今日工作（A電腦）
+
+### 完成項目
+- th.i [Variables]：7個變數完成，TKE/TKED 初始值用湍流強度公式估算
+- th.i [AuxVariables]：power_density（Cardinal 耦合橋樑）
+- th.i [FVKernels]：25個 kernels 完成（質量1 + 動量12 + 能量4 + TKE4 + TKED4）
+- 所有區塊加入完整中文詳細註解
+
+### 明天下一步：繼續寫 th.i
+需要完成的區塊：
+1. [FVBCs]：入口速度+溫度(898K)、出口壓力(0)、壁面無滑移、TKE/TKED 入口值
+2. [FunctorMaterials]：定義 mu_t = Cμ*k²/ε，補入動量和能量擴散項的湍流修正
+3. [Executioner]：SIMPLE solver 設定
+
+### 已知待修正（寫在 kernel 註解的 ⚠️ 標記）
+- 動量擴散項目前只用 μ，應改為 total_viscosity（μ+μt）
+- 能量擴散項目前只用 k，應加入湍流熱傳導 kt
+
+### 今日學到的核心概念
+- Re ≈ 958,000 → MSFR 強湍流，必須用 k-epsilon 模型
+- RANS = N-S 時間平均，湍流打包成 μt = Cμ*k²/ε
+- 守恆定律結構：時間項 + 對流項 = 擴散項 + 源項
+- TKE/TKED 互相依賴，初始值不能為零
+- SIMPLE 演算法：壓力調節速度強制 div(v)=0
