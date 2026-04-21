@@ -21,3 +21,6 @@ restart.fld
 
 # OpenMC 粒子追蹤
 particle_*.h5
+cardinal/
+cardinal_build*.log
+cardinal_tests*.log
