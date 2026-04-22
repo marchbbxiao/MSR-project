@@ -33,7 +33,7 @@ pressure_tag = "pressure_grad"
 # 燃料鹽物性（來源：Rouch et al. 2014，ANL Cardinal tutorial）
 rho = 4147.3        # 密度 [kg/m³]
 mu = 0.011266321    # 動力黏度 [Pa·s]
-# cp = 1524.86  # 比熱容 [J/kg/K]（INSFVEnergyAdvection 內建處理，暫時未用）
+cp = 1524.86  # 比熱容 [J/kg/K]（INSFVEnergyAdvection 內建處理，暫時未用）
 k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 
 # ============================================================
@@ -338,7 +338,25 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     execute_on = 'NONLINEAR'
   []
 []
-
+# ============================================================
+# [FunctorMaterials]：函子材料（提供 kernel 所需的材料屬性）
+# ============================================================
+# INSFVEnthalpyFunctorMaterial：
+#   提供 rho_h（焓密度）functor，供 INSFVEnergyAdvection 使用
+#   rho_h = ρ × cp × T（不可壓縮流的焓密度）
+#
+# 為什麼需要這個？
+#   INSFVEnergyAdvection 預設對流量是 rho_h（焓密度），
+#   而不是直接對流溫度 T。這樣才符合能量守恆的物理定義：
+#   對流帶走的是焓（enthalpy），不是溫度本身。
+[FunctorMaterials]
+  [enthalpy]
+    type = INSFVEnthalpyFunctorMaterial
+    rho = ${rho}
+    temperature = T_fluid
+    cp = ${cp}
+  []
+[]
 # ============================================================
 # [Executioner]：求解器設定
 # ============================================================
@@ -378,10 +396,10 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   #   壓力：0.3（標準值，通常比動量小以維持穩定）
   #   湍流：0.2（比動量更保守，k-ε 方程式非線性強）
   #   能量：0.9（溫度方程式線性較好，可以較大）
-  momentum_equation_relaxation = 0.7
-  pressure_variable_relaxation = 0.3
-  turbulence_equation_relaxation = '0.2 0.2'
-  energy_equation_relaxation = 0.9
+  momentum_equation_relaxation = 0.3
+  pressure_variable_relaxation = 0.1
+  turbulence_equation_relaxation = '0.1 0.1'
+  energy_equation_relaxation = 0.5
 
   # 最大迭代次數
   num_iterations = 1000
@@ -604,12 +622,12 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   []
   [vel_z_gravity]
     # ρgz：重力體積力，只在 z 方向有效（垂直向下）
-    # MSFR 是球形爐心，z 軸為垂直方向
-    # x、y 方向無重力分量，不需要對應的 gravity kernel
+    # rho：直接傳入密度數值作為 functor
     type = INSFVMomentumGravity
     variable = vel_z
     momentum_component = z
-    gravity = '0 0 -9.81'         # [m/s²]，負號表示 -z 方向（向下）
+    gravity = '0 0 -9.81'
+    rho = ${rho}
   []
 
   # ----------------------------------------------------------

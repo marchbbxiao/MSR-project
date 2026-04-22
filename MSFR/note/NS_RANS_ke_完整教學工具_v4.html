@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>從 N-S 到 RANS 到 k-ε：完整推導與 th.i 對應</title>
+<title>從 N-S 到 RANS 到 k-ε：完整推導與 th.i 對應 v4</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap');
 :root{
@@ -109,8 +109,9 @@ tr:nth-child(even) td{background:var(--surface)}
 <body>
 <div class="app">
 <h1>從 N-S 到 RANS 到 k-ε</h1>
-<div class="subtitle">完整推導脈絡 × 物理圖像 × DNS 估算 × th.i 對應關係</div>
+<div class="subtitle">完整推導脈絡 × 物理圖像 × DNS 估算 × th.i 對應關係 &nbsp;|&nbsp; <span style="color:var(--green)">v4 — SIMPLE 架構完整版（2026-04-22）</span></div>
 <div class="tabs">
+  <div class="tab" onclick="T('adv')" style="background:#1a2a10;border-color:var(--green);color:var(--green)">⓪ 三種「對流」</div>
   <div class="tab active" onclick="T('cv')">① 控制體積</div>
   <div class="tab" onclick="T('ns')">② N-S 方程式</div>
   <div class="tab" onclick="T('dns')">③ DNS 為何不行</div>
@@ -119,6 +120,130 @@ tr:nth-child(even) td{background:var(--surface)}
   <div class="tab" onclick="T('compare')">⑥ 五方程對照</div>
   <div class="tab" onclick="T('thi')">⑦ th.i 連結</div>
   <div class="tab active-map" onclick="T('map')" style="background:#1a0e40;border-color:var(--purple);color:var(--purple)">⑧ 全景地圖</div>
+</div>
+
+<!-- 新增：adv-tag 樣式 -->
+<style>
+.adv-tag{display:inline-block;font-size:10px;font-family:var(--mono);padding:1px 6px;border-radius:3px;vertical-align:super;margin-left:2px;font-weight:700;cursor:pointer;border:1px solid transparent}
+.adv-tag.a1{background:#0a2e1a;color:var(--green);border-color:var(--green-dim)}
+.adv-tag.a2{background:#1a0e40;color:var(--purple);border-color:var(--purple-dim)}
+.adv-tag.a3{background:#083028;color:var(--teal);border-color:var(--teal-dim)}
+.adv-tag:hover{filter:brightness(1.3)}
+.three-adv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:1.25rem 0}
+.adv-card{border-radius:10px;padding:1.1rem 1.25rem;border:1px solid}
+.adv-card.c1{background:#07200f;border-color:#1a5a30}
+.adv-card.c2{background:#120a30;border-color:#3a2880}
+.adv-card.c3{background:#042220;border-color:#0a4840}
+.adv-card-title{font-size:14px;font-weight:700;margin-bottom:.5rem}
+.adv-card-en{font-family:var(--mono);font-size:11px;margin-bottom:.6rem;opacity:.7}
+.adv-card-body{font-size:12px;color:var(--muted);line-height:1.75}
+.adv-card-badge{display:inline-block;padding:3px 10px;border-radius:4px;font-size:11px;font-family:var(--mono);font-weight:600;margin-top:.5rem}
+.compare-table-adv{width:100%;border-collapse:collapse;font-size:12px;margin:1.25rem 0}
+.compare-table-adv th{padding:9px 12px;text-align:left;font-weight:600;border:1px solid var(--border);color:var(--text);background:var(--surface2);font-family:var(--mono)}
+.compare-table-adv td{padding:8px 12px;border:1px solid var(--border);color:var(--muted);vertical-align:top;line-height:1.65}
+.compare-table-adv tr:nth-child(even) td{background:var(--surface)}
+</style>
+
+<!-- ⓪ 三種對流 -->
+<div id="tab-adv" class="panel">
+<h2>「對流」三兄弟：最容易搞混的概念</h2>
+<p>中文「對流」對應到英文有三個完全不同的單字，出現在三個不同的場合。<br>方程式裡看到「對流」二字，要先確認是哪一個，否則物理圖像會完全錯位。</p>
+
+<div class="warn">⚠️ <strong>本工具中凡出現對流項，均用上標標記區分：</strong><br>
+<span class="adv-tag a1">Advection</span> = 流體移動帶走物理量 &nbsp;|&nbsp;
+<span class="adv-tag a2">NatConv</span> = 溫差驅動流體運動 &nbsp;|&nbsp;
+<span class="adv-tag a3">HeatConv</span> = 固體-流體介面熱交換
+</div>
+
+<div class="three-adv-grid">
+  <div class="adv-card c1">
+    <div class="adv-card-title" style="color:var(--green)"><span class="adv-tag a1">Advection</span>&nbsp; 平流／對流輸送</div>
+    <div class="adv-card-en">Advection / Convective Transport</div>
+    <div class="adv-card-body">
+      <strong style="color:var(--text)">物理意義：</strong>流體整體移動，順便把某個物理量（動量、熱量、TKE）從 A 帶到 B。<br><br>
+      <strong style="color:var(--text)">關鍵：</strong>是流體本身在移動，帶著量走。<br><br>
+      <strong style="color:var(--text)">數學形式：</strong>ρ v·∇φ（速度場 × 梯度）<br><br>
+      <strong style="color:var(--text)">出現在：</strong>N-S 動量方程式、能量方程式、TKE/TKED 方程式的對流項<br><br>
+      <strong style="color:var(--text)">MSFR 例子：</strong>熔鹽從爐心底部流到頂部，把熱量「帶」上去。
+    </div>
+    <div class="adv-card-badge" style="background:#0a2e1a;color:var(--green)">th.i → INSFVMomentumAdvection / INSFVEnergyAdvection / INSFVTurbulentAdvection</div>
+  </div>
+
+  <div class="adv-card c2">
+    <div class="adv-card-title" style="color:var(--purple)"><span class="adv-tag a2">NatConv</span>&nbsp; 自然對流</div>
+    <div class="adv-card-en">Natural Convection / Buoyancy-driven Flow</div>
+    <div class="adv-card-body">
+      <strong style="color:var(--text)">物理意義：</strong>溫度差 → 密度差 → 浮力 → 驅動流體自發運動。<br><br>
+      <strong style="color:var(--text)">關鍵：</strong>是溫差「主動」引發流動，不需要外力。<br><br>
+      <strong style="color:var(--text)">數學形式：</strong>ρg 項（重力）+ Boussinesq 近似 ρ ≈ ρ₀(1−βΔT)<br><br>
+      <strong style="color:var(--text)">出現在：</strong>動量方程式的重力項（ρgz），配合密度隨溫度變化<br><br>
+      <strong style="color:var(--text)">MSFR 例子：</strong>爐心高溫區燃料鹽密度低 → 往上浮，形成自然循環。
+    </div>
+    <div class="adv-card-badge" style="background:#1a0e40;color:var(--purple)">th.i → INSFVMomentumGravity（驅動力來源）+ 密度隨溫度變化</div>
+  </div>
+
+  <div class="adv-card c3">
+    <div class="adv-card-title" style="color:var(--teal)"><span class="adv-tag a3">HeatConv</span>&nbsp; 熱對流（熱傳學）</div>
+    <div class="adv-card-en">Heat Convection / Convective Heat Transfer</div>
+    <div class="adv-card-body">
+      <strong style="color:var(--text)">物理意義：</strong>固體表面與流體之間的熱量交換，用對流熱傳係數 h 描述。<br><br>
+      <strong style="color:var(--text)">關鍵：</strong>是「介面」的概念，描述壁面和流體之間的熱阻。<br><br>
+      <strong style="color:var(--text)">數學形式：</strong>q = h·A·ΔT（牛頓冷卻定律）<br><br>
+      <strong style="color:var(--text)">出現在：</strong>[FVBCs] 邊界條件，不在體積方程式（FVKernels）裡<br><br>
+      <strong style="color:var(--text)">MSFR 例子：</strong>爐壁把熱量傳給冷卻鹽，h 描述這個介面的熱傳效率。
+    </div>
+    <div class="adv-card-badge" style="background:#042220;color:var(--teal)">th.i → [FVBCs]（下一步），不在目前的 FVKernels 裡</div>
+  </div>
+</div>
+
+<h3>三種對流完整對照表</h3>
+<table class="compare-table-adv">
+  <tr>
+    <th>名稱</th>
+    <th>英文</th>
+    <th>驅動力</th>
+    <th>數學形式</th>
+    <th>出現位置</th>
+    <th>th.i 位置</th>
+  </tr>
+  <tr>
+    <td><span class="adv-tag a1">Advection</span><br>平流</td>
+    <td>Advection /<br>Convective transport</td>
+    <td>流體本身的速度場 v</td>
+    <td>ρ v·∇φ</td>
+    <td>N-S、能量、TKE、TKED 方程式的<strong>體積項</strong></td>
+    <td>[FVKernels]<br>*Advection kernels</td>
+  </tr>
+  <tr>
+    <td><span class="adv-tag a2">NatConv</span><br>自然對流</td>
+    <td>Natural Convection /<br>Buoyancy flow</td>
+    <td>溫差 → 密度差 → 浮力</td>
+    <td>ρg + Boussinesq</td>
+    <td>動量方程式的<strong>重力體積力項</strong></td>
+    <td>[FVKernels]<br>INSFVMomentumGravity</td>
+  </tr>
+  <tr>
+    <td><span class="adv-tag a3">HeatConv</span><br>熱對流</td>
+    <td>Heat Convection /<br>Convective HT</td>
+    <td>壁面-流體溫差 ΔT</td>
+    <td>q = h·A·ΔT</td>
+    <td>固體-流體<strong>介面邊界條件</strong></td>
+    <td>[FVBCs]<br>（下一步實作）</td>
+  </tr>
+</table>
+
+<h3>在本工具中如何辨別</h3>
+<p>每當方程式裡出現「帶走物理量」的項，本工具會在上方標記小標籤：</p>
+<div class="formula-box">
+  ρcₚ v·∇T <span class="adv-tag a1">Advection</span> &nbsp;→ 流體移動帶走熱量，在 FVKernels 裡<br><br>
+  ρg <span class="adv-tag a2">NatConv</span> &nbsp;→ 浮力驅動流動，是動量方程式的源項<br><br>
+  q = hΔT <span class="adv-tag a3">HeatConv</span> &nbsp;→ 壁面熱交換，在 FVBCs 邊界條件裡
+</div>
+
+<div class="success">✓ 記憶口訣：<br>
+Advection = 「被帶走」（流體順便帶）→ 方程式內部項<br>
+NatConv = 「主動跑」（溫差自己跑）→ 重力項<br>
+HeatConv = 「過牆壁」（穿越介面）→ 邊界條件</div>
 </div>
 
 <!-- ① 控制體積 -->
@@ -174,18 +299,20 @@ tr:nth-child(even) td{background:var(--surface)}
   • a（加速度）→ ∂vₓ/∂t（速度的時間導數）<br><br>
   <strong>單位：</strong>kg/m³ × m/s² = N/m³（每立方公尺的力）<br><br>
   <strong>穩態時：</strong>∂vₓ/∂t = 0，這一項消失。但在 SIMPLE 迭代過程中仍需要它組裝矩陣。<br>
-  <span class="badge b-blue">th.i → INSFVMomentumTimeDerivative（vel_x, rho=4147.3）</span>
+  <span class="badge b-blue">th.i → INSFVMomentumTimeDerivative</span>
+  <span class="badge b-red">⚠️ SIMPLE 穩態模式已停用（time kernel 會導致 "Vector tag TIME" 錯誤）</span>
 </div>
 <div id="n2" class="detail bc-amber">
-  <div class="dt">ρ (v·∇)vₓ &nbsp;<span class="dt-sub">對流項（Advection）</span></div>
-  <strong>物理意義：</strong>流體「流動」本身把 x 方向的動量從 A 點帶到 B 點。<br><br>
+  <div class="dt">ρ (v·∇)vₓ &nbsp;<span class="dt-sub">對流項</span> <span class="adv-tag a1" onclick="T('adv')">Advection ↗</span></div>
+  <strong>物理意義：</strong>流體「流動」本身把 x 方向的動量從 A 點帶到 B 點。<br>
+  <span style="color:var(--green);font-size:12px">▶ 這是「Advection（平流）」：流體移動帶走動量。不是自然對流，不是壁面熱交換。</span><br><br>
   展開寫：ρ(vₓ ∂vₓ/∂x + vy ∂vₓ/∂y + vz ∂vₓ/∂z)<br><br>
   <strong>為何重要：</strong>這是 N-S 方程式唯一的非線性項（速度 × 速度的梯度）。非線性導致：<br>
   • 方程式無法解析求解（數學上尚未證明解的存在性！）<br>
   • 數值求解需要迭代<br>
   • Re 越高，此項相對黏性項越重要 → 湍流 dominates<br><br>
   <strong>單位：</strong>kg/m³ × (m/s)(m/s)/m = N/m³<br>
-  <span class="badge b-amber">th.i → INSFVMomentumAdvection（advected_interp_method=average, velocity_interp_method=rc）</span>
+  <span class="badge b-amber">th.i → INSFVMomentumAdvection（advected_interp_method=upwind, velocity_interp_method=rc — 在 [GlobalParams] 全域設定）</span>
 </div>
 <div id="n3" class="detail bc-green">
   <div class="dt">−∂p/∂x &nbsp;<span class="dt-sub">壓力梯度項</span></div>
@@ -209,12 +336,13 @@ tr:nth-child(even) td{background:var(--surface)}
   • μ：分子黏度（材料性質，固定）<br>
   • μt：湍流黏度（流場計算，由 k-ε 模型給出）<br>
   • μt 通常是 μ 的 10~1000 倍，湍流大幅增強動量傳遞<br><br>
-  <span class="badge b-pink">th.i → INSFVMomentumDiffusion（mu=μ，待補 μt）</span>
-  <span class="badge b-red">⚠️ 目前只有分子黏度，[FunctorMaterials] 補 total_viscosity 後修正</span>
+  <span class="badge b-pink">th.i → INSFVMomentumDiffusion（mu=${mu}）+ INSFVMomentumDiffusion（mu='mu_t', complete_expansion=no）</span>
+  <span class="badge b-green">✅ 已完成：分子黏度和湍流黏度各用獨立 kernel，mu_t 由 AuxKernel kEpsilonViscosityAux 計算</span>
 </div>
 <div id="n5" class="detail bc-teal">
-  <div class="dt">ρgₓ &nbsp;<span class="dt-sub">重力體積力</span></div>
-  <strong>物理意義：</strong>重力對每單位體積流體的作用力。<br><br>
+  <div class="dt">ρgₓ &nbsp;<span class="dt-sub">重力體積力</span> <span class="adv-tag a2" onclick="T('adv')">NatConv 驅動力 ↗</span></div>
+  <strong>物理意義：</strong>重力對每單位體積流體的作用力。<br>
+  <span style="color:var(--purple);font-size:12px">▶ 這是「Natural Convection（自然對流）」的驅動力來源：溫差造成密度差，密度差配合重力產生浮力，驅動流體自發循環。</span><br><br>
   g = (gₓ, gy, gz) = (0, 0, −9.81) m/s²（z 軸向上為正）<br><br>
   MSFR 球形爐心：<br>
   • x、y 方向：gₓ = gy = 0，不需要此 kernel<br>
@@ -249,25 +377,28 @@ tr:nth-child(even) td{background:var(--surface)}
   單位體積熱量隨時間的變化率。cₚ = 1524.86 J/(kg·K) 是把「溫度變化」換算成「熱量」的橋樑（Q = mcₚΔT）。<br>
   注意：TKE 方程式沒有 cₚ，因為 k 本身單位就是 J/kg（已經是能量）。<br>
   <span class="badge b-blue">th.i → INSFVEnergyTimeDerivative（rho, cp）</span>
+  <span class="badge b-red">⚠️ SIMPLE 穩態模式已停用（同動量時間項）</span>
 </div>
 <div id="e2" class="detail bc-amber">
-  <div class="dt">ρcₚ v·∇T &nbsp;<span class="dt-sub">熱量對流項（Advection）</span></div>
+  <div class="dt">ρcₚ v·∇T &nbsp;<span class="dt-sub">熱量對流項</span> <span class="adv-tag a1" onclick="T('adv')">Advection ↗</span></div>
   燃料鹽流動把熱量從爐心底部帶到頂部（或反之）。<br>
-  注意：這是「流體移動帶走熱量（Advection）」，不是「溫差驅動流動（Convection）」，也不是「固體-流體介面熱交換（Heat Convection）」。<br>
-  <span class="badge b-amber">th.i → INSFVEnergyAdvection（rho, cp）</span>
+  <span style="color:var(--green);font-size:12px">▶ 這是「Advection（平流）」：流體移動帶走熱量。</span><br>
+  <span style="color:var(--purple);font-size:12px">▶ 不是「Natural Convection（自然對流）」：那是溫差驅動流體運動，對應動量方程式的重力項。</span><br>
+  <span style="color:var(--teal);font-size:12px">▶ 不是「Heat Convection（熱對流）」：那是壁面-流體介面熱交換 q=hΔT，在 [FVBCs] 邊界條件裡。</span><br>
+  <span class="badge b-amber">th.i → INSFVEnergyAdvection（不需 rho/cp 參數 — 由 INSFVEnthalpyFunctorMaterial 自動提供 rho_h=ρcpT）</span>
 </div>
 <div id="e3" class="detail bc-green">
   <div class="dt">∇·[(k+kt)∇T] &nbsp;<span class="dt-sub">熱量擴散項（熱傳導）</span></div>
   溫度梯度驅動熱量從高溫流向低溫（傅立葉定律）。<br>
   • k：分子熱傳導係數（材料性質）<br>
   • kt = cₚμt/Prt：湍流熱傳導（湍流渦旋攪拌增強熱傳），Prt ≈ 0.9<br>
-  <span class="badge b-green">th.i → INSFVEnergyDiffusion（k, cp）</span>
+  <span class="badge b-green">th.i → FVDiffusion（coeff=${k}）— 注意：INSFVEnergyDiffusion 在此版本 MOOSE 不存在，用通用 FVDiffusion 替代</span>
 </div>
 <div id="e4" class="detail bc-pink">
   <div class="dt">q‴ &nbsp;<span class="dt-sub">核分裂熱源項</span></div>
   核分裂功率密度 [W/m³]，由 OpenMC 計算中子通量後傳入。<br>
   這是 Cardinal 耦合的核心：OpenMC → power_density AuxVariable → 此處 q‴。<br>
-  <span class="badge b-pink">th.i → INSFVBodyForce（value=power_density）</span>
+  <span class="badge b-pink">th.i → FVCoupledForce（v=power_density）— 注意：INSFVBodyForce 只能用於動量方程式，能量源項需用 FVCoupledForce</span>
 </div>
 </div>
 
@@ -380,7 +511,8 @@ tr:nth-child(even) td{background:var(--surface)}
   <strong>RANS：</strong>∇·[(μ+μt)∇v̄]（分子黏度 + 湍流黏度）<br><br>
   μt = Cμ·k²/ε（由 k-ε 模型計算）<br><br>
   在 MSFR 條件下：μt/μ ≈ 10~100，湍流大幅增強動量傳遞。<br>
-  <span class="badge b-red">⚠️ th.i 目前動量 diffusion kernel 只有 μ，補 FunctorMaterials 後修正</span>
+  <span class="badge b-pink">th.i → INSFVMomentumDiffusion(mu=μ) + INSFVMomentumDiffusion(mu='mu_t', complete_expansion=no) — 兩個獨立 kernel</span>
+  <span class="badge b-green">✅ 已完成：μt 由 AuxVariable mu_t + kEpsilonViscosityAux 計算，μt/μ ≈ 15 倍</span>
 </div>
 <div id="r5" class="detail bc-teal"><div class="dt">ρg — 重力（不變）</div>時間平均不影響常數項。</div>
 
@@ -408,8 +540,8 @@ tr:nth-child(even) td{background:var(--surface)}
     <span class="term t-teal" onclick="D('k5','bc-teal')">ρε</span>
   </div>
 </div>
-<div id="k1" class="detail bc-blue"><div class="dt">ρ ∂k/∂t — TKE 時間項（無 cₚ！）</div><strong>為何沒有 cₚ？</strong><br>能量方程式：ρcₚ ∂T/∂t，因為 T 是溫度，需要乘 cₚ 換算成能量（Q=mcₚΔT）。<br>TKE 方程式：ρ ∂k/∂t，因為 k 的定義就是 k = ½v'²，單位是 m²/s² = J/kg，本身已是單位質量能量。<br>所以 ρ·k 就已經是能量密度（J/m³）了，不需要 cₚ 再換算。<br><span class="badge b-blue">th.i → WCNSFVTurbulentEnergyTimeDerivative，cp=1.0（關掉換算）</span></div>
-<div id="k2" class="detail bc-amber"><div class="dt">ρ v̄·∇k — TKE 對流</div>平均流場把 TKE 從高 TKE 區（近壁面、高剪切）帶到低 TKE 區。結構與動量/能量對流相同。<br><span class="badge b-amber">th.i → INSFVTurbulentAdvection</span></div>
+<div id="k1" class="detail bc-blue"><div class="dt">ρ ∂k/∂t — TKE 時間項（無 cₚ！）</div><strong>為何沒有 cₚ？</strong><br>能量方程式：ρcₚ ∂T/∂t，因為 T 是溫度，需要乘 cₚ 換算成能量（Q=mcₚΔT）。<br>TKE 方程式：ρ ∂k/∂t，因為 k 的定義就是 k = ½v'²，單位是 m²/s² = J/kg，本身已是單位質量能量。<br>所以 ρ·k 就已經是能量密度（J/m³）了，不需要 cₚ 再換算。<br><span class="badge b-blue">th.i → INSFVEnergyTimeDerivative（cp=1.0 關掉換算）</span><span class="badge b-red">⚠️ SIMPLE 穩態已停用 | WCNSFVTurbulentEnergyTimeDerivative 在此版本不存在</span></div>
+<div id="k2" class="detail bc-amber"><div class="dt">ρ v̄·∇k — TKE 對流 <span class="adv-tag a1" onclick="T('adv')">Advection ↗</span></div>平均流場把 TKE 從高 TKE 區（近壁面、高剪切）帶到低 TKE 區。<br><span style="color:var(--green);font-size:12px">▶ Advection：流體移動順便帶走 TKE，與動量/能量的對流項結構完全相同。</span><br><span class="badge b-amber">th.i → INSFVTurbulentAdvection</span></div>
 <div id="k3" class="detail bc-pink"><div class="dt">∇·[(μ+μt/σk)∇k] — TKE 擴散</div>TKE 透過黏性從高 TKE 區擴散到低 TKE 區。<br>σk = 1.0（Standard k-ε 常數）：TKE 的湍流擴散普朗特數，表示 TKE 擴散效率與動量湍流擴散相同。<br><span class="badge b-pink">th.i → INSFVTurbulentDiffusion，sigma=1.0</span></div>
 <div id="k4" class="detail bc-green"><div class="dt">Pk = μt|∇v̄|² — TKE 生成項</div>速度梯度（剪切力）產生湍流動能。<br>• 爐心中流速不均勻的地方（近壁面、入/出口）剪切最強，Pk 最大。<br>• Pk 依賴 μt，μt 又依賴 k 和 ε → 方程式之間的耦合！<br><span class="badge b-green">th.i → INSFVTKESourceSink（生成部分，mu_t='mu_t', epsilon=TKED）</span></div>
 <div id="k5" class="detail bc-teal"><div class="dt">ρε — TKE 耗散項（連結到 TKED 方程式！）</div>湍流動能被黏性「磨掉」：大渦旋→小渦旋→Kolmogorov 尺度→分子熱能。<br>ε（TKED）就是這個耗散率，它的值由 TKED 方程式求解。<br>→ 這就是為什麼需要兩條方程式：TKE 方程式用到 ε，TKED 方程式用到 k，互相耦合！<br><span class="badge b-teal">th.i → INSFVTKESourceSink（耗散部分）</span></div>
@@ -430,7 +562,7 @@ tr:nth-child(even) td{background:var(--surface)}
   </div>
 </div>
 <div id="e11" class="detail bc-blue"><div class="dt">ρ ∂ε/∂t — TKED 時間項（同樣無 cₚ）</div>ε 的單位是 m²/s³ = W/kg = J/(kg·s)，是「功率密度除以密度」。結構與 TKE 相同，cp=1.0 同理。</div>
-<div id="e22" class="detail bc-amber"><div class="dt">ρ v̄·∇ε — TKED 對流</div>平均流場把 TKED 從高耗散區帶走。結構相同。<span class="badge b-amber">th.i → INSFVTurbulentAdvection</span></div>
+<div id="e22" class="detail bc-amber"><div class="dt">ρ v̄·∇ε — TKED 對流 <span class="adv-tag a1" onclick="T('adv')">Advection ↗</span></div>平均流場把 TKED 從高耗散區帶走。結構相同。<span class="badge b-amber">th.i → INSFVTurbulentAdvection</span></div>
 <div id="e33" class="detail bc-pink"><div class="dt">∇·[(μ+μt/σε)∇ε] — TKED 擴散</div>σε = 1.3 &gt; σk = 1.0：TKED 的湍流擴散效率比 TKE 稍低（更難擴散）。<br>這個差異來自實驗觀測，反映耗散率比 TKE 更「局部」的特性。<br><span class="badge b-pink">th.i → INSFVTurbulentDiffusion，sigma=1.3</span></div>
 <div id="e44" class="detail bc-green"><div class="dt">C₁(ε/k)Pk — TKED 生成項</div>C₁ = 1.44（經驗常數）。ε/k 是「每單位 TKE 的耗散率」，把 TKE 生成轉換成 TKED 生成。<br><strong>⚠️ 分母含 k！</strong>→ k=0 時此項趨向無限大，求解器爆掉 → TKE 初始值必須非零！</div>
 <div id="e55" class="detail bc-teal"><div class="dt">C₂ρε²/k — TKED 耗散項</div>C₂ = 1.92（經驗常數）。ε²/k 代表耗散率的自我加速消退。<br><strong>⚠️ 分母含 k！</strong>→ 同上，TKE 初始值 2.102e-4 非零的根本原因之一。</div>
@@ -470,7 +602,7 @@ TKED 方程式：用到 k（在 C₁(ε/k)Pk 和 C₂ρε²/k 的分母裡）<br
     <td style="font-family:var(--mono);font-size:11px">vel_x<br>vel_y<br>vel_z</td>
     <td>ρ ∂v/∂t</td>
     <td>ρ(v·∇)v</td>
-    <td>∇·[(μ+μt)∇v]<br><span style="color:var(--red);font-size:11px">⚠️ 目前只有 μ</span></td>
+    <td>∇·[(μ+μt)∇v]<br><span style="color:var(--green);font-size:11px">✅ 已完成：μ+μt 各用獨立 kernel</span></td>
     <td>−∇p<br>ρg（z）</td>
     <td style="font-size:11px">RANS：μ→μ+μt。z 方向多重力 kernel</td>
   </tr>
@@ -479,7 +611,7 @@ TKED 方程式：用到 k（在 C₁(ε/k)Pk 和 C₂ρε²/k 的分母裡）<br
     <td style="font-family:var(--mono);font-size:11px">T_fluid</td>
     <td>ρcₚ ∂T/∂t<br><span style="color:var(--purple);font-size:11px">有 cₚ！</span></td>
     <td>ρcₚ v·∇T<br><span style="color:var(--purple);font-size:11px">有 cₚ！</span></td>
-    <td>∇·[(k+kt)∇T]<br><span style="color:var(--red);font-size:11px">⚠️ 目前只有 k</span></td>
+    <td>∇·[(k+kt)∇T]<br><span style="color:var(--green);font-size:11px">✅ FVDiffusion(k)，kt 待補</span></td>
     <td>q‴<br><span style="font-size:11px">（OpenMC）</span></td>
     <td style="font-size:11px">T 需 cₚ 換算能量，k 本身是能量（無 cₚ）</td>
   </tr>
@@ -514,77 +646,202 @@ TKED 方程式：用到 k（在 C₁(ε/k)Pk 和 C₂ρε²/k 的分母裡）<br
 
 <!-- ⑦ th.i 連結 -->
 <div id="tab-thi" class="panel">
-<h2>從物理方程式到 th.i 程式碼：完整對應</h2>
+<h2>從物理方程式到 th.i 程式碼：完整對應（v4 SIMPLE 架構）</h2>
 <div class="info">💡 MOOSE 的設計哲學：每個物理項 = 一個 kernel（積木）。使用者宣告 Variables，再用 FVKernels 積木組合出完整方程式。</div>
-<h3>為什麼需要 [Variables]？</h3>
-<p>MOOSE 求解的是線性系統 <strong>Ax = b</strong>。每個 Variable 是 x 向量的一個分量，MOOSE 需要先知道有哪些未知量，才能配置記憶體、組裝矩陣。</p>
-<p>每個 Variable 必須有對應的 FVKernel，否則 MOOSE 不知道這個未知量滿足什麼方程式，會報錯。</p>
-<h3>Variables → 方程式 → Kernels 完整對應</h3>
+
+<h3>🆕 SIMPLE 求解器架構（新增區塊）</h3>
+<p>SIMPLE 分離式求解器需要額外的三個區塊才能運作：</p>
 <table>
-  <tr><th>Variable</th><th>對應方程式</th><th>Kernel 列表</th><th>Kernel 數</th></tr>
+  <tr><th>區塊</th><th>作用</th><th>關鍵設定</th></tr>
+  <tr>
+    <td style="font-family:var(--mono)">[GlobalParams]</td>
+    <td>全域參數，所有 kernel 自動繼承</td>
+    <td style="font-family:var(--mono);font-size:11px">rhie_chow_user_object='rc'<br>advected_interp_method='upwind'<br>velocity_interp_method='rc'</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">[Problem]</td>
+    <td>宣告 7 個獨立求解系統</td>
+    <td style="font-family:var(--mono);font-size:11px">type=FEProblem<br>nl_sys_names='u_system v_system ...'<br>previous_nl_solution_required=true</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">[UserObjects]</td>
+    <td>Rhie-Chow 插值，消除壓力棋盤格振盪</td>
+    <td style="font-family:var(--mono);font-size:11px">type=INSFVRhieChowInterpolatorSegregated<br>u=vel_x, v=vel_y, w=vel_z</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">[Executioner]</td>
+    <td>SIMPLE 演算法控制</td>
+    <td style="font-family:var(--mono);font-size:11px">type=SIMPLENonlinearAssembly<br>momentum_equation_relaxation=0.5<br>turbulence_equation_relaxation='0.1 0.1'</td>
+  </tr>
+</table>
+
+<h3>Variables → 方程式 → Kernels 完整對應（v4）</h3>
+<div class="warn">⚠️ <strong>SIMPLE 穩態求解器重要說明：</strong>所有時間項 kernel（*TimeDerivative）已停用（#註解）。使用 SIMPLENonlinearAssembly 時不能有時間項，否則會報 "Vector tag 'TIME' does not exist" 錯誤。</div>
+<table>
+  <tr><th>Variable</th><th>solver_sys</th><th>對應方程式</th><th>Kernel 列表（v4）</th><th>Kernel 數</th></tr>
   <tr>
     <td style="font-family:var(--mono)">pressure</td>
-    <td>∇·v=0（質量守恆）</td>
-    <td style="font-family:var(--mono);font-size:11px">INSFVMassAdvection</td>
-    <td>1</td>
+    <td style="font-family:var(--mono);font-size:11px">pressure_system</td>
+    <td>∇·v=0（SIMPLE 壓力修正）</td>
+    <td style="font-family:var(--mono);font-size:11px">FVAnisotropicDiffusion（Ainv∇p'）<br>FVDivergence（∇·HbyA）</td>
+    <td>2</td>
   </tr>
   <tr>
     <td style="font-family:var(--mono)">vel_x</td>
-    <td>x 方向動量方程式</td>
-    <td style="font-family:var(--mono);font-size:11px">MomentumTimeDerivative<br>MomentumAdvection<br>MomentumDiffusion<br>MomentumPressure</td>
+    <td style="font-family:var(--mono);font-size:11px">u_system</td>
+    <td>x 方向動量</td>
+    <td style="font-family:var(--mono);font-size:11px"># MomentumTimeDerivative（停用）<br>MomentumAdvection<br>MomentumDiffusion（μ）<br>MomentumDiffusion（μt，complete_expansion=no）<br>MomentumPressure（extra_vector_tags）</td>
     <td>4</td>
   </tr>
   <tr>
     <td style="font-family:var(--mono)">vel_y</td>
-    <td>y 方向動量方程式</td>
+    <td style="font-family:var(--mono);font-size:11px">v_system</td>
+    <td>y 方向動量</td>
     <td style="font-family:var(--mono);font-size:11px">（同 vel_x，y 方向）</td>
     <td>4</td>
   </tr>
   <tr>
     <td style="font-family:var(--mono)">vel_z</td>
-    <td>z 方向動量方程式</td>
-    <td style="font-family:var(--mono);font-size:11px">（同 vel_x，z 方向）<br>+ MomentumGravity</td>
+    <td style="font-family:var(--mono);font-size:11px">w_system</td>
+    <td>z 方向動量</td>
+    <td style="font-family:var(--mono);font-size:11px">（同 vel_x，z 方向）<br>+ MomentumGravity（rho=${rho}）</td>
     <td>5</td>
   </tr>
   <tr>
     <td style="font-family:var(--mono)">T_fluid</td>
-    <td>能量守恆方程式</td>
-    <td style="font-family:var(--mono);font-size:11px">EnergyTimeDerivative<br>EnergyAdvection<br>EnergyDiffusion<br>BodyForce（q‴）</td>
-    <td>4</td>
+    <td style="font-family:var(--mono);font-size:11px">energy_system</td>
+    <td>能量守恆</td>
+    <td style="font-family:var(--mono);font-size:11px"># EnergyTimeDerivative（停用）<br>EnergyAdvection（用 INSFVEnthalpyFunctorMaterial）<br>FVDiffusion（coeff=k）<br>FVCoupledForce（v=power_density）</td>
+    <td>3</td>
   </tr>
   <tr>
     <td style="font-family:var(--mono)">TKE</td>
-    <td>TKE 輸送方程式</td>
-    <td style="font-family:var(--mono);font-size:11px">TurbulentEnergyTimeDerivative<br>TurbulentAdvection<br>TurbulentDiffusion(σk=1.0)<br>TKESourceSink</td>
+    <td style="font-family:var(--mono);font-size:11px">TKE_system</td>
+    <td>TKE 輸送</td>
+    <td style="font-family:var(--mono);font-size:11px"># EnergyTimeDerivative（停用）<br>TurbulentAdvection<br>TurbulentDiffusion（μ）<br>TurbulentDiffusion（μt，σk=1.0）<br>TKESourceSink（tke=TKE，walls='wall'）</td>
     <td>4</td>
   </tr>
   <tr>
     <td style="font-family:var(--mono)">TKED</td>
-    <td>TKED 輸送方程式</td>
-    <td style="font-family:var(--mono);font-size:11px">TurbulentEnergyTimeDerivative<br>TurbulentAdvection<br>TurbulentDiffusion(σε=1.3)<br>TKEDSourceSink</td>
+    <td style="font-family:var(--mono);font-size:11px">TKED_system</td>
+    <td>TKED 輸送</td>
+    <td style="font-family:var(--mono);font-size:11px"># EnergyTimeDerivative（停用）<br>TurbulentAdvection<br>TurbulentDiffusion（μ）<br>TurbulentDiffusion（μt，σε=1.3）<br>TKEDSourceSink（tke=TKE，walls='wall'）</td>
     <td>4</td>
   </tr>
-  <tr><td colspan="3"><strong>總計</strong></td><td><strong>26 kernels</strong></td></tr>
+  <tr><td colspan="4"><strong>總計（時間項停用後）</strong></td><td><strong>26 kernels</strong></td></tr>
 </table>
-<h3>AuxVariables：外部傳入的量</h3>
+
+<h3>🆕 AuxVariables（v4 新增）</h3>
 <table>
-  <tr><th>AuxVariable</th><th>來源</th><th>用途</th><th>傳遞機制</th></tr>
-  <tr><td style="font-family:var(--mono)">power_density</td><td>neutronics.i（OpenMC）</td><td>能量方程式熱源 q‴</td><td>Cardinal MultiApp Transfer</td></tr>
+  <tr><th>AuxVariable</th><th>來源/計算方式</th><th>用途</th><th>初始值</th></tr>
+  <tr>
+    <td style="font-family:var(--mono)">power_density</td>
+    <td>neutronics.i（OpenMC）→ Cardinal Transfer</td>
+    <td>能量方程式熱源 q‴</td>
+    <td>0.0</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">mu_t</td>
+    <td>AuxKernel kEpsilonViscosityAux<br>μt = Cμ×k²/ε，每次非線性迭代更新</td>
+    <td>動量/TKE/TKED 的湍流擴散項<br>壁面函數 INSFVTurbulentViscosityWallFunction</td>
+    <td>0.162 Pa·s（≈μ×15）</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">yplus</td>
+    <td>AuxKernel RANSYPlusAux<br>y⁺=uτ·y/ν，每次非線性迭代更新</td>
+    <td>網格品質指標（30~300 為壁面函數有效範圍）</td>
+    <td>—</td>
+  </tr>
 </table>
-<h3>待補完的 [FunctorMaterials]</h3>
-<div class="warn">⚠️ 目前動量和能量方程式的擴散 kernel 使用的是分子黏度 μ 和熱傳導係數 k，缺少湍流修正。<br>需要在 [FunctorMaterials] 定義 μt = Cμk²/ε，然後修改相關 kernel 使用 total_viscosity（μ+μt）。</div>
+
+<h3>🆕 AuxKernels（v4 新增）</h3>
+<table>
+  <tr><th>AuxKernel</th><th>type</th><th>計算目標</th><th>關鍵參數</th></tr>
+  <tr>
+    <td style="font-family:var(--mono)">compute_mu_t</td>
+    <td style="font-family:var(--mono);font-size:11px">kEpsilonViscosityAux</td>
+    <td>μt = Cμ×k²/ε（含近壁壁面函數修正）</td>
+    <td style="font-family:var(--mono);font-size:11px">C_mu=0.09, tke=TKE, epsilon=TKED<br>walls='wall', wall_treatment='eq_newton'<br>execute_on='NONLINEAR'</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">compute_yplus</td>
+    <td style="font-family:var(--mono);font-size:11px">RANSYPlusAux</td>
+    <td>y⁺ 分布（Paraview 後處理用）</td>
+    <td style="font-family:var(--mono);font-size:11px">tke=TKE, walls='wall'<br>wall_treatment='eq_newton'<br>execute_on='NONLINEAR'</td>
+  </tr>
+</table>
+
+<h3>🆕 FunctorMaterials（v4）</h3>
+<div class="success">✅ mu_t 的計算改用 AuxVariable + AuxKernel（不是 FunctorMaterial），因為壁面函數需要直接修改近壁的 μt 值。FunctorMaterial 是唯讀量，無法被邊界條件覆蓋。</div>
 <div class="formula-box">
 [FunctorMaterials]<br>
-&nbsp;&nbsp;[mixing_length]<br>
-&nbsp;&nbsp;&nbsp;&nbsp;type = INSFVkEpsilonViscosityFunctorMaterial<br>
-&nbsp;&nbsp;&nbsp;&nbsp;TKE = TKE<br>
-&nbsp;&nbsp;&nbsp;&nbsp;TKED = TKED<br>
+&nbsp;&nbsp;[enthalpy]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;# 提供 rho_h（焓密度）functor 給 INSFVEnergyAdvection 使用<br>
+&nbsp;&nbsp;&nbsp;&nbsp;# rho_h = ρ × cp × T（不可壓縮流的焓密度）<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type = INSFVEnthalpyFunctorMaterial<br>
 &nbsp;&nbsp;&nbsp;&nbsp;rho = ${rho}<br>
-&nbsp;&nbsp;&nbsp;&nbsp;mu = ${mu}<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Cmu = 0.09<br>
+&nbsp;&nbsp;&nbsp;&nbsp;temperature = T_fluid<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cp = ${cp}<br>
 &nbsp;&nbsp;[]<br>
 []
 </div>
+
+<h3>🆕 FVBCs（v4 新增）</h3>
+<table>
+  <tr><th>邊界</th><th>Sideset</th><th>Variable</th><th>type</th><th>值</th></tr>
+  <tr>
+    <td rowspan="6">入口</td>
+    <td rowspan="6" style="font-family:var(--mono)">gap_enter_boundary</td>
+    <td style="font-family:var(--mono)">vel_x, vel_y</td>
+    <td style="font-family:var(--mono);font-size:11px">INSFVInletVelocityBC</td>
+    <td>0.0</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">vel_z</td>
+    <td style="font-family:var(--mono);font-size:11px">INSFVInletVelocityBC</td>
+    <td>1.1838 m/s（+z 向上）</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">T_fluid</td>
+    <td style="font-family:var(--mono);font-size:11px">FVDirichletBC</td>
+    <td>898 K</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">TKE</td>
+    <td style="font-family:var(--mono);font-size:11px">FVDirichletBC</td>
+    <td>5.26e-3 m²/s²（I=5%）</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">TKED</td>
+    <td style="font-family:var(--mono);font-size:11px">FVDirichletBC</td>
+    <td>6.4e-4 m²/s³</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">—</td>
+    <td style="font-family:var(--mono);font-size:11px">（vel/T/TKE/TKED 在出口用 zero-gradient）</td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td>出口</td>
+    <td style="font-family:var(--mono)">gap_exit_boundary</td>
+    <td style="font-family:var(--mono)">pressure</td>
+    <td style="font-family:var(--mono);font-size:11px">INSFVOutletPressureBC</td>
+    <td>0 Pa（錶壓基準）</td>
+  </tr>
+  <tr>
+    <td rowspan="4">壁面</td>
+    <td rowspan="4" style="font-family:var(--mono)">wall</td>
+    <td style="font-family:var(--mono)">vel_x/y/z</td>
+    <td style="font-family:var(--mono);font-size:11px">FVDirichletBC</td>
+    <td>0（無滑移）</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">mu_t</td>
+    <td style="font-family:var(--mono);font-size:11px">INSFVTurbulentViscosityWallFunction</td>
+    <td>wall_treatment='eq_newton'（log-law）</td>
+  </tr>
+</table>
+<div class="info">💡 Side sets 由 read_mesh.py 從 msr.e 產生，用 element+side（不是 node）定義：<br>gap_exit_boundary（334面）| gap_enter_boundary（336面）| wall（11304面）</div>
 </div>
 
 <!-- ⑧ 全景地圖 -->
@@ -668,8 +925,12 @@ TKED 方程式：用到 k（在 C₁(ε/k)Pk 和 C₂ρε²/k 的分母裡）<br
   </div>
   <div class="map-arrow">+</div>
   <div class="map-box" style="border-color:var(--amber)">
-    <div class="mb-title" style="color:var(--amber)">[AuxVariables]</div>
-    <div class="mb-sub" style="font-family:var(--mono);font-size:11px">power_density<br>← OpenMC via Cardinal</div>
+    <div class="mb-title" style="color:var(--amber)">[AuxVariables] + [AuxKernels]</div>
+    <div class="mb-sub" style="font-family:var(--mono);font-size:11px;line-height:1.9">
+      power_density ← OpenMC<br>
+      mu_t（kEpsilonViscosityAux）<br>
+      yplus（RANSYPlusAux）
+    </div>
   </div>
   <div class="map-arrow">+</div>
   <div class="map-box highlight" style="min-width:220px">
@@ -722,13 +983,18 @@ TKED 方程式：用到 k（在 C₁(ε/k)Pk 和 C₂ρε²/k 的分母裡）<br
 </div><!-- app -->
 <script>
 function T(id){
+  const ids=['adv','cv','ns','dns','rans','ke','compare','thi','map'];
   document.querySelectorAll('.tab').forEach((t,i)=>{
-    const ids=['cv','ns','dns','rans','ke','compare','thi','map'];
     t.classList.toggle('active',ids[i]===id);
     if(ids[i]==='map'){
       t.style.background=id==='map'?'#2a1a5a':'#1a0e40';
       t.style.borderColor='var(--purple)';
       t.style.color='var(--purple)';
+    }
+    if(ids[i]==='adv'){
+      t.style.background=id==='adv'?'#153020':'#1a2a10';
+      t.style.borderColor='var(--green)';
+      t.style.color='var(--green)';
     }
   });
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
