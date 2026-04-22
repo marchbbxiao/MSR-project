@@ -199,3 +199,22 @@ Phase 3.3：PID Control，先 P-only，解決鄧永宏卡關點
 ### 關鍵參考檔案
 - Tano 本人的 RANS 範本：~/cardinal/contrib/moose/modules/navier_stokes/test/tests/finite_volume/ins/turbulence/channel/segregated/channel_ERCOFTAC.i
 - 正確網格：~/MSR-project/MSFR/msr_with_sidesets.e
+
+## 2026-04-22 下午工作（RTXWS）
+
+### 完成項目
+- th.i 語法驗證完全通過（零錯誤、零警告）
+- 修正清單：
+  1. 停用6個時間項 kernel（SIMPLE 穩態不用 Transient）
+  2. 移除重複 GlobalParams 殘留
+  3. 修正 energy_source：INSFVBodyForce → FVCoupledForce
+  4. 修正 energy_diffusion：INSFVEnergyDiffusion → FVDiffusion
+  5. 移除 energy_advection 多餘的 rho/cp 參數
+  6. 全部 k = TKE 改為 tke = TKE（棄用參數）
+  7. TKED_source 補上 tke/walls/wall_treatment
+  8. msr_with_sidesets.e 已有正確三個 side sets
+
+### 下一步
+- 嘗試單獨執行 th.i（不耦合 OpenMC）：
+  mpirun -n 4 ~/cardinal/cardinal-opt -i th.i
+- 預期可能的問題：網格品質（y+）、收斂性
