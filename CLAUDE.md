@@ -218,3 +218,26 @@ Phase 3.3：PID Control，先 P-only，解決鄧永宏卡關點
 - 嘗試單獨執行 th.i（不耦合 OpenMC）：
   mpirun -n 4 ~/cardinal/cardinal-opt -i th.i
 - 預期可能的問題：網格品質（y+）、收斂性
+
+## 2026-04-22 晚（RTXWS）
+
+### th.i 運行狀態
+- 第一次嘗試（relaxation=0.7）：Iter ~50 發散（inf）
+- 第二次嘗試（relaxation=0.5）：Iter 92 壓力劇烈震盪
+- 第三次嘗試（relaxation=0.3/0.1）：目前 Iter 87，殘差穩定
+  - Momentum: 0.05~0.14（輕微震盪）
+  - Pressure: 0.19→0.11（持續下降）
+  - Energy: 0.045（穩定）
+  - TKE/TKED: 0.046/0.012（穩定）
+- 結論：不發散，但收斂慢，讓它跑到 1000 次觀察
+
+### 重要認知修正
+- Tano et al. 2025 並未耦合 MOOSE RANS TH
+- 論文假設固定溫度場 936K（均勻溫度）
+- 我們做的完整 TH 耦合是超越論文的工作
+
+### 下一步
+1. 等 th.i 跑完 1000 次，觀察最終殘差
+2. 若收斂：用 Paraview 觀察速度場和溫度場
+3. 若不收斂：考慮改善初始條件或網格
+4. 之後開始寫 neutronics.i 和 main.i
