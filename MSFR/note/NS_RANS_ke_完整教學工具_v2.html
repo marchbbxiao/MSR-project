@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>從 N-S 到 RANS 到 k-ε：完整推導與 th.i 對應</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+:root{
+  --bg:#0d0f18;--surface:#14172b;--surface2:#1c2038;--surface3:#232848;
+  --border:#2a3060;--border2:#3a4480;
+  --text:#dde2f5;--muted:#7880b0;--dim:#3d4570;
+  --blue:#5b9cf6;--blue-dim:#0d1e45;--blue-mid:#1a3a7a;
+  --amber:#f0b843;--amber-dim:#3a2200;
+  --green:#4ed494;--green-dim:#0a2e1a;
+  --pink:#e878b0;--pink-dim:#380a28;
+  --teal:#3dd8d0;--teal-dim:#083028;
+  --purple:#a98bfa;--purple-dim:#1a0e40;
+  --coral:#f07860;--coral-dim:#380e08;
+  --red:#f06868;
+  --mono:'IBM Plex Mono',monospace;
+  --sans:'Noto Sans TC',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.75}
+.app{max-width:920px;margin:0 auto;padding:2rem 1.5rem}
+h1{font-size:24px;font-weight:700;color:#fff;margin-bottom:.25rem}
+.subtitle{color:var(--muted);font-size:13px;margin-bottom:1.75rem;font-family:var(--mono)}
+.tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.tab{padding:7px 15px;font-size:12px;font-family:var(--mono);border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--surface);color:var(--muted);transition:all .15s;white-space:nowrap}
+.tab:hover{border-color:var(--blue);color:var(--text)}
+.tab.active{background:var(--blue-mid);border-color:var(--blue);color:var(--blue);font-weight:600}
+.panel{display:none;animation:fin .2s ease}.panel.active{display:block}
+@keyframes fin{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+h2{font-size:17px;font-weight:700;color:#fff;margin:1.75rem 0 .6rem}
+h2:first-child{margin-top:0}
+h3{font-size:14px;font-weight:700;color:var(--text);margin:1.25rem 0 .4rem;font-family:var(--mono)}
+p{color:var(--muted);margin-bottom:.6rem;font-size:13px;line-height:1.75}
+strong{color:var(--text)}
+/* Equation boxes */
+.eq-wrap{margin:1rem 0}
+.eq-label{font-size:11px;color:var(--muted);font-family:var(--mono);margin-bottom:.3rem;letter-spacing:.5px}
+.eq-box{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.4rem;font-family:var(--mono);font-size:14px;line-height:2.4;overflow-x:auto;white-space:nowrap}
+.eq-box.center{text-align:center}
+.term{display:inline-block;padding:3px 10px;border-radius:5px;cursor:pointer;font-weight:600;transition:all .15s;border:1px solid transparent;font-family:var(--mono)}
+.term:hover{filter:brightness(1.2);transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.4)}
+.t-blue{background:var(--blue-dim);color:var(--blue)}
+.t-amber{background:var(--amber-dim);color:var(--amber)}
+.t-green{background:var(--green-dim);color:var(--green)}
+.t-pink{background:var(--pink-dim);color:var(--pink)}
+.t-teal{background:var(--teal-dim);color:var(--teal)}
+.t-purple{background:var(--purple-dim);color:var(--purple)}
+.t-coral{background:var(--coral-dim);color:var(--coral)}
+/* Detail cards */
+.detail{display:none;margin:.4rem 0 .9rem;background:var(--surface3);border-radius:8px;padding:1rem 1.25rem;font-size:13px;line-height:1.8;animation:fin .15s ease;border-left:3px solid var(--blue)}
+.detail.show{display:block}
+.detail.bc-blue{border-color:var(--blue)}.detail.bc-amber{border-color:var(--amber)}.detail.bc-green{border-color:var(--green)}.detail.bc-pink{border-color:var(--pink)}.detail.bc-teal{border-color:var(--teal)}.detail.bc-purple{border-color:var(--purple)}.detail.bc-coral{border-color:var(--coral)}
+.dt{font-weight:700;color:#fff;margin-bottom:.5rem;font-size:13px}
+.dt-sub{font-size:12px;color:var(--muted);font-weight:400;margin-left:6px}
+/* Info/warn/formula boxes */
+.info{background:#0a1a35;border:1px solid #1a3a6a;border-radius:8px;padding:.85rem 1.1rem;margin:.85rem 0;font-size:13px;color:#90b8f8;line-height:1.75}
+.warn{background:#2a1500;border:1px solid #6a3800;border-radius:8px;padding:.85rem 1.1rem;margin:.85rem 0;font-size:13px;color:var(--amber);line-height:1.75}
+.success{background:#082018;border:1px solid #1a5030;border-radius:8px;padding:.85rem 1.1rem;margin:.85rem 0;font-size:13px;color:#5ad898;line-height:1.75}
+.formula-box{background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:.85rem 1.25rem;margin:.75rem 0;font-family:var(--mono);font-size:13px;color:var(--text)}
+/* Badges */
+.badge{display:inline-block;padding:2px 9px;border-radius:4px;font-size:11px;font-family:var(--mono);font-weight:600;margin:3px 2px}
+.b-blue{background:var(--blue-dim);color:var(--blue)}.b-amber{background:var(--amber-dim);color:var(--amber)}.b-green{background:var(--green-dim);color:var(--green)}.b-pink{background:var(--pink-dim);color:var(--pink)}.b-teal{background:var(--teal-dim);color:var(--teal)}.b-purple{background:var(--purple-dim);color:var(--purple)}.b-red{background:#280808;color:var(--red)}.b-coral{background:var(--coral-dim);color:var(--coral)}
+/* Legend */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin:.75rem 0}
+.li{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.ld{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:12px;margin:1rem 0}
+th{background:var(--surface2);padding:9px 11px;text-align:left;font-weight:600;border:1px solid var(--border);color:var(--text);font-family:var(--mono)}
+td{padding:8px 11px;border:1px solid var(--border);color:var(--muted);vertical-align:top;line-height:1.65}
+tr:nth-child(even) td{background:var(--surface)}
+/* Step boxes */
+.step-grid{display:grid;gap:8px;margin:1rem 0}
+.step{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;display:flex;gap:12px;align-items:flex-start}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--blue-mid);border:1px solid var(--blue);color:var(--blue);font-family:var(--mono);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-body{flex:1}.step-title{font-weight:700;color:#fff;font-size:13px;margin-bottom:4px}
+.step-text{font-size:12px;color:var(--muted);line-height:1.7}
+/* Constants grid */
+.const-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:1rem 0}
+.const-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.75rem;text-align:center}
+.cs{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--purple)}
+.cv{font-family:var(--mono);font-size:14px;color:var(--amber);margin:2px 0}
+.cd{font-size:11px;color:var(--muted);line-height:1.5}
+/* Big map */
+.map-row{display:flex;gap:8px;align-items:stretch;margin:6px 0;flex-wrap:wrap}
+.map-box{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.7rem .9rem;flex:1;min-width:140px}
+.map-box.highlight{border-color:var(--blue);background:var(--blue-mid)}
+.mb-title{font-size:12px;font-weight:700;color:#fff;margin-bottom:3px;font-family:var(--mono)}
+.mb-sub{font-size:11px;color:var(--muted);line-height:1.6}
+.map-arrow{color:var(--muted);font-size:20px;display:flex;align-items:center;padding:0 2px;flex-shrink:0}
+.map-section{border:1px solid var(--border);border-radius:10px;padding:1rem;margin:.75rem 0}
+.ms-title{font-size:11px;font-family:var(--mono);color:var(--muted);margin-bottom:.5rem;letter-spacing:.5px}
+/* Derivation steps */
+.deriv{background:var(--surface);border-left:3px solid var(--purple);border-radius:0 8px 8px 0;padding:.85rem 1.1rem;margin:.6rem 0;font-size:13px}
+.deriv-step{font-size:11px;color:var(--purple);font-family:var(--mono);font-weight:600;margin-bottom:.3rem}
+/* DNS estimate box */
+.calc-box{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;margin:.75rem 0}
+.calc-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--border);font-size:13px}
+.calc-row:last-child{border-bottom:none;font-weight:700;color:#fff}
+.calc-label{color:var(--muted)}
+.calc-val{font-family:var(--mono);color:var(--amber)}
+</style>
+</head>
+<body>
+<div class="app">
+<h1>從 N-S 到 RANS 到 k-ε</h1>
+<div class="subtitle">完整推導脈絡 × 物理圖像 × DNS 估算 × th.i 對應關係</div>
+<div class="tabs">
+  <div class="tab active" onclick="T('cv')">① 控制體積</div>
+  <div class="tab" onclick="T('ns')">② N-S 方程式</div>
+  <div class="tab" onclick="T('dns')">③ DNS 為何不行</div>
+  <div class="tab" onclick="T('rans')">④ RANS 完整推導</div>
+  <div class="tab" onclick="T('ke')">⑤ k-ε 模型</div>
+  <div class="tab" onclick="T('compare')">⑥ 五方程對照</div>
+  <div class="tab" onclick="T('thi')">⑦ th.i 連結</div>
+  <div class="tab active-map" onclick="T('map')" style="background:#1a0e40;border-color:var(--purple);color:var(--purple)">⑧ 全景地圖</div>
+</div>
+
+<!-- ① 控制體積 -->
+<div id="tab-cv" class="panel active">
+<h2>控制體積：所有守恆方程式的起點</h2>
+<p>想像燃料鹽流場中一個微小的正方體，邊長 dx × dy × dz。所有守恆定律都從同一個問題出發：</p>
+<div class="info">💡 <strong>核心問題：</strong>在這個小方塊內，某個物理量（質量／動量／能量）如何隨時間變化？</div>
+<p>答案永遠是同一個骨架：</p>
+<div class="eq-box center" style="font-size:15px;letter-spacing:1px">
+  <span class="t-blue" style="padding:4px 12px;display:inline-block;border-radius:5px;background:var(--blue-dim);color:var(--blue);font-weight:700">時間變化率</span>
+  &nbsp;+&nbsp;
+  <span class="t-amber" style="padding:4px 12px;display:inline-block;border-radius:5px;background:var(--amber-dim);color:var(--amber);font-weight:700">對流帶出</span>
+  &nbsp;=&nbsp;
+  <span class="t-green" style="padding:4px 12px;display:inline-block;border-radius:5px;background:var(--green-dim);color:var(--green);font-weight:700">擴散傳入</span>
+  &nbsp;+&nbsp;
+  <span class="t-pink" style="padding:4px 12px;display:inline-block;border-radius:5px;background:var(--pink-dim);color:var(--pink);font-weight:700">內部源項</span>
+</div>
+<h3>五種守恆量 → 五組方程式</h3>
+<table>
+  <tr><th>守恆量</th><th>物理意義</th><th>求解變數（th.i）</th><th>特殊源項</th></tr>
+  <tr><td>質量 ρ</td><td>質量不消失</td><td>pressure</td><td>無</td></tr>
+  <tr><td>動量 ρv</td><td>牛頓第二定律</td><td>vel_x, vel_y, vel_z</td><td>壓力梯度、重力</td></tr>
+  <tr><td>能量 ρcₚT</td><td>熱量守恆</td><td>T_fluid</td><td>核分裂 q‴（OpenMC）</td></tr>
+  <tr><td>TKE ρk</td><td>湍流激烈程度</td><td>TKE</td><td>剪切生成 Pk − 黏性耗散 ρε</td></tr>
+  <tr><td>TKED ρε</td><td>湍流消退速率</td><td>TKED</td><td>C₁(ε/k)Pk − C₂ρε²/k</td></tr>
+</table>
+<div class="success">✓ MOOSE 的每個 FVKernel 對應骨架中的一項，積木式組合就能描述任何守恆問題。</div>
+</div>
+
+<!-- ② N-S -->
+<div id="tab-ns" class="panel">
+<h2>Navier-Stokes 動量方程式：完整逐項講解</h2>
+<p>N-S 方程式建立於 1822 年，是描述所有黏性流體運動的基本定律。地位等同流體力學的 F=ma。</p>
+<div class="eq-wrap">
+  <div class="eq-label">▶ x 方向完整動量方程式（點擊每一項查看詳細說明）</div>
+  <div class="eq-box">
+    <span class="term t-blue" onclick="D('n1','bc-blue')">ρ ∂vₓ/∂t</span>
+    &nbsp;+&nbsp;
+    <span class="term t-amber" onclick="D('n2','bc-amber')">ρ (v·∇)vₓ</span>
+    &nbsp;=&nbsp;
+    <span class="term t-green" onclick="D('n3','bc-green')">−∂p/∂x</span>
+    &nbsp;+&nbsp;
+    <span class="term t-pink" onclick="D('n4','bc-pink')">μ ∇²vₓ</span>
+    &nbsp;+&nbsp;
+    <span class="term t-teal" onclick="D('n5','bc-teal')">ρgₓ</span>
+  </div>
+</div>
+<div id="n1" class="detail bc-blue">
+  <div class="dt">ρ ∂vₓ/∂t &nbsp;<span class="dt-sub">時間加速度項（慣性項）</span></div>
+  <strong>物理意義：</strong>這塊流體在 x 方向的動量，每秒鐘變化多少。<br><br>
+  對應牛頓第二定律 F = ma：<br>
+  • m（質量）→ ρ（單位體積質量，即密度）<br>
+  • a（加速度）→ ∂vₓ/∂t（速度的時間導數）<br><br>
+  <strong>單位：</strong>kg/m³ × m/s² = N/m³（每立方公尺的力）<br><br>
+  <strong>穩態時：</strong>∂vₓ/∂t = 0，這一項消失。但在 SIMPLE 迭代過程中仍需要它組裝矩陣。<br>
+  <span class="badge b-blue">th.i → INSFVMomentumTimeDerivative（vel_x, rho=4147.3）</span>
+</div>
+<div id="n2" class="detail bc-amber">
+  <div class="dt">ρ (v·∇)vₓ &nbsp;<span class="dt-sub">對流項（Advection）</span></div>
+  <strong>物理意義：</strong>流體「流動」本身把 x 方向的動量從 A 點帶到 B 點。<br><br>
+  展開寫：ρ(vₓ ∂vₓ/∂x + vy ∂vₓ/∂y + vz ∂vₓ/∂z)<br><br>
+  <strong>為何重要：</strong>這是 N-S 方程式唯一的非線性項（速度 × 速度的梯度）。非線性導致：<br>
+  • 方程式無法解析求解（數學上尚未證明解的存在性！）<br>
+  • 數值求解需要迭代<br>
+  • Re 越高，此項相對黏性項越重要 → 湍流 dominates<br><br>
+  <strong>單位：</strong>kg/m³ × (m/s)(m/s)/m = N/m³<br>
+  <span class="badge b-amber">th.i → INSFVMomentumAdvection（advected_interp_method=average, velocity_interp_method=rc）</span>
+</div>
+<div id="n3" class="detail bc-green">
+  <div class="dt">−∂p/∂x &nbsp;<span class="dt-sub">壓力梯度項</span></div>
+  <strong>物理意義：</strong>壓力差驅動流體從高壓流向低壓（負號代表「壓力降低的方向就是流動方向」）。<br><br>
+  <strong>這項為什麼關鍵？</strong><br>
+  SIMPLE 演算法的核心邏輯就在這裡：<br>
+  1. 假設一個速度場<br>
+  2. 發現 ∇·v ≠ 0（質量不守恆）<br>
+  3. 計算壓力修正量 p'<br>
+  4. 用 −∇p' 修正速度（動量方程式有 −∇p，所以改 p 就能改 v）<br>
+  5. 迭代直到 ∇·v = 0<br><br>
+  這就是為什麼質量守恆方程式的 variable 是 pressure，不是速度！<br>
+  <span class="badge b-green">th.i → INSFVMomentumPressure（pressure=pressure）</span>
+</div>
+<div id="n4" class="detail bc-pink">
+  <div class="dt">μ ∇²vₓ &nbsp;<span class="dt-sub">黏性擴散項</span></div>
+  <strong>物理意義：</strong>分子黏性把動量從快速流體「摩擦傳遞」到慢速流體，就像內部摩擦。<br><br>
+  展開：μ(∂²vₓ/∂x² + ∂²vₓ/∂y² + ∂²vₓ/∂z²)<br><br>
+  <strong>MSFR 燃料鹽：</strong>μ = 0.011266 Pa·s（比水約重 10 倍）<br><br>
+  <strong>RANS 修正版：</strong>此項變成 ∇·[(μ+μt)∇vₓ]<br>
+  • μ：分子黏度（材料性質，固定）<br>
+  • μt：湍流黏度（流場計算，由 k-ε 模型給出）<br>
+  • μt 通常是 μ 的 10~1000 倍，湍流大幅增強動量傳遞<br><br>
+  <span class="badge b-pink">th.i → INSFVMomentumDiffusion（mu=μ，待補 μt）</span>
+  <span class="badge b-red">⚠️ 目前只有分子黏度，[FunctorMaterials] 補 total_viscosity 後修正</span>
+</div>
+<div id="n5" class="detail bc-teal">
+  <div class="dt">ρgₓ &nbsp;<span class="dt-sub">重力體積力</span></div>
+  <strong>物理意義：</strong>重力對每單位體積流體的作用力。<br><br>
+  g = (gₓ, gy, gz) = (0, 0, −9.81) m/s²（z 軸向上為正）<br><br>
+  MSFR 球形爐心：<br>
+  • x、y 方向：gₓ = gy = 0，不需要此 kernel<br>
+  • z 方向：gz = −9.81 m/s²，需要此 kernel<br><br>
+  <strong>單位：</strong>kg/m³ × m/s² = N/m³<br>
+  <span class="badge b-teal">th.i → INSFVMomentumGravity（僅 z 方向，gravity='0 0 -9.81'）</span>
+</div>
+<div class="legend">
+  <div class="li"><div class="ld" style="background:var(--blue)"></div>時間項（慣性）</div>
+  <div class="li"><div class="ld" style="background:var(--amber)"></div>對流項（非線性）</div>
+  <div class="li"><div class="ld" style="background:var(--green)"></div>壓力梯度</div>
+  <div class="li"><div class="ld" style="background:var(--pink)"></div>黏性擴散</div>
+  <div class="li"><div class="ld" style="background:var(--teal)"></div>重力</div>
+</div>
+<h3>質量守恆（連續方程式）</h3>
+<div class="eq-box center">∂ρ/∂t &nbsp;+&nbsp; ∇·(ρv) = 0</div>
+<p>不可壓縮流體（ρ=常數）化簡為：<strong style="color:var(--green)">∇·v = 0</strong>（流進來的 = 流出去的）</p>
+<h3>能量方程式</h3>
+<div class="eq-wrap">
+  <div class="eq-box">
+    <span class="term t-blue" onclick="D('e1','bc-blue')">ρcₚ ∂T/∂t</span>
+    &nbsp;+&nbsp;
+    <span class="term t-amber" onclick="D('e2','bc-amber')">ρcₚ v·∇T</span>
+    &nbsp;=&nbsp;
+    <span class="term t-green" onclick="D('e3','bc-green')">∇·[(k+kt)∇T]</span>
+    &nbsp;+&nbsp;
+    <span class="term t-pink" onclick="D('e4','bc-pink')">q‴</span>
+  </div>
+</div>
+<div id="e1" class="detail bc-blue">
+  <div class="dt">ρcₚ ∂T/∂t &nbsp;<span class="dt-sub">熱量時間項</span></div>
+  單位體積熱量隨時間的變化率。cₚ = 1524.86 J/(kg·K) 是把「溫度變化」換算成「熱量」的橋樑（Q = mcₚΔT）。<br>
+  注意：TKE 方程式沒有 cₚ，因為 k 本身單位就是 J/kg（已經是能量）。<br>
+  <span class="badge b-blue">th.i → INSFVEnergyTimeDerivative（rho, cp）</span>
+</div>
+<div id="e2" class="detail bc-amber">
+  <div class="dt">ρcₚ v·∇T &nbsp;<span class="dt-sub">熱量對流項（Advection）</span></div>
+  燃料鹽流動把熱量從爐心底部帶到頂部（或反之）。<br>
+  注意：這是「流體移動帶走熱量（Advection）」，不是「溫差驅動流動（Convection）」，也不是「固體-流體介面熱交換（Heat Convection）」。<br>
+  <span class="badge b-amber">th.i → INSFVEnergyAdvection（rho, cp）</span>
+</div>
+<div id="e3" class="detail bc-green">
+  <div class="dt">∇·[(k+kt)∇T] &nbsp;<span class="dt-sub">熱量擴散項（熱傳導）</span></div>
+  溫度梯度驅動熱量從高溫流向低溫（傅立葉定律）。<br>
+  • k：分子熱傳導係數（材料性質）<br>
+  • kt = cₚμt/Prt：湍流熱傳導（湍流渦旋攪拌增強熱傳），Prt ≈ 0.9<br>
+  <span class="badge b-green">th.i → INSFVEnergyDiffusion（k, cp）</span>
+</div>
+<div id="e4" class="detail bc-pink">
+  <div class="dt">q‴ &nbsp;<span class="dt-sub">核分裂熱源項</span></div>
+  核分裂功率密度 [W/m³]，由 OpenMC 計算中子通量後傳入。<br>
+  這是 Cardinal 耦合的核心：OpenMC → power_density AuxVariable → 此處 q‴。<br>
+  <span class="badge b-pink">th.i → INSFVBodyForce（value=power_density）</span>
+</div>
+</div>
+
+<!-- ③ DNS 估算 -->
+<div id="tab-dns" class="panel">
+<h2>為何 Re=958,000 需要 ~10¹³ 個網格點？詳細推導</h2>
+<h3>第一步：計算 MSFR 的雷諾數</h3>
+<p>雷諾數 Re 是慣性力與黏性力的比值，判斷流態：</p>
+<div class="formula-box">Re = ρ·u·L / μ</div>
+<div class="calc-box">
+  <div class="calc-row"><div class="calc-label">密度 ρ</div><div class="calc-val">4147.3 kg/m³</div></div>
+  <div class="calc-row"><div class="calc-label">平均流速 u = Q/A = 4.5 / (π × 1.1²)</div><div class="calc-val">1.184 m/s</div></div>
+  <div class="calc-row"><div class="calc-label">特徵長度 L（爐心直徑）</div><div class="calc-val">2.2 m</div></div>
+  <div class="calc-row"><div class="calc-label">動力黏度 μ</div><div class="calc-val">0.011266 Pa·s</div></div>
+  <div class="calc-row"><div class="calc-label">Re = 4147.3 × 1.184 × 2.2 / 0.011266</div><div class="calc-val">≈ 958,000</div></div>
+</div>
+<div class="warn">⚠️ Re &gt; 4000 = 湍流。MSFR 的 Re 是湍流門檻的 <strong>240 倍</strong>，是超強湍流狀態。</div>
+
+<h3>第二步：DNS 的網格需求估算</h3>
+<p>DNS（直接數值模擬）必須解析所有尺度的湍流渦旋，從最大渦旋到最小渦旋（Kolmogorov 尺度）。</p>
+<h3>關鍵：Kolmogorov 微尺度 η</h3>
+<p>最小渦旋的尺度決定了網格必須多小：</p>
+<div class="formula-box">η = L · Re^(−3/4)</div>
+<div class="calc-box">
+  <div class="calc-row"><div class="calc-label">特徵長度 L</div><div class="calc-val">2.2 m</div></div>
+  <div class="calc-row"><div class="calc-label">Re^(3/4) = 958000^0.75</div><div class="calc-val">≈ 38,500</div></div>
+  <div class="calc-row"><div class="calc-label">η = 2.2 / 38500</div><div class="calc-val">≈ 5.7 × 10⁻⁵ m = 57 μm</div></div>
+</div>
+<p>這意味著網格間距必須小於 57 μm 才能解析最小渦旋。</p>
+
+<h3>第三步：估算總網格數</h3>
+<div class="formula-box">N = (L / η)³ = Re^(9/4)</div>
+<div class="calc-box">
+  <div class="calc-row"><div class="calc-label">每個方向的網格數 = L/η = 38,500</div><div class="calc-val">≈ 3.85 × 10⁴</div></div>
+  <div class="calc-row"><div class="calc-label">三維總網格數 = (3.85×10⁴)³</div><div class="calc-val">≈ 5.7 × 10¹³</div></div>
+  <div class="calc-row"><div class="calc-label">或用公式 Re^(9/4) = 958000^2.25</div><div class="calc-val">≈ 10¹³</div></div>
+</div>
+
+<h3>第四步：計算資源比較</h3>
+<table>
+  <tr><th>方法</th><th>網格數</th><th>每時間步計算量</th><th>實際可行性</th></tr>
+  <tr><td>DNS</td><td>~10¹³</td><td>極大</td><td>❌ 不可行（超越最快超算）</td></tr>
+  <tr><td>LES</td><td>~10⁸～10¹⁰</td><td>大</td><td>⚠️ 勉強，需超算數週</td></tr>
+  <tr><td>RANS (k-ε)</td><td>~10⁵～10⁷</td><td>小</td><td>✅ 工程站數小時可完成</td></tr>
+</table>
+<div class="info">💡 RANS 把湍流效果「打包」進兩個方程式（TKE + TKED），用 μt 代替無數個渦旋的效果，讓計算量從 10¹³ 降到 10⁵～10⁷，降低 6~8 個數量級。</div>
+
+<h3>物理直覺：湍流的多尺度結構</h3>
+<div class="step-grid">
+  <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">大渦旋（能量注入尺度）</div><div class="step-text">尺度 ~L = 2.2 m（爐心大小）。主流剪切產生，含有大部分湍流動能（TKE）。</div></div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">慣性子區（能量串聯）</div><div class="step-text">大渦旋分裂為中等渦旋，再分裂為小渦旋。這個「能量串聯」過程中能量從大尺度流向小尺度。</div></div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Kolmogorov 微尺度（耗散）</div><div class="step-text">最小渦旋 η ≈ 57 μm，黏性力終於夠大，把動能轉換為熱能。這就是 TKED（ε）描述的過程。</div></div></div>
+</div>
+</div>
+
+<!-- ④ RANS 完整推導 -->
+<div id="tab-rans" class="panel">
+<h2>RANS 完整推導：Reynolds 時間平均法</h2>
+<h3>Step 1：Reynolds 分解（速度拆分）</h3>
+<p>把每個物理量拆成「時間平均值」+「瞬時擾動值」：</p>
+<div class="eq-box center" style="font-size:15px;letter-spacing:1px">
+  vᵢ = <span style="color:var(--blue);font-weight:700">v̄ᵢ</span> + <span style="color:var(--amber);font-weight:700">v'ᵢ</span>
+  &nbsp;&nbsp;&nbsp;
+  p = <span style="color:var(--blue);font-weight:700">p̄</span> + <span style="color:var(--amber);font-weight:700">p'</span>
+  &nbsp;&nbsp;&nbsp;
+  T = <span style="color:var(--blue);font-weight:700">T̄</span> + <span style="color:var(--amber);font-weight:700">T'</span>
+</div>
+<div class="info">時間平均的性質：&nbsp; <strong>v̄' = 0</strong>（擾動的平均為零）&nbsp;&nbsp; <strong>v̄·w̄ = v̄·w̄</strong>（平均的乘積等於乘積的平均—若兩者不相關）</div>
+
+<h3>Step 2：代入連續方程式</h3>
+<div class="deriv"><div class="deriv-step">代入</div>∂(v̄ᵢ+v'ᵢ)/∂xᵢ = 0</div>
+<div class="deriv"><div class="deriv-step">取時間平均</div>∂v̄ᵢ/∂xᵢ + ∂v'ᵢ/∂xᵢ = 0</div>
+<div class="deriv"><div class="deriv-step">因為 v̄'ᵢ = 0</div><strong style="color:var(--green)">∂v̄ᵢ/∂xᵢ = 0</strong>&nbsp;&nbsp;且&nbsp;&nbsp;<strong style="color:var(--green)">∂v'ᵢ/∂xᵢ = 0</strong></div>
+<p>結論：平均速度和擾動速度各自都滿足連續方程式。</p>
+
+<h3>Step 3：代入動量方程式，取時間平均</h3>
+<div class="deriv"><div class="deriv-step">原始 N-S（代入分解值）</div>ρ ∂(v̄ᵢ+v'ᵢ)/∂t + ρ(v̄ⱼ+v'ⱼ) ∂(v̄ᵢ+v'ᵢ)/∂xⱼ = −∂(p̄+p')/∂xᵢ + μ∂²(v̄ᵢ+v'ᵢ)/∂xⱼ²</div>
+<div class="deriv"><div class="deriv-step">展開對流項（關鍵步驟）</div>v̄ⱼ·v̄ᵢ + v̄ⱼ·v'ᵢ + v'ⱼ·v̄ᵢ + v'ⱼ·v'ᵢ</div>
+<div class="deriv"><div class="deriv-step">取時間平均（擾動的線性項消失，但二次項不為零！）</div>v̄ⱼ·v̄ᵢ + <span style="color:var(--amber);font-weight:700">0</span> + <span style="color:var(--amber);font-weight:700">0</span> + <span style="color:var(--coral);font-weight:700">v'ⱼ·v'ᵢ ← 這個不為零！</span></div>
+<div class="deriv"><div class="deriv-step">整理後得到 RANS 方程式</div>ρ ∂v̄ᵢ/∂t + ρ v̄ⱼ ∂v̄ᵢ/∂xⱼ = −∂p̄/∂xᵢ + μ∂²v̄ᵢ/∂xⱼ² <span style="color:var(--coral)">− ρ ∂(v'ᵢv'ⱼ)/∂xⱼ</span></div>
+<div class="warn">⚠️ <strong>關鍵！</strong>多出了一個新項：<strong style="color:var(--coral)">−ρ v'ᵢv'ⱼ</strong>，這就是 <strong>Reynolds Stress Tensor（雷諾應力張量）</strong>。<br>它代表湍流擾動對平均流場的影響，是整個 RANS 理論的核心問題。</div>
+
+<h3>Step 4：雷諾應力的封閉問題</h3>
+<p>Reynolds stress −ρ v'ᵢv'ⱼ 是 6 個未知量（對稱張量），但我們沒有直接的方程式來求解它們。這就是 <strong>湍流封閉問題（Closure Problem）</strong>。</p>
+<p>Boussinesq 假設（1877）：用湍流黏度 μt 來模擬 Reynolds stress：</p>
+<div class="formula-box">−ρ v'ᵢv'ⱼ ≈ μt (∂v̄ᵢ/∂xⱼ + ∂v̄ⱼ/∂xᵢ) − (2/3)ρk δᵢⱼ</div>
+<div class="info">💡 類比：分子黏度 μ 描述分子尺度的動量傳遞，湍流黏度 μt 描述渦旋尺度的動量傳遞。兩者物理機制不同，但數學形式相同。</div>
+
+<h3>Step 5：代入 Boussinesq 假設，得到最終 RANS 方程式</h3>
+<div class="eq-wrap">
+  <div class="eq-label">▶ 最終 RANS 動量方程式（點擊比較與 N-S 的差異）</div>
+  <div class="eq-box">
+    <span class="term t-blue" onclick="D('r1','bc-blue')">ρ ∂v̄/∂t</span>
+    &nbsp;+&nbsp;
+    <span class="term t-amber" onclick="D('r2','bc-amber')">ρ (v̄·∇)v̄</span>
+    &nbsp;=&nbsp;
+    <span class="term t-green" onclick="D('r3','bc-green')">−∇p̄</span>
+    &nbsp;+&nbsp;
+    <span class="term t-pink" onclick="D('r4','bc-pink')">∇·[(μ+μt)∇v̄]</span>
+    &nbsp;+&nbsp;
+    <span class="term t-teal" onclick="D('r5','bc-teal')">ρg</span>
+  </div>
+</div>
+<div id="r1" class="detail bc-blue"><div class="dt">ρ ∂v̄/∂t — 平均速度時間項</div>與 N-S 相同，只是對象從瞬時速度 v 換成時間平均速度 v̄。計算量降低：不需要解析每個瞬間的湍流擾動。</div>
+<div id="r2" class="detail bc-amber"><div class="dt">ρ (v̄·∇)v̄ — 平均速度對流</div>對流項的形式不變，但用的是平均速度 v̄。原來包含的 v'v' 交叉項已被移到右邊（Reynolds stress），並用 Boussinesq 假設打包進 μt。</div>
+<div id="r3" class="detail bc-green"><div class="dt">−∇p̄ — 時間平均壓力梯度</div>結構完全相同，SIMPLE 演算法的邏輯不變。</div>
+<div id="r4" class="detail bc-pink">
+  <div class="dt">∇·[(μ+μt)∇v̄] — 有效黏性擴散（⭐ N-S 和 RANS 最大差異）</div>
+  <strong>原始 N-S：</strong>μ∇²v（只有分子黏度）<br>
+  <strong>RANS：</strong>∇·[(μ+μt)∇v̄]（分子黏度 + 湍流黏度）<br><br>
+  μt = Cμ·k²/ε（由 k-ε 模型計算）<br><br>
+  在 MSFR 條件下：μt/μ ≈ 10~100，湍流大幅增強動量傳遞。<br>
+  <span class="badge b-red">⚠️ th.i 目前動量 diffusion kernel 只有 μ，補 FunctorMaterials 後修正</span>
+</div>
+<div id="r5" class="detail bc-teal"><div class="dt">ρg — 重力（不變）</div>時間平均不影響常數項。</div>
+
+<h3>Step 6：μt 從哪裡來？→ 需要 k-ε 兩條方程式</h3>
+<div class="formula-box">μt = Cμ · k² / ε &nbsp;&nbsp;&nbsp; Cμ = 0.09</div>
+<p>k（TKE）和 ε（TKED）各自需要一條輸送方程式 → 這就是下一步的 k-ε 模型。</p>
+</div>
+
+<!-- ⑤ k-ε -->
+<div id="tab-ke" class="panel">
+<h2>k-ε 模型：兩條耦合的輸送方程式</h2>
+<p>RANS 需要 μt，μt 需要 k 和 ε，它們各自滿足一條對流擴散方程式。</p>
+<h3>TKE 輸送方程式（求解 k）</h3>
+<div class="eq-wrap">
+  <div class="eq-label">▶ Turbulent Kinetic Energy（點擊各項）</div>
+  <div class="eq-box">
+    <span class="term t-blue" onclick="D('k1','bc-blue')">ρ ∂k/∂t</span>
+    &nbsp;+&nbsp;
+    <span class="term t-amber" onclick="D('k2','bc-amber')">ρ v̄·∇k</span>
+    &nbsp;=&nbsp;
+    <span class="term t-pink" onclick="D('k3','bc-pink')">∇·[(μ+μt/σk)∇k]</span>
+    &nbsp;+&nbsp;
+    <span class="term t-green" onclick="D('k4','bc-green')">Pk</span>
+    &nbsp;−&nbsp;
+    <span class="term t-teal" onclick="D('k5','bc-teal')">ρε</span>
+  </div>
+</div>
+<div id="k1" class="detail bc-blue"><div class="dt">ρ ∂k/∂t — TKE 時間項（無 cₚ！）</div><strong>為何沒有 cₚ？</strong><br>能量方程式：ρcₚ ∂T/∂t，因為 T 是溫度，需要乘 cₚ 換算成能量（Q=mcₚΔT）。<br>TKE 方程式：ρ ∂k/∂t，因為 k 的定義就是 k = ½v'²，單位是 m²/s² = J/kg，本身已是單位質量能量。<br>所以 ρ·k 就已經是能量密度（J/m³）了，不需要 cₚ 再換算。<br><span class="badge b-blue">th.i → WCNSFVTurbulentEnergyTimeDerivative，cp=1.0（關掉換算）</span></div>
+<div id="k2" class="detail bc-amber"><div class="dt">ρ v̄·∇k — TKE 對流</div>平均流場把 TKE 從高 TKE 區（近壁面、高剪切）帶到低 TKE 區。結構與動量/能量對流相同。<br><span class="badge b-amber">th.i → INSFVTurbulentAdvection</span></div>
+<div id="k3" class="detail bc-pink"><div class="dt">∇·[(μ+μt/σk)∇k] — TKE 擴散</div>TKE 透過黏性從高 TKE 區擴散到低 TKE 區。<br>σk = 1.0（Standard k-ε 常數）：TKE 的湍流擴散普朗特數，表示 TKE 擴散效率與動量湍流擴散相同。<br><span class="badge b-pink">th.i → INSFVTurbulentDiffusion，sigma=1.0</span></div>
+<div id="k4" class="detail bc-green"><div class="dt">Pk = μt|∇v̄|² — TKE 生成項</div>速度梯度（剪切力）產生湍流動能。<br>• 爐心中流速不均勻的地方（近壁面、入/出口）剪切最強，Pk 最大。<br>• Pk 依賴 μt，μt 又依賴 k 和 ε → 方程式之間的耦合！<br><span class="badge b-green">th.i → INSFVTKESourceSink（生成部分，mu_t='mu_t', epsilon=TKED）</span></div>
+<div id="k5" class="detail bc-teal"><div class="dt">ρε — TKE 耗散項（連結到 TKED 方程式！）</div>湍流動能被黏性「磨掉」：大渦旋→小渦旋→Kolmogorov 尺度→分子熱能。<br>ε（TKED）就是這個耗散率，它的值由 TKED 方程式求解。<br>→ 這就是為什麼需要兩條方程式：TKE 方程式用到 ε，TKED 方程式用到 k，互相耦合！<br><span class="badge b-teal">th.i → INSFVTKESourceSink（耗散部分）</span></div>
+
+<h3>TKED 輸送方程式（求解 ε）</h3>
+<div class="eq-wrap">
+  <div class="eq-label">▶ Turbulent Kinetic Energy Dissipation Rate（點擊各項）</div>
+  <div class="eq-box">
+    <span class="term t-blue" onclick="D('e11','bc-blue')">ρ ∂ε/∂t</span>
+    &nbsp;+&nbsp;
+    <span class="term t-amber" onclick="D('e22','bc-amber')">ρ v̄·∇ε</span>
+    &nbsp;=&nbsp;
+    <span class="term t-pink" onclick="D('e33','bc-pink')">∇·[(μ+μt/σε)∇ε]</span>
+    &nbsp;+&nbsp;
+    <span class="term t-green" onclick="D('e44','bc-green')">C₁(ε/k)Pk</span>
+    &nbsp;−&nbsp;
+    <span class="term t-teal" onclick="D('e55','bc-teal')">C₂ρε²/k</span>
+  </div>
+</div>
+<div id="e11" class="detail bc-blue"><div class="dt">ρ ∂ε/∂t — TKED 時間項（同樣無 cₚ）</div>ε 的單位是 m²/s³ = W/kg = J/(kg·s)，是「功率密度除以密度」。結構與 TKE 相同，cp=1.0 同理。</div>
+<div id="e22" class="detail bc-amber"><div class="dt">ρ v̄·∇ε — TKED 對流</div>平均流場把 TKED 從高耗散區帶走。結構相同。<span class="badge b-amber">th.i → INSFVTurbulentAdvection</span></div>
+<div id="e33" class="detail bc-pink"><div class="dt">∇·[(μ+μt/σε)∇ε] — TKED 擴散</div>σε = 1.3 &gt; σk = 1.0：TKED 的湍流擴散效率比 TKE 稍低（更難擴散）。<br>這個差異來自實驗觀測，反映耗散率比 TKE 更「局部」的特性。<br><span class="badge b-pink">th.i → INSFVTurbulentDiffusion，sigma=1.3</span></div>
+<div id="e44" class="detail bc-green"><div class="dt">C₁(ε/k)Pk — TKED 生成項</div>C₁ = 1.44（經驗常數）。ε/k 是「每單位 TKE 的耗散率」，把 TKE 生成轉換成 TKED 生成。<br><strong>⚠️ 分母含 k！</strong>→ k=0 時此項趨向無限大，求解器爆掉 → TKE 初始值必須非零！</div>
+<div id="e55" class="detail bc-teal"><div class="dt">C₂ρε²/k — TKED 耗散項</div>C₂ = 1.92（經驗常數）。ε²/k 代表耗散率的自我加速消退。<br><strong>⚠️ 分母含 k！</strong>→ 同上，TKE 初始值 2.102e-4 非零的根本原因之一。</div>
+
+<h3>k-ε 模型常數（Standard k-ε）</h3>
+<div class="const-grid">
+  <div class="const-card"><div class="cs">Cμ</div><div class="cv">0.09</div><div class="cd">計算 μt = Cμk²/ε</div></div>
+  <div class="const-card"><div class="cs">σk</div><div class="cv">1.0</div><div class="cd">TKE 擴散普朗特數</div></div>
+  <div class="const-card"><div class="cs">σε</div><div class="cv">1.3</div><div class="cd">TKED 擴散普朗特數</div></div>
+  <div class="const-card"><div class="cs">C₁</div><div class="cv">1.44</div><div class="cd">TKED 生成係數</div></div>
+  <div class="const-card"><div class="cs">C₂</div><div class="cv">1.92</div><div class="cd">TKED 耗散係數</div></div>
+</div>
+<div class="info">這五個常數從大量湍流實驗（管流、邊界層、自由射流）數據擬合得出，使用超過 50 年，被幾乎所有工業 CFD 軟體採用。</div>
+<h3>TKE 和 TKED 的依賴關係</h3>
+<div class="formula-box">
+TKE 方程式：用到 ε（在 ρε 耗散項和 Pk 的 μt 裡）<br>
+TKED 方程式：用到 k（在 C₁(ε/k)Pk 和 C₂ρε²/k 的分母裡）<br>
+μt = Cμ k²/ε：連結 k、ε 和動量/能量方程式<br>
+→ 三組方程式（動量、TKE、TKED）必須聯立求解！
+</div>
+</div>
+
+<!-- ⑥ 對照表 -->
+<div id="tab-compare" class="panel">
+<h2>五條方程式完整對照表</h2>
+<p>所有方程式都是同一個骨架，差別只在守恆量和源項。</p>
+<table>
+  <tr><th>方程式</th><th>求解變數</th><th>時間項</th><th>對流項</th><th>擴散項</th><th>源項</th><th>特殊說明</th></tr>
+  <tr>
+    <td><span class="badge b-blue">質量守恆</span></td>
+    <td style="font-family:var(--mono);font-size:11px">pressure</td>
+    <td>—</td><td>∇·v=0</td><td>—</td><td>—</td>
+    <td style="font-size:11px">壓力調節速度滿足連續方程式（SIMPLE）</td>
+  </tr>
+  <tr>
+    <td><span class="badge b-amber">動量守恆</span><br><span style="font-size:11px">x/y/z 三條</span></td>
+    <td style="font-family:var(--mono);font-size:11px">vel_x<br>vel_y<br>vel_z</td>
+    <td>ρ ∂v/∂t</td>
+    <td>ρ(v·∇)v</td>
+    <td>∇·[(μ+μt)∇v]<br><span style="color:var(--red);font-size:11px">⚠️ 目前只有 μ</span></td>
+    <td>−∇p<br>ρg（z）</td>
+    <td style="font-size:11px">RANS：μ→μ+μt。z 方向多重力 kernel</td>
+  </tr>
+  <tr>
+    <td><span class="badge b-green">能量守恆</span></td>
+    <td style="font-family:var(--mono);font-size:11px">T_fluid</td>
+    <td>ρcₚ ∂T/∂t<br><span style="color:var(--purple);font-size:11px">有 cₚ！</span></td>
+    <td>ρcₚ v·∇T<br><span style="color:var(--purple);font-size:11px">有 cₚ！</span></td>
+    <td>∇·[(k+kt)∇T]<br><span style="color:var(--red);font-size:11px">⚠️ 目前只有 k</span></td>
+    <td>q‴<br><span style="font-size:11px">（OpenMC）</span></td>
+    <td style="font-size:11px">T 需 cₚ 換算能量，k 本身是能量（無 cₚ）</td>
+  </tr>
+  <tr>
+    <td><span class="badge b-pink">TKE 輸送</span></td>
+    <td style="font-family:var(--mono);font-size:11px">TKE (k)</td>
+    <td>ρ ∂k/∂t<br><span style="color:var(--purple);font-size:11px">無 cₚ！</span></td>
+    <td>ρ v·∇k</td>
+    <td>∇·[(μ+μt/σk)∇k]<br>σk=1.0</td>
+    <td>Pk − ρε<br><span style="font-size:11px">生成 − 耗散</span></td>
+    <td style="font-size:11px">源項由流場自決，非外部輸入</td>
+  </tr>
+  <tr>
+    <td><span class="badge b-teal">TKED 輸送</span></td>
+    <td style="font-family:var(--mono);font-size:11px">TKED (ε)</td>
+    <td>ρ ∂ε/∂t<br><span style="color:var(--purple);font-size:11px">無 cₚ！</span></td>
+    <td>ρ v·∇ε</td>
+    <td>∇·[(μ+μt/σε)∇ε]<br>σε=1.3</td>
+    <td>C₁(ε/k)Pk<br>−C₂ρε²/k</td>
+    <td style="font-size:11px">分母含 k，初始值不能為零！</td>
+  </tr>
+</table>
+<h3>關鍵差異總結</h3>
+<table>
+  <tr><th>差異點</th><th>能量方程式</th><th>TKE/TKED 方程式</th><th>原因</th></tr>
+  <tr><td>時間項係數</td><td>ρcₚ（有 cₚ）</td><td>ρ（無 cₚ）</td><td>T 需要換算，k/ε 本身就是能量</td></tr>
+  <tr><td>擴散係數</td><td>熱傳導係數 k</td><td>黏度 μ</td><td>熱傳和動量傳遞的物理機制不同</td></tr>
+  <tr><td>湍流修正</td><td>k → k+kt</td><td>μ → μ+μt/σ</td><td>類比，但用不同的湍流普朗特數</td></tr>
+  <tr><td>源項</td><td>外部輸入 q‴</td><td>流場自決 Pk, ρε</td><td>熱量來自核分裂，TKE 來自剪切</td></tr>
+</table>
+</div>
+
+<!-- ⑦ th.i 連結 -->
+<div id="tab-thi" class="panel">
+<h2>從物理方程式到 th.i 程式碼：完整對應</h2>
+<div class="info">💡 MOOSE 的設計哲學：每個物理項 = 一個 kernel（積木）。使用者宣告 Variables，再用 FVKernels 積木組合出完整方程式。</div>
+<h3>為什麼需要 [Variables]？</h3>
+<p>MOOSE 求解的是線性系統 <strong>Ax = b</strong>。每個 Variable 是 x 向量的一個分量，MOOSE 需要先知道有哪些未知量，才能配置記憶體、組裝矩陣。</p>
+<p>每個 Variable 必須有對應的 FVKernel，否則 MOOSE 不知道這個未知量滿足什麼方程式，會報錯。</p>
+<h3>Variables → 方程式 → Kernels 完整對應</h3>
+<table>
+  <tr><th>Variable</th><th>對應方程式</th><th>Kernel 列表</th><th>Kernel 數</th></tr>
+  <tr>
+    <td style="font-family:var(--mono)">pressure</td>
+    <td>∇·v=0（質量守恆）</td>
+    <td style="font-family:var(--mono);font-size:11px">INSFVMassAdvection</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">vel_x</td>
+    <td>x 方向動量方程式</td>
+    <td style="font-family:var(--mono);font-size:11px">MomentumTimeDerivative<br>MomentumAdvection<br>MomentumDiffusion<br>MomentumPressure</td>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">vel_y</td>
+    <td>y 方向動量方程式</td>
+    <td style="font-family:var(--mono);font-size:11px">（同 vel_x，y 方向）</td>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">vel_z</td>
+    <td>z 方向動量方程式</td>
+    <td style="font-family:var(--mono);font-size:11px">（同 vel_x，z 方向）<br>+ MomentumGravity</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">T_fluid</td>
+    <td>能量守恆方程式</td>
+    <td style="font-family:var(--mono);font-size:11px">EnergyTimeDerivative<br>EnergyAdvection<br>EnergyDiffusion<br>BodyForce（q‴）</td>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">TKE</td>
+    <td>TKE 輸送方程式</td>
+    <td style="font-family:var(--mono);font-size:11px">TurbulentEnergyTimeDerivative<br>TurbulentAdvection<br>TurbulentDiffusion(σk=1.0)<br>TKESourceSink</td>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td style="font-family:var(--mono)">TKED</td>
+    <td>TKED 輸送方程式</td>
+    <td style="font-family:var(--mono);font-size:11px">TurbulentEnergyTimeDerivative<br>TurbulentAdvection<br>TurbulentDiffusion(σε=1.3)<br>TKEDSourceSink</td>
+    <td>4</td>
+  </tr>
+  <tr><td colspan="3"><strong>總計</strong></td><td><strong>26 kernels</strong></td></tr>
+</table>
+<h3>AuxVariables：外部傳入的量</h3>
+<table>
+  <tr><th>AuxVariable</th><th>來源</th><th>用途</th><th>傳遞機制</th></tr>
+  <tr><td style="font-family:var(--mono)">power_density</td><td>neutronics.i（OpenMC）</td><td>能量方程式熱源 q‴</td><td>Cardinal MultiApp Transfer</td></tr>
+</table>
+<h3>待補完的 [FunctorMaterials]</h3>
+<div class="warn">⚠️ 目前動量和能量方程式的擴散 kernel 使用的是分子黏度 μ 和熱傳導係數 k，缺少湍流修正。<br>需要在 [FunctorMaterials] 定義 μt = Cμk²/ε，然後修改相關 kernel 使用 total_viscosity（μ+μt）。</div>
+<div class="formula-box">
+[FunctorMaterials]<br>
+&nbsp;&nbsp;[mixing_length]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type = INSFVkEpsilonViscosityFunctorMaterial<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TKE = TKE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TKED = TKED<br>
+&nbsp;&nbsp;&nbsp;&nbsp;rho = ${rho}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;mu = ${mu}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Cmu = 0.09<br>
+&nbsp;&nbsp;[]<br>
+[]
+</div>
+</div>
+
+<!-- ⑧ 全景地圖 -->
+<div id="tab-map" class="panel">
+<h2>全景地圖：從 N-S 到 th.i，一眼看清所有連結</h2>
+
+<div class="map-section" style="border-color:var(--blue)">
+<div class="ms-title">LAYER 1：物理基礎</div>
+<div class="map-row">
+  <div class="map-box" style="border-color:var(--blue)">
+    <div class="mb-title" style="color:var(--blue)">Navier-Stokes 方程式</div>
+    <div class="mb-sub">1822年。描述所有黏性流體。<br>ρ ∂v/∂t + ρ(v·∇)v = −∇p + μ∇²v + ρg<br><strong style="color:var(--text)">完全精確，但無法直接求解高 Re 問題</strong></div>
+  </div>
+  <div class="map-arrow">→</div>
+  <div class="map-box" style="border-color:var(--red)">
+    <div class="mb-title" style="color:var(--red)">DNS 問題</div>
+    <div class="mb-sub">MSFR Re = 958,000<br>η = L·Re^(−3/4) = 57 μm<br>需要 Re^(9/4) ≈ <strong style="color:var(--red)">10¹³ 個網格</strong><br>超算也無法負荷</div>
+  </div>
+</div>
+</div>
+
+<div style="text-align:center;color:var(--muted);font-size:18px;margin:4px 0">↓ Reynolds 時間平均 v = v̄ + v'</div>
+
+<div class="map-section" style="border-color:var(--amber)">
+<div class="ms-title">LAYER 2：RANS 近似</div>
+<div class="map-row">
+  <div class="map-box" style="border-color:var(--amber)">
+    <div class="mb-title" style="color:var(--amber)">RANS 方程式</div>
+    <div class="mb-sub">時間平均後多出 Reynolds stress：<br>−ρ v'ᵢv'ⱼ<br>→ Boussinesq 假設：≈ μt·∇v̄<br><strong style="color:var(--text)">μ 變成 (μ+μt)，需要知道 μt</strong></div>
+  </div>
+  <div class="map-arrow">→</div>
+  <div class="map-box" style="border-color:var(--coral)">
+    <div class="mb-title" style="color:var(--coral)">封閉問題</div>
+    <div class="mb-sub">μt = Cμ k²/ε<br>k 和 ε 是未知數<br>→ 需要兩條額外方程式<br><strong style="color:var(--text)">這就是 k-ε 模型的來源</strong></div>
+  </div>
+</div>
+</div>
+
+<div style="text-align:center;color:var(--muted);font-size:18px;margin:4px 0">↓ Boussinesq 假設 + k-ε 模型常數（Cμ=0.09, σk=1.0, σε=1.3, C₁=1.44, C₂=1.92）</div>
+
+<div class="map-section" style="border-color:var(--green)">
+<div class="ms-title">LAYER 3：完整方程式組（5 條）</div>
+<div class="map-row" style="flex-wrap:wrap">
+  <div class="map-box" style="min-width:120px;border-color:var(--blue)">
+    <div class="mb-title" style="color:var(--blue);font-size:11px">∇·v=0</div>
+    <div class="mb-sub">質量守恆</div>
+  </div>
+  <div class="map-arrow">+</div>
+  <div class="map-box" style="min-width:120px;border-color:var(--amber)">
+    <div class="mb-title" style="color:var(--amber);font-size:11px">RANS 動量（×3）</div>
+    <div class="mb-sub">x/y/z 方向</div>
+  </div>
+  <div class="map-arrow">+</div>
+  <div class="map-box" style="min-width:120px;border-color:var(--green)">
+    <div class="mb-title" style="color:var(--green);font-size:11px">能量方程式</div>
+    <div class="mb-sub">含 q‴ 熱源</div>
+  </div>
+  <div class="map-arrow">+</div>
+  <div class="map-box" style="min-width:120px;border-color:var(--pink)">
+    <div class="mb-title" style="color:var(--pink);font-size:11px">TKE 輸送</div>
+    <div class="mb-sub">求解 k</div>
+  </div>
+  <div class="map-arrow">+</div>
+  <div class="map-box" style="min-width:120px;border-color:var(--teal)">
+    <div class="mb-title" style="color:var(--teal);font-size:11px">TKED 輸送</div>
+    <div class="mb-sub">求解 ε</div>
+  </div>
+</div>
+</div>
+
+<div style="text-align:center;color:var(--muted);font-size:18px;margin:4px 0">↓ MOOSE FVM 離散化（有限體積法）</div>
+
+<div class="map-section" style="border-color:var(--purple)">
+<div class="ms-title">LAYER 4：th.i 程式碼結構</div>
+<div class="map-row">
+  <div class="map-box" style="border-color:var(--purple)">
+    <div class="mb-title" style="color:var(--purple)">[Variables]（7個）</div>
+    <div class="mb-sub" style="font-family:var(--mono);font-size:11px;line-height:1.9">
+      vel_x, vel_y, vel_z<br>pressure<br>T_fluid<br>TKE (ic=2.102e-4)<br>TKED (ic=4.55e-7)
+    </div>
+  </div>
+  <div class="map-arrow">+</div>
+  <div class="map-box" style="border-color:var(--amber)">
+    <div class="mb-title" style="color:var(--amber)">[AuxVariables]</div>
+    <div class="mb-sub" style="font-family:var(--mono);font-size:11px">power_density<br>← OpenMC via Cardinal</div>
+  </div>
+  <div class="map-arrow">+</div>
+  <div class="map-box highlight" style="min-width:220px">
+    <div class="mb-title">[FVKernels]（26個）</div>
+    <div class="mb-sub" style="font-size:11px;line-height:1.9">
+      質量: 1 kernel<br>
+      動量 x/y/z: 4+4+5=13 kernels<br>
+      能量: 4 kernels<br>
+      TKE: 4 kernels<br>
+      TKED: 4 kernels
+    </div>
+  </div>
+</div>
+</div>
+
+<div style="text-align:center;color:var(--muted);font-size:18px;margin:4px 0">↓ Cardinal MultiApp / Transfer 機制</div>
+
+<div class="map-section" style="border-color:var(--coral)">
+<div class="ms-title">LAYER 5：Cardinal 耦合（Stage 3 最終目標）</div>
+<div class="map-row">
+  <div class="map-box" style="border-color:var(--coral)">
+    <div class="mb-title" style="color:var(--coral)">neutronics.i（OpenMC）</div>
+    <div class="mb-sub">計算中子通量<br>→ 產生功率密度 q‴(r)<br>→ 傳給 power_density</div>
+  </div>
+  <div class="map-arrow">⇄</div>
+  <div class="map-box" style="border-color:var(--green)">
+    <div class="mb-title" style="color:var(--green)">th.i（MOOSE RANS TH）</div>
+    <div class="mb-sub">接收 q‴(r)<br>→ 計算 T(r)、v(r)<br>→ 回傳給 OpenMC</div>
+  </div>
+  <div class="map-arrow">+</div>
+  <div class="map-box" style="border-color:var(--purple)">
+    <div class="mb-title" style="color:var(--purple)">main.i（Cardinal）</div>
+    <div class="mb-sub">Picard 迭代控制<br>ΔT &lt; ε 收斂判斷<br>管理 MultiApp</div>
+  </div>
+</div>
+</div>
+
+<h3>推導鏈完整摘要</h3>
+<div class="step-grid">
+  <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">N-S 方程式（精確）</div><div class="step-text">描述真實瞬時流場。Re=958,000 → DNS 需 10¹³ 網格，無法求解。</div></div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Reynolds 分解 v = v̄ + v'</div><div class="step-text">拆成平均 + 擾動，對 N-S 取時間平均。擾動的線性項消失，但二次項 v'v' 不為零。</div></div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Reynolds Stress 出現</div><div class="step-text">多出未知項 −ρv'ᵢv'ⱼ（6個未知量），方程式不封閉。需要湍流封閉模型。</div></div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Boussinesq 假設</div><div class="step-text">−ρv'ᵢv'ⱼ ≈ μt·∇v̄，把 6 個未知量化成 1 個標量 μt。問題變成：如何計算 μt？</div></div></div>
+  <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">k-ε 模型：μt = Cμ k²/ε</div><div class="step-text">引入 TKE(k) 和 TKED(ε) 兩個新變數，各自滿足對流擴散方程式，聯立求解。</div></div></div>
+  <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">MOOSE 離散化 → th.i</div><div class="step-text">每條方程式每一項 = 一個 FVKernel。7個 Variables × 對應方程式 = 26個 kernels。</div></div></div>
+  <div class="step"><div class="step-num">7</div><div class="step-body"><div class="step-title">Cardinal 耦合</div><div class="step-text">th.i 接收 OpenMC 的 q‴，回傳 T(r)、v(r) 給 OpenMC 更新截面，Picard 迭代直到收斂。</div></div></div>
+</div>
+</div>
+
+</div><!-- app -->
+<script>
+function T(id){
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    const ids=['cv','ns','dns','rans','ke','compare','thi','map'];
+    t.classList.toggle('active',ids[i]===id);
+    if(ids[i]==='map'){
+      t.style.background=id==='map'?'#2a1a5a':'#1a0e40';
+      t.style.borderColor='var(--purple)';
+      t.style.color='var(--purple)';
+    }
+  });
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  const el=document.getElementById('tab-'+id);
+  if(el)el.classList.add('active');
+  document.querySelectorAll('.detail').forEach(d=>d.classList.remove('show'));
+}
+function D(id,colorClass){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const was=el.classList.contains('show');
+  document.querySelectorAll('.detail').forEach(d=>d.classList.remove('show'));
+  if(!was){el.className='detail show '+(colorClass||'bc-blue')}
+}
+</script>
+</body>
+</html>
