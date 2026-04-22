@@ -164,3 +164,38 @@ Phase 3.3：PID Control，先 P-only，解決鄧永宏卡關點
 1. [FVBCs]：入口速度+溫度、出口壓力、壁面無滑移、TKE/TKED入口值
 2. [FunctorMaterials]：μt = Cμk²/ε
 3. [Executioner]：SIMPLE solver
+
+## 2026-04-22 今日工作（RTXWS）
+
+### 完成項目
+1. 發現 msr_with_sidesets.e 只有 node sets 的根本問題
+2. 修正 read_mesh.py：改用 element+side 產生正確 side sets
+3. msr_with_sidesets.e 現在有三個正確 side sets：
+   - gap_exit_boundary（334面）
+   - gap_enter_boundary（336面）
+   - wall（11304面）
+4. th.i 大幅更新，根據 Tano 本人的 channel_ERCOFTAC.i 範本修正：
+   - 加入 [GlobalParams]、[Problem]、[UserObjects]
+   - [Variables] 加入 solver_sys 和 two_term_boundary_expansion
+   - [AuxVariables] 加入 mu_t、yplus
+   - [AuxKernels] 加入 kEpsilonViscosityAux、RANSYPlusAux
+   - [FVKernels] 動量/TKE/TKED 擴散改為分子+湍流兩個 kernel
+   - 質量守恆改為 FVAnisotropicDiffusion + FVDivergence（SIMPLE版）
+   - 壓力項加 extra_vector_tags
+   - [FVBCs] 修正：壁面用 FVDirichletBC，湍流入口用 FVDirichletBC
+   - [Executioner] 加入 SIMPLENonlinearAssembly
+
+### 尚未完成（斷電前中斷）
+- th.i 語法檢查還有三個問題待修正：
+  1. [FVKernels] 沒有正確關閉就開始 [FVBCs]（最嚴重）
+  2. vel_y_advection、vel_z_advection 殘留 advected_interp_method = average
+  3. TKE_source 缺 walls/wall_treatment；TKED_source 缺 k/walls/wall_treatment
+
+### 下一步（復電後）
+1. 修正上述三個語法問題
+2. 執行 --check-input 語法驗證
+3. 確認通過後嘗試第一次單獨執行 th.i（不耦合 OpenMC）
+
+### 關鍵參考檔案
+- Tano 本人的 RANS 範本：~/cardinal/contrib/moose/modules/navier_stokes/test/tests/finite_volume/ins/turbulence/channel/segregated/channel_ERCOFTAC.i
+- 正確網格：~/MSR-project/MSFR/msr_with_sidesets.e
