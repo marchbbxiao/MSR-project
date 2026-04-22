@@ -152,3 +152,15 @@ Phase 3.3：PID Control，先 P-only，解決鄧永宏卡關點
 - 守恆定律結構：時間項 + 對流項 = 擴散項 + 源項
 - TKE/TKED 互相依賴，初始值不能為零
 - SIMPLE 演算法：壓力調節速度強制 div(v)=0
+
+## 2026-04-22 今日工作（RTXWS）
+
+### 完成項目
+- th.i [Variables]、[AuxVariables]、[FVKernels] 完成（25個kernels）
+- 教學工具：NS_RANS_ke_完整教學工具_v3.html 存入 MSFR/note/
+- 概念：Re估算、DNS為何不行、Reynolds分解、Boussinesq假設、三種對流區別
+
+### 下一步：繼續寫 th.i
+1. [FVBCs]：入口速度+溫度、出口壓力、壁面無滑移、TKE/TKED入口值
+2. [FunctorMaterials]：μt = Cμk²/ε
+3. [Executioner]：SIMPLE solver
