@@ -8,7 +8,7 @@
 #   1. 質量守恆（連續方程式）：∇⋅v = 0
 #   2. 動量守恆（RANS N-S）：ρ Dv/Dt = -∇p + ∇⋅[(μ+μt)∇v] + ρg
 #   3. 能量守恆：ρcp DT/Dt = ∇⋅[(k+kt)∇T] + q‴
-#   4. TKE 輸送方程式：ρ Dk/Dt = ∇⋅[(μ+μt/σk)∇k] + Pk - ρε  
+#   4. TKE 輸送方程式：ρ Dk/Dt = ∇⋅[(μ+μt/σk)∇k] + Pk - ρε
 #   5. TKED 輸送方程式：ρ Dε/Dt = ∇⋅[(μ+μt/σε)∇ε] + C1(ε/k)Pk - C2ρε²/k
 #
 # 為什麼用 RANS 而非直接求解 N-S？
@@ -17,72 +17,43 @@
 #   RANS 對速度做時間平均 v = v̄ + v'，把湍流效果打包成
 #   湍流黏度 μt = Cμ * k²/ε，大幅降低計算成本。
 #
-# SIMPLE 求解器需要的壓力梯度標籤
+# 求解器架構：SIMPLE（分離式穩態求解器）
+#   不使用 Transient executioner，因此所有時間項 kernel 已停用。
+#   SIMPLE 把速度-壓力耦合拆成多個獨立系統，分別迭代求解。
+#
+# 來源參考：Tano et al. 2025, Progress in Nuclear Energy 178, 105503
+#           channel_ERCOFTAC.i（Dr. Tano 本人的 RANS k-ε 範本）
+
+# ============================================================
+# 全域參數定義（頂層變數，可用 ${} 引用）
+# ============================================================
+# SIMPLE 壓力梯度標籤：讓 Rhie-Chow 物件能單獨提取壓力項
 pressure_tag = "pressure_grad"
+
 # 燃料鹽物性（來源：Rouch et al. 2014，ANL Cardinal tutorial）
-# ------------------------------------------------------------
 rho = 4147.3        # 密度 [kg/m³]
 mu = 0.011266321    # 動力黏度 [Pa·s]
-cp = 1524.86        # 比熱容 [J/kg/K]，將溫度變化換算為熱量的橋樑（Q = mcp ΔT）
+# cp = 1524.86  # 比熱容 [J/kg/K]（INSFVEnergyAdvection 內建處理，暫時未用）
 k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
-# ============================================================
-# [GlobalParams]：全域參數（所有 kernel 共用）
-# ============================================================
-# 把重複出現的參數集中在這裡，避免每個 kernel 都要寫一遍
-# rhie_chow_user_object：Rhie-Chow 插值物件，消除壓力棋盤格振盪
-# advected_interp_method：對流項的面插值方法
-# velocity_interp_method：速度的面插值方法（rc = Rhie-Chow）
-[GlobalParams]
-  rhie_chow_user_object = 'rc'
-  advected_interp_method = 'upwind'
-  velocity_interp_method = 'rc'
-[]
 
-# ============================================================
-# [Problem]：求解系統定義
-# ============================================================
-# SIMPLE 分離式求解器需要把每個方程式分配到獨立的求解系統
-# 這樣才能分別控制每個方程式的鬆弛因子和收斂條件
-[Problem]
-  nl_sys_names = 'u_system v_system w_system pressure_system TKE_system TKED_system energy_system'
-  previous_nl_solution_required = true
-[]
-
-# ============================================================
-# [UserObjects]：Rhie-Chow 插值物件
-# ============================================================
-# INSFVRhieChowInterpolatorSegregated：
-#   SIMPLE 分離式求解器專用的 Rhie-Chow 插值
-#   作用：在同位網格（collocated grid）上消除壓力棋盤格振盪
-#   同位網格：速度和壓力存在同一個網格中心（非交錯網格）
-#   棋盤格問題：若不處理，壓力場會出現鋸齒狀振盪
-[UserObjects]
-  [rc]
-    type = INSFVRhieChowInterpolatorSegregated
-    u = vel_x
-    v = vel_y
-    w = vel_z
-    pressure = pressure
-  []
-[]
 # ============================================================
 # [GlobalParams]：全域參數（所有 kernel 自動繼承）
 # ============================================================
 # 把重複出現的參數集中在這裡，避免每個 kernel 都要寫一遍。
 # 任何 kernel 只要有這些參數名稱，就會自動套用這裡的值。
 #
-# rhie_chow_user_object：
-#   指向下方 [UserObjects] 定義的 Rhie-Chow 插值物件
-#   所有速度、壓力相關 kernel 都需要它
+# rhie_chow_user_object = 'rc'：
+#   指向 [UserObjects] 定義的 Rhie-Chow 插值物件
+#   所有速度、壓力相關 kernel 都需要它消除棋盤格振盪
 #
 # advected_interp_method = 'upwind'：
 #   對流項的面插值方法
-#   upwind（一階迎風）：穩定性好，適合強對流的湍流問題
+#   upwind（一階迎風）：穩定性好，適合強對流的湍流問題（Re≈958000）
 #   average（中央差分）：精度較高但容易振盪，不適合高 Re 流
 #
 # velocity_interp_method = 'rc'：
 #   速度的面插值用 Rhie-Chow（rc）方法
-#   目的：消除同位網格的壓力棋盤格振盪
+#   目的：在同位網格上消除壓力棋盤格振盪（checkerboard instability）
 [GlobalParams]
   rhie_chow_user_object = 'rc'
   advected_interp_method = 'upwind'
@@ -104,7 +75,12 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 # previous_nl_solution_required = true：
 #   每次非線性迭代開始前，保留上一次的解作為初始猜測
 #   對 SIMPLE 演算法的收斂至關重要
+#
+# type = FEProblem：
+#   Cardinal 需要明確指定 Problem type，否則預設 NekInitAction
+#   會要求 NekRS 相關參數而報錯
 [Problem]
+  type = FEProblem
   nl_sys_names = 'u_system v_system w_system pressure_system TKE_system TKED_system energy_system'
   previous_nl_solution_required = true
 []
@@ -133,14 +109,19 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     pressure = pressure
   []
 []
+
 # ============================================================
 # [Mesh]：載入幾何網格
 # ============================================================
-# msr_with_sidesets.e 是由 add_sidesets.py 用 Cubit Python API
-# 從原始 msr.e 產生的，包含：
-#   - gap_exit_boundary（上方截斷面，Z > 0）：燃料鹽流出口
-#   - gap_enter_boundary（下方截斷面，Z < 0）：燃料鹽流入口
-# 格式：Exodus II（.e），由 Cubit 產生
+# msr_with_sidesets.e 由 read_mesh.py 從原始 msr.e 產生
+# 包含三個 side sets（面集合，供邊界條件使用）：
+#   - gap_exit_boundary（334面，上方截斷面 Z > 0）：燃料鹽流出口
+#   - gap_enter_boundary（336面，下方截斷面 Z < 0）：燃料鹽流入口
+#   - wall（11304面，球形爐心外壁）：無滑移壁面
+#
+# ⚠️ 注意：原始 msr.e 只有節點集合（node sets），無法用於 FVBCs。
+#    read_mesh.py 已修正為用 element+side 定義正確的 side sets。
+# 格式：Exodus II（.e）
 [Mesh]
   [file]
     type = FileMeshGenerator
@@ -157,7 +138,7 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 #   TKE, TKED           → k-ε 湍流模型（2條）
 #   T_fluid             → 能量方程式（1條）
 #
-# 與之前的差異：每個變數加了兩個新參數：
+# 每個變數的兩個重要參數：
 #   solver_sys：指定這個變數屬於哪個求解系統
 #     SIMPLE 分離式求解器把每個方程式拆成獨立系統，
 #     分別控制鬆弛因子和收斂條件，避免強耦合造成發散
@@ -172,7 +153,6 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     # x 方向速度分量 [m/s]
     # 對應動量方程式 x 分量：ρ Dvx/Dt = -∂p/∂x + ∇⋅[(μ+μt)∇vx]
     # 初始速度為零（靜止起始），SIMPLE 迭代過程中逐漸建立流場
-    # solver_sys = u_system：x 動量方程式獨立求解系統
     type = INSFVVelocityVariable
     initial_condition = 0.0
     solver_sys = u_system
@@ -250,13 +230,21 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 # ============================================================
 # [AuxVariables]：輔助變數（非求解目標，從外部傳入或計算）
 # ============================================================
+# AuxVariables 和 Variables 的差異：
+#   Variables：MOOSE 直接求解，有對應的方程式（kernel）
+#   AuxVariables：不直接求解，由外部傳入或 AuxKernel 計算填值
+#
+# 這裡定義三個 AuxVariables：
+#   power_density：從 OpenMC 傳入的核分裂功率密度
+#   mu_t：由 kEpsilonViscosityAux 計算的湍流動黏度
+#   yplus：由 RANSYPlusAux 計算的無因次壁面距離（網格品質指標）
 [AuxVariables]
   [power_density]
     # 核分裂功率密度 q‴(r) [W/m³]
     # 這是 Cardinal 耦合的關鍵橋樑：
     #   OpenMC 計算中子通量 → 產生功率密度分布
     #   → 透過 MultiApp Transfer 填入此變數
-    #   → 能量方程式的熱源項使用它
+    #   → 能量方程式的熱源項（energy_source kernel）使用它
     # 初始值為 0，等第一次 OpenMC 計算完成後才有非零值
     type = MooseVariableFVReal
     initial_condition = 0.0
@@ -274,13 +262,12 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     #
     # 初始值：μt = ρ × Cμ × k²/ε
     #   = 4147.3 × 0.09 × (5.26e-3)² / (6.4e-4)
-    #   ≈ 1.62×10⁻¹ Pa·s（約為分子黏度 μ=0.011 的 15 倍）
+    #   ≈ 0.162 Pa·s（約為分子黏度 μ=0.011 的 15 倍）
     #   湍流黏度遠大於分子黏度，這正是湍流增強動量傳遞的體現
     type = MooseVariableFVReal
     initial_condition = 0.162
     two_term_boundary_expansion = false
   []
-
   [yplus]
     # 無因次壁面距離 y⁺ [-]
     # 定義：y⁺ = u_τ × y / ν
@@ -291,13 +278,12 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     #   y⁺ = 5~30：過渡區（buffer layer），避免第一層落在這裡
     #   y⁺ = 30~300：對數律區（log-law region），壁面函數的有效範圍
     #
-    # 用途：計算完成後檢查 y⁺ 分布，確認網格是否符合壁面函數假設
-    #       若 y⁺ < 30，需要加密壁面附近網格
+    # 用途：計算完成後在 Paraview 裡觀察 yplus 分布，
+    #       確認網格是否符合壁面函數假設（y⁺ 應在 30~300）
     type = MooseVariableFVReal
     two_term_boundary_expansion = false
   []
 []
-
 
 # ============================================================
 # [AuxKernels]：輔助變數的計算方式
@@ -306,10 +292,9 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 # 每個 AuxKernel 對應一個 AuxVariable，告訴 MOOSE 怎麼填值。
 #
 # 執行時機：execute_on = 'NONLINEAR'
-#   每次非線性迭代時重新計算，確保 μt 和 y⁺ 隨速度場即時更新
-#   若設 'TIMESTEP_END' 則每個時間步才更新一次（精度較低）
+#   每次非線性迭代時重新計算，確保 μt 和 y⁺ 隨速度場即時更新。
+#   若設 'TIMESTEP_END' 則每個時間步才更新一次（精度較低）。
 [AuxKernels]
-
   [compute_mu_t]
     # 計算湍流動黏度：μt = Cμ × k²/ε
     # kEpsilonViscosityAux 是 MOOSE Navier-Stokes 模組內建的 kernel，
@@ -317,14 +302,14 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     #   爐心內部：μt = ρ × Cμ × k²/ε（標準公式）
     #   近壁處  ：μt 由壁面函數覆蓋（log-law 決定）
     #
-    # 這個 μt 之後會被 [FVKernels] 的擴散項使用：
+    # 這個 μt 之後會被 [FVKernels] 的湍流擴散項使用：
     #   動量擴散：∇·[(μ + μt)∇v]
     #   TKE 擴散：∇·[(μ + μt/σk)∇k]
     #   TKED 擴散：∇·[(μ + μt/σε)∇ε]
     type = kEpsilonViscosityAux
     variable = mu_t
     C_mu = 0.09
-    k = TKE
+    tke = TKE
     epsilon = TKED
     mu = ${mu}
     rho = ${rho}
@@ -336,19 +321,13 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     wall_treatment = 'eq_newton'
     execute_on = 'NONLINEAR'
   []
-
   [compute_yplus]
     # 計算無因次壁面距離 y⁺，用於事後檢查網格品質
     # RANSYPlusAux 從速度場和湍流量反推摩擦速度 u_τ，
     # 再算出每個網格中心到壁面的 y⁺ 值
-    #
-    # 計算完成後在 Paraview 裡觀察 yplus 分布：
-    #   若大部分 y⁺ 在 30~300 → 壁面函數有效，網格品質合格
-    #   若 y⁺ < 30 → 壁面網格太細，壁面函數假設失效
-    #   若 y⁺ > 300 → 壁面網格太粗，log-law 不適用
     type = RANSYPlusAux
     variable = yplus
-    k = TKE
+    tke = TKE
     mu = ${mu}
     rho = ${rho}
     u = vel_x
@@ -359,15 +338,16 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     execute_on = 'NONLINEAR'
   []
 []
+
 # ============================================================
 # [Executioner]：求解器設定
 # ============================================================
 # 使用 SIMPLE（Semi-Implicit Method for Pressure-Linked Equations）
 # 演算法求解不可壓縮 N-S 方程式。
 #
-# SIMPLE 的求解順序：
+# SIMPLE 的求解順序（每次迭代）：
 #   1. 用目前壓力場求解動量方程式 → 得到中間速度場 v*
-#   2. 求解壓力修正方程式 → 得到壓力修正量 p'
+#   2. 求解壓力修正方程式（Poisson）→ 得到壓力修正量 p'
 #   3. 用 p' 修正速度場，使 ∇⋅v = 0（質量守恆）
 #   4. 求解 TKE、TKED 方程式（湍流封閉）
 #   5. 求解能量方程式（溫度場）
@@ -376,24 +356,26 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 # 為什麼用 SIMPLENonlinearAssembly 而非 Steady 或 Transient？
 #   SIMPLE 是專門為不可壓縮流設計的分離式求解器，
 #   把速度-壓力耦合問題拆成多個較小的線性系統，
-#   比全耦合（monolithic）方法更節省記憶體，收斂更穩定
+#   比全耦合（monolithic）方法更節省記憶體，收斂更穩定。
+#   ⚠️ 使用 SIMPLE 就不能有時間項 kernel（INSFVMomentumTimeDerivative
+#      等），否則會報 "Vector tag TIME does not exist" 錯誤。
 [Executioner]
   type = SIMPLENonlinearAssembly
   rhie_chow_user_object = 'rc'
 
-  # 各方程式的求解系統對應
+  # 各方程式的求解系統對應（對應 [Problem] 的 nl_sys_names）
   momentum_systems = 'u_system v_system w_system'
   pressure_system = 'pressure_system'
   turbulence_systems = 'TKE_system TKED_system'
   energy_system = 'energy_system'
 
-  # 壓力梯度標籤（SIMPLE 內部用來傳遞壓力修正）
+  # 壓力梯度標籤（SIMPLE 內部用來傳遞壓力修正給 Rhie-Chow）
   pressure_gradient_tag = ${pressure_tag}
 
   # 鬆弛因子（relaxation factors）
   # 控制每次迭代的更新幅度，避免發散
   #   動量：0.7（標準值，太大容易震盪，太小收斂慢）
-  #   壓力：0.3（標準值，通常比動量小）
+  #   壓力：0.3（標準值，通常比動量小以維持穩定）
   #   湍流：0.2（比動量更保守，k-ε 方程式非線性強）
   #   能量：0.9（溫度方程式線性較好，可以較大）
   momentum_equation_relaxation = 0.7
@@ -405,13 +387,14 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   num_iterations = 1000
 
   # 收斂判斷：各方程式的絕對殘差容忍值
+  # 1e-8 是工程計算的標準精度，可依需要調整
   pressure_absolute_tolerance = 1e-8
   momentum_absolute_tolerance = 1e-8
   turbulence_absolute_tolerance = '1e-8 1e-8'
   energy_absolute_tolerance = 1e-8
 
-  # 線性求解器設定（每個非線性迭代內部的線性系統）
-  # hypre boomeramg：代數多重網格預條件子，適合大型稀疏系統
+  # 線性求解器設定（hypre boomeramg：代數多重網格預條件子）
+  # 適合大型稀疏系統，收斂速度快
   momentum_petsc_options_iname = '-pc_type -pc_hypre_type'
   momentum_petsc_options_value = 'hypre boomeramg'
   pressure_petsc_options_iname = '-pc_type -pc_hypre_type'
@@ -421,7 +404,7 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   energy_petsc_options_iname = '-pc_type -pc_hypre_type'
   energy_petsc_options_value = 'hypre boomeramg'
 
-  # 線性求解器容忍值
+  # 線性求解器容忍值（內層迭代的收斂條件）
   momentum_l_abs_tol = 1e-14
   pressure_l_abs_tol = 1e-14
   turbulence_l_abs_tol = 1e-14
@@ -435,46 +418,43 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 
   print_fields = false
 []
+
 # ============================================================
 # [FVKernels]：有限體積法方程式核心
 # ============================================================
 # 每個 kernel 對應方程式裡的一項（積木式組合）。
 # 這是 MOOSE 框架設計哲學的核心：
 #   「把每一項物理機制做成獨立 kernel，使用者自由組合。」
-# 好處：可以逐步加入物理機制，逐步驗證收斂。
 #
 # 所有守恆定律的共同結構：
-#   變化率 + 對流 = 擴散 + 源項
-#   （時間項）（帶走項）（傳遞項）（產生項）
+#   對流 = 擴散 + 源項
+#   （帶走項）（傳遞項）（產生項）
+#
+# ⚠️ 時間項說明：
+#   SIMPLE 穩態求解器不使用 Transient executioner，
+#   因此所有時間項 kernel 已停用（加 # 註解）。
+#   若未來改用 Transient 求解器，可取消對應的註解。
 [FVKernels]
 
   # ----------------------------------------------------------
-  # 1. 質量守恆方程式
-  # ----------------------------------------------------------
-  # 原始形式：∂ρ/∂t + ∇⋅(ρv) = 0
-  # 不可壓縮流（ρ=常數，∂ρ/∂t=0）化簡為：∇⋅v = 0
-  # 物理意義：流進控制體積的質量 = 流出的質量，無質量憑空產生
-  # ----------------------------------------------------------
-  # 1. 質量守恆方程式（SIMPLE 分離式求解器版本）
+  # 1. 質量守恆方程式（SIMPLE 版本）
   # ----------------------------------------------------------
   # SIMPLE 不直接求解 ∇⋅v = 0，而是用「壓力修正」間接滿足：
   #   Step 1：用目前壓力求解動量 → 得到 v*（不一定滿足連續）
-  #   Step 2：求解壓力修正方程式（Poisson 方程）→ 得到 p'
+  #   Step 2：求解壓力修正方程式（Poisson）→ 得到 p'
   #   Step 3：用 p' 修正 v*，使 ∇⋅v = 0
   #
-  # 壓力修正方程式的形式：
-  #   ∇⋅(Ainv ∇p') = ∇⋅(HbyA)
-  #   Ainv：動量矩陣對角線的倒數（由 Rhie-Chow 物件提供）
-  #   HbyA：中間速度場（由 Rhie-Chow 物件提供）
+  # 壓力修正方程式：∇⋅(Ainv ∇p') = ∇⋅(HbyA)
+  #   Ainv：動量矩陣對角線的倒數（Rhie-Chow 物件提供）
+  #   HbyA：中間速度場（Rhie-Chow 物件提供）
   #
-  # 因此需要兩個 kernel 取代原來的 INSFVMassAdvection：
-  #   FVAnisotropicDiffusion：處理左邊的 ∇⋅(Ainv ∇p') 項
-  #   FVDivergence：處理右邊的 ∇⋅(HbyA) 項（源項）
+  # 需要兩個 kernel：
+  #   FVAnisotropicDiffusion：左邊的 ∇⋅(Ainv ∇p') 項
+  #   FVDivergence：右邊的 ∇⋅(HbyA) 源項
 
   [p_diffusion]
     # ∇⋅(Ainv ∇p')：壓力修正方程式的擴散項
-    # Ainv 由 Rhie-Chow 插值物件在每次迭代時動態更新
-    # coeff_interp_method = 'average'：Ainv 在網格面用算術平均插值
+    # Ainv 由 Rhie-Chow 物件在每次迭代時動態更新
     type = FVAnisotropicDiffusion
     variable = pressure
     coeff = "Ainv"
@@ -493,39 +473,34 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   # ----------------------------------------------------------
   # 2. 動量守恆方程式（RANS N-S）
   # ----------------------------------------------------------
-  # 完整形式（以 x 方向為例）：
-  #   ρ ∂vx/∂t + ρ v⋅∇vx = -∂p/∂x + ∇⋅[(μ+μt)∇vx] + ρgx
-  #   （時間項）（對流項）  （壓力項）（黏性擴散項）       （重力項）
+  # 完整形式（以 x 方向為例，SIMPLE 穩態，無時間項）：
+  #   ρ v⋅∇vx = -∂p/∂x + ∇⋅[μ∇vx] + ∇⋅[μt∇vx] + ρgx
+  #             （壓力項）（分子黏性）（湍流黏性）  （重力項）
   #
-  # 為什麼 μ → (μ+μt)？
-  #   RANS 時間平均後，湍流擾動產生 Reynolds stress，
-  #   用湍流黏度 μt = Cμ*k²/ε 來模擬（Boussinesq 假設）
-  # ⚠️ 目前 diffusion kernel 只用 μ（分子黏度），
-  #    μt 的修正待 [FunctorMaterials] 的 total_viscosity 完成後補入
+  # 為什麼分子黏度和湍流黏度分開寫成兩個 kernel？
+  #   μ 是常數，μt 是空間變數（由 AuxKernel 計算）
+  #   數值處理方式不同，分開寫讓 MOOSE 能各自最佳化
+  #
+  # complete_expansion = no（湍流黏度 kernel）：
+  #   只計算主對角項（∂/∂xi(μt ∂vj/∂xi)），略去交叉項
+  #   提升收斂穩定性，是 Tano et al. 範本的做法
 
   # ── x 方向動量 ──
-  [vel_x_time]
-    # ρ ∂vx/∂t：x 方向動量隨時間的變化率（慣性項）
-    # 穩態時理論上為零，但 SIMPLE 迭代過程中需要它
-    type = INSFVMomentumTimeDerivative
-    variable = vel_x
-    rho = ${rho}
-    momentum_component = x
-  []
+  # [vel_x_time] # ⚠️ 已停用：SIMPLE 穩態求解器不使用時間項
+  #   type = INSFVMomentumTimeDerivative
+  #   variable = vel_x
+  #   rho = ${rho}
+  #   momentum_component = x
+  # []
   [vel_x_advection]
     # ρ v⋅∇vx：流體移動將 x 方向動量從一處帶到另一處
-    # 非線性項（速度×速度梯度），是 N-S 數值求解困難的主因
     type = INSFVMomentumAdvection
     variable = vel_x
-    
-    
     rho = ${rho}
     momentum_component = x
   []
   [vel_x_diffusion]
     # ∇⋅[μ∇vx]：分子黏性擴散項
-    # 只含分子黏度 μ，湍流黏度 μt 由下方獨立 kernel 處理
-    # 分開寫的原因：μ 是常數，μt 是空間變數，數值處理方式不同
     type = INSFVMomentumDiffusion
     variable = vel_x
     mu = ${mu}
@@ -533,8 +508,6 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   []
   [vel_x_diffusion_turbulent]
     # ∇⋅[μt∇vx]：湍流黏性擴散項
-    # μt = Cμ×k²/ε，由 AuxKernel kEpsilonViscosityAux 計算
-    # complete_expansion = no：只計算主對角項，提升收斂穩定性
     type = INSFVMomentumDiffusion
     variable = vel_x
     mu = 'mu_t'
@@ -546,26 +519,24 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   []
   [vel_x_pressure]
     # -∂p/∂x：壓力梯度驅動 x 方向流動
-    # extra_vector_tags：把壓力梯度貢獻標記起來，
-    #   讓 SIMPLE 演算法可以單獨提取壓力項用於 Rhie-Chow 修正
+    # extra_vector_tags：標記壓力梯度貢獻，供 Rhie-Chow 修正使用
     type = INSFVMomentumPressure
     variable = vel_x
     momentum_component = x
     pressure = pressure
     extra_vector_tags = ${pressure_tag}
   []
+
   # ── y 方向動量 ──
-  [vel_y_time]
-    type = INSFVMomentumTimeDerivative
-    variable = vel_y
-    rho = ${rho}
-    momentum_component = y
-  []
+  # [vel_y_time] # ⚠️ 已停用：SIMPLE 穩態求解器不使用時間項
+  #   type = INSFVMomentumTimeDerivative
+  #   variable = vel_y
+  #   rho = ${rho}
+  #   momentum_component = y
+  # []
   [vel_y_advection]
     type = INSFVMomentumAdvection
     variable = vel_y
-    advected_interp_method = average
-    
     rho = ${rho}
     momentum_component = y
   []
@@ -594,28 +565,27 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   []
 
   # ── z 方向動量 ──
-  [vel_z_time]
-    type = INSFVMomentumTimeDerivative
-    variable = vel_z
-    rho = ${rho}
-    momentum_component = z
-  []
+  # [vel_z_time] # ⚠️ 已停用：SIMPLE 穩態求解器不使用時間項
+  #   type = INSFVMomentumTimeDerivative
+  #   variable = vel_z
+  #   rho = ${rho}
+  #   momentum_component = z
+  # []
   [vel_z_advection]
     type = INSFVMomentumAdvection
     variable = vel_z
-    advected_interp_method = average
-    
     rho = ${rho}
     momentum_component = z
   []
   [vel_z_diffusion]
-    # ⚠️ 同上，應為 (μ+μt)，待補入湍流黏度修正
+    # ∇⋅[μ∇vz]：分子黏性擴散項（z 方向）
     type = INSFVMomentumDiffusion
     variable = vel_z
     mu = ${mu}
     momentum_component = z
   []
   [vel_z_diffusion_turbulent]
+    # ∇⋅[μt∇vz]：湍流黏性擴散項（z 方向）
     type = INSFVMomentumDiffusion
     variable = vel_z
     mu = 'mu_t'
@@ -635,7 +605,7 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   [vel_z_gravity]
     # ρgz：重力體積力，只在 z 方向有效（垂直向下）
     # MSFR 是球形爐心，z 軸為垂直方向
-    # x、y 方向無重力分量，不需要此 kernel
+    # x、y 方向無重力分量，不需要對應的 gravity kernel
     type = INSFVMomentumGravity
     variable = vel_z
     momentum_component = z
@@ -645,88 +615,65 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   # ----------------------------------------------------------
   # 3. 能量守恆方程式
   # ----------------------------------------------------------
-  # 完整形式：
-  #   ρcp ∂T/∂t + ρcp v⋅∇T = ∇⋅[(k+kt)∇T] + q‴
-  #   （時間項）   （對流項）   （擴散項）       （熱源項）
+  # 完整形式（SIMPLE 穩態，無時間項）：
+  #   ρcp v⋅∇T = ∇⋅[k∇T] + q‴
+  #   （對流項）  （擴散項）  （熱源項）
   #
   # 注意：左邊有 cp，右邊擴散項沒有 cp
-  #   → 因為 T 是溫度，需要乘 cp 才能換算成熱量（Q = mcp ΔT）
-  #   → 右邊的 k 已經是熱傳導係數（單位含能量），不需要 cp
+  #   → T 是溫度，需要乘 cp 才能換算成熱量（Q = mcp ΔT）
+  #   → k 是熱傳導係數（單位含能量 W/m·K），不需要 cp
   #
-  # 熱傳機制對應：
-  #   對流項 → Advection（流體移動帶走熱量）
-  #   擴散項 → 熱傳導（Conduction，溫度梯度驅動）
-  #   注意：熱傳學的 Heat Convection（q=hAΔT）是邊界條件，
-  #         在 [FVBCs] 定義，不在這裡
+  # INSFVEnergyDiffusion 在此版本 MOOSE 不存在，
+  # 改用通用的 FVDiffusion（coeff = 熱傳導係數 k）
 
-  [energy_time]
-    # ρcp ∂T/∂t：單位體積熱量隨時間的變化率
-    type = INSFVEnergyTimeDerivative
-    variable = T_fluid
-    rho = ${rho}
-    cp = ${cp}                    # 溫度→熱量的換算係數
-  []
+  # [energy_time] # ⚠️ 已停用：SIMPLE 穩態求解器不使用時間項
+  #   type = INSFVEnergyTimeDerivative
+  #   variable = T_fluid
+  #   rho = ${rho}
+  #   cp = ${cp}
+  # []
   [energy_advection]
-    # ρcp v⋅∇T：燃料鹽流動將熱量從一處帶到另一處（Advection）
-    # 例如：熔鹽從爐心底部流到頂部，順便把熱量帶走
+    # ρcp v⋅∇T：燃料鹽流動將熱量從一處帶到另一處
     type = INSFVEnergyAdvection
     variable = T_fluid
-    
-    
-    rho = ${rho}
-    cp = ${cp}
   []
   [energy_diffusion]
-    # ∇⋅[(k+kt)∇T]：熱量從高溫傳向低溫（熱傳導）
-    # kt = cp*μt/Prt（湍流熱傳導係數）
-    #   湍流渦旋像「攪拌」一樣增強熱傳效率，Prt ≈ 0.9
-    # ⚠️ 目前只用分子熱傳導係數 k，湍流增強效果待後續補入
-    type = INSFVEnergyDiffusion
+    # ∇⋅[k∇T]：熱傳導擴散項
+    # FVDiffusion 是通用擴散 kernel，coeff = 熱傳導係數 k
+    type = FVDiffusion
     variable = T_fluid
-    cp = ${cp}
-    k = ${k}
+    coeff = ${k}
   []
   [energy_source]
-    # q‴(r)：核分裂功率密度，由 OpenMC 計算後傳入
-    # power_density 是 AuxVariable，透過 Cardinal MultiApp Transfer
-    # 從 neutronics.i 傳遞過來，這裡直接引用它作為熱源
-    type = INSFVBodyForce
+    # q‴(r)：核分裂功率密度，由 OpenMC 計算後透過 Cardinal 傳入
+    # FVCoupledForce：接受 AuxVariable 作為體積力來源
+    type = FVCoupledForce
     variable = T_fluid
-    value = power_density
+    v = power_density
   []
 
   # ----------------------------------------------------------
   # 4. TKE 輸送方程式（k-ε 模型第一條）
   # ----------------------------------------------------------
-  # 完整形式：
-  #   ρ ∂k/∂t + ρ v⋅∇k = ∇⋅[(μ + μt/σk)∇k] + Pk - ρε
-  #   （時間項）（對流項）  （擴散項）             （生成項）（耗散項）
-  #
-  # 與能量方程式結構相同，差異在：
-  #   1. 沒有 cp（k 單位已是 J/kg，本身就是能量）
-  #   2. 擴散用黏度（不是熱傳導係數）
-  #   3. 源項 = 生成(Pk) - 耗散(ρε)，而非外部輸入
+  # 完整形式（SIMPLE 穩態，無時間項）：
+  #   ρ v⋅∇k = ∇⋅[μ∇k] + ∇⋅[(μt/σk)∇k] + Pk - ρε
+  #            （分子擴散） （湍流擴散）     （生成） （耗散）
   #
   # Pk = μt|∇v|²：速度梯度剪切產生湍流
   # ρε：黏性將湍流動能耗散為熱能
   # 平衡時 Pk = ρε：充分發展湍流狀態
 
-  [TKE_time]
-    # ρ ∂k/∂t：TKE 隨時間的變化率
-    # cp = 1.0：此 kernel 原為能量方程式設計，含 cp 參數；
-    #           TKE 不需要 cp 換算，傳入 1.0 將其「關掉」
-    type = WCNSFVTurbulentEnergyTimeDerivative
-    variable = TKE
-    rho = ${rho}
-    cp = 1.0
-  []
+  # [TKE_time] # ⚠️ 已停用：SIMPLE 穩態求解器不使用時間項
+  #   type = INSFVEnergyTimeDerivative
+  #   variable = TKE
+  #   rho = ${rho}
+  #   cp = 1.0
+  # []
   [TKE_advection]
     # ρ v⋅∇k：流場將 TKE 從一處輸送到另一處
     type = INSFVTurbulentAdvection
     variable = TKE
     rho = ${rho}
-    
-    
   []
   [TKE_diffusion]
     # ∇⋅[μ∇k]：TKE 分子黏性擴散項
@@ -738,7 +685,6 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     # ∇⋅[(μt/σk)∇k]：TKE 湍流擴散項
     # σk = 1.0（Standard k-ε 經驗常數）
     #   物理意義：TKE 的湍流擴散效率與動量湍流擴散效率相同
-    #   此值從大量實驗數據擬合得出
     # scaling_coef = σk：kernel 內部計算 μt/σk
     type = INSFVTurbulentDiffusion
     variable = TKE
@@ -747,12 +693,10 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   []
   [TKE_source]
     # Pk - ρε：TKE 的源項
-    #   Pk（生成）：速度梯度剪切產生湍流，需要 mu_t
-    #   ρε（耗散）：湍流被黏性磨掉，需要 epsilon（TKED）
-    # mu_t = 'mu_t'：湍流黏度，由 [FunctorMaterials] 計算
-    #   μt = Cμ * k²/ε，Cμ = 0.09
-    # 注意：TKE 和 TKED 互相依賴（k 用到 ε，ε 用到 k），
-    #       這就是為什麼需要兩條方程式聯立求解
+    #   Pk（生成）：速度梯度剪切產生湍流
+    #   ρε（耗散）：湍流被黏性磨掉
+    # TKE 和 TKED 互相依賴（k 用到 ε，ε 用到 k），
+    # 這就是為什麼需要兩條方程式聯立求解
     type = INSFVTKESourceSink
     variable = TKE
     u = vel_x
@@ -762,37 +706,37 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     mu = ${mu}
     mu_t = 'mu_t'
     epsilon = TKED
+    walls = 'wall'
+    wall_treatment = 'eq_newton'
   []
 
   # ----------------------------------------------------------
   # 5. TKED 輸送方程式（k-ε 模型第二條）
   # ----------------------------------------------------------
-  # 完整形式：
-  #   ρ ∂ε/∂t + ρ v⋅∇ε = ∇⋅[(μ + μt/σε)∇ε] + C1(ε/k)Pk - C2ρε²/k
-  #   （時間項）（對流項）  （擴散項）              （生成項）    （耗散項）
+  # 完整形式（SIMPLE 穩態，無時間項）：
+  #   ρ v⋅∇ε = ∇⋅[μ∇ε] + ∇⋅[(μt/σε)∇ε] + C1(ε/k)Pk - C2ρε²/k
+  #            （分子擴散） （湍流擴散）     （生成項）    （耗散項）
   #
-  # 與 TKE 方程式結構完全相同，差異只在源項的係數：
+  # Standard k-ε 模型的經驗常數：
   #   C1 = 1.44（生成項係數）
   #   C2 = 1.92（耗散項係數）
-  #   σε = 1.3（TKED 擴散的湍流普朗特數）
-  # 這些都是 Standard k-ε 模型的經驗常數
+  #   σε = 1.3（TKED 擴散的湍流普朗特數，比 σk=1.0 稍大）
   #
   # ⚠️ 注意 TKED 源項分母含 k：
   #   C2ρε²/k → k→0 時源項趨向無限大，求解器爆掉
-  #   這就是 TKE 初始值不能為零的另一個原因
+  #   這就是 TKE 初始值不能為零的原因
 
-  [TKED_time]
-    type = WCNSFVTurbulentEnergyTimeDerivative
-    variable = TKED
-    rho = ${rho}
-    cp = 1.0                      # 同 TKE，傳入 1.0 關掉 cp 換算
-  []
+  # [TKED_time] # ⚠️ 已停用：SIMPLE 穩態求解器不使用時間項
+  #   type = INSFVEnergyTimeDerivative
+  #   variable = TKED
+  #   rho = ${rho}
+  #   cp = 1.0
+  # []
   [TKED_advection]
+    # ρ v⋅∇ε：流場將 TKED 從一處輸送到另一處
     type = INSFVTurbulentAdvection
     variable = TKED
     rho = ${rho}
-    
-    
   []
   [TKED_diffusion]
     # ∇⋅[μ∇ε]：TKED 分子黏性擴散項
@@ -802,9 +746,7 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   []
   [TKED_diffusion_turbulent]
     # ∇⋅[(μt/σε)∇ε]：TKED 湍流擴散項
-    # σε = 1.3（Standard k-ε 經驗常數）
-    #   物理意義：TKED 的擴散效率比動量稍慢（1.3 > 1.0）
-    #   代表耗散率的擴散受到更多阻礙
+    # σε = 1.3（比 σk=1.0 稍大，代表耗散率的擴散受到更多阻礙）
     type = INSFVTurbulentDiffusion
     variable = TKED
     coeff = 'mu_t'
@@ -822,8 +764,12 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     rho = ${rho}
     mu = ${mu}
     mu_t = 'mu_t'
-    epsilon = TKED
+    tke = TKE
+    walls = 'wall'
+    wall_treatment = 'eq_newton'
   []
+[]
+
 # ============================================================
 # [FVBCs]：有限體積法邊界條件
 # ============================================================
@@ -840,7 +786,7 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 #
 # 為什麼壁面速度用 FVDirichletBC 而非 INSFVNoSlipWallBC？
 #   INSFVNoSlipWallBC 是為耦合壁面設計的（需要額外的壁面物件）
-#   FVDirichletBC 直接強制邊界值 = 0，更適合簡單無滑移條件
+#   FVDirichletBC 直接強制邊界值 = 0，更適合 k-ε 壁面函數的搭配
 #   來源：Tano et al. channel_ERCOFTAC.i（Dr. Tano 本人的範本）
 [FVBCs]
 
@@ -850,7 +796,6 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   # 燃料鹽從底部 16 個冷卻通道截斷面流入爐心
   # 流向：+z 方向（向上），x、y 方向速度為零
   # 入口條件：速度、溫度、TKE、TKED 全部用 Dirichlet 強制指定
-  # 這是「已知進來什麼」的邊界，不讓求解器自由決定
 
   [inlet_vel_x]
     # x 方向速度為零（純垂直流入，無橫向分量）
@@ -870,30 +815,25 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     # 入口平均流速估算：
     #   總熱功率 P = 3000 MW
     #   Q = P / (ρ cp ΔT) = 3e9 / (4147 × 1525 × 100) ≈ 4.77 m³/s
-    #   16 個通道截面積 A ≈ 0.322 m²（待確認實際通道尺寸）
+    #   16 個通道截面積 A ≈ 0.322 m²（⚠️ 待確認實際通道尺寸）
     #   U_in = Q/A ≈ 1.1838 m/s，+z 方向（向上）
     type = INSFVInletVelocityBC
     variable = vel_z
     boundary = 'gap_enter_boundary'
     functor = 1.1838              # [m/s]
   []
-
   [inlet_T]
     # 入口溫度固定為 898 K（燃料鹽進入爐心前的溫度）
     # 目標：燃料鹽流過爐心後平均溫度升至 936 K（ΔT ≈ 38 K）
-    # 注意：這裡用 FVDirichletBC（直接給值），
-    #       不用 INSFVScalarFieldAdvectionBC（那是對流出口用的）
     type = FVDirichletBC
     variable = T_fluid
     boundary = 'gap_enter_boundary'
     value = 898.0                 # [K]
   []
-
   [inlet_TKE]
     # 入口 TKE 估算：k = 1.5 × (I × U_in)²
     #   湍流強度 I = 5%（一般工程湍流的典型值）
     #   k = 1.5 × (0.05 × 1.1838)² = 5.26×10⁻³ m²/s²
-    # 物理意義：進入爐心時的湍流「激烈程度」
     type = FVDirichletBC
     variable = TKE
     boundary = 'gap_enter_boundary'
@@ -901,9 +841,8 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   []
   [inlet_TKED]
     # 入口 TKED 估算：ε = Cμ^0.75 × k^1.5 / L
-    #   Cμ = 0.09，L = 水力直徑 ≈ 0.1 m（待確認）
+    #   Cμ = 0.09，L = 水力直徑 ≈ 0.1 m（⚠️ 待確認）
     #   ε = 0.09^0.75 × (5.26e-3)^1.5 / 0.1 = 6.4×10⁻⁴ m²/s³
-    # 此公式假設入口已達充分發展湍流（生成 ≈ 耗散的平衡狀態）
     type = FVDirichletBC
     variable = TKED
     boundary = 'gap_enter_boundary'
@@ -916,14 +855,11 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   # 壓力設為 0（錶壓參考點）
   # 速度、溫度、TKE、TKED：不設邊界條件
   #   → MOOSE FV 預設為 zero-gradient（充分發展假設）
-  #   → 意思是「出去的東西就讓它自然流出，不強制改變它」
-  # 這符合 MSFR 出口的物理假設：
-  #   燃料鹽流出截斷面時已充分發展，梯度趨近於零
+  #   → 出去的東西自然流出，不強制改變
 
   [outlet_pressure]
     # p = 0 作為整個流場的壓力參考點（錶壓）
     # ⚠️ 不代表實際絕對壓力，只是讓 SIMPLE 有收斂基準
-    # SIMPLE 演算法靠壓力修正速度場，必須有至少一個固定壓力點
     type = INSFVOutletPressureBC
     variable = pressure
     boundary = 'gap_exit_boundary'
@@ -934,20 +870,14 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   # 3. 壁面邊界（wall）
   # ----------------------------------------------------------
   # 球形爐心外壁：燃料鹽與結構材料的介面
-  # 無滑移條件：壁面處流體速度 = 0（流體黏在壁面上不動）
+  # 無滑移條件：壁面處流體速度 = 0
   #
   # 為什麼不對 TKE、TKED 設壁面邊界條件？
-  #   真實壁面附近有「黏性底層」（y⁺ < 5），湍流被強烈抑制
-  #   要直接解析需要極細網格（y⁺ ≈ 1）→ 計算量爆炸
-  #   解法：用「壁面函數」橋接黏性底層，
-  #         讓第一個網格點可以放在 y⁺ = 30~300（對數律區）
-  #   壁面函數作用在 mu_t（湍流黏度），而不是直接作用在 TKE/TKED
-  #   → 所以 TKE、TKED 在壁面不設 BC，由壁面函數間接控制
+  #   壁面函數（INSFVTurbulentViscosityWallFunction）作用在 mu_t，
+  #   透過 log-law 間接控制近壁的湍流行為，
+  #   不需要對 TKE/TKED 直接設定壁面值。
 
   [wall_vel_x]
-    # 壁面無滑移：x 方向速度 = 0
-    # 用 FVDirichletBC（直接強制值），不用 INSFVNoSlipWallBC
-    # 原因：FVDirichletBC 更適合 k-ε 壁面函數的搭配方式
     type = FVDirichletBC
     variable = vel_x
     boundary = 'wall'
@@ -965,19 +895,16 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     boundary = 'wall'
     value = 0.0
   []
-
   [wall_mu_t]
     # 壁面函數：用 log-law 計算近壁的湍流黏度 μt
     # log-law：u⁺ = (1/κ)ln(y⁺) + B，κ=0.41（von Kármán 常數）
     #
     # wall_treatment = 'eq_newton'：
     #   eq = equilibrium（假設近壁生成 ≈ 耗散，Pk ≈ ρε）
-    #   newton = 用 Newton 迭代求解 u_τ（摩擦速度）
-    #   這是 Tano et al. 範本使用的設定，精度與穩定性最佳
+    #   newton = 用 Newton 迭代求解摩擦速度 u_τ（最精確）
+    #   這是 Tano et al. channel_ERCOFTAC.i 範本使用的設定
     #
-    # 注意：variable = mu_t（不是 TKE 或 TKED）
-    #   mu_t 是 AuxVariable，在 [AuxKernels] 由 kEpsilonViscosityAux
-    #   從 TKE、TKED 計算得出：μt = Cμ × k²/ε
+    # variable = mu_t（不是 TKE 或 TKED）：
     #   壁面函數覆蓋近壁處的 μt 值，讓它符合 log-law
     type = INSFVTurbulentViscosityWallFunction
     variable = mu_t
@@ -988,8 +915,7 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     rho = ${rho}
     mu = ${mu}
     mu_t = 'mu_t'
-    k = TKE
+    tke = TKE
     wall_treatment = 'eq_newton'
   []
-[]
 []
