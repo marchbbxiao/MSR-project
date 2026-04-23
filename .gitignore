@@ -24,3 +24,6 @@ particle_*.h5
 cardinal/
 cardinal_build*.log
 cardinal_tests*.log
+th_stokes_checkpoint_cp/
+*_cp/
+*_out.e
