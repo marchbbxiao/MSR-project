@@ -91,24 +91,22 @@ SIMPLE 穩態求解器（SIMPLENonlinearAssembly），7個獨立求解系統：
 2. relaxation=0.5 → Iter 92 壓力震盪後發散
 3. relaxation=0.3/0.1 → 不發散但收斂慢，後來再次發散
 
-### 明日診斷計劃（最優先）
-**暫時移除能量方程式，先確認純流場能收斂**：
+### 發散根本原因（2026-04-23 確認）
+**冷啟動 + 對流項非線性** 是發散根源：
+- 全零初始條件下，ρ(v·∇)v 在 v≈0 時不穩定
+- NekRS tutorial 用 restart.fld 熱啟動，我們需要同樣策略
 
-在 th.i 中：
-1. `[Variables]` 移除 T_fluid（或將其 solver_sys 改為不存在的系統）
-2. `[FVKernels]` 用 # 停用 energy_advection、energy_diffusion、energy_source
-3. `[FVBCs]` 用 # 停用 inlet_T
-4. `[Problem]` nl_sys_names 移除 energy_system
-5. `[Executioner]` 移除所有 energy_* 參數
-6. `[FunctorMaterials]` 可暫時保留或移除
+### 診斷結果
+- th_pure_flow.i（無能量）→ 仍發散，能量方程式無關
+- th_laminar.i（無湍流）→ 仍發散，對流項是問題
+- th_stokes.i（無對流）→ **收斂！** 1000 iter，殘差 ~1e-6
+- Checkpoint：th_stokes_checkpoint_cp/0001
 
-執行：
-```bash
-cd ~/MSR-project/MSFR/stage3_cardinal
-mpirun -n 4 --mca btl_vader_single_copy_mechanism none ~/cardinal/cardinal-opt -i th.i 2>&1 | tee th_pure_flow.log | tail -20
-```
-
-若純流場收斂 → 逐步加回能量方程式
+### 下一步
+1. th_laminar.i 加入 restart_file_base = 'th_stokes_checkpoint_cp/0001'
+2. 跑含對流項層流，觀察收斂
+3. 層流收斂 → 加回湍流
+4. 湍流收斂 → 加回能量方程式
 
 ---
 
