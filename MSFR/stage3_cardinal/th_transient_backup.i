@@ -126,8 +126,8 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 [Mesh]
   [file]
     type = FileMeshGenerator
-    file = msr_with_sidesets.e
-    # use_for_exodus_restart = true
+    file = th_run4b_out.e
+    use_for_exodus_restart = true
   # initial solution from steady-state run
   # (loaded via initial_from_file_var in Variables)
   []
@@ -154,9 +154,8 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 #       而是從外部傳入或由 AuxKernel 計算的輔助量，不需要 solver_sys
 [Variables]
   [vel_x]
-    # initial_from_file_var = vel_x
-    # initial_from_file_timestep = 1
-    initial_condition = 0.0
+    initial_from_file_var = vel_x
+    initial_from_file_timestep = 1
     # x 方向速度分量 [m/s]
     # 對應動量方程式 x 分量：ρ Dvx/Dt = -∂p/∂x + ∇⋅[(μ+μt)∇vx]
     # 初始速度為零（靜止起始），SIMPLE 迭代過程中逐漸建立流場
@@ -165,9 +164,8 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     two_term_boundary_expansion = false
   []
   [vel_y]
-    # initial_from_file_var = vel_y
-    # initial_from_file_timestep = 1
-    initial_condition = 0.0
+    initial_from_file_var = vel_y
+    initial_from_file_timestep = 1
     # y 方向速度分量 [m/s]
     # MSFR 是球形對稱爐心，主流方向為 z，
     # x、y 方向速度由湍流和幾何不對稱產生，初始為零
@@ -176,9 +174,8 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     two_term_boundary_expansion = false
   []
   [vel_z]
-    # initial_from_file_var = vel_z
-    # initial_from_file_timestep = 1
-    initial_condition = 0.1
+    initial_from_file_var = vel_z
+    initial_from_file_timestep = 1
     # z 方向速度分量 [m/s]，主流方向（向上）
     # 初始為均勻流速，與入口BC一致，避免冷啟動震盪
     type = INSFVVelocityVariable
@@ -186,9 +183,8 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     two_term_boundary_expansion = false
   []
   [pressure]
-    # initial_from_file_var = pressure
-    # initial_from_file_timestep = 1
-    initial_condition = 0.0
+    initial_from_file_var = pressure
+    initial_from_file_timestep = 1
     # 壓力場 [Pa]（錶壓）
     # 在 SIMPLE 演算法中扮演「調節器」角色：
     #   若某處 ∇⋅v ≠ 0（質量不守恆），求解器調整壓力修正速度，
@@ -200,9 +196,8 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     two_term_boundary_expansion = false
   []
   [TKE]
-    # initial_from_file_var = TKE
-    # initial_from_file_timestep = 1
-    initial_condition = 3.75e-4
+    initial_from_file_var = TKE
+    initial_from_file_timestep = 1
     # 湍流動能 k [m²/s²]
     # 描述湍流的「激烈程度」：k = (1/2)(vx'² + vy'² + vz'²)
     # 初始值估算：k = 1.5×(I×U)²
@@ -216,9 +211,8 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     two_term_boundary_expansion = false
   []
   [TKED]
-    # initial_from_file_var = TKED
-    # initial_from_file_timestep = 1
-    initial_condition = 3.87e-6
+    initial_from_file_var = TKED
+    initial_from_file_timestep = 1
     # 湍流動能耗散率 ε [m²/s³]
     # 描述湍流消退的速率：大渦旋→小渦旋→分子熱能
     # 初始值估算：ε = Cμ^0.75 × k^1.5 / L
@@ -269,9 +263,8 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     initial_condition = 0.0
   []
   [mu_t]
-    # initial_from_file_var = mu_t
-    # initial_from_file_timestep = 1
-    initial_condition = 0.162
+    initial_from_file_var = mu_t
+    initial_from_file_timestep = 1
     # 湍流動黏度 μt [Pa·s]
     # 這是 k-ε 模型的核心輸出量：μt = Cμ × k²/ε
     #   Cμ = 0.09（Standard k-ε 經驗常數）

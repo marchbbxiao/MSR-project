@@ -1,0 +1,1736 @@
+--------------------------------------------------------------------------
+WARNING: Linux kernel CMA support was requested via the
+btl_vader_single_copy_mechanism MCA variable, but CMA support is
+not available due to restrictive ptrace settings.
+
+The vader shared memory BTL will fall back on another single-copy
+mechanism if one is available. This may result in lower performance.
+
+  Local host: I0950B
+--------------------------------------------------------------------------
+
+[36m
+*** Info ***
+'execute_on' parameter specified in [Outputs] block is ignored for object 'checkpoint'.
+Define this object in its own sub-block of [Outputs] to modify its execution schedule.[39m
+                                                                               [[33m  2.23 s[39m] [[33m  297 MB[39m]
+Framework Information:
+MOOSE Version:           git commit b1e271b638 on 2025-10-10
+LibMesh Version:         
+PETSc Version:           3.23.4
+SLEPc Version:           3.23.2
+Current Time:            Fri Apr 24 23:47:52 2026
+Executable Timestamp:    Sun Apr 12 16:51:55 2026
+
+Input File(s):
+  /home/bruce/MSR-project/MSFR/stage3_cardinal/th_run4b.i
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  User Checkpoint:         Outputs/checkpoint
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          4
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 9245
+    Local:                 2162
+    Min/Max/Avg:           2004/2614/2311
+  Elems:                   
+    Total:                 35186
+    Local:                 8797
+    Min/Max/Avg:           8796/8797/8796
+  Num Subdomains:          1
+  Num Partitions:          4
+  Partitioner:             metis
+
+Nonlinear System [u_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_x" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [v_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_y" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [w_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_z" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [pressure_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "pressure" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [TKE_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "TKE" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [TKED_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "TKED" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Auxiliary System:
+  Num DOFs:                105558
+  Num Local DOFs:          26391
+  Variables:               { "power_density" "mu_t" "yplus" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Execution Information:
+  Executioner:             SIMPLENonlinearAssembly
+  Solver Mode:             [u_system]: Preconditioned JFNK [v_system]: Preconditioned JFNK [w_system]: Preconditioned JFNK [pressure_system]: Preconditioned JFNK [TKE_system]: Preconditioned JFNK [TKED_system]: Preconditioned JFNK 
+
+[33m
+*** Warning ***
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_run4b.i:36.1: unused parameter 'cp'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_run4b.i:37.1: unused parameter 'k'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_run4b.i:201.5: unused parameter 'Variables/TKE/lower_bound'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_run4b.i:215.5: unused parameter 'Variables/TKED/lower_bound'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_run4b.i:445.3: unused parameter 'Executioner/petsc_options_iname'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_run4b.i:446.3: unused parameter 'Executioner/petsc_options_value'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_run4b.i:949.3: unused parameter 'Outputs/output_frequency'[39m
+[I0950B:07442] 3 more processes have sent help message help-btl-vader.txt / cma-permission-denied
+[I0950B:07442] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+Iteration 1 Initial residual norms:
+ Momentum equation: Component 1 [32m0[39m
+ Momentum equation: Component 2 [32m0[39m
+ Momentum equation: Component 3 [32m1[39m
+ Pressure equation: [32m1[39m
+Turbulence Iteration 
+TKE_system [32m1[39m
+TKED_system [32m1[39m
+Iteration 2 Initial residual norms:
+ Momentum equation: Component 1 [32m0.337647[39m
+ Momentum equation: Component 2 [32m0.336062[39m
+ Momentum equation: Component 3 [32m0.496499[39m
+ Pressure equation: [32m0.318321[39m
+Turbulence Iteration 
+TKE_system [32m0.740634[39m
+TKED_system [32m0.331371[39m
+Iteration 3 Initial residual norms:
+ Momentum equation: Component 1 [32m0.119306[39m
+ Momentum equation: Component 2 [32m0.11592[39m
+ Momentum equation: Component 3 [32m0.177039[39m
+ Pressure equation: [32m0.300479[39m
+Turbulence Iteration 
+TKE_system [32m0.322942[39m
+TKED_system [32m0.116583[39m
+Iteration 4 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0492877[39m
+ Momentum equation: Component 2 [32m0.0473987[39m
+ Momentum equation: Component 3 [32m0.0472167[39m
+ Pressure equation: [32m0.316689[39m
+Turbulence Iteration 
+TKE_system [32m0.152823[39m
+TKED_system [32m0.0623217[39m
+Iteration 5 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0349683[39m
+ Momentum equation: Component 2 [32m0.0333897[39m
+ Momentum equation: Component 3 [32m0.0214737[39m
+ Pressure equation: [32m0.366607[39m
+Turbulence Iteration 
+TKE_system [32m0.0973351[39m
+TKED_system [32m0.0543765[39m
+Iteration 6 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0348095[39m
+ Momentum equation: Component 2 [32m0.0411838[39m
+ Momentum equation: Component 3 [32m0.0277807[39m
+ Pressure equation: [32m0.259913[39m
+Turbulence Iteration 
+TKE_system [32m0.0767059[39m
+TKED_system [32m0.0452357[39m
+Iteration 7 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0470469[39m
+ Momentum equation: Component 2 [32m0.049389[39m
+ Momentum equation: Component 3 [32m0.0498118[39m
+ Pressure equation: [32m0.135243[39m
+Turbulence Iteration 
+TKE_system [32m0.08032[39m
+TKED_system [32m0.0375466[39m
+Iteration 8 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0539012[39m
+ Momentum equation: Component 2 [32m0.0540437[39m
+ Momentum equation: Component 3 [32m0.0818648[39m
+ Pressure equation: [32m0.0734282[39m
+Turbulence Iteration 
+TKE_system [32m0.0924002[39m
+TKED_system [32m0.0350776[39m
+Iteration 9 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0559939[39m
+ Momentum equation: Component 2 [32m0.0554042[39m
+ Momentum equation: Component 3 [32m0.119002[39m
+ Pressure equation: [32m0.0570406[39m
+Turbulence Iteration 
+TKE_system [32m0.104919[39m
+TKED_system [32m0.0382407[39m
+Iteration 10 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0530307[39m
+ Momentum equation: Component 2 [32m0.0529104[39m
+ Momentum equation: Component 3 [32m0.150604[39m
+ Pressure equation: [32m0.0675779[39m
+Turbulence Iteration 
+TKE_system [32m0.112109[39m
+TKED_system [32m0.0460366[39m
+Iteration 11 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0464855[39m
+ Momentum equation: Component 2 [32m0.0470859[39m
+ Momentum equation: Component 3 [32m0.164709[39m
+ Pressure equation: [32m0.101072[39m
+Turbulence Iteration 
+TKE_system [32m0.110674[39m
+TKED_system [32m0.0575134[39m
+Iteration 12 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0383369[39m
+ Momentum equation: Component 2 [32m0.0393462[39m
+ Momentum equation: Component 3 [32m0.157401[39m
+ Pressure equation: [32m0.160568[39m
+Turbulence Iteration 
+TKE_system [32m0.101499[39m
+TKED_system [32m0.0721835[39m
+Iteration 13 Initial residual norms:
+ Momentum equation: Component 1 [32m0.031077[39m
+ Momentum equation: Component 2 [32m0.0318984[39m
+ Momentum equation: Component 3 [32m0.134719[39m
+ Pressure equation: [32m0.221378[39m
+Turbulence Iteration 
+TKE_system [32m0.0878015[39m
+TKED_system [32m0.0886509[39m
+Iteration 14 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0279099[39m
+ Momentum equation: Component 2 [32m0.0279241[39m
+ Momentum equation: Component 3 [32m0.104794[39m
+ Pressure equation: [32m0.181252[39m
+Turbulence Iteration 
+TKE_system [32m0.0726691[39m
+TKED_system [32m0.104255[39m
+Iteration 15 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0311027[39m
+ Momentum equation: Component 2 [32m0.0304236[39m
+ Momentum equation: Component 3 [32m0.0738859[39m
+ Pressure equation: [32m0.117008[39m
+Turbulence Iteration 
+TKE_system [32m0.0583163[39m
+TKED_system [32m0.116004[39m
+Iteration 16 Initial residual norms:
+ Momentum equation: Component 1 [32m0.039035[39m
+ Momentum equation: Component 2 [32m0.0384838[39m
+ Momentum equation: Component 3 [32m0.0491808[39m
+ Pressure equation: [32m0.0812412[39m
+Turbulence Iteration 
+TKE_system [32m0.0461681[39m
+TKED_system [32m0.122119[39m
+Iteration 17 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0486152[39m
+ Momentum equation: Component 2 [32m0.0489305[39m
+ Momentum equation: Component 3 [32m0.0438983[39m
+ Pressure equation: [32m0.0691258[39m
+Turbulence Iteration 
+TKE_system [32m0.0370078[39m
+TKED_system [32m0.122836[39m
+Iteration 18 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0574951[39m
+ Momentum equation: Component 2 [32m0.0592034[39m
+ Momentum equation: Component 3 [32m0.0579604[39m
+ Pressure equation: [32m0.0743788[39m
+Turbulence Iteration 
+TKE_system [32m0.0309883[39m
+TKED_system [32m0.119561[39m
+Iteration 19 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0639368[39m
+ Momentum equation: Component 2 [32m0.0673923[39m
+ Momentum equation: Component 3 [32m0.073331[39m
+ Pressure equation: [32m0.0923507[39m
+Turbulence Iteration 
+TKE_system [32m0.0275896[39m
+TKED_system [32m0.113901[39m
+Iteration 20 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0667306[39m
+ Momentum equation: Component 2 [32m0.0720653[39m
+ Momentum equation: Component 3 [32m0.0808365[39m
+ Pressure equation: [32m0.122171[39m
+Turbulence Iteration 
+TKE_system [32m0.0258766[39m
+TKED_system [32m0.107052[39m
+Iteration 21 Initial residual norms:
+ Momentum equation: Component 1 [32m0.065439[39m
+ Momentum equation: Component 2 [32m0.0725827[39m
+ Momentum equation: Component 3 [32m0.0787835[39m
+ Pressure equation: [32m0.165527[39m
+Turbulence Iteration 
+TKE_system [32m0.0250051[39m
+TKED_system [32m0.0998217[39m
+Iteration 22 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0607273[39m
+ Momentum equation: Component 2 [32m0.0695246[39m
+ Momentum equation: Component 3 [32m0.0691655[39m
+ Pressure equation: [32m0.205697[39m
+Turbulence Iteration 
+TKE_system [32m0.0245246[39m
+TKED_system [32m0.0926774[39m
+Iteration 23 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0544332[39m
+ Momentum equation: Component 2 [32m0.0648117[39m
+ Momentum equation: Component 3 [32m0.0553856[39m
+ Pressure equation: [32m0.189346[39m
+Turbulence Iteration 
+TKE_system [32m0.0243655[39m
+TKED_system [32m0.08553[39m
+Iteration 24 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0491724[39m
+ Momentum equation: Component 2 [32m0.0610643[39m
+ Momentum equation: Component 3 [32m0.0413759[39m
+ Pressure equation: [32m0.139116[39m
+Turbulence Iteration 
+TKE_system [32m0.0246309[39m
+TKED_system [32m0.0802373[39m
+Iteration 25 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0469963[39m
+ Momentum equation: Component 2 [32m0.059833[39m
+ Momentum equation: Component 3 [32m0.0322801[39m
+ Pressure equation: [32m0.102557[39m
+Turbulence Iteration 
+TKE_system [32m0.0255968[39m
+TKED_system [32m0.0742188[39m
+Iteration 26 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0475176[39m
+ Momentum equation: Component 2 [32m0.0600033[39m
+ Momentum equation: Component 3 [32m0.0325347[39m
+ Pressure equation: [32m0.0831348[39m
+Turbulence Iteration 
+TKE_system [32m0.0274392[39m
+TKED_system [32m0.0688024[39m
+Iteration 27 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0482787[39m
+ Momentum equation: Component 2 [32m0.059061[39m
+ Momentum equation: Component 3 [32m0.0388799[39m
+ Pressure equation: [32m0.0770104[39m
+Turbulence Iteration 
+TKE_system [32m0.0302272[39m
+TKED_system [32m0.0639561[39m
+Iteration 28 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0471584[39m
+ Momentum equation: Component 2 [32m0.0557354[39m
+ Momentum equation: Component 3 [32m0.0451556[39m
+ Pressure equation: [32m0.0817863[39m
+Turbulence Iteration 
+TKE_system [32m0.0338975[39m
+TKED_system [32m0.0596204[39m
+Iteration 29 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0436143[39m
+ Momentum equation: Component 2 [32m0.0509678[39m
+ Momentum equation: Component 3 [32m0.048464[39m
+ Pressure equation: [32m0.0963924[39m
+Turbulence Iteration 
+TKE_system [32m0.0383039[39m
+TKED_system [32m0.0557479[39m
+Iteration 30 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0383919[39m
+ Momentum equation: Component 2 [32m0.0471666[39m
+ Momentum equation: Component 3 [32m0.0484193[39m
+ Pressure equation: [32m0.120195[39m
+Turbulence Iteration 
+TKE_system [32m0.0432607[39m
+TKED_system [32m0.0523051[39m
+Iteration 31 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0329168[39m
+ Momentum equation: Component 2 [32m0.0465231[39m
+ Momentum equation: Component 3 [32m0.0459799[39m
+ Pressure equation: [32m0.147809[39m
+Turbulence Iteration 
+TKE_system [32m0.0485582[39m
+TKED_system [32m0.049245[39m
+Iteration 32 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0288597[39m
+ Momentum equation: Component 2 [32m0.0490009[39m
+ Momentum equation: Component 3 [32m0.0426926[39m
+ Pressure equation: [32m0.159619[39m
+Turbulence Iteration 
+TKE_system [32m0.0539811[39m
+TKED_system [32m0.0465447[39m
+Iteration 33 Initial residual norms:
+ Momentum equation: Component 1 [32m0.027506[39m
+ Momentum equation: Component 2 [32m0.0523714[39m
+ Momentum equation: Component 3 [32m0.0400656[39m
+ Pressure equation: [32m0.144331[39m
+Turbulence Iteration 
+TKE_system [32m0.0593167[39m
+TKED_system [32m0.044187[39m
+Iteration 34 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0287963[39m
+ Momentum equation: Component 2 [32m0.054309[39m
+ Momentum equation: Component 3 [32m0.0389583[39m
+ Pressure equation: [32m0.121079[39m
+Turbulence Iteration 
+TKE_system [32m0.0643527[39m
+TKED_system [32m0.0421331[39m
+Iteration 35 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0314271[39m
+ Momentum equation: Component 2 [32m0.0540042[39m
+ Momentum equation: Component 3 [32m0.0392712[39m
+ Pressure equation: [32m0.103368[39m
+Turbulence Iteration 
+TKE_system [32m0.0688875[39m
+TKED_system [32m0.0405144[39m
+Iteration 36 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0340608[39m
+ Momentum equation: Component 2 [32m0.0524808[39m
+ Momentum equation: Component 3 [32m0.0402837[39m
+ Pressure equation: [32m0.0936351[39m
+Turbulence Iteration 
+TKE_system [32m0.0727731[39m
+TKED_system [32m0.0392357[39m
+Iteration 37 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0359906[39m
+ Momentum equation: Component 2 [32m0.0519322[39m
+ Momentum equation: Component 3 [32m0.0412816[39m
+ Pressure equation: [32m0.0917995[39m
+Turbulence Iteration 
+TKE_system [32m0.0759426[39m
+TKED_system [32m0.0384107[39m
+Iteration 38 Initial residual norms:
+ Momentum equation: Component 1 [32m0.037126[39m
+ Momentum equation: Component 2 [32m0.0540755[39m
+ Momentum equation: Component 3 [32m0.0418978[39m
+ Pressure equation: [32m0.0979187[39m
+Turbulence Iteration 
+TKE_system [32m0.0784061[39m
+TKED_system [32m0.0381449[39m
+Iteration 39 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0377514[39m
+ Momentum equation: Component 2 [32m0.0583633[39m
+ Momentum equation: Component 3 [32m0.042106[39m
+ Pressure equation: [32m0.110942[39m
+Turbulence Iteration 
+TKE_system [32m0.0802289[39m
+TKED_system [32m0.0385764[39m
+Iteration 40 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0382217[39m
+ Momentum equation: Component 2 [32m0.0623505[39m
+ Momentum equation: Component 3 [32m0.0420735[39m
+ Pressure equation: [32m0.1246[39m
+Turbulence Iteration 
+TKE_system [32m0.08152[39m
+TKED_system [32m0.0398778[39m
+Iteration 41 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0387223[39m
+ Momentum equation: Component 2 [32m0.0637216[39m
+ Momentum equation: Component 3 [32m0.0420069[39m
+ Pressure equation: [32m0.128213[39m
+Turbulence Iteration 
+TKE_system [32m0.0823986[39m
+TKED_system [32m0.0422238[39m
+Iteration 42 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0392367[39m
+ Momentum equation: Component 2 [32m0.0616354[39m
+ Momentum equation: Component 3 [32m0.0420483[39m
+ Pressure equation: [32m0.121167[39m
+Turbulence Iteration 
+TKE_system [32m0.0829661[39m
+TKED_system [32m0.0457852[39m
+Iteration 43 Initial residual norms:
+ Momentum equation: Component 1 [32m0.039689[39m
+ Momentum equation: Component 2 [32m0.056856[39m
+ Momentum equation: Component 3 [32m0.0422412[39m
+ Pressure equation: [32m0.111682[39m
+Turbulence Iteration 
+TKE_system [32m0.0833012[39m
+TKED_system [32m0.0506257[39m
+Iteration 44 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0400833[39m
+ Momentum equation: Component 2 [32m0.0512163[39m
+ Momentum equation: Component 3 [32m0.0425506[39m
+ Pressure equation: [32m0.104873[39m
+Turbulence Iteration 
+TKE_system [32m0.0834743[39m
+TKED_system [32m0.0567254[39m
+Iteration 45 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0405066[39m
+ Momentum equation: Component 2 [32m0.0470394[39m
+ Momentum equation: Component 3 [32m0.0429061[39m
+ Pressure equation: [32m0.101667[39m
+Turbulence Iteration 
+TKE_system [32m0.0835535[39m
+TKED_system [32m0.063914[39m
+Iteration 46 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0410229[39m
+ Momentum equation: Component 2 [32m0.0461023[39m
+ Momentum equation: Component 3 [32m0.0432403[39m
+ Pressure equation: [32m0.101039[39m
+Turbulence Iteration 
+TKE_system [32m0.0835908[39m
+TKED_system [32m0.071851[39m
+Iteration 47 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0415819[39m
+ Momentum equation: Component 2 [32m0.04816[39m
+ Momentum equation: Component 3 [32m0.0435077[39m
+ Pressure equation: [32m0.100925[39m
+Turbulence Iteration 
+TKE_system [32m0.0836106[39m
+TKED_system [32m0.0800534[39m
+Iteration 48 Initial residual norms:
+ Momentum equation: Component 1 [32m0.042035[39m
+ Momentum equation: Component 2 [32m0.0510562[39m
+ Momentum equation: Component 3 [32m0.0436888[39m
+ Pressure equation: [32m0.0988391[39m
+Turbulence Iteration 
+TKE_system [32m0.0836164[39m
+TKED_system [32m0.0879607[39m
+Iteration 49 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0422482[39m
+ Momentum equation: Component 2 [32m0.0525887[39m
+ Momentum equation: Component 3 [32m0.0437852[39m
+ Pressure equation: [32m0.0942167[39m
+Turbulence Iteration 
+TKE_system [32m0.0835996[39m
+TKED_system [32m0.0950523[39m
+Iteration 50 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0422212[39m
+ Momentum equation: Component 2 [32m0.0518206[39m
+ Momentum equation: Component 3 [32m0.0438122[39m
+ Pressure equation: [32m0.0882864[39m
+Turbulence Iteration 
+TKE_system [32m0.0835535[39m
+TKED_system [32m0.100968[39m
+Iteration 51 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0421251[39m
+ Momentum equation: Component 2 [32m0.0493558[39m
+ Momentum equation: Component 3 [32m0.043792[39m
+ Pressure equation: [32m0.0829358[39m
+Turbulence Iteration 
+TKE_system [32m0.0834697[39m
+TKED_system [32m0.105567[39m
+Iteration 52 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0422175[39m
+ Momentum equation: Component 2 [32m0.0468906[39m
+ Momentum equation: Component 3 [32m0.0437472[39m
+ Pressure equation: [32m0.0795086[39m
+Turbulence Iteration 
+TKE_system [32m0.0833411[39m
+TKED_system [32m0.1089[39m
+Iteration 53 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0426846[39m
+ Momentum equation: Component 2 [32m0.0462763[39m
+ Momentum equation: Component 3 [32m0.0436953[39m
+ Pressure equation: [32m0.0783092[39m
+Turbulence Iteration 
+TKE_system [32m0.0831647[39m
+TKED_system [32m0.111144[39m
+Iteration 54 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0435062[39m
+ Momentum equation: Component 2 [32m0.0481418[39m
+ Momentum equation: Component 3 [32m0.043647[39m
+ Pressure equation: [32m0.0786803[39m
+Turbulence Iteration 
+TKE_system [32m0.0829409[39m
+TKED_system [32m0.112512[39m
+Iteration 55 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0444541[39m
+ Momentum equation: Component 2 [32m0.0513131[39m
+ Momentum equation: Component 3 [32m0.0436059[39m
+ Pressure equation: [32m0.0794425[39m
+Turbulence Iteration 
+TKE_system [32m0.082674[39m
+TKED_system [32m0.113215[39m
+Iteration 56 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0452278[39m
+ Momentum equation: Component 2 [32m0.0538883[39m
+ Momentum equation: Component 3 [32m0.0435714[39m
+ Pressure equation: [32m0.0795214[39m
+Turbulence Iteration 
+TKE_system [32m0.0823696[39m
+TKED_system [32m0.11342[39m
+Iteration 57 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0456205[39m
+ Momentum equation: Component 2 [32m0.0545665[39m
+ Momentum equation: Component 3 [32m0.0435436[39m
+ Pressure equation: [32m0.0786016[39m
+Turbulence Iteration 
+TKE_system [32m0.0820352[39m
+TKED_system [32m0.113262[39m
+Iteration 58 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0456086[39m
+ Momentum equation: Component 2 [32m0.0531028[39m
+ Momentum equation: Component 3 [32m0.0435234[39m
+ Pressure equation: [32m0.0775401[39m
+Turbulence Iteration 
+TKE_system [32m0.081675[39m
+TKED_system [32m0.112834[39m
+Iteration 59 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0453365[39m
+ Momentum equation: Component 2 [32m0.0501951[39m
+ Momentum equation: Component 3 [32m0.0435136[39m
+ Pressure equation: [32m0.0775344[39m
+Turbulence Iteration 
+TKE_system [32m0.0812946[39m
+TKED_system [32m0.112207[39m
+Iteration 60 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0450195[39m
+ Momentum equation: Component 2 [32m0.0470865[39m
+ Momentum equation: Component 3 [32m0.043516[39m
+ Pressure equation: [32m0.0791919[39m
+Turbulence Iteration 
+TKE_system [32m0.0809032[39m
+TKED_system [32m0.111431[39m
+Iteration 61 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0448237[39m
+ Momentum equation: Component 2 [32m0.0450466[39m
+ Momentum equation: Component 3 [32m0.0435282[39m
+ Pressure equation: [32m0.0817806[39m
+Turbulence Iteration 
+TKE_system [32m0.080513[39m
+TKED_system [32m0.110544[39m
+Iteration 62 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0447839[39m
+ Momentum equation: Component 2 [32m0.0447004[39m
+ Momentum equation: Component 3 [32m0.0435421[39m
+ Pressure equation: [32m0.0837734[39m
+Turbulence Iteration 
+TKE_system [32m0.080133[39m
+TKED_system [32m0.109572[39m
+Iteration 63 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0448077[39m
+ Momentum equation: Component 2 [32m0.0456226[39m
+ Momentum equation: Component 3 [32m0.0435462[39m
+ Pressure equation: [32m0.0839854[39m
+Turbulence Iteration 
+TKE_system [32m0.0797658[39m
+TKED_system [32m0.108538[39m
+Iteration 64 Initial residual norms:
+ Momentum equation: Component 1 [32m0.044754[39m
+ Momentum equation: Component 2 [32m0.0466996[39m
+ Momentum equation: Component 3 [32m0.0435283[39m
+ Pressure equation: [32m0.0819751[39m
+Turbulence Iteration 
+TKE_system [32m0.0794088[39m
+TKED_system [32m0.107457[39m
+Iteration 65 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0445346[39m
+ Momentum equation: Component 2 [32m0.0469713[39m
+ Momentum equation: Component 3 [32m0.0434817[39m
+ Pressure equation: [32m0.0782906[39m
+Turbulence Iteration 
+TKE_system [32m0.0790579[39m
+TKED_system [32m0.106345[39m
+Iteration 66 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0441712[39m
+ Momentum equation: Component 2 [32m0.0461396[39m
+ Momentum equation: Component 3 [32m0.0434052[39m
+ Pressure equation: [32m0.0741586[39m
+Turbulence Iteration 
+TKE_system [32m0.0787103[39m
+TKED_system [32m0.105212[39m
+Iteration 67 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0437848[39m
+ Momentum equation: Component 2 [32m0.0446775[39m
+ Momentum equation: Component 3 [32m0.0433044[39m
+ Pressure equation: [32m0.0714862[39m
+Turbulence Iteration 
+TKE_system [32m0.0783659[39m
+TKED_system [32m0.104068[39m
+Iteration 68 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0435122[39m
+ Momentum equation: Component 2 [32m0.043462[39m
+ Momentum equation: Component 3 [32m0.0431881[39m
+ Pressure equation: [32m0.0667411[39m
+Turbulence Iteration 
+TKE_system [32m0.0780243[39m
+TKED_system [32m0.102924[39m
+Iteration 69 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0434564[39m
+ Momentum equation: Component 2 [32m0.0433344[39m
+ Momentum equation: Component 3 [32m0.0430678[39m
+ Pressure equation: [32m0.0677781[39m
+Turbulence Iteration 
+TKE_system [32m0.0776859[39m
+TKED_system [32m0.10179[39m
+Iteration 70 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0436314[39m
+ Momentum equation: Component 2 [32m0.0444551[39m
+ Momentum equation: Component 3 [32m0.0429502[39m
+ Pressure equation: [32m0.0930542[39m
+Turbulence Iteration 
+TKE_system [32m0.0773546[39m
+TKED_system [32m0.100674[39m
+Iteration 71 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0438225[39m
+ Momentum equation: Component 2 [32m0.0459905[39m
+ Momentum equation: Component 3 [32m0.0428406[39m
+ Pressure equation: [32m0.0667165[39m
+Turbulence Iteration 
+TKE_system [32m0.0770388[39m
+TKED_system [32m0.0995875[39m
+Iteration 72 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0439566[39m
+ Momentum equation: Component 2 [32m0.0471342[39m
+ Momentum equation: Component 3 [32m0.0427402[39m
+ Pressure equation: [32m0.0827069[39m
+Turbulence Iteration 
+TKE_system [32m0.0767432[39m
+TKED_system [32m0.0985403[39m
+Iteration 73 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0438942[39m
+ Momentum equation: Component 2 [32m0.0471065[39m
+ Momentum equation: Component 3 [32m0.0426462[39m
+ Pressure equation: [32m0.0683842[39m
+Turbulence Iteration 
+TKE_system [32m0.076474[39m
+TKED_system [32m0.0975443[39m
+Iteration 74 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0436854[39m
+ Momentum equation: Component 2 [32m0.0460423[39m
+ Momentum equation: Component 3 [32m0.0425623[39m
+ Pressure equation: [32m0.0639461[39m
+Turbulence Iteration 
+TKE_system [32m0.076237[39m
+TKED_system [32m0.0966105[39m
+Iteration 75 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0433983[39m
+ Momentum equation: Component 2 [32m0.0443178[39m
+ Momentum equation: Component 3 [32m0.0424874[39m
+ Pressure equation: [32m0.0644538[39m
+Turbulence Iteration 
+TKE_system [32m0.0760362[39m
+TKED_system [32m0.0957488[39m
+Iteration 76 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0431432[39m
+ Momentum equation: Component 2 [32m0.0426794[39m
+ Momentum equation: Component 3 [32m0.0424207[39m
+ Pressure equation: [32m0.0691927[39m
+Turbulence Iteration 
+TKE_system [32m0.075892[39m
+TKED_system [32m0.0949698[39m
+Iteration 77 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0429283[39m
+ Momentum equation: Component 2 [32m0.0416553[39m
+ Momentum equation: Component 3 [32m0.0423593[39m
+ Pressure equation: [32m0.0717742[39m
+Turbulence Iteration 
+TKE_system [32m0.0757898[39m
+TKED_system [32m0.0942862[39m
+Iteration 78 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0428133[39m
+ Momentum equation: Component 2 [32m0.0415959[39m
+ Momentum equation: Component 3 [32m0.0422983[39m
+ Pressure equation: [32m0.068956[39m
+Turbulence Iteration 
+TKE_system [32m0.0757454[39m
+TKED_system [32m0.093698[39m
+Iteration 79 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0427174[39m
+ Momentum equation: Component 2 [32m0.0421085[39m
+ Momentum equation: Component 3 [32m0.0422327[39m
+ Pressure equation: [32m0.0694411[39m
+Turbulence Iteration 
+TKE_system [32m0.075759[39m
+TKED_system [32m0.0932091[39m
+Iteration 80 Initial residual norms:
+ Momentum equation: Component 1 [32m0.042561[39m
+ Momentum equation: Component 2 [32m0.0425833[39m
+ Momentum equation: Component 3 [32m0.0421576[39m
+ Pressure equation: [32m0.0685843[39m
+Turbulence Iteration 
+TKE_system [32m0.0758304[39m
+TKED_system [32m0.0928177[39m
+Iteration 81 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0422966[39m
+ Momentum equation: Component 2 [32m0.0425619[39m
+ Momentum equation: Component 3 [32m0.0420705[39m
+ Pressure equation: [32m0.0665214[39m
+Turbulence Iteration 
+TKE_system [32m0.075956[39m
+TKED_system [32m0.0925178[39m
+Iteration 82 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0419519[39m
+ Momentum equation: Component 2 [32m0.0419896[39m
+ Momentum equation: Component 3 [32m0.0419726[39m
+ Pressure equation: [32m0.0634658[39m
+Turbulence Iteration 
+TKE_system [32m0.0761336[39m
+TKED_system [32m0.0922981[39m
+Iteration 83 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0415948[39m
+ Momentum equation: Component 2 [32m0.0412142[39m
+ Momentum equation: Component 3 [32m0.0418701[39m
+ Pressure equation: [32m0.0600925[39m
+Turbulence Iteration 
+TKE_system [32m0.0763605[39m
+TKED_system [32m0.0921426[39m
+Iteration 84 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0412968[39m
+ Momentum equation: Component 2 [32m0.0407638[39m
+ Momentum equation: Component 3 [32m0.04177[39m
+ Pressure equation: [32m0.0570411[39m
+Turbulence Iteration 
+TKE_system [32m0.0766359[39m
+TKED_system [32m0.092031[39m
+Iteration 85 Initial residual norms:
+ Momentum equation: Component 1 [32m0.041095[39m
+ Momentum equation: Component 2 [32m0.0409929[39m
+ Momentum equation: Component 3 [32m0.0416794[39m
+ Pressure equation: [32m0.0547849[39m
+Turbulence Iteration 
+TKE_system [32m0.0769614[39m
+TKED_system [32m0.0919413[39m
+Iteration 86 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0409739[39m
+ Momentum equation: Component 2 [32m0.0418326[39m
+ Momentum equation: Component 3 [32m0.0416039[39m
+ Pressure equation: [32m0.0534109[39m
+Turbulence Iteration 
+TKE_system [32m0.0773396[39m
+TKED_system [32m0.091848[39m
+Iteration 87 Initial residual norms:
+ Momentum equation: Component 1 [32m0.040878[39m
+ Momentum equation: Component 2 [32m0.042838[39m
+ Momentum equation: Component 3 [32m0.0415473[39m
+ Pressure equation: [32m0.0525738[39m
+Turbulence Iteration 
+TKE_system [32m0.077777[39m
+TKED_system [32m0.0917294[39m
+Iteration 88 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0407462[39m
+ Momentum equation: Component 2 [32m0.0434873[39m
+ Momentum equation: Component 3 [32m0.0415118[39m
+ Pressure equation: [32m0.0518394[39m
+Turbulence Iteration 
+TKE_system [32m0.0782874[39m
+TKED_system [32m0.0915652[39m
+Iteration 89 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0405406[39m
+ Momentum equation: Component 2 [32m0.043474[39m
+ Momentum equation: Component 3 [32m0.0414971[39m
+ Pressure equation: [32m0.0508759[39m
+Turbulence Iteration 
+TKE_system [32m0.0788865[39m
+TKED_system [32m0.0913391[39m
+Iteration 90 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0402875[39m
+ Momentum equation: Component 2 [32m0.0428436[39m
+ Momentum equation: Component 3 [32m0.0414937[39m
+ Pressure equation: [32m0.0497081[39m
+Turbulence Iteration 
+TKE_system [32m0.0795522[39m
+TKED_system [32m0.0910487[39m
+Iteration 91 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0400358[39m
+ Momentum equation: Component 2 [32m0.0419151[39m
+ Momentum equation: Component 3 [32m0.0414603[39m
+ Pressure equation: [32m0.0486367[39m
+Turbulence Iteration 
+TKE_system [32m0.0801603[39m
+TKED_system [32m0.0907149[39m
+Iteration 92 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0398248[39m
+ Momentum equation: Component 2 [32m0.0410539[39m
+ Momentum equation: Component 3 [32m0.0413244[39m
+ Pressure equation: [32m0.0479162[39m
+Turbulence Iteration 
+TKE_system [32m0.0805433[39m
+TKED_system [32m0.0903389[39m
+Iteration 93 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0395656[39m
+ Momentum equation: Component 2 [32m0.0403337[39m
+ Momentum equation: Component 3 [32m0.0408863[39m
+ Pressure equation: [32m0.0477155[39m
+Turbulence Iteration 
+TKE_system [32m0.0802524[39m
+TKED_system [32m0.0899179[39m
+Iteration 94 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0393217[39m
+ Momentum equation: Component 2 [32m0.0400376[39m
+ Momentum equation: Component 3 [32m0.040369[39m
+ Pressure equation: [32m0.0475092[39m
+Turbulence Iteration 
+TKE_system [32m0.0795353[39m
+TKED_system [32m0.0891819[39m
+Iteration 95 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0390212[39m
+ Momentum equation: Component 2 [32m0.0399041[39m
+ Momentum equation: Component 3 [32m0.0397805[39m
+ Pressure equation: [32m0.0470464[39m
+Turbulence Iteration 
+TKE_system [32m0.0786451[39m
+TKED_system [32m0.0882115[39m
+Iteration 96 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0386127[39m
+ Momentum equation: Component 2 [32m0.0396041[39m
+ Momentum equation: Component 3 [32m0.0391333[39m
+ Pressure equation: [32m0.0459162[39m
+Turbulence Iteration 
+TKE_system [32m0.0777724[39m
+TKED_system [32m0.0871736[39m
+Iteration 97 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0381163[39m
+ Momentum equation: Component 2 [32m0.0390084[39m
+ Momentum equation: Component 3 [32m0.0384949[39m
+ Pressure equation: [32m0.0441061[39m
+Turbulence Iteration 
+TKE_system [32m0.0770619[39m
+TKED_system [32m0.0860488[39m
+Iteration 98 Initial residual norms:
+ Momentum equation: Component 1 [32m0.03755[39m
+ Momentum equation: Component 2 [32m0.0380536[39m
+ Momentum equation: Component 3 [32m0.037759[39m
+ Pressure equation: [32m0.0417635[39m
+Turbulence Iteration 
+TKE_system [32m0.0762755[39m
+TKED_system [32m0.084826[39m
+Iteration 99 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0369551[39m
+ Momentum equation: Component 2 [32m0.0370367[39m
+ Momentum equation: Component 3 [32m0.0369381[39m
+ Pressure equation: [32m0.0392875[39m
+Turbulence Iteration 
+TKE_system [32m0.0752871[39m
+TKED_system [32m0.0835154[39m
+Iteration 100 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0363688[39m
+ Momentum equation: Component 2 [32m0.0363231[39m
+ Momentum equation: Component 3 [32m0.0360792[39m
+ Pressure equation: [32m0.0371902[39m
+Turbulence Iteration 
+TKE_system [32m0.0742234[39m
+TKED_system [32m0.0821346[39m
+Iteration 101 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0357987[39m
+ Momentum equation: Component 2 [32m0.0359917[39m
+ Momentum equation: Component 3 [32m0.0351803[39m
+ Pressure equation: [32m0.0357691[39m
+Turbulence Iteration 
+TKE_system [32m0.0731943[39m
+TKED_system [32m0.0807046[39m
+Iteration 102 Initial residual norms:
+ Momentum equation: Component 1 [32m0.035252[39m
+ Momentum equation: Component 2 [32m0.0358575[39m
+ Momentum equation: Component 3 [32m0.0342809[39m
+ Pressure equation: [32m0.0348545[39m
+Turbulence Iteration 
+TKE_system [32m0.0722838[39m
+TKED_system [32m0.0792472[39m
+Iteration 103 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0346953[39m
+ Momentum equation: Component 2 [32m0.0355526[39m
+ Momentum equation: Component 3 [32m0.0333545[39m
+ Pressure equation: [32m0.0341774[39m
+Turbulence Iteration 
+TKE_system [32m0.0715159[39m
+TKED_system [32m0.0777877[39m
+Iteration 104 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0340914[39m
+ Momentum equation: Component 2 [32m0.0348214[39m
+ Momentum equation: Component 3 [32m0.0322992[39m
+ Pressure equation: [32m0.0339446[39m
+Turbulence Iteration 
+TKE_system [32m0.0707665[39m
+TKED_system [32m0.0764244[39m
+Iteration 105 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0333922[39m
+ Momentum equation: Component 2 [32m0.0335138[39m
+ Momentum equation: Component 3 [32m0.0310434[39m
+ Pressure equation: [32m0.0354469[39m
+Turbulence Iteration 
+TKE_system [32m0.0695938[39m
+TKED_system [32m0.0751405[39m
+Iteration 106 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0326508[39m
+ Momentum equation: Component 2 [32m0.0319067[39m
+ Momentum equation: Component 3 [32m0.0296985[39m
+ Pressure equation: [32m0.038241[39m
+Turbulence Iteration 
+TKE_system [32m0.0673365[39m
+TKED_system [32m0.0736338[39m
+Iteration 107 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0319351[39m
+ Momentum equation: Component 2 [32m0.030343[39m
+ Momentum equation: Component 3 [32m0.0282219[39m
+ Pressure equation: [32m0.0384541[39m
+Turbulence Iteration 
+TKE_system [32m0.0642677[39m
+TKED_system [32m0.0720158[39m
+Iteration 108 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0313067[39m
+ Momentum equation: Component 2 [32m0.0290409[39m
+ Momentum equation: Component 3 [32m0.0265565[39m
+ Pressure equation: [32m0.0397368[39m
+Turbulence Iteration 
+TKE_system [32m0.0607085[39m
+TKED_system [32m0.070387[39m
+Iteration 109 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0307653[39m
+ Momentum equation: Component 2 [32m0.028307[39m
+ Momentum equation: Component 3 [32m0.0249141[39m
+ Pressure equation: [32m0.0414926[39m
+Turbulence Iteration 
+TKE_system [32m0.0569543[39m
+TKED_system [32m0.0687451[39m
+Iteration 110 Initial residual norms:
+ Momentum equation: Component 1 [32m0.030271[39m
+ Momentum equation: Component 2 [32m0.0279567[39m
+ Momentum equation: Component 3 [32m0.0233884[39m
+ Pressure equation: [32m0.0435163[39m
+Turbulence Iteration 
+TKE_system [32m0.0532289[39m
+TKED_system [32m0.067098[39m
+Iteration 111 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0296501[39m
+ Momentum equation: Component 2 [32m0.0275214[39m
+ Momentum equation: Component 3 [32m0.0219914[39m
+ Pressure equation: [32m0.0447549[39m
+Turbulence Iteration 
+TKE_system [32m0.049683[39m
+TKED_system [32m0.0654526[39m
+Iteration 112 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0287365[39m
+ Momentum equation: Component 2 [32m0.0266564[39m
+ Momentum equation: Component 3 [32m0.0207336[39m
+ Pressure equation: [32m0.045317[39m
+Turbulence Iteration 
+TKE_system [32m0.046332[39m
+TKED_system [32m0.0637818[39m
+Iteration 113 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0276224[39m
+ Momentum equation: Component 2 [32m0.0252374[39m
+ Momentum equation: Component 3 [32m0.0196213[39m
+ Pressure equation: [32m0.045597[39m
+Turbulence Iteration 
+TKE_system [32m0.0429111[39m
+TKED_system [32m0.0620857[39m
+Iteration 114 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0264162[39m
+ Momentum equation: Component 2 [32m0.0234903[39m
+ Momentum equation: Component 3 [32m0.0186129[39m
+ Pressure equation: [32m0.0444673[39m
+Turbulence Iteration 
+TKE_system [32m0.0398575[39m
+TKED_system [32m0.0604248[39m
+Iteration 115 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0252195[39m
+ Momentum equation: Component 2 [32m0.0218676[39m
+ Momentum equation: Component 3 [32m0.0177602[39m
+ Pressure equation: [32m0.0434655[39m
+Turbulence Iteration 
+TKE_system [32m0.0371309[39m
+TKED_system [32m0.0587482[39m
+Iteration 116 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0241366[39m
+ Momentum equation: Component 2 [32m0.0207152[39m
+ Momentum equation: Component 3 [32m0.0170531[39m
+ Pressure equation: [32m0.0428017[39m
+Turbulence Iteration 
+TKE_system [32m0.0347262[39m
+TKED_system [32m0.0570432[39m
+Iteration 117 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0232593[39m
+ Momentum equation: Component 2 [32m0.0200603[39m
+ Momentum equation: Component 3 [32m0.0164826[39m
+ Pressure equation: [32m0.0431084[39m
+Turbulence Iteration 
+TKE_system [32m0.0326147[39m
+TKED_system [32m0.0553189[39m
+Iteration 118 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0226429[39m
+ Momentum equation: Component 2 [32m0.0195924[39m
+ Momentum equation: Component 3 [32m0.0160361[39m
+ Pressure equation: [32m0.0436471[39m
+Turbulence Iteration 
+TKE_system [32m0.0307758[39m
+TKED_system [32m0.053611[39m
+Iteration 119 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0222994[39m
+ Momentum equation: Component 2 [32m0.0189436[39m
+ Momentum equation: Component 3 [32m0.0157032[39m
+ Pressure equation: [32m0.0433634[39m
+Turbulence Iteration 
+TKE_system [32m0.0291864[39m
+TKED_system [32m0.0519495[39m
+Iteration 120 Initial residual norms:
+ Momentum equation: Component 1 [32m0.022205[39m
+ Momentum equation: Component 2 [32m0.0179753[39m
+ Momentum equation: Component 3 [32m0.0154759[39m
+ Pressure equation: [32m0.0419817[39m
+Turbulence Iteration 
+TKE_system [32m0.0278299[39m
+TKED_system [32m0.0503536[39m
+Iteration 121 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0223038[39m
+ Momentum equation: Component 2 [32m0.0168999[39m
+ Momentum equation: Component 3 [32m0.0153417[39m
+ Pressure equation: [32m0.0403187[39m
+Turbulence Iteration 
+TKE_system [32m0.0267048[39m
+TKED_system [32m0.0488481[39m
+Iteration 122 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0225396[39m
+ Momentum equation: Component 2 [32m0.0162145[39m
+ Momentum equation: Component 3 [32m0.0152987[39m
+ Pressure equation: [32m0.0384789[39m
+Turbulence Iteration 
+TKE_system [32m0.0257899[39m
+TKED_system [32m0.0474276[39m
+Iteration 123 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0228278[39m
+ Momentum equation: Component 2 [32m0.0163007[39m
+ Momentum equation: Component 3 [32m0.0153568[39m
+ Pressure equation: [32m0.0383638[39m
+Turbulence Iteration 
+TKE_system [32m0.025107[39m
+TKED_system [32m0.0461128[39m
+Iteration 124 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0231101[39m
+ Momentum equation: Component 2 [32m0.0170457[39m
+ Momentum equation: Component 3 [32m0.0155095[39m
+ Pressure equation: [32m0.0395868[39m
+Turbulence Iteration 
+TKE_system [32m0.0246657[39m
+TKED_system [32m0.0448862[39m
+Iteration 125 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0233239[39m
+ Momentum equation: Component 2 [32m0.0179[39m
+ Momentum equation: Component 3 [32m0.0157457[39m
+ Pressure equation: [32m0.0413101[39m
+Turbulence Iteration 
+TKE_system [32m0.0244773[39m
+TKED_system [32m0.0437241[39m
+Iteration 126 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0234415[39m
+ Momentum equation: Component 2 [32m0.0183366[39m
+ Momentum equation: Component 3 [32m0.0160544[39m
+ Pressure equation: [32m0.0422688[39m
+Turbulence Iteration 
+TKE_system [32m0.0245848[39m
+TKED_system [32m0.042682[39m
+Iteration 127 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0234933[39m
+ Momentum equation: Component 2 [32m0.0182284[39m
+ Momentum equation: Component 3 [32m0.0164318[39m
+ Pressure equation: [32m0.0420256[39m
+Turbulence Iteration 
+TKE_system [32m0.0250285[39m
+TKED_system [32m0.0417499[39m
+Iteration 128 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0235313[39m
+ Momentum equation: Component 2 [32m0.0178745[39m
+ Momentum equation: Component 3 [32m0.0168729[39m
+ Pressure equation: [32m0.0409858[39m
+Turbulence Iteration 
+TKE_system [32m0.0258472[39m
+TKED_system [32m0.0409613[39m
+Iteration 129 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0236145[39m
+ Momentum equation: Component 2 [32m0.0178152[39m
+ Momentum equation: Component 3 [32m0.0173704[39m
+ Pressure equation: [32m0.0408117[39m
+Turbulence Iteration 
+TKE_system [32m0.0270492[39m
+TKED_system [32m0.0403255[39m
+Iteration 130 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0237755[39m
+ Momentum equation: Component 2 [32m0.0183835[39m
+ Momentum equation: Component 3 [32m0.0179124[39m
+ Pressure equation: [32m0.0423694[39m
+Turbulence Iteration 
+TKE_system [32m0.0286436[39m
+TKED_system [32m0.039879[39m
+Iteration 131 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0240052[39m
+ Momentum equation: Component 2 [32m0.0193786[39m
+ Momentum equation: Component 3 [32m0.0184815[39m
+ Pressure equation: [32m0.0451673[39m
+Turbulence Iteration 
+TKE_system [32m0.0306152[39m
+TKED_system [32m0.0396884[39m
+Iteration 132 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0242547[39m
+ Momentum equation: Component 2 [32m0.020247[39m
+ Momentum equation: Component 3 [32m0.0190473[39m
+ Pressure equation: [32m0.0474195[39m
+Turbulence Iteration 
+TKE_system [32m0.03269[39m
+TKED_system [32m0.0398076[39m
+Iteration 133 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0244937[39m
+ Momentum equation: Component 2 [32m0.0205608[39m
+ Momentum equation: Component 3 [32m0.0195898[39m
+ Pressure equation: [32m0.047731[39m
+Turbulence Iteration 
+TKE_system [32m0.0347976[39m
+TKED_system [32m0.0402909[39m
+Iteration 134 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0247167[39m
+ Momentum equation: Component 2 [32m0.0203018[39m
+ Momentum equation: Component 3 [32m0.0200958[39m
+ Pressure equation: [32m0.0462384[39m
+Turbulence Iteration 
+TKE_system [32m0.0368839[39m
+TKED_system [32m0.041169[39m
+Iteration 135 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0249254[39m
+ Momentum equation: Component 2 [32m0.0198965[39m
+ Momentum equation: Component 3 [32m0.0205545[39m
+ Pressure equation: [32m0.0444526[39m
+Turbulence Iteration 
+TKE_system [32m0.0389284[39m
+TKED_system [32m0.0424655[39m
+Iteration 136 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0251183[39m
+ Momentum equation: Component 2 [32m0.0199466[39m
+ Momentum equation: Component 3 [32m0.0209575[39m
+ Pressure equation: [32m0.044565[39m
+Turbulence Iteration 
+TKE_system [32m0.0409026[39m
+TKED_system [32m0.0442074[39m
+Iteration 137 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0252805[39m
+ Momentum equation: Component 2 [32m0.0206721[39m
+ Momentum equation: Component 3 [32m0.0212955[39m
+ Pressure equation: [32m0.0470874[39m
+Turbulence Iteration 
+TKE_system [32m0.0428223[39m
+TKED_system [32m0.0464461[39m
+Iteration 138 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0253853[39m
+ Momentum equation: Component 2 [32m0.0217154[39m
+ Momentum equation: Component 3 [32m0.02156[39m
+ Pressure equation: [32m0.0506746[39m
+Turbulence Iteration 
+TKE_system [32m0.0447667[39m
+TKED_system [32m0.0492376[39m
+Iteration 139 Initial residual norms:
+ Momentum equation: Component 1 [32m0.025403[39m
+ Momentum equation: Component 2 [32m0.022503[39m
+ Momentum equation: Component 3 [32m0.0217481[39m
+ Pressure equation: [32m0.0530032[39m
+Turbulence Iteration 
+TKE_system [32m0.046789[39m
+TKED_system [32m0.0526102[39m
+Iteration 140 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0253152[39m
+ Momentum equation: Component 2 [32m0.0226197[39m
+ Momentum equation: Component 3 [32m0.0218602[39m
+ Pressure equation: [32m0.0526761[39m
+Turbulence Iteration 
+TKE_system [32m0.0489576[39m
+TKED_system [32m0.0565735[39m
+Iteration 141 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0251339[39m
+ Momentum equation: Component 2 [32m0.0221302[39m
+ Momentum equation: Component 3 [32m0.0219065[39m
+ Pressure equation: [32m0.0500624[39m
+Turbulence Iteration 
+TKE_system [32m0.0513579[39m
+TKED_system [32m0.0611234[39m
+Iteration 142 Initial residual norms:
+ Momentum equation: Component 1 [32m0.024785[39m
+ Momentum equation: Component 2 [32m0.0214929[39m
+ Momentum equation: Component 3 [32m0.0218211[39m
+ Pressure equation: [32m0.0481473[39m
+Turbulence Iteration 
+TKE_system [32m0.0540974[39m
+TKED_system [32m0.0662051[39m
+Iteration 143 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0239396[39m
+ Momentum equation: Component 2 [32m0.0210937[39m
+ Momentum equation: Component 3 [32m0.0213658[39m
+ Pressure equation: [32m0.0487998[39m
+Turbulence Iteration 
+TKE_system [32m0.0570864[39m
+TKED_system [32m0.0714813[39m
+Iteration 144 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0230048[39m
+ Momentum equation: Component 2 [32m0.0213371[39m
+ Momentum equation: Component 3 [32m0.0207917[39m
+ Pressure equation: [32m0.049125[39m
+Turbulence Iteration 
+TKE_system [32m0.0596338[39m
+TKED_system [32m0.0756655[39m
+Iteration 145 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0220549[39m
+ Momentum equation: Component 2 [32m0.0218095[39m
+ Momentum equation: Component 3 [32m0.0201884[39m
+ Pressure equation: [32m0.0496217[39m
+Turbulence Iteration 
+TKE_system [32m0.0617622[39m
+TKED_system [32m0.0792411[39m
+Iteration 146 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0211661[39m
+ Momentum equation: Component 2 [32m0.0219915[39m
+ Momentum equation: Component 3 [32m0.0196518[39m
+ Pressure equation: [32m0.0481979[39m
+Turbulence Iteration 
+TKE_system [32m0.0635208[39m
+TKED_system [32m0.0843962[39m
+Iteration 147 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0203925[39m
+ Momentum equation: Component 2 [32m0.0216523[39m
+ Momentum equation: Component 3 [32m0.019241[39m
+ Pressure equation: [32m0.0445286[39m
+Turbulence Iteration 
+TKE_system [32m0.064969[39m
+TKED_system [32m0.0917921[39m
+Iteration 148 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0197882[39m
+ Momentum equation: Component 2 [32m0.0210063[39m
+ Momentum equation: Component 3 [32m0.0189956[39m
+ Pressure equation: [32m0.039614[39m
+Turbulence Iteration 
+TKE_system [32m0.066144[39m
+TKED_system [32m0.101332[39m
+Iteration 149 Initial residual norms:
+ Momentum equation: Component 1 [32m0.019403[39m
+ Momentum equation: Component 2 [32m0.0205495[39m
+ Momentum equation: Component 3 [32m0.0189396[39m
+ Pressure equation: [32m0.0375244[39m
+Turbulence Iteration 
+TKE_system [32m0.0670923[39m
+TKED_system [32m0.114711[39m
+Iteration 150 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0192701[39m
+ Momentum equation: Component 2 [32m0.0206739[39m
+ Momentum equation: Component 3 [32m0.0190846[39m
+ Pressure equation: [32m0.0397693[39m
+Turbulence Iteration 
+TKE_system [32m0.0678672[39m
+TKED_system [32m0.133103[39m
+Iteration 151 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0193907[39m
+ Momentum equation: Component 2 [32m0.0213233[39m
+ Momentum equation: Component 3 [32m0.0194299[39m
+ Pressure equation: [32m0.0456269[39m
+Turbulence Iteration 
+TKE_system [32m0.0682927[39m
+TKED_system [32m0.105592[39m
+Iteration 152 Initial residual norms:
+ Momentum equation: Component 1 [32m0.018053[39m
+ Momentum equation: Component 2 [32m0.0205509[39m
+ Momentum equation: Component 3 [32m0.0178783[39m
+ Pressure equation: [32m0.0508647[39m
+Turbulence Iteration 
+TKE_system [32m0.0690499[39m
+TKED_system [32m0.0884631[39m
+Iteration 153 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0163277[39m
+ Momentum equation: Component 2 [32m0.0191188[39m
+ Momentum equation: Component 3 [32m0.015675[39m
+ Pressure equation: [32m0.0525902[39m
+Turbulence Iteration 
+TKE_system [32m0.0704658[39m
+TKED_system [32m0.0759244[39m
+Iteration 154 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0141401[39m
+ Momentum equation: Component 2 [32m0.0167682[39m
+ Momentum equation: Component 3 [32m0.012647[39m
+ Pressure equation: [32m0.0503214[39m
+Turbulence Iteration 
+TKE_system [32m0.0592661[39m
+TKED_system [32m0.0659432[39m
+Iteration 155 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0137409[39m
+ Momentum equation: Component 2 [32m0.0154951[39m
+ Momentum equation: Component 3 [32m0.011078[39m
+ Pressure equation: [32m0.047098[39m
+Turbulence Iteration 
+TKE_system [32m0.0474775[39m
+TKED_system [32m0.0593809[39m
+Iteration 156 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0143582[39m
+ Momentum equation: Component 2 [32m0.0152662[39m
+ Momentum equation: Component 3 [32m0.0105453[39m
+ Pressure equation: [32m0.0491752[39m
+Turbulence Iteration 
+TKE_system [32m0.037609[39m
+TKED_system [32m0.0563197[39m
+Iteration 157 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0153495[39m
+ Momentum equation: Component 2 [32m0.0159224[39m
+ Momentum equation: Component 3 [32m0.0106961[39m
+ Pressure equation: [32m0.0550466[39m
+Turbulence Iteration 
+TKE_system [32m0.0298861[39m
+TKED_system [32m0.0552976[39m
+Iteration 158 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0163027[39m
+ Momentum equation: Component 2 [32m0.0168454[39m
+ Momentum equation: Component 3 [32m0.0111337[39m
+ Pressure equation: [32m0.0601066[39m
+Turbulence Iteration 
+TKE_system [32m0.0239977[39m
+TKED_system [32m0.0550042[39m
+Iteration 159 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0170586[39m
+ Momentum equation: Component 2 [32m0.0174252[39m
+ Momentum equation: Component 3 [32m0.0116504[39m
+ Pressure equation: [32m0.0622839[39m
+Turbulence Iteration 
+TKE_system [32m0.0196108[39m
+TKED_system [32m0.0546028[39m
+Iteration 160 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0175625[39m
+ Momentum equation: Component 2 [32m0.0171254[39m
+ Momentum equation: Component 3 [32m0.0121622[39m
+ Pressure equation: [32m0.0559445[39m
+Turbulence Iteration 
+TKE_system [32m0.0164498[39m
+TKED_system [32m0.0536569[39m
+Iteration 161 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0179018[39m
+ Momentum equation: Component 2 [32m0.0163314[39m
+ Momentum equation: Component 3 [32m0.012667[39m
+ Pressure equation: [32m0.0467882[39m
+Turbulence Iteration 
+TKE_system [32m0.0143326[39m
+TKED_system [32m0.0519938[39m
+Iteration 162 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0181823[39m
+ Momentum equation: Component 2 [32m0.0158111[39m
+ Momentum equation: Component 3 [32m0.0131864[39m
+ Pressure equation: [32m0.0395806[39m
+Turbulence Iteration 
+TKE_system [32m0.0131209[39m
+TKED_system [32m0.0496385[39m
+Iteration 163 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0184871[39m
+ Momentum equation: Component 2 [32m0.0160888[39m
+ Momentum equation: Component 3 [32m0.0137713[39m
+ Pressure equation: [32m0.039735[39m
+Turbulence Iteration 
+TKE_system [32m0.0126648[39m
+TKED_system [32m0.0468088[39m
+Iteration 164 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0188677[39m
+ Momentum equation: Component 2 [32m0.0170282[39m
+ Momentum equation: Component 3 [32m0.0144453[39m
+ Pressure equation: [32m0.045223[39m
+Turbulence Iteration 
+TKE_system [32m0.0128917[39m
+TKED_system [32m0.0437897[39m
+Iteration 165 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0193667[39m
+ Momentum equation: Component 2 [32m0.0180433[39m
+ Momentum equation: Component 3 [32m0.0153231[39m
+ Pressure equation: [32m0.0446042[39m
+Turbulence Iteration 
+TKE_system [32m0.013544[39m
+TKED_system [32m0.0407934[39m
+Iteration 166 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0199574[39m
+ Momentum equation: Component 2 [32m0.0185637[39m
+ Momentum equation: Component 3 [32m0.0162626[39m
+ Pressure equation: [32m0.0816785[39m
+Turbulence Iteration 
+TKE_system [32m0.0151604[39m
+TKED_system [32m0.0379482[39m
+Iteration 167 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0211308[39m
+ Momentum equation: Component 2 [32m0.0189055[39m
+ Momentum equation: Component 3 [32m0.0178165[39m
+ Pressure equation: [32m0.0400145[39m
+Turbulence Iteration 
+TKE_system [32m0.0169409[39m
+TKED_system [32m0.0353445[39m
+Iteration 168 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0223864[39m
+ Momentum equation: Component 2 [32m0.0190868[39m
+ Momentum equation: Component 3 [32m0.0192225[39m
+ Pressure equation: [32m0.117954[39m
+Turbulence Iteration 
+TKE_system [32m0.0214114[39m
+TKED_system [32m0.0331667[39m
+Iteration 169 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0254895[39m
+ Momentum equation: Component 2 [32m0.0205043[39m
+ Momentum equation: Component 3 [32m0.0220293[39m
+ Pressure equation: [32m0.0334677[39m
+Turbulence Iteration 
+TKE_system [32m0.0257054[39m
+TKED_system [32m0.0308061[39m
+Iteration 170 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0270585[39m
+ Momentum equation: Component 2 [32m0.0211492[39m
+ Momentum equation: Component 3 [32m0.022641[39m
+ Pressure equation: [32m0.16313[39m
+Turbulence Iteration 
+TKE_system [32m0.0376572[39m
+TKED_system [32m0.0292283[39m
+Iteration 171 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0333454[39m
+ Momentum equation: Component 2 [32m0.0229065[39m
+ Momentum equation: Component 3 [32m0.0264491[39m
+ Pressure equation: [32m0.0297701[39m
+Turbulence Iteration 
+TKE_system [32m0.0468938[39m
+TKED_system [32m0.0283152[39m
+Iteration 172 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0351908[39m
+ Momentum equation: Component 2 [32m0.0231437[39m
+ Momentum equation: Component 3 [32m0.0269183[39m
+ Pressure equation: [32m0.193465[39m
+Turbulence Iteration 
+TKE_system [32m0.0702296[39m
+TKED_system [32m0.0292136[39m
+Iteration 173 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0463435[39m
+ Momentum equation: Component 2 [32m0.0237808[39m
+ Momentum equation: Component 3 [32m0.0338449[39m
+ Pressure equation: [32m0.0277215[39m
+Turbulence Iteration 
+TKE_system [32m0.0814002[39m
+TKED_system [32m0.0309731[39m
+Iteration 174 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0458816[39m
+ Momentum equation: Component 2 [32m0.0227548[39m
+ Momentum equation: Component 3 [32m0.033331[39m
+ Pressure equation: [32m0.217622[39m
+Turbulence Iteration 
+TKE_system [32m0.108655[39m
+TKED_system [32m0.0372368[39m
+Iteration 175 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0583273[39m
+ Momentum equation: Component 2 [32m0.0233904[39m
+ Momentum equation: Component 3 [32m0.0420916[39m
+ Pressure equation: [32m0.0222566[39m
+Turbulence Iteration 
+TKE_system [32m0.111583[39m
+TKED_system [32m0.0438655[39m
+Iteration 176 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0533373[39m
+ Momentum equation: Component 2 [32m0.024356[39m
+ Momentum equation: Component 3 [32m0.0401639[39m
+ Pressure equation: [32m0.247588[39m
+Turbulence Iteration 
+TKE_system [32m0.137165[39m
+TKED_system [32m0.0613266[39m
+Iteration 177 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0649554[39m
+ Momentum equation: Component 2 [32m0.0260542[39m
+ Momentum equation: Component 3 [32m0.0495654[39m
+ Pressure equation: [32m0.020358[39m
+Turbulence Iteration 
+TKE_system [32m0.129566[39m
+TKED_system [32m0.0751139[39m
+Iteration 178 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0549059[39m
+ Momentum equation: Component 2 [32m0.027546[39m
+ Momentum equation: Component 3 [32m0.0450005[39m
+ Pressure equation: [32m0.279739[39m
+Turbulence Iteration 
+TKE_system [32m0.155608[39m
+TKED_system [32m0.107279[39m
+Iteration 179 Initial residual norms:
+ Momentum equation: Component 1 [32m0.06547[39m
+ Momentum equation: Component 2 [32m0.0281455[39m
+ Momentum equation: Component 3 [32m0.053477[39m
+ Pressure equation: [32m0.0187775[39m
+Turbulence Iteration 
+TKE_system [32m0.132387[39m
+TKED_system [32m0.115691[39m
+Iteration 180 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0514116[39m
+ Momentum equation: Component 2 [32m0.0289706[39m
+ Momentum equation: Component 3 [32m0.045945[39m
+ Pressure equation: [32m0.302147[39m
+Turbulence Iteration 
+TKE_system [32m0.146357[39m
+TKED_system [32m0.139308[39m
+Iteration 181 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0606959[39m
+ Momentum equation: Component 2 [32m0.0292286[39m
+ Momentum equation: Component 3 [32m0.0520782[39m
+ Pressure equation: [32m0.0167648[39m
+Turbulence Iteration 
+TKE_system [32m0.117858[39m
+TKED_system [32m0.128585[39m
+Iteration 182 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0451466[39m
+ Momentum equation: Component 2 [32m0.0301408[39m
+ Momentum equation: Component 3 [32m0.0431522[39m
+ Pressure equation: [32m0.307091[39m
+Turbulence Iteration 
+TKE_system [32m0.130511[39m
+TKED_system [32m0.138865[39m
+Iteration 183 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0535284[39m
+ Momentum equation: Component 2 [32m0.0303169[39m
+ Momentum equation: Component 3 [32m0.047627[39m
+ Pressure equation: [32m0.0151313[39m
+Turbulence Iteration 
+TKE_system [32m0.10294[39m
+TKED_system [32m0.122932[39m
+Iteration 184 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0390555[39m
+ Momentum equation: Component 2 [32m0.030421[39m
+ Momentum equation: Component 3 [32m0.0387008[39m
+ Pressure equation: [32m0.287691[39m
+Turbulence Iteration 
+TKE_system [32m0.114183[39m
+TKED_system [32m0.126868[39m
+Iteration 185 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0431945[39m
+ Momentum equation: Component 2 [32m0.0322195[39m
+ Momentum equation: Component 3 [32m0.0405764[39m
+ Pressure equation: [32m0.0140093[39m
+Turbulence Iteration 
+TKE_system [32m0.0860873[39m
+TKED_system [32m0.110519[39m
+Iteration 186 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0343583[39m
+ Momentum equation: Component 2 [32m0.0327718[39m
+ Momentum equation: Component 3 [32m0.0318316[39m
+ Pressure equation: [32m0.238155[39m
+Turbulence Iteration 
+TKE_system [32m0.0906009[39m
+TKED_system [32m0.110657[39m
+Iteration 187 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0317243[39m
+ Momentum equation: Component 2 [32m0.0421286[39m
+ Momentum equation: Component 3 [32m0.0307861[39m
+ Pressure equation: [32m0.014413[39m
+Turbulence Iteration 
+TKE_system [32m0.0670596[39m
+TKED_system [32m0.0964012[39m
+Iteration 188 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0355862[39m
+ Momentum equation: Component 2 [32m0.0400242[39m
+ Momentum equation: Component 3 [32m0.0246102[39m
+ Pressure equation: [32m0.1077[39m
+Turbulence Iteration 
+TKE_system [32m0.0644222[39m
+TKED_system [32m0.0936694[39m
+Iteration 189 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0331899[39m
+ Momentum equation: Component 2 [32m0.0441422[39m
+ Momentum equation: Component 3 [32m0.0218632[39m
+ Pressure equation: [32m0.0166733[39m
+Turbulence Iteration 
+TKE_system [32m0.0539492[39m
+TKED_system [32m0.0858914[39m
+Iteration 190 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0385289[39m
+ Momentum equation: Component 2 [32m0.0369041[39m
+ Momentum equation: Component 3 [32m0.0190033[39m
+ Pressure equation: [32m0.0136864[39m
+Turbulence Iteration 
+TKE_system [32m0.0460841[39m
+TKED_system [32m0.0792397[39m
+Iteration 191 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0421023[39m
+ Momentum equation: Component 2 [32m0.0281955[39m
+ Momentum equation: Component 3 [32m0.0171162[39m
+ Pressure equation: [32m0.0189916[39m
+Turbulence Iteration 
+TKE_system [32m0.0399821[39m
+TKED_system [32m0.0730898[39m
+Iteration 192 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0429072[39m
+ Momentum equation: Component 2 [32m0.0286823[39m
+ Momentum equation: Component 3 [32m0.0158061[39m
+ Pressure equation: [32m0.0399048[39m
+Turbulence Iteration 
+TKE_system [32m0.0351423[39m
+TKED_system [32m0.0672543[39m
+Iteration 193 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0413419[39m
+ Momentum equation: Component 2 [32m0.0418527[39m
+ Momentum equation: Component 3 [32m0.0148124[39m
+ Pressure equation: [32m0.114236[39m
+Turbulence Iteration 
+TKE_system [32m0.0313005[39m
+TKED_system [32m0.0617205[39m
+Iteration 194 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0388018[39m
+ Momentum equation: Component 2 [32m0.0561734[39m
+ Momentum equation: Component 3 [32m0.0140303[39m
+ Pressure equation: [32m0.136656[39m
+Turbulence Iteration 
+TKE_system [32m0.0283877[39m
+TKED_system [32m0.0567332[39m
+Iteration 195 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0361786[39m
+ Momentum equation: Component 2 [32m0.0626392[39m
+ Momentum equation: Component 3 [32m0.0135154[39m
+ Pressure equation: [32m0.376427[39m
+Turbulence Iteration 
+TKE_system [32m0.0262951[39m
+TKED_system [32m0.0524654[39m
+Iteration 196 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0339137[39m
+ Momentum equation: Component 2 [32m0.0576912[39m
+ Momentum equation: Component 3 [32m0.0133914[39m
+ Pressure equation: [32m0.110803[39m
+Turbulence Iteration 
+TKE_system [32m0.0240671[39m
+TKED_system [32m0.0485096[39m
+Iteration 197 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0321991[39m
+ Momentum equation: Component 2 [32m0.044406[39m
+ Momentum equation: Component 3 [32m0.013829[39m
+ Pressure equation: [32m0.0657072[39m
+Turbulence Iteration 
+TKE_system [32m0.0218976[39m
+TKED_system [32m0.0450417[39m
+Iteration 198 Initial residual norms:
+ Momentum equation: Component 1 [32m0.03075[39m
+ Momentum equation: Component 2 [32m0.0360453[39m
+ Momentum equation: Component 3 [32m0.0145921[39m
+ Pressure equation: [32m0.0564655[39m
+Turbulence Iteration 
+TKE_system [32m0.0201431[39m
+TKED_system [32m0.0422489[39m
+Iteration 199 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0287287[39m
+ Momentum equation: Component 2 [32m0.043266[39m
+ Momentum equation: Component 3 [32m0.0152738[39m
+ Pressure equation: [32m0.020771[39m
+Turbulence Iteration 
+TKE_system [32m0.0186949[39m
+TKED_system [32m0.0403212[39m
+Iteration 200 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0256111[39m
+ Momentum equation: Component 2 [32m0.052745[39m
+ Momentum equation: Component 3 [32m0.0158668[39m
+ Pressure equation: [32m0.01246[39m
+Turbulence Iteration 
+TKE_system [32m0.0175094[39m
+TKED_system [32m0.0386725[39m
+Aborting as solve did not converge
+Finished Executing                                                                       [[33m485.98 s[39m] [[33m  490 MB[39m]
+WARNING! There are options you set that were not used!
+WARNING! could be spelling mistake, etc!
+There are 3 unused database options. They are:
+Option left: name:--snes_linesearch_type value: basic source: code
+Option left: name:--snes_monitor_cancel (no value) source: code
+Option left: name:--snes_type value: ksponly source: code
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[40601,1],1]
+  Exit code:    1
+--------------------------------------------------------------------------

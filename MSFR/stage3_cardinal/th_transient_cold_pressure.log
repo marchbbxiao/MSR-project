@@ -1,0 +1,678 @@
+--------------------------------------------------------------------------
+WARNING: Linux kernel CMA support was requested via the
+btl_vader_single_copy_mechanism MCA variable, but CMA support is
+not available due to restrictive ptrace settings.
+
+The vader shared memory BTL will fall back on another single-copy
+mechanism if one is available. This may result in lower performance.
+
+  Local host: I0950B
+--------------------------------------------------------------------------
+
+[36m
+*** Info ***
+'execute_on' parameter specified in [Outputs] block is ignored for object 'checkpoint'.
+Define this object in its own sub-block of [Outputs] to modify its execution schedule.[39m
+Setting Up
+  Finished Initializing                                                                  [[33m  1.25 s[39m] [[33m  330 MB[39m]
+Finished Setting Up                                                                      [[33m  1.60 s[39m] [[33m  330 MB[39m]
+Framework Information:
+MOOSE Version:           git commit b1e271b638 on 2025-10-10
+LibMesh Version:         
+PETSc Version:           3.23.4
+SLEPc Version:           3.23.2
+Current Time:            Fri Apr 24 23:58:11 2026
+Executable Timestamp:    Sun Apr 12 16:51:55 2026
+
+Input File(s):
+  /home/bruce/MSR-project/MSFR/stage3_cardinal/th_transient.i
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  User Checkpoint:         Outputs/checkpoint
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          4
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 9245
+    Local:                 2162
+    Min/Max/Avg:           2004/2614/2311
+  Elems:                   
+    Total:                 35186
+    Local:                 8797
+    Min/Max/Avg:           8796/8797/8796
+  Num Subdomains:          1
+  Num Partitions:          4
+  Partitioner:             metis
+
+Nonlinear System:
+  Num DOFs:                211116
+  Num Local DOFs:          52782
+  Variables:               { "vel_x" "vel_y" "vel_z" "pressure" "TKE" "TKED" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Auxiliary System:
+  Num DOFs:                105558
+  Num Local DOFs:          26391
+  Variables:               { "power_density" "mu_t" "yplus" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             IterationAdaptiveDT
+  TimeIntegrator(s):       ImplicitEuler
+  Solver Mode:             Preconditioned JFNK 
+  PETSc Preconditioner:    asm ilu 
+
+[33m
+*** Warning ***
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_transient.i:36.1: unused parameter 'cp'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_transient.i:37.1: unused parameter 'k'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_transient.i:211.5: unused parameter 'Variables/TKE/lower_bound'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_transient.i:226.5: unused parameter 'Variables/TKED/lower_bound'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_transient.i:889.3: unused parameter 'Outputs/output_frequency'[39m
+
+Time Step 0, time = 0
+
+Time Step 1, time = 0.0001, dt = 0.0001
+Currently Executing
+    Computing Residual
+      Finished Computing Rhie-Chow coefficients                                          [[33m  0.59 s[39m] [[33m  468 MB[39m]
+    Finished Computing Residual                                                          [[33m  1.25 s[39m] [[33m  555 MB[39m]
+ 0 Nonlinear |R| = [32m6.004574e+03[39m
+[I0950B:10083] 3 more processes have sent help message help-btl-vader.txt / cma-permission-denied
+[I0950B:10083] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+      0 Linear |R| = [32m6.004574e+03[39m
+      1 Linear |R| = [33m6.004106e+03[39m
+      2 Linear |R| = [33m6.004060e+03[39m
+      3 Linear |R| = [33m6.004014e+03[39m
+      4 Linear |R| = [33m6.003967e+03[39m
+      5 Linear |R| = [33m6.003921e+03[39m
+      6 Linear |R| = [33m6.003875e+03[39m
+      7 Linear |R| = [33m6.003828e+03[39m
+      8 Linear |R| = [33m6.003782e+03[39m
+      9 Linear |R| = [33m6.003736e+03[39m
+     10 Linear |R| = [33m6.003690e+03[39m
+     11 Linear |R| = [33m6.003643e+03[39m
+     12 Linear |R| = [33m6.003597e+03[39m
+     13 Linear |R| = [33m6.003551e+03[39m
+     14 Linear |R| = [33m6.003504e+03[39m
+     15 Linear |R| = [33m6.003458e+03[39m
+     16 Linear |R| = [33m6.003412e+03[39m
+     17 Linear |R| = [33m6.003366e+03[39m
+     18 Linear |R| = [33m6.003319e+03[39m
+     19 Linear |R| = [33m6.003273e+03[39m
+     20 Linear |R| = [33m6.003227e+03[39m
+     21 Linear |R| = [33m6.003181e+03[39m
+     22 Linear |R| = [33m6.003134e+03[39m
+     23 Linear |R| = [33m6.003088e+03[39m
+     24 Linear |R| = [33m6.003042e+03[39m
+     25 Linear |R| = [33m6.002995e+03[39m
+     26 Linear |R| = [33m6.002949e+03[39m
+     27 Linear |R| = [33m6.002903e+03[39m
+     28 Linear |R| = [33m6.002857e+03[39m
+     29 Linear |R| = [33m6.002810e+03[39m
+     30 Linear |R| = [33m6.002764e+03[39m
+     31 Linear |R| = [33m6.002718e+03[39m
+     32 Linear |R| = [33m6.002672e+03[39m
+     33 Linear |R| = [33m6.002625e+03[39m
+     34 Linear |R| = [33m6.002579e+03[39m
+     35 Linear |R| = [33m6.002533e+03[39m
+     36 Linear |R| = [33m6.002487e+03[39m
+     37 Linear |R| = [33m6.002440e+03[39m
+     38 Linear |R| = [33m6.002394e+03[39m
+     39 Linear |R| = [33m6.002348e+03[39m
+     40 Linear |R| = [33m6.002302e+03[39m
+     41 Linear |R| = [33m6.002255e+03[39m
+     42 Linear |R| = [33m6.002209e+03[39m
+     43 Linear |R| = [33m6.002163e+03[39m
+     44 Linear |R| = [33m6.002117e+03[39m
+     45 Linear |R| = [33m6.002070e+03[39m
+     46 Linear |R| = [33m6.002024e+03[39m
+     47 Linear |R| = [33m6.001978e+03[39m
+     48 Linear |R| = [33m6.001932e+03[39m
+     49 Linear |R| = [33m6.001885e+03[39m
+     50 Linear |R| = [33m6.001839e+03[39m
+     51 Linear |R| = [33m6.001793e+03[39m
+     52 Linear |R| = [33m6.001747e+03[39m
+     53 Linear |R| = [33m6.001700e+03[39m
+     54 Linear |R| = [33m6.001654e+03[39m
+     55 Linear |R| = [33m6.001608e+03[39m
+     56 Linear |R| = [33m6.001562e+03[39m
+     57 Linear |R| = [33m6.001515e+03[39m
+     58 Linear |R| = [33m6.001469e+03[39m
+     59 Linear |R| = [33m6.001423e+03[39m
+     60 Linear |R| = [33m6.001377e+03[39m
+     61 Linear |R| = [33m6.001331e+03[39m
+     62 Linear |R| = [33m6.001284e+03[39m
+     63 Linear |R| = [33m6.001238e+03[39m
+     64 Linear |R| = [33m6.001192e+03[39m
+     65 Linear |R| = [33m6.001146e+03[39m
+     66 Linear |R| = [33m6.001099e+03[39m
+     67 Linear |R| = [33m6.001053e+03[39m
+     68 Linear |R| = [33m6.001007e+03[39m
+     69 Linear |R| = [33m6.000961e+03[39m
+     70 Linear |R| = [33m6.000914e+03[39m
+     71 Linear |R| = [33m6.000868e+03[39m
+     72 Linear |R| = [33m6.000822e+03[39m
+     73 Linear |R| = [33m6.000776e+03[39m
+     74 Linear |R| = [33m6.000730e+03[39m
+     75 Linear |R| = [33m6.000683e+03[39m
+     76 Linear |R| = [33m6.000637e+03[39m
+     77 Linear |R| = [33m6.000591e+03[39m
+     78 Linear |R| = [33m6.000545e+03[39m
+     79 Linear |R| = [33m6.000499e+03[39m
+     80 Linear |R| = [33m6.000452e+03[39m
+     81 Linear |R| = [33m6.000406e+03[39m
+     82 Linear |R| = [33m6.000360e+03[39m
+     83 Linear |R| = [33m6.000314e+03[39m
+     84 Linear |R| = [33m6.000268e+03[39m
+     85 Linear |R| = [33m6.000221e+03[39m
+     86 Linear |R| = [33m6.000175e+03[39m
+     87 Linear |R| = [33m6.000129e+03[39m
+     88 Linear |R| = [33m6.000083e+03[39m
+     89 Linear |R| = [33m6.000037e+03[39m
+     90 Linear |R| = [33m5.999990e+03[39m
+     91 Linear |R| = [33m5.999944e+03[39m
+     92 Linear |R| = [33m5.999898e+03[39m
+     93 Linear |R| = [33m5.999852e+03[39m
+     94 Linear |R| = [33m5.999806e+03[39m
+     95 Linear |R| = [33m5.999759e+03[39m
+     96 Linear |R| = [33m5.999713e+03[39m
+     97 Linear |R| = [33m5.999667e+03[39m
+     98 Linear |R| = [33m5.999621e+03[39m
+     99 Linear |R| = [33m5.999575e+03[39m
+    100 Linear |R| = [33m5.999528e+03[39m
+    Linear solve did not converge due to DIVERGED_ITS iterations 100
+ 1 Nonlinear |R| = [31m7.416589e+03[39m
+      0 Linear |R| = [32m7.416589e+03[39m
+      1 Linear |R| = [33m7.414595e+03[39m
+      2 Linear |R| = [33m7.411217e+03[39m
+      3 Linear |R| = [33m7.407844e+03[39m
+      4 Linear |R| = [33m7.404475e+03[39m
+      5 Linear |R| = [33m7.401111e+03[39m
+      6 Linear |R| = [33m7.397751e+03[39m
+      7 Linear |R| = [33m7.394396e+03[39m
+      8 Linear |R| = [33m7.391046e+03[39m
+      9 Linear |R| = [33m7.387700e+03[39m
+     10 Linear |R| = [33m7.384358e+03[39m
+     11 Linear |R| = [33m7.381022e+03[39m
+     12 Linear |R| = [33m7.377689e+03[39m
+     13 Linear |R| = [33m7.374361e+03[39m
+     14 Linear |R| = [33m7.371038e+03[39m
+     15 Linear |R| = [33m7.367719e+03[39m
+     16 Linear |R| = [33m7.364405e+03[39m
+     17 Linear |R| = [33m7.361095e+03[39m
+     18 Linear |R| = [33m7.357790e+03[39m
+     19 Linear |R| = [33m7.354489e+03[39m
+     20 Linear |R| = [33m7.351192e+03[39m
+     21 Linear |R| = [33m7.347900e+03[39m
+     22 Linear |R| = [33m7.344612e+03[39m
+     23 Linear |R| = [33m7.341329e+03[39m
+     24 Linear |R| = [33m7.338050e+03[39m
+     25 Linear |R| = [33m7.334776e+03[39m
+     26 Linear |R| = [33m7.331506e+03[39m
+     27 Linear |R| = [33m7.328240e+03[39m
+     28 Linear |R| = [33m7.324979e+03[39m
+     29 Linear |R| = [33m7.321722e+03[39m
+     30 Linear |R| = [33m7.318469e+03[39m
+     31 Linear |R| = [33m7.315221e+03[39m
+     32 Linear |R| = [33m7.311977e+03[39m
+     33 Linear |R| = [33m7.308737e+03[39m
+     34 Linear |R| = [33m7.305502e+03[39m
+     35 Linear |R| = [33m7.302270e+03[39m
+     36 Linear |R| = [33m7.299044e+03[39m
+     37 Linear |R| = [33m7.295821e+03[39m
+     38 Linear |R| = [33m7.292603e+03[39m
+     39 Linear |R| = [33m7.289389e+03[39m
+     40 Linear |R| = [33m7.286179e+03[39m
+     41 Linear |R| = [33m7.282973e+03[39m
+     42 Linear |R| = [33m7.279772e+03[39m
+     43 Linear |R| = [33m7.276575e+03[39m
+     44 Linear |R| = [33m7.273382e+03[39m
+     45 Linear |R| = [33m7.270193e+03[39m
+     46 Linear |R| = [33m7.267009e+03[39m
+     47 Linear |R| = [33m7.263829e+03[39m
+     48 Linear |R| = [33m7.260652e+03[39m
+     49 Linear |R| = [33m7.257480e+03[39m
+     50 Linear |R| = [33m7.254313e+03[39m
+     51 Linear |R| = [33m7.251149e+03[39m
+     52 Linear |R| = [33m7.247989e+03[39m
+     53 Linear |R| = [33m7.244834e+03[39m
+     54 Linear |R| = [33m7.241683e+03[39m
+     55 Linear |R| = [33m7.238535e+03[39m
+     56 Linear |R| = [33m7.235392e+03[39m
+     57 Linear |R| = [33m7.232253e+03[39m
+     58 Linear |R| = [33m7.229118e+03[39m
+     59 Linear |R| = [33m7.225987e+03[39m
+     60 Linear |R| = [33m7.222861e+03[39m
+     61 Linear |R| = [33m7.219738e+03[39m
+     62 Linear |R| = [33m7.216619e+03[39m
+     63 Linear |R| = [33m7.213505e+03[39m
+     64 Linear |R| = [33m7.210394e+03[39m
+     65 Linear |R| = [33m7.207287e+03[39m
+     66 Linear |R| = [33m7.204185e+03[39m
+     67 Linear |R| = [33m7.201086e+03[39m
+     68 Linear |R| = [33m7.197991e+03[39m
+     69 Linear |R| = [33m7.194901e+03[39m
+     70 Linear |R| = [33m7.191814e+03[39m
+     71 Linear |R| = [33m7.188732e+03[39m
+     72 Linear |R| = [33m7.185653e+03[39m
+     73 Linear |R| = [33m7.182578e+03[39m
+     74 Linear |R| = [33m7.179507e+03[39m
+     75 Linear |R| = [33m7.176440e+03[39m
+     76 Linear |R| = [33m7.173377e+03[39m
+     77 Linear |R| = [33m7.170318e+03[39m
+     78 Linear |R| = [33m7.167263e+03[39m
+     79 Linear |R| = [33m7.164212e+03[39m
+     80 Linear |R| = [33m7.161165e+03[39m
+     81 Linear |R| = [33m7.158121e+03[39m
+     82 Linear |R| = [33m7.155082e+03[39m
+     83 Linear |R| = [33m7.152046e+03[39m
+     84 Linear |R| = [33m7.149014e+03[39m
+     85 Linear |R| = [33m7.145986e+03[39m
+     86 Linear |R| = [33m7.142962e+03[39m
+     87 Linear |R| = [33m7.139942e+03[39m
+     88 Linear |R| = [33m7.136925e+03[39m
+     89 Linear |R| = [33m7.133913e+03[39m
+     90 Linear |R| = [33m7.130904e+03[39m
+     91 Linear |R| = [33m7.127899e+03[39m
+     92 Linear |R| = [33m7.124898e+03[39m
+     93 Linear |R| = [33m7.121900e+03[39m
+     94 Linear |R| = [33m7.118907e+03[39m
+     95 Linear |R| = [33m7.115917e+03[39m
+     96 Linear |R| = [33m7.112931e+03[39m
+     97 Linear |R| = [33m7.109948e+03[39m
+     98 Linear |R| = [33m7.106970e+03[39m
+     99 Linear |R| = [33m7.103995e+03[39m
+    100 Linear |R| = [33m7.101023e+03[39m
+    Linear solve did not converge due to DIVERGED_ITS iterations 100
+ 2 Nonlinear |R| = [31m9.253776e+05[39m
+
+[33m
+*** Warning ***
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_transient.i:476.3:
+The following occurred in the FVKernel 'vel_x_diffusion_turbulent' of type INSFVMomentumDiffusion.
+
+Negative face viscosity has been encountered. Value -13.1448 at (x,y,z)=(0.379372, 0.883855, -0.503337) limiting it to 0!
+Further warnings for this issue will be silenced, but the occurrences will be recorded through the solution invalidity interface.[39m
+      0 Linear |R| = [32m9.253776e+05[39m
+      1 Linear |R| = [33m9.249791e+05[39m
+      2 Linear |R| = [33m9.244887e+05[39m
+      3 Linear |R| = [33m9.239992e+05[39m
+      4 Linear |R| = [33m9.235104e+05[39m
+      5 Linear |R| = [33m9.230225e+05[39m
+      6 Linear |R| = [33m9.225352e+05[39m
+      7 Linear |R| = [33m9.220488e+05[39m
+      8 Linear |R| = [33m9.215631e+05[39m
+      9 Linear |R| = [33m9.210782e+05[39m
+     10 Linear |R| = [33m9.205941e+05[39m
+     11 Linear |R| = [33m9.201107e+05[39m
+     12 Linear |R| = [33m9.196281e+05[39m
+     13 Linear |R| = [33m9.191462e+05[39m
+     14 Linear |R| = [33m9.186651e+05[39m
+     15 Linear |R| = [33m9.181848e+05[39m
+     16 Linear |R| = [33m9.177052e+05[39m
+     17 Linear |R| = [33m9.172263e+05[39m
+     18 Linear |R| = [33m9.167482e+05[39m
+     19 Linear |R| = [33m9.162709e+05[39m
+     20 Linear |R| = [33m9.157943e+05[39m
+     21 Linear |R| = [33m9.153184e+05[39m
+     22 Linear |R| = [33m9.148433e+05[39m
+     23 Linear |R| = [33m9.143689e+05[39m
+     24 Linear |R| = [33m9.138953e+05[39m
+     25 Linear |R| = [33m9.134224e+05[39m
+     26 Linear |R| = [33m9.129502e+05[39m
+     27 Linear |R| = [33m9.124788e+05[39m
+     28 Linear |R| = [33m9.120081e+05[39m
+     29 Linear |R| = [33m9.115381e+05[39m
+     30 Linear |R| = [33m9.110688e+05[39m
+     31 Linear |R| = [33m9.106003e+05[39m
+     32 Linear |R| = [33m9.101325e+05[39m
+     33 Linear |R| = [33m9.096654e+05[39m
+     34 Linear |R| = [33m9.091990e+05[39m
+     35 Linear |R| = [33m9.087333e+05[39m
+     36 Linear |R| = [33m9.082684e+05[39m
+     37 Linear |R| = [33m9.078042e+05[39m
+     38 Linear |R| = [33m9.073406e+05[39m
+     39 Linear |R| = [33m9.068778e+05[39m
+     40 Linear |R| = [33m9.064157e+05[39m
+     41 Linear |R| = [33m9.059543e+05[39m
+     42 Linear |R| = [33m9.054936e+05[39m
+     43 Linear |R| = [33m9.050336e+05[39m
+     44 Linear |R| = [33m9.045743e+05[39m
+     45 Linear |R| = [33m9.041157e+05[39m
+     46 Linear |R| = [33m9.036579e+05[39m
+     47 Linear |R| = [33m9.032007e+05[39m
+     48 Linear |R| = [33m9.027441e+05[39m
+     49 Linear |R| = [33m9.022883e+05[39m
+     50 Linear |R| = [33m9.018332e+05[39m
+     51 Linear |R| = [33m9.013788e+05[39m
+     52 Linear |R| = [33m9.009250e+05[39m
+     53 Linear |R| = [33m9.004719e+05[39m
+     54 Linear |R| = [33m9.000196e+05[39m
+     55 Linear |R| = [33m8.995679e+05[39m
+     56 Linear |R| = [33m8.991168e+05[39m
+     57 Linear |R| = [33m8.986665e+05[39m
+     58 Linear |R| = [33m8.982168e+05[39m
+     59 Linear |R| = [33m8.977678e+05[39m
+     60 Linear |R| = [33m8.973195e+05[39m
+     61 Linear |R| = [33m8.968718e+05[39m
+     62 Linear |R| = [33m8.964249e+05[39m
+     63 Linear |R| = [33m8.959785e+05[39m
+     64 Linear |R| = [33m8.955329e+05[39m
+     65 Linear |R| = [33m8.950879e+05[39m
+     66 Linear |R| = [33m8.946436e+05[39m
+     67 Linear |R| = [33m8.941999e+05[39m
+     68 Linear |R| = [33m8.937569e+05[39m
+     69 Linear |R| = [33m8.933146e+05[39m
+     70 Linear |R| = [33m8.928729e+05[39m
+     71 Linear |R| = [33m8.924319e+05[39m
+     72 Linear |R| = [33m8.919915e+05[39m
+     73 Linear |R| = [33m8.915517e+05[39m
+     74 Linear |R| = [33m8.911127e+05[39m
+     75 Linear |R| = [33m8.906742e+05[39m
+     76 Linear |R| = [33m8.902364e+05[39m
+     77 Linear |R| = [33m8.897993e+05[39m
+     78 Linear |R| = [33m8.893628e+05[39m
+     79 Linear |R| = [33m8.889270e+05[39m
+     80 Linear |R| = [33m8.884917e+05[39m
+     81 Linear |R| = [33m8.880572e+05[39m
+     82 Linear |R| = [33m8.876232e+05[39m
+     83 Linear |R| = [33m8.871899e+05[39m
+     84 Linear |R| = [33m8.867572e+05[39m
+     85 Linear |R| = [33m8.863252e+05[39m
+     86 Linear |R| = [33m8.858938e+05[39m
+     87 Linear |R| = [33m8.854630e+05[39m
+     88 Linear |R| = [33m8.850329e+05[39m
+     89 Linear |R| = [33m8.846034e+05[39m
+     90 Linear |R| = [33m8.841745e+05[39m
+     91 Linear |R| = [33m8.837462e+05[39m
+     92 Linear |R| = [33m8.833185e+05[39m
+     93 Linear |R| = [33m8.828915e+05[39m
+     94 Linear |R| = [33m8.824651e+05[39m
+     95 Linear |R| = [33m8.820393e+05[39m
+     96 Linear |R| = [33m8.816141e+05[39m
+     97 Linear |R| = [33m8.811895e+05[39m
+     98 Linear |R| = [33m8.807656e+05[39m
+     99 Linear |R| = [33m8.803422e+05[39m
+    100 Linear |R| = [33m8.799195e+05[39m
+    Linear solve did not converge due to DIVERGED_ITS iterations 100
+  Nonlinear solve did not converge due to DIVERGED_FNORM_NAN iterations 2
+
+Solution Invalid Warnings:
+--------------------------------------------------------------------------------------------------------------------
+|         Object         | Converged | Timestep |   Total  |                        Message                        |
+--------------------------------------------------------------------------------------------------------------------
+| INSFVMomentumDiffusion |    151905 | 15502878 | 15502878 | Negative face dynamic viscosity has been encountered. |
+--------------------------------------------------------------------------------------------------------------------
+
+[33m
+*** Warning ***
+The solution is not converged due to the solution being invalid.[39m
+  Finished Solving                                                                       [[33m339.20 s[39m] [[33m  719 MB[39m]
+[31m Solve Did NOT Converge![39m
+
+
+Solution Invalid Warnings History:
+----------------------------------------------------------------------------------------------------------------------------
+|                                     Object                                     | Time | Stepinterval Count | Total Count |
+----------------------------------------------------------------------------------------------------------------------------
+| INSFVMomentumDiffusion : Negative face dynamic viscosity has been encountered. | 0-1  |                  0 |           0 |
+----------------------------------------------------------------------------------------------------------------------------
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 5e-05, dt = 5e-05
+ 0 Nonlinear |R| = [32m6.004574e+03[39m
+      0 Linear |R| = [32m6.004574e+03[39m
+      1 Linear |R| = [33m6.004106e+03[39m
+      2 Linear |R| = [33m5.982410e+03[39m
+      3 Linear |R| = [33m5.960948e+03[39m
+      4 Linear |R| = [33m5.939715e+03[39m
+      5 Linear |R| = [33m5.918707e+03[39m
+      6 Linear |R| = [33m5.897921e+03[39m
+      7 Linear |R| = [33m5.877352e+03[39m
+      8 Linear |R| = [33m5.856997e+03[39m
+      9 Linear |R| = [33m5.836852e+03[39m
+     10 Linear |R| = [33m5.816913e+03[39m
+     11 Linear |R| = [33m5.797178e+03[39m
+     12 Linear |R| = [33m5.777641e+03[39m
+     13 Linear |R| = [33m5.758301e+03[39m
+     14 Linear |R| = [33m5.739154e+03[39m
+     15 Linear |R| = [33m5.720197e+03[39m
+     16 Linear |R| = [33m5.701426e+03[39m
+     17 Linear |R| = [33m5.682839e+03[39m
+     18 Linear |R| = [33m5.664433e+03[39m
+     19 Linear |R| = [33m5.646204e+03[39m
+     20 Linear |R| = [33m5.628150e+03[39m
+     21 Linear |R| = [33m5.610268e+03[39m
+     22 Linear |R| = [33m5.592555e+03[39m
+     23 Linear |R| = [33m5.575010e+03[39m
+     24 Linear |R| = [33m5.557628e+03[39m
+     25 Linear |R| = [33m5.540408e+03[39m
+     26 Linear |R| = [33m5.523347e+03[39m
+     27 Linear |R| = [33m5.506442e+03[39m
+     28 Linear |R| = [33m5.489692e+03[39m
+     29 Linear |R| = [33m5.473094e+03[39m
+     30 Linear |R| = [33m5.456645e+03[39m
+     31 Linear |R| = [33m5.440344e+03[39m
+     32 Linear |R| = [33m5.424188e+03[39m
+     33 Linear |R| = [33m5.408176e+03[39m
+     34 Linear |R| = [33m5.392304e+03[39m
+     35 Linear |R| = [33m5.376571e+03[39m
+     36 Linear |R| = [33m5.360975e+03[39m
+     37 Linear |R| = [33m5.345514e+03[39m
+     38 Linear |R| = [33m5.330186e+03[39m
+     39 Linear |R| = [33m5.314989e+03[39m
+     40 Linear |R| = [33m5.299921e+03[39m
+     41 Linear |R| = [33m5.284981e+03[39m
+     42 Linear |R| = [33m5.270166e+03[39m
+     43 Linear |R| = [33m5.255475e+03[39m
+     44 Linear |R| = [33m5.240907e+03[39m
+     45 Linear |R| = [33m5.226459e+03[39m
+     46 Linear |R| = [33m5.212130e+03[39m
+     47 Linear |R| = [33m5.197917e+03[39m
+     48 Linear |R| = [33m5.183821e+03[39m
+     49 Linear |R| = [33m5.169839e+03[39m
+     50 Linear |R| = [33m5.155969e+03[39m
+     51 Linear |R| = [33m5.142210e+03[39m
+     52 Linear |R| = [33m5.128561e+03[39m
+     53 Linear |R| = [33m5.115020e+03[39m
+     54 Linear |R| = [33m5.101585e+03[39m
+     55 Linear |R| = [33m5.088256e+03[39m
+     56 Linear |R| = [33m5.075031e+03[39m
+     57 Linear |R| = [33m5.061909e+03[39m
+     58 Linear |R| = [33m5.048887e+03[39m
+     59 Linear |R| = [33m5.035966e+03[39m
+     60 Linear |R| = [33m5.023143e+03[39m
+     61 Linear |R| = [33m5.010418e+03[39m
+     62 Linear |R| = [33m4.997789e+03[39m
+     63 Linear |R| = [33m4.985255e+03[39m
+     64 Linear |R| = [33m4.972815e+03[39m
+     65 Linear |R| = [33m4.960468e+03[39m
+     66 Linear |R| = [33m4.948212e+03[39m
+     67 Linear |R| = [33m4.936046e+03[39m
+     68 Linear |R| = [33m4.923970e+03[39m
+     69 Linear |R| = [33m4.911982e+03[39m
+     70 Linear |R| = [33m4.900081e+03[39m
+     71 Linear |R| = [33m4.888266e+03[39m
+     72 Linear |R| = [33m4.876537e+03[39m
+     73 Linear |R| = [33m4.864891e+03[39m
+     74 Linear |R| = [33m4.853328e+03[39m
+     75 Linear |R| = [33m4.841847e+03[39m
+     76 Linear |R| = [33m4.830448e+03[39m
+     77 Linear |R| = [33m4.819129e+03[39m
+     78 Linear |R| = [33m4.807888e+03[39m
+     79 Linear |R| = [33m4.796726e+03[39m
+     80 Linear |R| = [33m4.785642e+03[39m
+     81 Linear |R| = [33m4.774634e+03[39m
+     82 Linear |R| = [33m4.763701e+03[39m
+     83 Linear |R| = [33m4.752844e+03[39m
+     84 Linear |R| = [33m4.742060e+03[39m
+     85 Linear |R| = [33m4.731349e+03[39m
+     86 Linear |R| = [33m4.720711e+03[39m
+     87 Linear |R| = [33m4.710144e+03[39m
+     88 Linear |R| = [33m4.699647e+03[39m
+     89 Linear |R| = [33m4.689221e+03[39m
+     90 Linear |R| = [33m4.678864e+03[39m
+     91 Linear |R| = [33m4.668574e+03[39m
+     92 Linear |R| = [33m4.658353e+03[39m
+     93 Linear |R| = [33m4.648198e+03[39m
+     94 Linear |R| = [33m4.638110e+03[39m
+     95 Linear |R| = [33m4.628087e+03[39m
+     96 Linear |R| = [33m4.618128e+03[39m
+     97 Linear |R| = [33m4.608234e+03[39m
+     98 Linear |R| = [33m4.598403e+03[39m
+     99 Linear |R| = [33m4.588634e+03[39m
+    100 Linear |R| = [33m4.578928e+03[39m
+    Linear solve did not converge due to DIVERGED_ITS iterations 100
+ 1 Nonlinear |R| = [31m4.370353e+04[39m
+      0 Linear |R| = [32m4.370353e+04[39m
+      1 Linear |R| = [33m4.190356e+04[39m
+      2 Linear |R| = [33m4.190354e+04[39m
+      3 Linear |R| = [33m4.190351e+04[39m
+      4 Linear |R| = [33m4.190349e+04[39m
+      5 Linear |R| = [33m4.190346e+04[39m
+      6 Linear |R| = [33m4.190344e+04[39m
+      7 Linear |R| = [33m4.190341e+04[39m
+      8 Linear |R| = [33m4.190339e+04[39m
+      9 Linear |R| = [33m4.190336e+04[39m
+     10 Linear |R| = [33m4.190334e+04[39m
+     11 Linear |R| = [33m4.190331e+04[39m
+     12 Linear |R| = [33m4.190329e+04[39m
+     13 Linear |R| = [33m4.190326e+04[39m
+     14 Linear |R| = [33m4.190323e+04[39m
+     15 Linear |R| = [33m4.190321e+04[39m
+     16 Linear |R| = [33m4.190318e+04[39m
+     17 Linear |R| = [33m4.190316e+04[39m
+     18 Linear |R| = [33m4.190313e+04[39m
+     19 Linear |R| = [33m4.190311e+04[39m
+     20 Linear |R| = [33m4.190308e+04[39m
+     21 Linear |R| = [33m4.190306e+04[39m
+     22 Linear |R| = [33m4.190303e+04[39m
+     23 Linear |R| = [33m4.190301e+04[39m
+     24 Linear |R| = [33m4.190298e+04[39m
+     25 Linear |R| = [33m4.190296e+04[39m
+     26 Linear |R| = [33m4.190293e+04[39m
+     27 Linear |R| = [33m4.190291e+04[39m
+     28 Linear |R| = [33m4.190288e+04[39m
+     29 Linear |R| = [33m4.190286e+04[39m
+     30 Linear |R| = [33m4.190283e+04[39m
+     31 Linear |R| = [33m4.190281e+04[39m
+     32 Linear |R| = [33m4.190278e+04[39m
+     33 Linear |R| = [33m4.190276e+04[39m
+     34 Linear |R| = [33m4.190273e+04[39m
+     35 Linear |R| = [33m4.190271e+04[39m
+     36 Linear |R| = [33m4.190268e+04[39m
+     37 Linear |R| = [33m4.190266e+04[39m
+     38 Linear |R| = [33m4.190263e+04[39m
+     39 Linear |R| = [33m4.190261e+04[39m
+     40 Linear |R| = [33m4.190258e+04[39m
+     41 Linear |R| = [33m4.190256e+04[39m
+     42 Linear |R| = [33m4.190253e+04[39m
+     43 Linear |R| = [33m4.190251e+04[39m
+     44 Linear |R| = [33m4.190248e+04[39m
+     45 Linear |R| = [33m4.190246e+04[39m
+     46 Linear |R| = [33m4.190243e+04[39m
+     47 Linear |R| = [33m4.190241e+04[39m
+     48 Linear |R| = [33m4.190238e+04[39m
+     49 Linear |R| = [33m4.190236e+04[39m
+     50 Linear |R| = [33m4.190233e+04[39m
+     51 Linear |R| = [33m4.190231e+04[39m
+     52 Linear |R| = [33m4.190228e+04[39m
+     53 Linear |R| = [33m4.190226e+04[39m
+     54 Linear |R| = [33m4.190223e+04[39m
+     55 Linear |R| = [33m4.190221e+04[39m
+     56 Linear |R| = [33m4.190218e+04[39m
+     57 Linear |R| = [33m4.190216e+04[39m
+     58 Linear |R| = [33m4.190213e+04[39m
+     59 Linear |R| = [33m4.190211e+04[39m
+     60 Linear |R| = [33m4.190208e+04[39m
+     61 Linear |R| = [33m4.190206e+04[39m
+     62 Linear |R| = [33m4.190203e+04[39m
+     63 Linear |R| = [33m4.190201e+04[39m
+     64 Linear |R| = [33m4.190198e+04[39m
+     65 Linear |R| = [33m4.190195e+04[39m
+     66 Linear |R| = [33m4.190193e+04[39m
+     67 Linear |R| = [33m4.190190e+04[39m
+     68 Linear |R| = [33m4.190188e+04[39m
+     69 Linear |R| = [33m4.190185e+04[39m
+     70 Linear |R| = [33m4.190183e+04[39m
+     71 Linear |R| = [33m4.190180e+04[39m
+     72 Linear |R| = [33m4.190178e+04[39m
+     73 Linear |R| = [33m4.190175e+04[39m
+     74 Linear |R| = [33m4.190173e+04[39m
+     75 Linear |R| = [33m4.190170e+04[39m
+     76 Linear |R| = [33m4.190168e+04[39m
+     77 Linear |R| = [33m4.190165e+04[39m
+     78 Linear |R| = [33m4.190163e+04[39m
+     79 Linear |R| = [33m4.190160e+04[39m
+     80 Linear |R| = [33m4.190158e+04[39m
+     81 Linear |R| = [33m4.190155e+04[39m
+     82 Linear |R| = [33m4.190153e+04[39m
+     83 Linear |R| = [33m4.190150e+04[39m
+     84 Linear |R| = [33m4.190148e+04[39m
+     85 Linear |R| = [33m4.190145e+04[39m
+     86 Linear |R| = [33m4.190143e+04[39m
+     87 Linear |R| = [33m4.190140e+04[39m
+     88 Linear |R| = [33m4.190138e+04[39m
+     89 Linear |R| = [33m4.190135e+04[39m
+     90 Linear |R| = [33m4.190133e+04[39m
+     91 Linear |R| = [33m4.190130e+04[39m
+     92 Linear |R| = [33m4.190128e+04[39m
+     93 Linear |R| = [33m4.190125e+04[39m
+     94 Linear |R| = [33m4.190123e+04[39m
+     95 Linear |R| = [33m4.190120e+04[39m
+     96 Linear |R| = [33m4.190118e+04[39m
+     97 Linear |R| = [33m4.190115e+04[39m
+     98 Linear |R| = [33m4.190113e+04[39m
+     99 Linear |R| = [33m4.190110e+04[39m
+    100 Linear |R| = [33m4.190108e+04[39m
+    Linear solve did not converge due to DIVERGED_ITS iterations 100
+  Nonlinear solve did not converge due to DIVERGED_FNORM_NAN iterations 1
+
+Solution Invalid Warnings:
+--------------------------------------------------------------------------------------------------------------------
+|         Object         | Converged | Timestep |   Total  |                        Message                        |
+--------------------------------------------------------------------------------------------------------------------
+| INSFVMomentumDiffusion |      3522 |   359244 | 15862122 | Negative face dynamic viscosity has been encountered. |
+--------------------------------------------------------------------------------------------------------------------
+
+[33m
+*** Warning ***
+The solution is not converged due to the solution being invalid.[39m
+  Finished Solving                                                                       [[33m232.11 s[39m] [[33m  707 MB[39m]
+[31m Solve Did NOT Converge![39m
+
+
+Solution Invalid Warnings History:
+----------------------------------------------------------------------------------------------------------------------------
+|                                     Object                                     | Time | Stepinterval Count | Total Count |
+----------------------------------------------------------------------------------------------------------------------------
+| INSFVMomentumDiffusion : Negative face dynamic viscosity has been encountered. | 0-1  |                  0 |           0 |
+----------------------------------------------------------------------------------------------------------------------------
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 2.5e-05, dt = 2.5e-05
+ 0 Nonlinear |R| = [32m6.004574e+03[39m
+      0 Linear |R| = [32m6.004574e+03[39m
+      1 Linear |R| = [33m6.004106e+03[39m
+      2 Linear |R| = [33m5.888540e+03[39m
+      3 Linear |R| = [33m5.779401e+03[39m
+      4 Linear |R| = [33m5.676113e+03[39m
+      5 Linear |R| = [33m5.578172e+03[39m
+      6 Linear |R| = [33m5.485133e+03[39m
