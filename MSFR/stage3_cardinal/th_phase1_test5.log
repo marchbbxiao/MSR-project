@@ -1,0 +1,278 @@
+--------------------------------------------------------------------------
+WARNING: Linux kernel CMA support was requested via the
+btl_vader_single_copy_mechanism MCA variable, but CMA support is
+not available due to restrictive ptrace settings.
+
+The vader shared memory BTL will fall back on another single-copy
+mechanism if one is available. This may result in lower performance.
+
+  Local host: I0950B
+--------------------------------------------------------------------------
+
+[36m
+*** Info ***
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i:82.1:
+The following occurred in the Problem 'MOOSE Problem' of type FEProblem.
+
+Using /home/bruce/MSR-project/MSFR/stage3_cardinal/th_stokes_checkpoint_cp/0001 for restart.[39m
+Finished Setting Up                                                                      [[33m  3.26 s[39m] [[33m  272 MB[39m]
+Framework Information:
+MOOSE Version:           git commit b1e271b638 on 2025-10-10
+LibMesh Version:         
+PETSc Version:           3.23.4
+SLEPc Version:           3.23.2
+Current Time:            Sat May  9 23:31:28 2026
+Executable Timestamp:    Sun Apr 12 16:51:55 2026
+
+Input File(s):
+  /home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  User Checkpoint:         Disabled
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          4
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 9245
+    Local:                 2162
+    Min/Max/Avg:           2004/2614/2311
+  Elems:                   
+    Total:                 35186
+    Local:                 8797
+    Min/Max/Avg:           8796/8797/8796
+  Num Subdomains:          1
+  Num Partitions:          4
+  Partitioner:             metis
+
+Nonlinear System [u_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_x" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [v_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_y" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [w_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_z" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [pressure_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "pressure" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Auxiliary System:
+  Num DOFs:                105558
+  Num Local DOFs:          26391
+  Variables:               { "power_density" "mixing_len" "mu_t" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Execution Information:
+  Executioner:             SIMPLENonlinearAssembly
+  Solver Mode:             [u_system]: Preconditioned JFNK [v_system]: Preconditioned JFNK [w_system]: Preconditioned JFNK [pressure_system]: Preconditioned JFNK 
+[I0950B:08681] 3 more processes have sent help message help-btl-vader.txt / cma-permission-denied
+[I0950B:08681] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+
+[33m
+*** Warning ***
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i:36.1: unused parameter 'cp'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i:37.1: unused parameter 'k'[39m
+Currently Executing.Iteration 1 Initial residual norms:
+ Momentum equation: Component 1 [32m0[39m
+ Momentum equation: Component 2 [32m0[39m
+ Momentum equation: Component 3 [32m1[39m
+ Pressure equation: [32m1[39m
+..Iteration 2 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00376154[39m
+ Momentum equation: Component 2 [32m0.00611183[39m
+ Momentum equation: Component 3 [32m0.00106549[39m
+ Pressure equation: [32m0.565015[39m
+..Iteration 3 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00711772[39m
+ Momentum equation: Component 2 [32m0.0192594[39m
+ Momentum equation: Component 3 [32m0.00769674[39m
+ Pressure equation: [32m0.999484[39m
+..Iteration 4 Initial residual norms:
+ Momentum equation: Component 1 [32m0.397792[39m
+ Momentum equation: Component 2 [32m0.686056[39m
+ Momentum equation: Component 3 [32m0.0705598[39m
+ Pressure equation: [32m0.571527[39m
+..Iteration 5 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00541026[39m
+ Momentum equation: Component 2 [32m0.00546921[39m
+ Momentum equation: Component 3 [32m0.00645115[39m
+ Pressure equation: [32m0.908551[39m
+..Iteration 6 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00570122[39m
+ Momentum equation: Component 2 [32m0.00570122[39m
+ Momentum equation: Component 3 [32m0.00570123[39m
+ Pressure equation: [32m1[39m
+..Iteration 7 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00869421[39m
+ Momentum equation: Component 2 [32m0.00637836[39m
+ Momentum equation: Component 3 [32m0.00648806[39m
+ Pressure equation: [32m0.828578[39m
+..Iteration 8 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00523265[39m
+ Momentum equation: Component 2 [32m0.00510569[39m
+ Momentum equation: Component 3 [32m0.00546821[39m
+ Pressure equation: [32m1[39m
+..Iteration 9 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00758477[39m
+ Momentum equation: Component 2 [32m0.00758941[39m
+ Momentum equation: Component 3 [32m0.00737335[39m
+ Pressure equation: [32m0.999993[39m
+..Iteration 10 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00580176[39m
+ Momentum equation: Component 2 [32m0.00580189[39m
+ Momentum equation: Component 3 [32m0.00580156[39m
+ Pressure equation: [32m1[39m
+..Iteration 11 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00573605[39m
+ Momentum equation: Component 2 [32m0.00641488[39m
+ Momentum equation: Component 3 [32m0.00763361[39m
+ Pressure equation: [32m1.39617e-08[39m
+..Iteration 12 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0433797[39m
+ Momentum equation: Component 2 [32m0.0203084[39m
+ Momentum equation: Component 3 [32m0.00940703[39m
+ Pressure equation: [32m0.999991[39m
+..Iteration 13 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00730945[39m
+ Momentum equation: Component 2 [32m0.00877822[39m
+ Momentum equation: Component 3 [32m0.00798715[39m
+ Pressure equation: [32m0.00302437[39m
+..Iteration 14 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00503592[39m
+ Momentum equation: Component 2 [32m0.00492315[39m
+ Momentum equation: Component 3 [32m0.00497643[39m
+ Pressure equation: [32m1[39m
+..Iteration 15 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0130784[39m
+ Momentum equation: Component 2 [32m0.0132934[39m
+ Momentum equation: Component 3 [32m0.0110267[39m
+ Pressure equation: [32m0.00426629[39m
+..Iteration 16 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00318114[39m
+ Momentum equation: Component 2 [32m0.00310029[39m
+ Momentum equation: Component 3 [32m0.00302233[39m
+ Pressure equation: [32m1[39m
+..Iteration 17 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00805954[39m
+ Momentum equation: Component 2 [32m0.0073015[39m
+ Momentum equation: Component 3 [32m0.00539702[39m
+ Pressure equation: [32m0.103313[39m
+..Iteration 18 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00642847[39m
+ Momentum equation: Component 2 [32m0.00701276[39m
+ Momentum equation: Component 3 [32m0.00694413[39m
+ Pressure equation: [32m1[39m
+..Iteration 19 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00491355[39m
+ Momentum equation: Component 2 [32m0.00559853[39m
+ Momentum equation: Component 3 [32m0.00409931[39m
+ Pressure equation: [32m0.999998[39m
+..Iteration 20 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0050253[39m
+ Momentum equation: Component 2 [32m0.00502524[39m
+ Momentum equation: Component 3 [32m0.00502629[39m
+ Pressure equation: [32m0.989858[39m
+..Iteration 21 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0050253[39m
+ Momentum equation: Component 2 [32m0.00502535[39m
+ Momentum equation: Component 3 [32m0.00511389[39m
+ Pressure equation: [32m1[39m
+..[0]PETSC ERROR: --------------------- Error Message --------------------------------------------------------------
+[0]PETSC ERROR: Argument out of range
+[0]PETSC ERROR: Current value inf. greater than allowed bound 1.79769e+308
+[0]PETSC ERROR: WARNING! There are unused option(s) set! Could be the program crashed before usage or a spelling mistake, etc!
+[0]PETSC ERROR:   Option left: name:--snes_linesearch_type value: basic source: code
+[0]PETSC ERROR:   Option left: name:--snes_monitor_cancel (no value) source: code
+[0]PETSC ERROR:   Option left: name:--snes_type value: ksponly source: code
+[0]PETSC ERROR:   Option left: name:-i value: th_phase1_from_th.i source: command line
+[0]PETSC ERROR: See https://petsc.org/release/faq/ for trouble shooting.
+[0]PETSC ERROR: PETSc Release Version 3.23.4, unknown
+[0]PETSC ERROR: /home/bruce/MSR-project/cardinal/cardinal-opt with 4 MPI process(es) and PETSC_ARCH  on I0950B by bruce Sat May  9 23:31:24 2026
+[0]PETSC ERROR: Configure options: --with-64-bit-indices --with-cxx-dialect=C++17 --with-debugging=no --with-fortran-bindings=0 --with-mpi=1 --with-openmp=1 --with-strict-petscerrorcode=1 --with-shared-libraries=1 --with-sowing=0 --download-fblaslapack=1 --download-hpddm=1 --download-hypre=1 --download-metis=1 --download-mumps=1 --download-ptscotch=1 --download-parmetis=1 --download-scalapack=1 --download-slepc=1 --download-strumpack=1 --download-superlu_dist=1 --download-kokkos=1 --download-kokkos-kernels=1 --download-libceed=1 --with-make-np=14 --with-hdf5-dir=/home/bruce/anaconda3/envs/moose --COPTFLAGS=-O3 --CXXOPTFLAGS=-O3 --FOPTFLAGS=-O3 --with-x=0 --with-ssl=0 --with-mpi-dir=/home/bruce/anaconda3/envs/moose AR=/home/bruce/anaconda3/envs/moose/bin/x86_64-conda-linux-gnu-ar RANLIB=/home/bruce/anaconda3/envs/moose/bin/x86_64-conda-linux-gnu-ranlib CFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix " CXXFLAGS="-fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix  " CPPFLAGS="-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/bruce/anaconda3/envs/moose/include " FFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix " FCFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix " LDFLAGS="-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/bruce/anaconda3/envs/moose/lib -Wl,-rpath-link,/home/bruce/anaconda3/envs/moose/lib -L/home/bruce/anaconda3/envs/moose/lib " --prefix=/home/bruce/anaconda3/envs/moose/petsc
+[0]PETSC ERROR: #1 PetscOptionsReal_Private() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/sys/objects/aoptions.c:782
+[1]PETSC ERROR: --------------------- Error Message --------------------------------------------------------------
+[1]PETSC ERROR: Argument out of range
+[1]PETSC ERROR: Current value inf. greater than allowed bound 1.79769e+308
+[1]PETSC ERROR: WARNING! There are unused option(s) set! Could be the program crashed before usage or a spelling mistake, etc!
+[1]PETSC ERROR:   Option left: name:--snes_linesearch_type value: basic source: code
+[1]PETSC ERROR:   Option left: name:--snes_monitor_cancel (no value) source: code
+[1]PETSC ERROR:   Option left: name:--snes_type value: ksponly source: code
+[1]PETSC ERROR:   Option left: name:-i value: th_phase1_from_th.i source: command line
+[1]PETSC ERROR: See https://petsc.org/release/faq/ for trouble shooting.
+[1]PETSC ERROR: PETSc Release Version 3.23.4, unknown
+[1]PETSC ERROR: /home/bruce/MSR-project/cardinal/cardinal-opt with 4 MPI process(es) and PETSC_ARCH  on I0950B by bruce Sat May  9 23:31:24 2026
+[1]PETSC ERROR: Configure options: --with-64-bit-indices --with-cxx-dialect=C++17 --with-debugging=no --with-fortran-bindings=0 --with-mpi=1 --with-openmp=1 --with-strict-petscerrorcode=1 --with-shared-libraries=1 --with-sowing=0 --download-fblaslapack=1 --download-hpddm=1 --download-hypre=1 --download-metis=1 --download-mumps=1 --download-ptscotch=1 --download-parmetis=1 --download-scalapack=1 --download-slepc=1 --download-strumpack=1 --download-superlu_dist=1 --download-kokkos=1 --download-kokkos-kernels=1 --download-libceed=1 --with-make-np=14 --with-hdf5-dir=/home/bruce/anaconda3/envs/moose --COPTFLAGS=-O3 --CXXOPTFLAGS=-O3 --FOPTFLAGS=-O3 --with-x=0 --with-ssl=0 --with-mpi-dir=/home/bruce/anaconda3/envs/moose AR=/home/bruce/anaconda3/envs/moose/bin/x86_64-conda-linux-gnu-ar RANLIB=/home/bruce/anaconda3/envs/moose/bin/x86_64-conda-linux-gnu-ranlib CFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix " CXXFLAGS="-fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix  " CPPFLAGS="-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/bruce/anaconda3/envs/moose/include " FFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix " FCFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix " LDFLAGS="-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/bruce/anaconda3/envs/moose/lib -Wl,-rpath-link,/home/bruce/anaconda3/envs/moose/lib -L/home/bruce/anaconda3/envs/moose/lib " --prefix=/home/bruce/anaconda3/envs/moose/petsc
+[1]PETSC ERROR: #1 PetscOptionsReal_Private() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/sys/objects/aoptions.c:782
+[2]PETSC ERROR: --------------------- Error Message --------------------------------------------------------------
+[2]PETSC ERROR: Argument out of range
+[2]PETSC ERROR: Current value inf. greater than allowed bound 1.79769e+308
+[2]PETSC ERROR: WARNING! There are unused option(s) set! Could be the program crashed before usage or a spelling mistake, etc!
+[2]PETSC ERROR:   Option left: name:--snes_linesearch_type value: basic source: code
+[2]PETSC ERROR:   Option left: name:--snes_monitor_cancel (no value) source: code
+[2]PETSC ERROR:   Option left: name:--snes_type value: ksponly source: code
+[2]PETSC ERROR:   Option left: name:-i value: th_phase1_from_th.i source: command line
+[2]PETSC ERROR: See https://petsc.org/release/faq/ for trouble shooting.
+[2]PETSC ERROR: PETSc Release Version 3.23.4, unknown
+[2]PETSC ERROR: /home/bruce/MSR-project/cardinal/cardinal-opt with 4 MPI process(es) and PETSC_ARCH  on I0950B by bruce Sat May  9 23:31:24 2026
+[2]PETSC ERROR: Configure options: --with-64-bit-indices --with-cxx-dialect=C++17 --with-debugging=no --with-fortran-bindings=0 --with-mpi=1 --with-openmp=1 --with-strict-petscerrorcode=1 --with-shared-libraries=1 --with-sowing=0 --download-fblaslapack=1 --download-hpddm=1 --download-hypre=1 --download-metis=1 --download-mumps=1 --download-ptscotch=1 --download-parmetis=1 --download-scalapack=1 --download-slepc=1 --download-strumpack=1 --download-superlu_dist=1 --download-kokkos=1 --download-kokkos-kernels=1 --download-libceed=1 --with-make-np=14 --with-hdf5-dir=/home/bruce/anaconda3/envs/moose --COPTFLAGS=-O3 --CXXOPTFLAGS=-O3 --FOPTFLAGS=-O3 --with-x=0 --with-ssl=0 --with-mpi-dir=/home/bruce/anaconda3/envs/moose AR=/home/bruce/anaconda3/envs/moose/bin/x86_64-conda-linux-gnu-ar RANLIB=/home/bruce/anaconda3/envs/moose/bin/x86_64-conda-linux-gnu-ranlib CFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix " CXXFLAGS="-fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix  " CPPFLAGS="-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/bruce/anaconda3/envs/moose/include " FFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix " FCFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix " LDFLAGS="-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/bruce/anaconda3/envs/moose/lib -Wl,-rpath-link,/home/bruce/anaconda3/envs/moose/lib -L/home/bruce/anaconda3/envs/moose/lib " --prefix=/home/bruce/anaconda3/envs/moose/petsc
+[2]PETSC ERROR: #1 PetscOptionsReal_Private() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/sys/objects/aoptions.c:782
+[3]PETSC ERROR: --------------------- Error Message --------------------------------------------------------------
+[3]PETSC ERROR: Argument out of range
+[3]PETSC ERROR: Current value inf. greater than allowed bound 1.79769e+308
+[3]PETSC ERROR: WARNING! There are unused option(s) set! Could be the program crashed before usage or a spelling mistake, etc!
+[3]PETSC ERROR:   Option left: name:--snes_linesearch_type value: basic source: code
+[3]PETSC ERROR:   Option left: name:--snes_monitor_cancel (no value) source: code
+[3]PETSC ERROR:   Option left: name:--snes_type value: ksponly source: code
+[3]PETSC ERROR:   Option left: name:-i value: th_phase1_from_th.i source: command line
+[3]PETSC ERROR: See https://petsc.org/release/faq/ for trouble shooting.
+[3]PETSC ERROR: PETSc Release Version 3.23.4, unknown
+[3]PETSC ERROR: /home/bruce/MSR-project/cardinal/cardinal-opt with 4 MPI process(es) and PETSC_ARCH  on I0950B by bruce Sat May  9 23:31:24 2026
+[3]PETSC ERROR: Configure options: --with-64-bit-indices --with-cxx-dialect=C++17 --with-debugging=no --with-fortran-bindings=0 --with-mpi=1 --with-openmp=1 --with-strict-petscerrorcode=1 --with-shared-libraries=1 --with-sowing=0 --download-fblaslapack=1 --download-hpddm=1 --download-hypre=1 --download-metis=1 --download-mumps=1 --download-ptscotch=1 --download-parmetis=1 --download-scalapack=1 --download-slepc=1 --download-strumpack=1 --download-superlu_dist=1 --download-kokkos=1 --download-kokkos-kernels=1 --download-libceed=1 --with-make-np=14 --with-hdf5-dir=/home/bruce/anaconda3/envs/moose --COPTFLAGS=-O3 --CXXOPTFLAGS=-O3 --FOPTFLAGS=-O3 --with-x=0 --with-ssl=0 --with-mpi-dir=/home/bruce/anaconda3/envs/moose AR=/home/bruce/anaconda3/envs/moose/bin/x86_64-conda-linux-gnu-ar RANLIB=/home/bruce/anaconda3/envs/moose/bin/x86_64-conda-linux-gnu-ranlib CFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix " CXXFLAGS="-fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix  " CPPFLAGS="-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/bruce/anaconda3/envs/moose/include " FFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix " FCFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/bruce/anaconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/bruce/anaconda3/envs/moose=/usr/local/src/conda-prefix " LDFLAGS="-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/bruce/anaconda3/envs/moose/lib -Wl,-rpath-link,/home/bruce/anaconda3/envs/moose/lib -L/home/bruce/anaconda3/envs/moose/lib " --prefix=/home/bruce/anaconda3/envs/moose/petsc
+[3]PETSC ERROR: #1 PetscOptionsReal_Private() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/sys/objects/aoptions.c:782
+[0]PETSC ERROR: #2 KSPSetFromOptions() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/ksp/ksp/interface/itcl.c:422
+[1]PETSC ERROR: #2 KSPSetFromOptions() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/ksp/ksp/interface/itcl.c:422
+[2]PETSC ERROR: #2 KSPSetFromOptions() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/ksp/ksp/interface/itcl.c:422
+[3]PETSC ERROR: #2 KSPSetFromOptions() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/ksp/ksp/interface/itcl.c:422
+libMesh terminatinglibMesh terminatinglibMesh terminatinglibMesh terminating:
+Current value inf. greater than allowed bound 1.79769e+308
+:
+Current value inf. greater than allowed bound 1.79769e+308
+:
+Current value inf. greater than allowed bound 1.79769e+308
+:
+Current value inf. greater than allowed bound 1.79769e+308
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 1 in communicator MPI_COMM_WORLD
+with errorcode 1.
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------
+[I0950B:08681] 3 more processes have sent help message help-mpi-api.txt / mpi-abort

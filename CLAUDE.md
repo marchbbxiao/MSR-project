@@ -202,3 +202,62 @@ Repo：marchbbxiao/MSR-project（private）
 
 `~/MSR-project/MSFR/note/NS_RANS_ke_完整教學工具_v4.html`
 （v4 尚未上傳 repo，需從昨天的 Claude 對話下載）
+## 2026-05-09 A電腦調試記錄（補充 Stage 3 狀態）
+
+### 本日工作摘要
+在 A電腦（家用，4核 WSL2）繼續 Phase 1 SIMPLE 調試。
+承接 RTXWS 的 th_phase1_from_th.i，進行 6 次系統性測試。
+
+### 關鍵物理認知更新
+
+**μt 初始值策略（Mixing Length 模型）：**
+- 0.162 Pa·s：k-ε 公式，與 Mixing Length 不自洽，已棄用
+- 0.56 Pa·s：Re 經驗關係（μt/μ≈50），Re_eff=940，仍震盪
+- 5.6 Pa·s：μt/μ≈500，Re_eff≈96，當前使用
+
+**Re_eff 公式：**
+Re_eff = Re / (1 + μt/μ) = 48000 / (1 + 500) ≈ 96
+
+**execute_on 機制：**
+- NONLINEAR：每步重算，Stokes 熱啟動場速度≈0 → μt 第一步被覆蓋歸零
+- INITIAL：只算一次，凍結 μt 在設定值
+- 當前設定：execute_on = 'INITIAL'
+
+### 六次測試結果摘要
+
+| Test | momentum | pressure | mu_t | 崩潰時間 | 關鍵發現 |
+|------|----------|----------|------|----------|----------|
+| 1 | 0.1 | 0.05 | 0.162/NONLINEAR | iter ~15 | mu_t 被覆蓋歸零 |
+| 2 | 0.1 | 0.05 | 5.6/INITIAL | iter 16 | Momentum 改善 |
+| 3 | 0.1 | 0.05 | 5.6 + l_tol修正 | iter 15 | 線性容忍值無效 |
+| 4 | 0.1 | 0.05 | LU 診斷 | iter 8 | 確認元兇為動量過衝 |
+| 5 | 0.01 | 0.05 | 5.6 | iter 21 | Momentum ↓一個數量級 |
+| 6 | 0.01 | 0.01 | 5.6 | iter 18 | 更早崩潰（反直覺）|
+
+### 未解決問題（待 Gemini 診斷）
+
+每次崩潰前的固定模式：
+```
+某特定 iter：Momentum 三分量同時暴衝至 0.5~0.9
+             Pressure 同步出現極低谷（1e-8~1e-10）
+→ 降低鬆弛因子無法解決
+→ 疑為 Stokes 初始場局部奇異點觸發 A_inv 爆炸
+```
+
+### 當前 th_phase1_from_th.i 設定（最新）
+
+```
+mu_t initial_condition = 5.6
+execute_on = 'INITIAL'
+momentum_equation_relaxation = 0.01
+pressure_variable_relaxation = 0.01
+momentum_l_tol = 1e-6
+momentum_l_abs_tol = 1e-10
+pressure_l_tol = 1e-6
+pressure_l_abs_tol = 1e-10
+pressure_petsc: hypre boomeramg
+momentum_petsc: hypre boomeramg
+```
+
+### 新增工具
+- `monitor.py`：修改為 Phase 1 版本（Pressure 觸發，移除 TKE/TKED）

@@ -1,0 +1,311 @@
+--------------------------------------------------------------------------
+WARNING: Linux kernel CMA support was requested via the
+btl_vader_single_copy_mechanism MCA variable, but CMA support is
+not available due to restrictive ptrace settings.
+
+The vader shared memory BTL will fall back on another single-copy
+mechanism if one is available. This may result in lower performance.
+
+  Local host: I0950B
+--------------------------------------------------------------------------
+
+[36m
+*** Info ***
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i:82.1:
+The following occurred in the Problem 'MOOSE Problem' of type FEProblem.
+
+Using /home/bruce/MSR-project/MSFR/stage3_cardinal/th_stokes_checkpoint_cp/0001 for restart.[39m
+Finished Setting Up                                                                      [[33m  2.04 s[39m] [[33m  272 MB[39m]
+Framework Information:
+MOOSE Version:           git commit b1e271b638 on 2025-10-10
+LibMesh Version:         
+PETSc Version:           3.23.4
+SLEPc Version:           3.23.2
+Current Time:            Sat May  9 20:12:17 2026
+Executable Timestamp:    Sun Apr 12 16:51:55 2026
+
+Input File(s):
+  /home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  User Checkpoint:         Disabled
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          4
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 9245
+    Local:                 2162
+    Min/Max/Avg:           2004/2614/2311
+  Elems:                   
+    Total:                 35186
+    Local:                 8797
+    Min/Max/Avg:           8796/8797/8796
+  Num Subdomains:          1
+  Num Partitions:          4
+  Partitioner:             metis
+
+Nonlinear System [u_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_x" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [v_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_y" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [w_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_z" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [pressure_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "pressure" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Auxiliary System:
+  Num DOFs:                105558
+  Num Local DOFs:          26391
+  Variables:               { "power_density" "mixing_len" "mu_t" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Execution Information:
+  Executioner:             SIMPLENonlinearAssembly
+  Solver Mode:             [u_system]: Preconditioned JFNK [v_system]: Preconditioned JFNK [w_system]: Preconditioned JFNK [pressure_system]: Preconditioned JFNK 
+
+[33m
+*** Warning ***
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i:36.1: unused parameter 'cp'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i:37.1: unused parameter 'k'[39m
+[I0950B:04029] 3 more processes have sent help message help-btl-vader.txt / cma-permission-denied
+[I0950B:04029] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+Currently Executing.Iteration 1 Initial residual norms:
+ Momentum equation: Component 1 [32m0[39m
+ Momentum equation: Component 2 [32m0[39m
+ Momentum equation: Component 3 [32m1[39m
+ Pressure equation: [32m1[39m
+..Iteration 2 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0400407[39m
+ Momentum equation: Component 2 [32m0.0624344[39m
+ Momentum equation: Component 3 [32m0.00941692[39m
+ Pressure equation: [32m0.999911[39m
+..Iteration 3 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0578453[39m
+ Momentum equation: Component 2 [32m0.370657[39m
+ Momentum equation: Component 3 [32m0.0679379[39m
+ Pressure equation: [32m0.00977351[39m
+..Iteration 4 Initial residual norms:
+ Momentum equation: Component 1 [32m0.279711[39m
+ Momentum equation: Component 2 [32m0.34555[39m
+ Momentum equation: Component 3 [32m0.120315[39m
+ Pressure equation: [32m0.0400793[39m
+..Iteration 5 Initial residual norms:
+ Momentum equation: Component 1 [32m0.052764[39m
+ Momentum equation: Component 2 [32m0.0542854[39m
+ Momentum equation: Component 3 [32m0.0615439[39m
+ Pressure equation: [32m0.182014[39m
+..Iteration 6 Initial residual norms:
+ Momentum equation: Component 1 [32m0.15241[39m
+ Momentum equation: Component 2 [32m0.260011[39m
+ Momentum equation: Component 3 [32m0.713697[39m
+ Pressure equation: [32m0.153634[39m
+..Iteration 7 Initial residual norms:
+ Momentum equation: Component 1 [32m0.100096[39m
+ Momentum equation: Component 2 [32m0.145805[39m
+ Momentum equation: Component 3 [32m0.126436[39m
+ Pressure equation: [32m0.286612[39m
+..Iteration 8 Initial residual norms:
+ Momentum equation: Component 1 [32m0.118005[39m
+ Momentum equation: Component 2 [32m0.185371[39m
+ Momentum equation: Component 3 [32m0.315113[39m
+ Pressure equation: [32m0.810298[39m
+..Iteration 9 Initial residual norms:
+ Momentum equation: Component 1 [32m0.109687[39m
+ Momentum equation: Component 2 [32m0.071143[39m
+ Momentum equation: Component 3 [32m0.102226[39m
+ Pressure equation: [32m0.901921[39m
+..Iteration 10 Initial residual norms:
+ Momentum equation: Component 1 [32m0.087858[39m
+ Momentum equation: Component 2 [32m0.0595208[39m
+ Momentum equation: Component 3 [32m0.0590206[39m
+ Pressure equation: [32m0.0129165[39m
+..Iteration 11 Initial residual norms:
+ Momentum equation: Component 1 [32m0.160547[39m
+ Momentum equation: Component 2 [32m0.751884[39m
+ Momentum equation: Component 3 [32m0.217898[39m
+ Pressure equation: [32m0.425748[39m
+..Iteration 12 Initial residual norms:
+ Momentum equation: Component 1 [32m0.136757[39m
+ Momentum equation: Component 2 [32m0.102842[39m
+ Momentum equation: Component 3 [32m0.159294[39m
+ Pressure equation: [32m0.0628924[39m
+..Iteration 13 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0502059[39m
+ Momentum equation: Component 2 [32m0.0516667[39m
+ Momentum equation: Component 3 [32m0.0464261[39m
+ Pressure equation: [32m0.00430618[39m
+..Iteration 14 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0568138[39m
+ Momentum equation: Component 2 [32m0.0761507[39m
+ Momentum equation: Component 3 [32m0.0743141[39m
+ Pressure equation: [32m0.0361694[39m
+..Iteration 15 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0860292[39m
+ Momentum equation: Component 2 [32m0.111347[39m
+ Momentum equation: Component 3 [32m0.0905153[39m
+ Pressure equation: [32m0.000627277[39m
+..Iteration 16 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0554378[39m
+ Momentum equation: Component 2 [32m0.0533567[39m
+ Momentum equation: Component 3 [32m0.0525148[39m
+ Pressure equation: [32m0.00396051[39m
+..Iteration 17 Initial residual norms:
+ Momentum equation: Component 1 [32m0.155159[39m
+ Momentum equation: Component 2 [32m0.348442[39m
+ Momentum equation: Component 3 [32m0.412313[39m
+ Pressure equation: [32m0.326037[39m
+..Iteration 18 Initial residual norms:
+ Momentum equation: Component 1 [32m0.680083[39m
+ Momentum equation: Component 2 [32m0.522959[39m
+ Momentum equation: Component 3 [32m0.482221[39m
+ Pressure equation: [32m0.0783391[39m
+..Iteration 19 Initial residual norms:
+ Momentum equation: Component 1 [32m0.161567[39m
+ Momentum equation: Component 2 [32m0.165106[39m
+ Momentum equation: Component 3 [32m0.158181[39m
+ Pressure equation: [32m0.284852[39m
+..Iteration 20 Initial residual norms:
+ Momentum equation: Component 1 [32m0.108235[39m
+ Momentum equation: Component 2 [32m0.124549[39m
+ Momentum equation: Component 3 [32m0.125212[39m
+ Pressure equation: [32m3.84237e-05[39m
+..Iteration 21 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0754894[39m
+ Momentum equation: Component 2 [32m0.0633755[39m
+ Momentum equation: Component 3 [32m0.139782[39m
+ Pressure equation: [32m0.00149116[39m
+..Iteration 22 Initial residual norms:
+ Momentum equation: Component 1 [32m0.445266[39m
+ Momentum equation: Component 2 [32m0.364625[39m
+ Momentum equation: Component 3 [32m0.370273[39m
+ Pressure equation: [32m0.0139756[39m
+..Iteration 23 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0781166[39m
+ Momentum equation: Component 2 [32m0.0732551[39m
+ Momentum equation: Component 3 [32m0.0782795[39m
+ Pressure equation: [32m0.201828[39m
+..Iteration 24 Initial residual norms:
+ Momentum equation: Component 1 [32m0.460596[39m
+ Momentum equation: Component 2 [32m0.356944[39m
+ Momentum equation: Component 3 [32m0.463937[39m
+ Pressure equation: [32m0.105071[39m
+..Iteration 25 Initial residual norms:
+ Momentum equation: Component 1 [32m0.164385[39m
+ Momentum equation: Component 2 [32m0.148712[39m
+ Momentum equation: Component 3 [32m0.173607[39m
+ Pressure equation: [32m0.0106721[39m
+..Iteration 26 Initial residual norms:
+ Momentum equation: Component 1 [32m0.12488[39m
+ Momentum equation: Component 2 [32m0.0927177[39m
+ Momentum equation: Component 3 [32m0.09361[39m
+ Pressure equation: [32m0.00370718[39m
+..Iteration 27 Initial residual norms:
+ Momentum equation: Component 1 [32m0.121327[39m
+ Momentum equation: Component 2 [32m0.157097[39m
+ Momentum equation: Component 3 [32m0.284518[39m
+ Pressure equation: [32m0.112934[39m
+..Iteration 28 Initial residual norms:
+ Momentum equation: Component 1 [32m0.195232[39m
+ Momentum equation: Component 2 [32m0.255155[39m
+ Momentum equation: Component 3 [32m0.234322[39m
+ Pressure equation: [32m0.0636916[39m
+..Iteration 29 Initial residual norms:
+ Momentum equation: Component 1 [32m0.449748[39m
+ Momentum equation: Component 2 [32m0.477899[39m
+ Momentum equation: Component 3 [32m0.387737[39m
+ Pressure equation: [32m0.0229078[39m
+..Iteration 30 Initial residual norms:
+ Momentum equation: Component 1 [32m0.224366[39m
+ Momentum equation: Component 2 [32m0.230263[39m
+ Momentum equation: Component 3 [32m0.156578[39m
+ Pressure equation: [32m0.246039[39m
+..Iteration 31 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0535903[39m
+ Momentum equation: Component 2 [32m0.0594494[39m
+ Momentum equation: Component 3 [32m0.0541714[39m
+ Pressure equation: [32m0.0421858[39m
+..Iteration 32 Initial residual norms:
+ Momentum equation: Component 1 [32m0.082881[39m
+ Momentum equation: Component 2 [32m0.143069[39m
+ Momentum equation: Component 3 [32m0.117676[39m
+ Pressure equation: [32m0.288861[39m
+..Iteration 33 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0609011[39m
+ Momentum equation: Component 2 [32m0.104382[39m
+ Momentum equation: Component 3 [32m0.127537[39m
+ Pressure equation: [32m0.254102[39m
+..Iteration 34 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0655351[39m
+ Momentum equation: Component 2 [32m0.120673[39m
+ Momentum equation: Component 3 [32m0.081045[39m
+ Pressure equation: [32m0.157895[39m
+..Iteration 35 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0792399[39m
+ Momentum equation: Component 2 [32m0.0579915[39m
+ Momentum equation: Component 3 [32m0.0546443[39m
+ Pressure equation: [32m4.97881e-06[39m
+..Iteration 36 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0538207[39m
+ Momentum equation: Component 2 [32m0.0526376[39m
+ Momentum equation: Component 3 [32m0.84879[39m
+ Pressure equation: [32m0.824045[39m
+..Iteration 37 Initial residual norms:
+ Momentum equation: Component 1 [32m0.126034[39m
+ Momentum equation: Component 2 [32m0.0969174[39m
+ Momentum equation: Component 3 [32m0.147375[39m
+ Pressure equation: [32m0.165782[39m
+..Iteration 38 Initial residual norms:
+ Momentum equation: Component 1 [32m0.120903[39m
+ Momentum equation: Component 2 [32m0.103243[39m
+ Momentum equation: Component 3 [32m0.115652[39m
+ Pressure equation: [32m0.0138756[39m
+..Iteration 39 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0749446[39m
+ Momentum equation: Component 2 [32m0.0553271[39m
+ Momentum equation: Component 3 [32m0.0543501[39m
+ Pressure equation: [32m0.118175[39m
+..Iteration 40 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0604435[39m
+ Momentum equation: Component 2 [32m0.0616362[39m
+ Momentum equation: Component 3 [32m0.0558346[39m
+ Pressure equation: [32m0.62962[39m
+..Iteration 41 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0528306[39m
+ Momentum equation: Component 2 [32m0.078354[39m
+ Momentum equation: Component 3 [32m0.395091[39m
+ Pressure equation: [32m0.987434[39m
+..Iteration 42 Initial residual norms:
+ Momentum equation: Component 1 [32m0.882208[39m
+ Momentum equation: Component 2 [32m0.590824[39m
+ Momentum equation: Component 3 [32m0.968244[39m
+ Pressure equation: [32m0.0191496[39m
+..

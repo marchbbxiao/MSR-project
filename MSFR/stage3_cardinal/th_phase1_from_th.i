@@ -222,25 +222,64 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     fv = true
   []
   [mu_t]
-    # 湍流動黏度 μt [Pa·s]
-    # 這是 k-ε 模型的核心輸出量：μt = Cμ × k²/ε
-    #   Cμ = 0.09（Standard k-ε 經驗常數）
-    #   k = TKE（湍流動能），ε = TKED（湍流耗散率）
-    #
-    # 為什麼放在 AuxVariables 而非 FunctorMaterials？
-    #   因為壁面函數（INSFVTurbulentViscosityWallFunction）需要
-    #   直接修改近壁處的 μt 值——這只有 AuxVariable 才能做到。
-    #   FunctorMaterial 是唯讀的計算量，無法被邊界條件覆蓋。
-    #
-    # 初始值：μt = ρ × Cμ × k²/ε
-    #   = 4147.3 × 0.09 × (5.26e-3)² / (6.4e-4)
-    #   ≈ 0.162 Pa·s（約為分子黏度 μ=0.011 的 15 倍）
-    #   湍流黏度遠大於分子黏度，這正是湍流增強動量傳遞的體現
-    type = MooseVariableFVReal
-    initial_condition = 0.162
-    two_term_boundary_expansion = false
-  []
-  #[yplus] # Phase 1 停用
+  # 湍流動黏度 μt [Pa·s]
+  #
+  # ── 為什麼放在 AuxVariables 而非 FunctorMaterials？──────────────
+  # 因為壁面函數（INSFVTurbulentViscosityWallFunction）需要
+  # 直接修改近壁處的 μt 值——這只有 AuxVariable 才能做到。
+  # FunctorMaterial 是唯讀的計算量，無法被邊界條件覆蓋。
+  #
+  # ── Phase 1 初始值選擇（Mixing Length 模型）────────────────────
+  # 本檔案使用 Mixing Length 代數模型，非 k-ε 兩方程模型。
+  #
+  # 舊值 0.162 Pa·s（已棄用，版本一）：
+  #   來自 k-ε 公式：μt = ρ × Cμ × k²/ε
+  #   = 4147.3 × 0.09 × (5.26e-3)² / (6.4e-4) ≈ 0.162 Pa·s
+  #   問題：k、ε 是 k-ε 模型專屬變數，
+  #         在 Mixing Length 模型中沒有物理意義，不自洽。
+  #
+  # 舊值 0.56 Pa·s（已棄用，版本二）：
+  #   來自 Re 數經驗關係：
+  #     μt/μ ≈ 0.001 × Re^0.875 = 0.001 × 48000^0.875 ≈ 50
+  #     μt = 50 × 0.01127 ≈ 0.56 Pa·s
+  #   Re_eff = 48000 / (1 + 50) ≈ 940
+  #   問題：測試結果（th_phase1_test1.log）顯示
+  #         Momentum 殘差在 0.05～0.5 震盪，Pressure 在 1～1e-5 跳動，
+  #         Re_eff = 940 仍在過渡區，SIMPLE 無法穩定收斂。
+  #
+  # 當前值 5.6 Pa·s（版本三）：
+  #   策略：提高 μt 10 倍，強制降低 Re_eff 至接近層流區
+  #     μt/μ = 5.6 / 0.01127 ≈ 497 ≈ 500 倍
+  #     μ_eff = μ + μt = 0.01127 + 5.6 ≈ 5.61 Pa·s
+  #     Re_eff = 48000 / (1 + 500) ≈ 96
+  #   物理意義：人為將流體等效黏度提升 500 倍（類似濃糖漿），
+  #             黏性力完全主導，SIMPLE 壓力修正量小且穩定。
+  #   代價：初始收斂場與真實 MSFR 物理解距離較遠，
+  #         後續開放 μt 動態更新時需要較大調整。
+  #         但這是可接受的——Phase 1 目標只是讓流場「活起來」。
+  #
+  # ── μt 初始值選擇策略總表 ─────────────────────────────────────
+  #   μt [Pa·s] │ μt/μ  │ Re_eff │ 收斂難度 │ 與真實解距離
+  #   ──────────┼───────┼────────┼──────────┼─────────────
+  #   0.162     │  14   │  3200  │ 困難     │ 最近（但模型不自洽）
+  #   0.56      │  50   │   940  │ 中等     │ 近
+  #   5.6       │ 500   │    96  │ 容易     │ 遠
+  #
+  # ── 為什麼初始值對 SIMPLE 收斂至關重要？──────────────────────
+  # Stokes 熱啟動場速度 ≈ 0 → Mixing Length 算出 μt ≈ 0
+  # → execute_on = 'INITIAL' 凍結住 initial_condition 的值
+  # → 若 initial_condition 太小，Re_eff 仍高，SIMPLE 震盪發散
+  #
+  # ── 後續策略 ──────────────────────────────────────────────────
+  # 目前 AuxKernel compute_mu_t 設 execute_on = 'INITIAL'
+  # → μt 凍結在 5.6，不隨迭代更新（Phase 1 穩定優先）
+  # 待 SIMPLE 收斂後，改回 execute_on = 'NONLINEAR'
+  # → 開放動態更新，μt 回到真實物理值，進入 Phase 2 k-ε 熱啟動
+  type = MooseVariableFVReal
+  initial_condition = 5.6
+  two_term_boundary_expansion = false
+[]
+#[yplus] # Phase 1 停用
 []
 
 # ============================================================
@@ -249,9 +288,34 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 # AuxVariables 只是「容器」，AuxKernels 才是「計算公式」。
 # 每個 AuxKernel 對應一個 AuxVariable，告訴 MOOSE 怎麼填值。
 #
-# 執行時機：execute_on = 'NONLINEAR'
-#   每次非線性迭代時重新計算，確保 μt 和 y⁺ 隨速度場即時更新。
-#   若設 'TIMESTEP_END' 則每個時間步才更新一次（精度較低）。
+# ── execute_on 執行時機說明 ──────────────────────────────────
+# MOOSE 計算流程中有多個「時間點」可掛載 AuxKernel：
+#
+#   初始化 → [INITIAL] → 開始迭代 → [NONLINEAR] → ... → 收斂 → [TIMESTEP_END]
+#
+#   INITIAL     ：只在最開始執行一次，之後凍結不動
+#   NONLINEAR   ：每次非線性迭代都重新計算（即時更新）
+#   TIMESTEP_END：每個時間步結束才更新一次（精度較低）
+#
+# ── Phase 1 策略：compute_mu_t 改為 execute_on = 'INITIAL' ──
+#
+# 舊設定 execute_on = 'NONLINEAR'（已棄用於 Phase 1）：
+#   問題：Stokes 熱啟動場速度 ≈ 0
+#         → 第一次 NONLINEAR 迭代時速度梯度 ≈ 0
+#         → INSFVMixingLengthTurbulentViscosityAux 算出 μt ≈ 0
+#         → AuxVariables 中設定的 initial_condition = 0.56 被立即覆蓋
+#         → 等效 Re_eff = 48000，SIMPLE 無阻尼震盪發散
+#
+# 新設定 execute_on = 'INITIAL'（當前使用）：
+#   效果：μt 在初始化時算一次後凍結在 0.56 Pa·s
+#         → Re_eff ≈ 940，SIMPLE 可穩定收斂
+#   注意：mixing_length 仍保持 NONLINEAR，壁面距離場持續更新
+#         但因 mu_t 凍結，mixing_length 的更新不影響 mu_t
+#
+# ── 後續策略 ────────────────────────────────────────────────
+# 待 Phase 1 SIMPLE 收斂後：
+#   將 compute_mu_t 改回 execute_on = 'NONLINEAR'
+#   → μt 開始動態跟隨速度場更新，進入 Phase 2 k-ε 熱啟動
 [AuxKernels]
   [mixing_length]
     type = WallDistanceMixingLengthAux
@@ -268,7 +332,9 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     u = vel_x
     v = vel_y
     w = vel_z
-    execute_on = 'NONLINEAR'
+    # 舊值：NONLINEAR（第一步即覆蓋 initial_condition，μt 歸零）
+    # 新值：INITIAL（凍結 μt = 0.56 Pa·s，提供 SIMPLE 數值阻尼）
+    execute_on = 'INITIAL'
   []
   #[compute_yplus] # Phase 1 停用：無 k-ε
 []
@@ -319,12 +385,40 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 
   # 鬆弛因子（relaxation factors）
   # 控制每次迭代的更新幅度，避免發散
-  #   動量：0.7（標準值，太大容易震盪，太小收斂慢）
-  #   壓力：0.3（標準值，通常比動量小以維持穩定）
-  #   湍流：0.2（比動量更保守，k-ε 方程式非線性強）
-  #   能量：0.9（溫度方程式線性較好，可以較大）
-  momentum_equation_relaxation = 0.1
-  pressure_variable_relaxation = 0.05
+  #
+  # ── 標準值參考 ────────────────────────────────────────────────
+  #   動量標準值：0.7（太大容易震盪，太小收斂慢）
+  #   壓力標準值：0.3（通常比動量小以維持穩定）
+  #   湍流標準值：0.2（k-ε 方程式非線性強，需保守）
+  #   能量標準值：0.9（溫度方程式線性較好，可較大）
+  #
+  # ── 調試歷程 ──────────────────────────────────────────────────
+  # Test 1~3（momentum=0.1, pressure=0.05）：
+  #   iter ~15 overflow 崩潰
+  #   Gemini 診斷：問題出在動量過衝導致 A_inv 爆炸
+  #   崩潰路徑：速度過衝 → A_diag→0 → A_inv→∞ → p'→inf → overflow
+  #
+  # Test 4（LU 直接求解器診斷）：
+  #   確認壓力求解器不是元兇（壓力殘差=0，LU未執行）
+  #   仍然 overflow → 100% 確認是動量過衝問題
+  #
+  # Test 5（momentum=0.01, pressure=0.05）：
+  #   重大進展：Momentum 從 0.05~0.5 降至 0.003~0.01（↓一個數量級）
+  #   Pressure 下包絡線清楚下降（iter 11 達到 1e-8）
+  #   但 iter 11 壓力修正過大 → iter 12 Momentum 反彈至 0.04
+  #   → iter 21 仍然 overflow
+  #   診斷：overflow 元兇已從動量轉移到壓力修正過衝
+  #   壓力鬆弛因子 0.05 仍然太大，需要進一步壓低
+  #
+  # Test 6（當前）：momentum=0.01, pressure=0.01
+  #   目的：同時壓制壓力修正幅度，防止壓力低谷後反彈打爆速度場
+  #   物理邏輯：
+  #     pressure_variable_relaxation 控制每步壓力更新量：
+  #     p_new = p_old + α_p × p'
+  #     α_p 越小 → 壓力每步走得越小 → 不容易過衝
+  #   代價：收斂步數增加，但穩定性提升
+  momentum_equation_relaxation = 0.01
+  pressure_variable_relaxation = 0.01
 
   # 最大迭代次數
   num_iterations = 1000
@@ -334,20 +428,81 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   pressure_absolute_tolerance = 1e-8
   momentum_absolute_tolerance = 1e-8
 
-  # 線性求解器設定（hypre boomeramg：代數多重網格預條件子）
-  # 適合大型稀疏系統，收斂速度快
+  # 線性求解器設定
+  #
+  # ── 預條件器選擇說明 ──────────────────────────────────────────
+  # 預條件器的作用：改善線性系統的條件數，加速內層求解器收斂。
+  #
+  # 舊設定：hypre boomeramg（代數多重網格）
+  #   優點：大型稀疏系統收斂快，適合生產計算
+  #   缺點：依賴 MPI 分區（Domain Decomposition）
+  #         A電腦 4 核 vs RTXWS 32 核，分區方式不同
+  #         → 線性求解收斂路徑完全不同
+  #         → 在系統臨界不穩定時，核心數差異可能決定
+  #           是驚險過關還是直接發散
+  #   另一缺點：Krylov 子空間（GMRES）的迭代誤差
+  #             在外層 SIMPLE 不穩定時可能放大壓力修正過衝
+  #
+  # 新設定（Test 4）：LU 直接求解器
+  #   原理：直接對矩陣做 LU 分解，不做近似迭代
+  #   優點：完全排除預條件器和 Krylov 迭代誤差這個變數
+  #         網格只有 35186 elements，4 核 RAM 撐得住
+  #   目的：診斷用——若換 LU 後仍在 iter ~15 崩潰，
+  #         則 100% 確認問題出在非線性動量過衝（A_inv 爆炸），
+  #         而非壓力線性矩陣解不準。
+  #
+  # ── A_inv 爆炸的崩潰機制（Gemini 診斷）────────────────────────
+  # SIMPLE 中壓力修正方程包含 ∇⋅(A_inv ∇p')
+  # A_inv = 1 / A_diag（動量矩陣主對角線係數的倒數）
+  # A_diag 包含對流項與擴散項的貢獻
+  #
+  # 崩潰路徑：
+  #   速度過衝 → 局部對流係數飆高
+  #   → A_diag → 0
+  #   → A_inv → ∞
+  #   → 壓力修正量 p' 被放大至無窮大
+  #   → overflow：Current value inf > 1.79769e+308
+  #
+  # ── 預條件器設定 ───────────────────────────────────────────────
+  #
+  # Test 4 LU 診斷結果：
+  #   壓力殘差全部為 0，'No iterations have been performed'
+  #   說明 '-pc_type lu -ksp_type preonly' 語法在此版本
+  #   MOOSE/PETSc 下壓力求解器未正確啟動
+  #   LU 語法問題待後續修正，暫時換回 hypre
+  #
+  # Test 5（當前）：兩者都用 hypre boomeramg
+  #   動量和壓力使用相同預條件器
+  #   排除預條件器不一致造成的潛在問題
+  #   真正的變數只有 momentum_equation_relaxation = 0.01
   momentum_petsc_options_iname = '-pc_type -pc_hypre_type'
   momentum_petsc_options_value = 'hypre boomeramg'
   pressure_petsc_options_iname = '-pc_type -pc_hypre_type'
   pressure_petsc_options_value = 'hypre boomeramg'
 
   # 線性求解器容忍值（內層迭代的收斂條件）
-  momentum_l_abs_tol = 1e-14
-  pressure_l_abs_tol = 1e-14
+  #
+  # ── 為什麼這兩個值很重要？────────────────────────────────────
+  # SIMPLE 是雙層迭代：
+  #   外層：SIMPLE 迭代（壓力-速度耦合）
+  #   內層：線性求解器（每個方程式的矩陣求解）
+  #
+  # 舊值（已棄用）：
+  #   momentum_l_tol = 0.0, momentum_l_abs_tol = 1e-14
+  #   pressure_l_tol = 0.0, pressure_l_abs_tol = 1e-14
+  #   問題：外層 SIMPLE 還在摸索方向時，
+  #         內層線性求解器強迫每步達到機器精度，
+  #         造成「對錯誤問題的精確解」→ 壓力修正過衝 → overflow
+  #
+  # 新值（當前使用）：
+  #   放寬內層容忍值，讓線性求解器「夠好就好」，
+  #   不需要每步都算到極致，避免過衝震盪。
+  momentum_l_abs_tol = 1e-10
+  pressure_l_abs_tol = 1e-10
   momentum_l_max_its = 30
   pressure_l_max_its = 30
-  momentum_l_tol = 0.0
-  pressure_l_tol = 0.0
+  momentum_l_tol = 1e-6
+  pressure_l_tol = 1e-6
 
   print_fields = false
 []
