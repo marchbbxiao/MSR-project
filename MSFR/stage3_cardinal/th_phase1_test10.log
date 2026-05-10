@@ -1,0 +1,204 @@
+--------------------------------------------------------------------------
+WARNING: Linux kernel CMA support was requested via the
+btl_vader_single_copy_mechanism MCA variable, but CMA support is
+not available due to restrictive ptrace settings.
+
+The vader shared memory BTL will fall back on another single-copy
+mechanism if one is available. This may result in lower performance.
+
+  Local host: I0950B
+--------------------------------------------------------------------------
+
+[36m
+*** Info ***
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i:82.1:
+The following occurred in the Problem 'MOOSE Problem' of type FEProblem.
+
+Using /home/bruce/MSR-project/MSFR/stage3_cardinal/th_stokes_checkpoint_cp/0001 for restart.[39m
+Finished Setting Up                                                                      [[33m  1.14 s[39m] [[33m  276 MB[39m]
+Framework Information:
+MOOSE Version:           git commit b1e271b638 on 2025-10-10
+LibMesh Version:         
+PETSc Version:           3.23.4
+SLEPc Version:           3.23.2
+Current Time:            Sun May 10 17:47:58 2026
+Executable Timestamp:    Sun Apr 12 16:51:55 2026
+
+Input File(s):
+  /home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  User Checkpoint:         Disabled
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          4
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 9245
+    Local:                 2162
+    Min/Max/Avg:           2004/2614/2311
+  Elems:                   
+    Total:                 35186
+    Local:                 8797
+    Min/Max/Avg:           8796/8797/8796
+  Num Subdomains:          1
+  Num Partitions:          4
+  Partitioner:             metis
+
+Nonlinear System [u_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_x" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [v_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_y" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [w_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_z" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [pressure_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "pressure" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Auxiliary System:
+  Num DOFs:                105558
+  Num Local DOFs:          26391
+  Variables:               { "power_density" "mixing_len" "mu_t" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Execution Information:
+  Executioner:             SIMPLENonlinearAssembly
+  Solver Mode:             [u_system]: Preconditioned JFNK [v_system]: Preconditioned JFNK [w_system]: Preconditioned JFNK [pressure_system]: Preconditioned JFNK 
+
+[33m
+*** Warning ***
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i:36.1: unused parameter 'cp'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i:37.1: unused parameter 'k'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i:184.5: unused parameter 'Variables/vel_x/lower_bound'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i:185.5: unused parameter 'Variables/vel_x/upper_bound'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i:199.5: unused parameter 'Variables/vel_y/lower_bound'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i:200.5: unused parameter 'Variables/vel_y/upper_bound'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i:214.5: unused parameter 'Variables/vel_z/lower_bound'
+/home/bruce/MSR-project/MSFR/stage3_cardinal/th_phase1_from_th.i:215.5: unused parameter 'Variables/vel_z/upper_bound'[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+
+
+[I0950B:06274] 3 more processes have sent help message help-btl-vader.txt / cma-permission-denied
+[I0950B:06274] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+Currently Executing.Iteration 1 Initial residual norms:
+ Momentum equation: Component 1 [32m0[39m
+ Momentum equation: Component 2 [32m0[39m
+ Momentum equation: Component 3 [32m1[39m
+ Pressure equation: [32m1[39m
+..Iteration 2 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00371546[39m
+ Momentum equation: Component 2 [32m0.00590355[39m
+ Momentum equation: Component 3 [32m0.000912027[39m
+ Pressure equation: [32m0.552747[39m
+..Iteration 3 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00704224[39m
+ Momentum equation: Component 2 [32m0.0255561[39m
+ Momentum equation: Component 3 [32m0.0116185[39m
+ Pressure equation: [32m0.999149[39m
+..Iteration 4 Initial residual norms:
+ Momentum equation: Component 1 [32m0.28608[39m
+ Momentum equation: Component 2 [32m0.128399[39m
+ Momentum equation: Component 3 [32m0.0661265[39m
+ Pressure equation: [32m0.645381[39m
+..Iteration 5 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00546766[39m
+ Momentum equation: Component 2 [32m0.00544538[39m
+ Momentum equation: Component 3 [32m0.00547951[39m
+ Pressure equation: [32m0.999999[39m
+..Iteration 6 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00813235[39m
+ Momentum equation: Component 2 [32m0.00810897[39m
+ Momentum equation: Component 3 [32m0.00681423[39m
+ Pressure equation: [32m1[39m
+..Iteration 7 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00333821[39m
+ Momentum equation: Component 2 [32m0.00342386[39m
+ Momentum equation: Component 3 [32m0.00343507[39m
+ Pressure equation: [32m1[39m
+..Iteration 8 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0060999[39m
+ Momentum equation: Component 2 [32m0.00751769[39m
+ Momentum equation: Component 3 [32m0.00740519[39m
+ Pressure equation: [32m5.55579e-05[39m
+..Iteration 9 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00671983[39m
+ Momentum equation: Component 2 [32m0.00664382[39m
+ Momentum equation: Component 3 [32m0.00663345[39m
+ Pressure equation: [32m0.999774[39m
+..Iteration 10 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0109995[39m
+ Momentum equation: Component 2 [32m0.0108925[39m
+ Momentum equation: Component 3 [32m0.00984001[39m
+ Pressure equation: [32m1.52514e-07[39m
+..Iteration 11 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0804693[39m
+ Momentum equation: Component 2 [32m0.0766568[39m
+ Momentum equation: Component 3 [32m0.056171[39m
+ Pressure equation: [32m0.999781[39m
+..Iteration 12 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00586247[39m
+ Momentum equation: Component 2 [32m0.00663075[39m
+ Momentum equation: Component 3 [32m0.00687919[39m
+ Pressure equation: [32m0.00224845[39m
+..Iteration 13 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00710592[39m
+ Momentum equation: Component 2 [32m0.00710644[39m
+ Momentum equation: Component 3 [32m0.00710642[39m
+ Pressure equation: [32m1[39m
+..Iteration 14 Initial residual norms:
+ Momentum equation: Component 1 [32m0.00631934[39m
+ Momentum equation: Component 2 [32m0.00754775[39m
+ Momentum equation: Component 3 [32m0.00760776[39m
+ Pressure equation: [32m0.999811[39m
+Aborting as solve did not converge
+
+Finished Executing                                                                       [[33m196.40 s[39m] [[33m  391 MB[39m]
+WARNING! There are options you set that were not used!
+WARNING! could be spelling mistake, etc!
+There are 3 unused database options. They are:
+Option left: name:--snes_linesearch_type value: basic source: code
+Option left: name:--snes_monitor_cancel (no value) source: code
+Option left: name:--snes_type value: ksponly source: code
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[39689,1],3]
+  Exit code:    1
+--------------------------------------------------------------------------

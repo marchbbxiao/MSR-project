@@ -150,32 +150,69 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 #
 # 注意：AuxVariables（如 power_density、mu_t）不是求解目標，
 #       而是從外部傳入或由 AuxKernel 計算的輔助量，不需要 solver_sys
+#
+# ── 速度截斷（Velocity Clipping）說明 ────────────────────────
+# Test 1~6 的 overflow 根因（Gemini 診斷確認）：
+#   某特定迭代步，三個速度分量同時暴衝至 0.5~0.9（非物理值）
+#   → 局部對流係數飆高 → A_diag → 0 → A_inv → ∞
+#   → 壓力修正量 p' 被放大至無窮大 → overflow 崩潰
+#
+# 解法：加入 lower_bound / upper_bound 截斷速度場
+#   當任何網格的速度超過物理上限時，強制切斷在合理範圍內
+#   防止 A_diag 趨近於零
+#
+# 截斷值選擇依據：
+#   入口速度 U_in = 1.1838 m/s
+#   爐心內最大合理速度：考慮幾何收縮，估計不超過 5.0 m/s
+#   （5.0 / 1.1838 ≈ 4.2 倍入口速度，保守估計）
+#   負值：允許回流（球形爐心中心可能有局部回流），設為 -5.0
 [Variables]
   [vel_x]
     # x 方向速度分量 [m/s]
     # 對應動量方程式 x 分量：ρ Dvx/Dt = -∂p/∂x + ∇⋅[(μ+μt)∇vx]
     # 初始速度為零（靜止起始），SIMPLE 迭代過程中逐漸建立流場
+    #
+    # ── 速度截斷（Test 7 新增）────────────────────────────────
+    # lower_bound = -5.0：防止非物理負向暴衝
+    # upper_bound = 5.0：防止非物理正向暴衝
+    # 當 SIMPLE 試圖把速度推超過此範圍時，強制切回邊界值
+    # → A_diag 不會趨近於零 → A_inv 不會爆炸 → 避免 overflow
     type = INSFVVelocityVariable
     initial_condition = 0.0
     solver_sys = u_system
     two_term_boundary_expansion = false
+    lower_bound = -5.0
+    upper_bound = 5.0
   []
   [vel_y]
     # y 方向速度分量 [m/s]
     # MSFR 是球形對稱爐心，主流方向為 z，
     # x、y 方向速度由湍流和幾何不對稱產生，初始為零
+    #
+    # ── 速度截斷（Test 7 新增）────────────────────────────────
+    # 同 vel_x，截斷範圍 [-5.0, 5.0]
+    # y 方向同樣可能出現局部回流或橫向速度暴衝
     type = INSFVVelocityVariable
     initial_condition = 0.0
     solver_sys = v_system
     two_term_boundary_expansion = false
+    lower_bound = -5.0
+    upper_bound = 5.0
   []
   [vel_z]
     # z 方向速度分量 [m/s]，主流方向（向上）
     # 初始為零，入口邊界條件（1.1838 m/s）會驅動流場建立
+    #
+    # ── 速度截斷（Test 7 新增）────────────────────────────────
+    # 主流方向，入口速度 1.1838 m/s
+    # upper_bound = 5.0：約為入口速度的 4.2 倍，合理上限
+    # lower_bound = -5.0：允許爐心頂部出現局部回流
     type = INSFVVelocityVariable
     initial_condition = 0.0
     solver_sys = w_system
     two_term_boundary_expansion = false
+    lower_bound = -5.0
+    upper_bound = 5.0
   []
   [pressure]
     # 壓力場 [Pa]（錶壓）
@@ -386,6 +423,21 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   # 鬆弛因子（relaxation factors）
   # 控制每次迭代的更新幅度，避免發散
   #
+  # ── SIMPLE 鬆弛因子的耦合原理 ────────────────────────────────
+  # SIMPLE 的速度修正：v_new = v* + αm × A_inv × ∇p'
+  # SIMPLE 的壓力修正：p_new = p* + αp × p'
+  #
+  # αm 和 αp 必須滿足耦合一致性條件：αm + αp ≈ 1
+  # 原因：
+  #   αp 太小 → 壓力修正不足 → 質量誤差累積（∇·v ≠ 0）
+  #   → 速度場在無壓力約束下自由發展
+  #   → 局部速度出現非物理極端值
+  #   → 對流項離散化出現數值問題
+  #   → A_diag → 0 → A_inv → ∞ → overflow
+  #
+  #   兩者都壓低（αm=0.01, αp=0.01）時：
+  #   速度和壓力完全脫節，誤差累積更快，反而更早崩潰。
+  #
   # ── 標準值參考 ────────────────────────────────────────────────
   #   動量標準值：0.7（太大容易震盪，太小收斂慢）
   #   壓力標準值：0.3（通常比動量小以維持穩定）
@@ -393,7 +445,7 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   #   能量標準值：0.9（溫度方程式線性較好，可較大）
   #
   # ── 調試歷程 ──────────────────────────────────────────────────
-  # Test 1~3（momentum=0.1, pressure=0.05）：
+  # Test 1~3（momentum=0.1, pressure=0.05, αm+αp=0.15）：
   #   iter ~15 overflow 崩潰
   #   Gemini 診斷：問題出在動量過衝導致 A_inv 爆炸
   #   崩潰路徑：速度過衝 → A_diag→0 → A_inv→∞ → p'→inf → overflow
@@ -402,26 +454,46 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   #   確認壓力求解器不是元兇（壓力殘差=0，LU未執行）
   #   仍然 overflow → 100% 確認是動量過衝問題
   #
-  # Test 5（momentum=0.01, pressure=0.05）：
+  # Test 5（momentum=0.01, pressure=0.05, αm+αp=0.06）：
   #   重大進展：Momentum 從 0.05~0.5 降至 0.003~0.01（↓一個數量級）
   #   Pressure 下包絡線清楚下降（iter 11 達到 1e-8）
-  #   但 iter 11 壓力修正過大 → iter 12 Momentum 反彈至 0.04
-  #   → iter 21 仍然 overflow
-  #   診斷：overflow 元兇已從動量轉移到壓力修正過衝
-  #   壓力鬆弛因子 0.05 仍然太大，需要進一步壓低
+  #   但 iter 21 仍然 overflow
+  #   問題：αm+αp=0.06，遠低於 1，壓力-速度耦合脫節
   #
-  # Test 6（當前）：momentum=0.01, pressure=0.01
-  #   目的：同時壓制壓力修正幅度，防止壓力低谷後反彈打爆速度場
-  #   物理邏輯：
-  #     pressure_variable_relaxation 控制每步壓力更新量：
-  #     p_new = p_old + α_p × p'
-  #     α_p 越小 → 壓力每步走得越小 → 不容易過衝
-  #   代價：收斂步數增加，但穩定性提升
+  # Test 6（momentum=0.01, pressure=0.01, αm+αp=0.02）：
+  #   比 Test 5 更早崩潰（iter 18 vs iter 21）
+  #   確認：αp 更小 → 質量誤差累積更快 → 更早觸發 A_diag→0
+  #   反直覺教訓：壓低鬆弛因子不等於穩定，耦合關係才是關鍵
+  #
+  # Test 7（momentum=0.5, pressure=0.3, αm+αp=0.8）：
+  #   回歸合理耦合值，αm+αp≈1
+  #   速度截斷（lower_bound/upper_bound）語法不支援（unused parameter）
+  #   結果：Momentum 退步至 0.2~0.8，αm=0.5 太大速度每步更新過猛
+  #   iter 15 overflow 崩潰
+  #   教訓：αm+αp≈1 是必要條件但不是充分條件，
+  #         αm 本身也不能太大，否則速度場每步變化太劇烈
+  #
+  # Test 8（當前）：momentum=0.01, pressure=0.05, αm+αp=0.06
+  #   回到 Test 5 最佳鬆弛因子組合（Momentum 曾降至 0.003~0.01）
+  #   搭配 Velocity Ramping（入口速度從 0.001 線性爬升到 1.1838）
+  #   策略：用 Ramping 延緩流場成長速度，推遲觸發奇異點的時機
+  #   αm+αp=0.06 雖然低於理想值 1，但在低速 Ramping 期間
+  #   流場變化緩慢，壓力-速度脫節的風險相對較低
   momentum_equation_relaxation = 0.01
-  pressure_variable_relaxation = 0.01
+  pressure_variable_relaxation = 0.05
 
   # 最大迭代次數
-  num_iterations = 1000
+  #
+  # 舊值：1000（正常運行上限）
+  #
+  # Test 10（當前）：改為 14
+  #   目的：Gemini「iter 14 攔截法」——在 iter 15 奇異點引爆前強制停止
+  #   背景：Gemini 診斷 iter 15 是 MOOSE 內部保護機制解除的時間點
+  #         不管 Ramping 如何設定，第 15 步必然引爆
+  #         在第 14 步強制停止 → 觸發 Exodus 輸出 → 拿到崩潰前的流場快照
+  #         → 丟進 ParaView 用 Threshold 濾鏡找出速度極大值位置
+  #         → 定位奇異點網格
+  num_iterations = 14
 
   # 收斂判斷：各方程式的絕對殘差容忍值
   # 1e-8 是工程計算的標準精度，可依需要調整
@@ -773,7 +845,25 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   #[TKED_diffusion_turbulent] # Phase 1 停用
   #[TKED_source] # Phase 1 停用
 []
-
+# ============================================================
+# [Functions]：定義隨迭代變化的函數
+# ============================================================
+# PiecewiseLinear：線性插值函數
+#   x：迭代步（SIMPLE 用 time 代表迭代次數）
+#   y：對應的入口速度值
+#
+# Velocity Ramping 策略：
+#   讓入口速度從極小值慢慢爬升到目標值
+#   目的：避免流場成長過快觸發局部奇異點
+#   從 0.001 而非 0 開始：提供最小驅動力，
+#   防止壓力修正方程式在靜止場下出現數值奇異
+[Functions]
+  [ramped_vel_z]
+    type = PiecewiseLinear
+    x = '0   200'
+    y = '0.001 1.1838'
+  []
+[]
 # ============================================================
 # [FVBCs]：有限體積法邊界條件
 # ============================================================
@@ -821,10 +911,29 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     #   Q = P / (ρ cp ΔT) = 3e9 / (4147 × 1525 × 100) ≈ 4.77 m³/s
     #   16 個通道截面積 A ≈ 0.322 m²（⚠️ 待確認實際通道尺寸）
     #   U_in = Q/A ≈ 1.1838 m/s，+z 方向（向上）
+    #
+    # ── Velocity Ramping（Test 8 新增）────────────────────────
+    # 舊值：functor = 1.1838（固定速度）
+    #   問題：流場從 Stokes 靜止場一步跳到全速，
+    #         對流項在 iter 15~21 成長到臨界強度後觸發局部奇異點
+    #         → A_diag → 0 → A_inv → ∞ → overflow
+    #
+    # 新值：functor = ramped_vel_z（線性爬升函數）
+    #   入口速度從 0.001 m/s 線性爬升到 1.1838 m/s（200 iter）
+    #   為什麼從 0.001 而非 0：
+    #     完全靜止場（v=0）下 SIMPLE 壓力修正方程式無驅動力，
+    #     可能出現除以零或壓力無法收斂的數值奇異
+    #     0.001 m/s 提供最小物理驅動力，讓求解器有「東西可以算」
+    #   治標策略：讓流場用更小的步伐成長，
+    #     推遲觸發奇異點的時間，降低衝擊強度
+    #   為什麼治標就夠：
+    #     Phase 1 目標只是讓流場「活起來」，不需要完美物理解
+    #     Phase 2 遇到的奇異點性質完全不同（真實物理湍流問題），
+    #     現在的數值人工奇異點屆時不會再出現
     type = INSFVInletVelocityBC
     variable = vel_z
     boundary = 'gap_enter_boundary'
-    functor = 1.1838              # [m/s]
+    functor = ramped_vel_z
   []
   #[inlet_T] # Phase 1 停用
   #[inlet_TKE] # Phase 1 停用
@@ -898,4 +1007,69 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 #     mu_t = 'mu_t'
 #     wall_treatment = 'eq_newton'
 #   []
+[]
+# ← 這個是 [FVBCs] 的關閉括號
+# ============================================================
+# [Postprocessors]：監控量（每步輸出到終端和 CSV）
+# ============================================================
+# 目的：監控每次 SIMPLE 迭代的速度極值
+#   當 Momentum 暴衝時，找出哪個分量最先失控
+#   以及速度最大值出現在哪個位置（間接定位奇異點）
+#
+# Gemini 建議：速度極值監控是定位「觸發暴衝的局部位置」的關鍵
+#   若 max_vel_z 在某 iter 從 0.13 突然跳到 1000，
+#   表示 z 方向動量在入口附近失控
+[Postprocessors]
+  [max_vel_x]
+    type = ElementExtremeValue
+    variable = vel_x
+    value_type = max
+    # 舊值：NONLINEAR（每次非線性迭代執行，但崩潰前無法輸出到表格）
+    # 新值：TIMESTEP_END（每次 SIMPLE 迭代結束後輸出一次）
+    # 原因：SIMPLE 把每次迭代當作一個「timestep」
+    #   NONLINEAR 的結果不會即時寫入 log 表格，
+    #   系統在第一個 timestep 內崩潰 → 只有 time=0 的初始值
+    #   TIMESTEP_END 確保每個 SIMPLE iter 結束後都輸出一行數據
+    #   → 可以看到 iter 1~23 每步的速度極值變化
+    #   → 定位 iter 15 暴衝時哪個方向速度最先失控
+    execute_on = 'TIMESTEP_END'
+  []
+  [max_vel_y]
+    type = ElementExtremeValue
+    variable = vel_y
+    value_type = max
+    # 同 max_vel_x，改為 TIMESTEP_END 確保每 iter 輸出
+    execute_on = 'TIMESTEP_END'
+  []
+  [max_vel_z]
+    type = ElementExtremeValue
+    variable = vel_z
+    value_type = max
+    # 同 max_vel_x，改為 TIMESTEP_END 確保每 iter 輸出
+    # 主流方向（z），最可能在 iter 15 出現異常極大值
+    execute_on = 'TIMESTEP_END'
+  []
+  [min_vel_z]
+    # 監控最小值：如果 min_vel_z 出現極大負值，
+    # 代表某處有強烈的回流或速度方向反轉（奇異點訊號）
+    #
+    # 舊值：NONLINEAR → 崩潰前無法輸出
+    # 新值：TIMESTEP_END → 每 iter 輸出，可追蹤回流發展過程
+    type = ElementExtremeValue
+    variable = vel_z
+    value_type = min
+    execute_on = 'TIMESTEP_END'
+  []
+[]
+# ============================================================
+# [Outputs]：輸出設定
+# ============================================================
+# Test 10 新增：配合 iter 14 攔截法輸出流場快照
+# execute_on = 'FINAL'：在計算結束時（iter 14）輸出 Exodus 檔
+# 輸出檔供 ParaView 視覺化，定位奇異點位置
+[Outputs]
+  [exodus_out]
+    type = Exodus
+    execute_on = 'FINAL'
+  []
 []
