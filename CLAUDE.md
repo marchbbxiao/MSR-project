@@ -301,3 +301,75 @@ A_inv = 1/A_diag → ∞
 3. 治本方案：Cubit 對凹角施加幾何倒角（Fillet），重切網格
    - 工具：Coreform Cubit 2026.4（/opt/Coreform-Cubit-2026.4/bin/coreform_cubit）
    - 目標：消除入口通道與球壁交界處的銳角
+
+## 2026-05-10 晚間補充：人工阻尼語法確認（Gemini v4 回覆）
+
+### 明日實作內容（RTXWS 優先）
+
+**Step 1：在 [FunctorMaterials] 加入三個阻尼材料**
+
+```
+[FunctorMaterials]
+  [drag_calc_x]
+    type = ParsedFunctorMaterial
+    property_name = 'drag_force_x'
+    expression = 'vel_mag := sqrt(vel_x^2 + vel_y^2 + vel_z^2); if(vel_mag > 5.0, -1e5 * vel_x, 0.0)'
+    functor_names = 'vel_x vel_y vel_z'
+  []
+  [drag_calc_y]
+    type = ParsedFunctorMaterial
+    property_name = 'drag_force_y'
+    expression = 'vel_mag := sqrt(vel_x^2 + vel_y^2 + vel_z^2); if(vel_mag > 5.0, -1e5 * vel_y, 0.0)'
+    functor_names = 'vel_x vel_y vel_z'
+  []
+  [drag_calc_z]
+    type = ParsedFunctorMaterial
+    property_name = 'drag_force_z'
+    expression = 'vel_mag := sqrt(vel_x^2 + vel_y^2 + vel_z^2); if(vel_mag > 5.0, -1e5 * vel_z, 0.0)'
+    functor_names = 'vel_x vel_y vel_z'
+  []
+[]
+```
+
+**Step 2：在 [FVKernels] 加入三個 Body Force**
+
+```
+[rubber_wall_x]
+  type = INSFVBodyForce
+  variable = vel_x
+  functor = drag_force_x
+[]
+[rubber_wall_y]
+  type = INSFVBodyForce
+  variable = vel_y
+  functor = drag_force_y
+[]
+[rubber_wall_z]
+  type = INSFVBodyForce
+  variable = vel_z
+  functor = drag_force_z
+[]
+```
+
+**Step 3：Executioner 參數恢復**
+
+```
+num_iterations = 1000
+momentum_equation_relaxation = 0.5
+pressure_variable_relaxation = 0.3
+```
+
+### 人工阻尼物理原理
+INSFVBodyForce 加在動量方程右側：
+ρ Dv/Dt = -∇p + ∇·[(μ+μt)∇v] + ρg + F_body
+
+當 vel_mag > 5.0 m/s：F_body = -1e5 × velocity（巨大反向阻力）
+當 vel_mag ≤ 5.0 m/s：F_body = 0（不干擾正常流場）
+
+效果：Sliver element 在 iter 15 想暴衝時，瞬間撞上橡皮牆被壓回 5 m/s 以內
+→ A_diag 不會趨近於零 → A_inv 不會爆炸 → SIMPLE 可以繼續跑
+
+### 語法注意事項
+- ParsedFunctorMaterial 每個區塊只能定義一個 property_name（不能同時輸出多個）
+- INSFVBodyForce 的 functor 可以直接引用 FunctorMaterial 的 property_name
+- 不需要透過 ParsedAux 轉存 AuxVariable
