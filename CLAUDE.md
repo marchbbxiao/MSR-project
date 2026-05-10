@@ -261,3 +261,43 @@ momentum_petsc: hypre boomeramg
 
 ### 新增工具
 - `monitor.py`：修改為 Phase 1 版本（Pressure 觸發，移除 TKE/TKED）
+
+## 2026-05-10 奇異點診斷（A電腦）
+
+### 重大發現：iter 15 固定爆炸的根本原因
+- MOOSE 內部保護機制：前 14 iter 壓制對流項高階修正，iter 15 解除
+- 與 Ramping、鬆弛因子無關，硬寫在程式碼中
+- iter 15 殘差永遠相同：Momentum 0.994, 0.999, 0.969 / Pressure 1.65e-10
+
+### 奇異點位置（ParaView 確認）
+- 位置：爐心側面壁面中間高度
+- 類型：凹角（Re-entrant Corner）奇異點
+- 具體：入口通道（gap_enter_boundary）切割球形壁面（wall）的垂直溝槽交界處
+- 速度值：6.7e+45 m/s（單一 Sliver element 網格）
+- 診斷檔案：MSFR/stage3_cardinal/th_phase1_from_th_exodus_out.e（iter 14 快照）
+
+### 崩潰物理機制
+凹角導致 Sliver element（極扁四面體），體積極小：
+A_diag ∝ 面積/體積 → 0
+A_inv = 1/A_diag → ∞
+壓力修正量 p' → inf → overflow
+
+### 已嘗試但無效的方法
+- lower_bound/upper_bound：INSFVVelocityVariable 不支援（unused parameter）
+- Velocity Ramping：推遲 2 iter，無法避開 iter 15
+- 降低鬆弛因子（αm=0.01, αp=0.01）：αm+αp 太小導致壓力速度脫節，更早崩潰
+- LU 直接求解器：語法問題，壓力殘差全為 0
+
+### 鬆弛因子耦合原理（重要）
+αm + αp ≈ 1 是 SIMPLE 穩定的必要條件
+αp 太小 → 壓力修正不足 → 質量誤差累積 → A_diag→0 → overflow
+兩者都壓低（0.01/0.01）→ 壓力速度脫節，反而更早崩潰
+
+### 明日任務（RTXWS）
+1. 等 Gemini 確認 ParsedFunctorMaterial 語法後，實作人工阻尼（橡皮牆）
+   - vel > 5.0 m/s → drag = -1e5 × velocity
+   - 壓制 Sliver element 的速度暴衝
+2. num_iterations 恢復 1000，測試能否跑超過 iter 15
+3. 治本方案：Cubit 對凹角施加幾何倒角（Fillet），重切網格
+   - 工具：Coreform Cubit 2026.4（/opt/Coreform-Cubit-2026.4/bin/coreform_cubit）
+   - 目標：消除入口通道與球壁交界處的銳角
