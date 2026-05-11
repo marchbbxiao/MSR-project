@@ -1,0 +1,1017 @@
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+
+[33m
+*** Deprecation Warning ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:1052.5:
+Outputs/exodus_out/interval: 'interval' has been deprecated and will be removed on 02/01/2025. Please use 'time_step_interval' instead.
+
+[39m
+
+[36m
+*** Info ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:82.1:
+The following occurred in the Problem 'MOOSE Problem' of type FEProblem.
+
+Using /home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_stokes_checkpoint_cp/0001 for restart.[39m
+Finished Setting Up                                                                      [[33m  2.09 s[39m] [[33m  268 MB[39m]
+Framework Information:
+MOOSE Version:           git commit b1e271b638 on 2025-10-10
+LibMesh Version:         
+PETSc Version:           3.23.4
+SLEPc Version:           3.23.2
+Current Time:            Mon May 11 14:52:32 2026
+Executable Timestamp:    Tue Apr 14 14:29:53 2026
+
+Input File(s):
+  /home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  User Checkpoint:         Disabled
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          4
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 9245
+    Local:                 2162
+    Min/Max/Avg:           2004/2614/2311
+  Elems:                   
+    Total:                 35186
+    Local:                 8797
+    Min/Max/Avg:           8796/8797/8796
+  Num Subdomains:          1
+  Num Partitions:          4
+  Partitioner:             metis
+
+Nonlinear System:
+  Num DOFs:                140744
+  Num Local DOFs:          35188
+  Variables:               { "vel_x" "vel_y" "vel_z" "pressure" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Auxiliary System:
+  Num DOFs:                105558
+  Num Local DOFs:          26391
+  Variables:               { "power_density" "mixing_len" "mu_t" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             IterationAdaptiveDT
+  TimeIntegrator(s):       ImplicitEuler
+  Solver Mode:             NEWTON 
+  PETSc Preconditioner:    lu mat_superlu_dist_fact: SamePattern  mat_superlu_dist_replacetinypivot: true 
+  MOOSE Preconditioner:    SMP (auto) 
+
+[33m
+*** Warning ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:36.1: unused parameter 'cp'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:37.1: unused parameter 'k'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:188.5: unused parameter 'Variables/vel_x/lower_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:189.5: unused parameter 'Variables/vel_x/upper_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:203.5: unused parameter 'Variables/vel_y/lower_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:204.5: unused parameter 'Variables/vel_y/upper_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:218.5: unused parameter 'Variables/vel_z/lower_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:219.5: unused parameter 'Variables/vel_z/upper_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:427.5: unused parameter 'FunctorMaterials/drag_force_x/use_ad'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:434.5: unused parameter 'FunctorMaterials/drag_force_y/use_ad'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:441.5: unused parameter 'FunctorMaterials/drag_force_z/use_ad'[39m
+
+Time Step 0, time = 1
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 1, time = 1.001, dt = 0.001
+ 0 Nonlinear |R| = [32m5.994609e+03[39m
+Currently Executing
+    Computing Jacobian..                                                                 [[33m 21.88 s[39m] [[33m  445 MB[39m]
+      0 Linear |R| = [32m5.994609e+03[39m
+      1 Linear |R| = [32m5.836689e-11[39m
+ 1 Nonlinear |R| = [32m6.674043e+01[39m
+
+    Computing Jacobian..                                                                 [[33m 21.74 s[39m] [[33m 1186 MB[39m]
+      0 Linear |R| = [32m6.674043e+01[39m
+      1 Linear |R| = [32m4.245391e-14[39m
+ 2 Nonlinear |R| = [32m4.680102e-03[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 93.74 s[39m] [[33m  969 MB[39m]
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.001000e+00 |   2.835613e-01 |   1.538186e-01 |   4.376119e-01 |  -1.130908e-01 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 2, time = 1.0022, dt = 0.0012
+ 0 Nonlinear |R| = [32m2.586174e+04[39m
+
+    Computing Jacobian..                                                                 [[33m 21.75 s[39m] [[33m  969 MB[39m]
+      0 Linear |R| = [32m2.586174e+04[39m
+      1 Linear |R| = [32m2.596997e-10[39m
+ 1 Nonlinear |R| = [32m2.039827e+00[39m
+
+    Computing Jacobian..                                                                 [[33m 21.82 s[39m] [[33m 1219 MB[39m]
+      0 Linear |R| = [32m2.039827e+00[39m
+      1 Linear |R| = [32m1.240756e-14[39m
+ 2 Nonlinear |R| = [32m7.206116e-04[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 93.42 s[39m] [[33m  984 MB[39m]
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.001000e+00 |   2.835613e-01 |   1.538186e-01 |   4.376119e-01 |  -1.130908e-01 |
+|   1.002200e+00 |   2.647243e-01 |   1.554109e-01 |   3.331345e-01 |  -9.614553e-02 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 3, time = 1.00364, dt = 0.00144
+ 0 Nonlinear |R| = [32m3.858215e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.84 s[39m] [[33m  984 MB[39m]
+      0 Linear |R| = [32m3.858215e+03[39m
+      1 Linear |R| = [32m1.725599e-11[39m
+ 1 Nonlinear |R| = [32m3.797372e-01[39m
+
+    Computing Jacobian..                                                                 [[33m 21.89 s[39m] [[33m 1233 MB[39m]
+      0 Linear |R| = [32m3.797372e-01[39m
+      1 Linear |R| = [32m1.853043e-15[39m
+ 2 Nonlinear |R| = [32m2.305609e-06[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 93.68 s[39m] [[33m  987 MB[39m]
+
+Outlier Variable Residual Norms:
+  vel_z: [33m1.717175e-06[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.001000e+00 |   2.835613e-01 |   1.538186e-01 |   4.376119e-01 |  -1.130908e-01 |
+|   1.002200e+00 |   2.647243e-01 |   1.554109e-01 |   3.331345e-01 |  -9.614553e-02 |
+|   1.003640e+00 |   2.702486e-01 |   1.796980e-01 |   3.416586e-01 |  -9.251241e-02 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 4, time = 1.00537, dt = 0.001728
+ 0 Nonlinear |R| = [32m2.808037e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.73 s[39m] [[33m  987 MB[39m]
+      0 Linear |R| = [32m2.808037e+03[39m
+      1 Linear |R| = [32m6.400691e-12[39m
+ 1 Nonlinear |R| = [32m2.484136e-01[39m
+
+    Computing Jacobian..                                                                 [[33m 21.71 s[39m] [[33m 1195 MB[39m]
+      0 Linear |R| = [32m2.484136e-01[39m
+      1 Linear |R| = [32m9.442035e-16[39m
+ 2 Nonlinear |R| = [32m8.994119e-07[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 95.20 s[39m] [[33m 1004 MB[39m]
+
+Outlier Variable Residual Norms:
+  vel_y: [33m6.851029e-07[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.001000e+00 |   2.835613e-01 |   1.538186e-01 |   4.376119e-01 |  -1.130908e-01 |
+|   1.002200e+00 |   2.647243e-01 |   1.554109e-01 |   3.331345e-01 |  -9.614553e-02 |
+|   1.003640e+00 |   2.702486e-01 |   1.796980e-01 |   3.416586e-01 |  -9.251241e-02 |
+|   1.005368e+00 |   2.822712e-01 |   1.978002e-01 |   3.471308e-01 |  -1.024888e-01 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 5, time = 1.00744, dt = 0.0020736
+ 0 Nonlinear |R| = [32m2.712317e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.75 s[39m] [[33m 1004 MB[39m]
+      0 Linear |R| = [32m2.712317e+03[39m
+      1 Linear |R| = [32m2.766797e-12[39m
+ 1 Nonlinear |R| = [32m3.432168e-01[39m
+
+    Computing Jacobian..                                                                 [[33m 22.29 s[39m] [[33m 1190 MB[39m]
+      0 Linear |R| = [32m3.432168e-01[39m
+      1 Linear |R| = [32m2.461880e-15[39m
+ 2 Nonlinear |R| = [32m1.780994e-06[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 91.96 s[39m] [[33m 1004 MB[39m]
+
+Outlier Variable Residual Norms:
+  vel_y: [33m1.430125e-06[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.001000e+00 |   2.835613e-01 |   1.538186e-01 |   4.376119e-01 |  -1.130908e-01 |
+|   1.002200e+00 |   2.647243e-01 |   1.554109e-01 |   3.331345e-01 |  -9.614553e-02 |
+|   1.003640e+00 |   2.702486e-01 |   1.796980e-01 |   3.416586e-01 |  -9.251241e-02 |
+|   1.005368e+00 |   2.822712e-01 |   1.978002e-01 |   3.471308e-01 |  -1.024888e-01 |
+|   1.007442e+00 |   2.981902e-01 |   2.136495e-01 |   3.529287e-01 |  -1.403051e-01 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 6, time = 1.00993, dt = 0.00248832
+ 0 Nonlinear |R| = [32m2.690621e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.87 s[39m] [[33m 1004 MB[39m]
+      0 Linear |R| = [32m2.690621e+03[39m
+      1 Linear |R| = [32m4.216213e-12[39m
+ 1 Nonlinear |R| = [32m4.689698e-01[39m
+
+    Computing Jacobian..                                                                 [[33m 21.74 s[39m] [[33m 1258 MB[39m]
+      0 Linear |R| = [32m4.689698e-01[39m
+      1 Linear |R| = [32m3.664792e-15[39m
+ 2 Nonlinear |R| = [32m4.376664e-06[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 93.87 s[39m] [[33m  992 MB[39m]
+
+Outlier Variable Residual Norms:
+  vel_y: [33m3.348186e-06[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.001000e+00 |   2.835613e-01 |   1.538186e-01 |   4.376119e-01 |  -1.130908e-01 |
+|   1.002200e+00 |   2.647243e-01 |   1.554109e-01 |   3.331345e-01 |  -9.614553e-02 |
+|   1.003640e+00 |   2.702486e-01 |   1.796980e-01 |   3.416586e-01 |  -9.251241e-02 |
+|   1.005368e+00 |   2.822712e-01 |   1.978002e-01 |   3.471308e-01 |  -1.024888e-01 |
+|   1.007442e+00 |   2.981902e-01 |   2.136495e-01 |   3.529287e-01 |  -1.403051e-01 |
+|   1.009930e+00 |   3.155550e-01 |   2.289398e-01 |   3.595188e-01 |  -1.856208e-01 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 7, time = 1.01292, dt = 0.00298598
+ 0 Nonlinear |R| = [32m2.683288e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.84 s[39m] [[33m  992 MB[39m]
+      0 Linear |R| = [32m2.683288e+03[39m
+      1 Linear |R| = [32m1.573070e-12[39m
+ 1 Nonlinear |R| = [32m6.802472e-01[39m
+
+    Computing Jacobian..                                                                 [[33m 21.82 s[39m] [[33m 1200 MB[39m]
+      0 Linear |R| = [32m6.802472e-01[39m
+      1 Linear |R| = [32m5.914771e-15[39m
+ 2 Nonlinear |R| = [32m8.113095e-06[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 90.91 s[39m] [[33m 1009 MB[39m]
+
+Outlier Variable Residual Norms:
+  vel_y: [33m6.595244e-06[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.001000e+00 |   2.835613e-01 |   1.538186e-01 |   4.376119e-01 |  -1.130908e-01 |
+|   1.002200e+00 |   2.647243e-01 |   1.554109e-01 |   3.331345e-01 |  -9.614553e-02 |
+|   1.003640e+00 |   2.702486e-01 |   1.796980e-01 |   3.416586e-01 |  -9.251241e-02 |
+|   1.005368e+00 |   2.822712e-01 |   1.978002e-01 |   3.471308e-01 |  -1.024888e-01 |
+|   1.007442e+00 |   2.981902e-01 |   2.136495e-01 |   3.529287e-01 |  -1.403051e-01 |
+|   1.009930e+00 |   3.155550e-01 |   2.289398e-01 |   3.595188e-01 |  -1.856208e-01 |
+|   1.012916e+00 |   3.352167e-01 |   2.448361e-01 |   3.669878e-01 |  -2.472091e-01 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 8, time = 1.0165, dt = 0.00358318
+ 0 Nonlinear |R| = [32m2.679473e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.79 s[39m] [[33m 1009 MB[39m]
+      0 Linear |R| = [32m2.679473e+03[39m
+      1 Linear |R| = [32m2.293901e-12[39m
+ 1 Nonlinear |R| = [32m9.500170e-01[39m
+
+    Computing Jacobian..                                                                 [[33m 21.89 s[39m] [[33m 1244 MB[39m]
+      0 Linear |R| = [32m9.500170e-01[39m
+      1 Linear |R| = [32m7.564425e-15[39m
+ 2 Nonlinear |R| = [32m1.451162e-05[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 89.14 s[39m] [[33m 1006 MB[39m]
+
+Outlier Variable Residual Norms:
+  vel_y: [33m1.135596e-05[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.001000e+00 |   2.835613e-01 |   1.538186e-01 |   4.376119e-01 |  -1.130908e-01 |
+|   1.002200e+00 |   2.647243e-01 |   1.554109e-01 |   3.331345e-01 |  -9.614553e-02 |
+|   1.003640e+00 |   2.702486e-01 |   1.796980e-01 |   3.416586e-01 |  -9.251241e-02 |
+|   1.005368e+00 |   2.822712e-01 |   1.978002e-01 |   3.471308e-01 |  -1.024888e-01 |
+|   1.007442e+00 |   2.981902e-01 |   2.136495e-01 |   3.529287e-01 |  -1.403051e-01 |
+|   1.009930e+00 |   3.155550e-01 |   2.289398e-01 |   3.595188e-01 |  -1.856208e-01 |
+|   1.012916e+00 |   3.352167e-01 |   2.448361e-01 |   3.669878e-01 |  -2.472091e-01 |
+|   1.016499e+00 |   3.578984e-01 |   2.620792e-01 |   3.754090e-01 |  -3.233772e-01 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 9, time = 1.0208, dt = 0.00429982
+ 0 Nonlinear |R| = [32m2.676018e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 22.17 s[39m] [[33m 1006 MB[39m]
+      0 Linear |R| = [32m2.676018e+03[39m
+      1 Linear |R| = [32m4.925712e-12[39m
+ 1 Nonlinear |R| = [32m1.339114e+00[39m
+
+    Computing Jacobian..                                                                 [[33m 21.87 s[39m] [[33m 1208 MB[39m]
+      0 Linear |R| = [32m1.339114e+00[39m
+      1 Linear |R| = [32m1.533373e-14[39m
+ 2 Nonlinear |R| = [32m2.516098e-05[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 92.80 s[39m] [[33m  990 MB[39m]
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.001000e+00 |   2.835613e-01 |   1.538186e-01 |   4.376119e-01 |  -1.130908e-01 |
+|   1.002200e+00 |   2.647243e-01 |   1.554109e-01 |   3.331345e-01 |  -9.614553e-02 |
+|   1.003640e+00 |   2.702486e-01 |   1.796980e-01 |   3.416586e-01 |  -9.251241e-02 |
+|   1.005368e+00 |   2.822712e-01 |   1.978002e-01 |   3.471308e-01 |  -1.024888e-01 |
+|   1.007442e+00 |   2.981902e-01 |   2.136495e-01 |   3.529287e-01 |  -1.403051e-01 |
+|   1.009930e+00 |   3.155550e-01 |   2.289398e-01 |   3.595188e-01 |  -1.856208e-01 |
+|   1.012916e+00 |   3.352167e-01 |   2.448361e-01 |   3.669878e-01 |  -2.472091e-01 |
+|   1.016499e+00 |   3.578984e-01 |   2.620792e-01 |   3.754090e-01 |  -3.233772e-01 |
+|   1.020799e+00 |   3.860785e-01 |   2.811623e-01 |   3.848562e-01 |  -4.117173e-01 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 10, time = 1.02596, dt = 0.00515978
+ 0 Nonlinear |R| = [32m2.671775e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.72 s[39m] [[33m  990 MB[39m]
+      0 Linear |R| = [32m2.671775e+03[39m
+      1 Linear |R| = [32m8.826303e-12[39m
+ 1 Nonlinear |R| = [32m1.873625e+00[39m
+
+    Computing Jacobian..                                                                 [[33m 21.70 s[39m] [[33m 1232 MB[39m]
+      0 Linear |R| = [32m1.873625e+00[39m
+      1 Linear |R| = [32m1.556130e-14[39m
+ 2 Nonlinear |R| = [32m1.209742e-04[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 93.29 s[39m] [[33m  999 MB[39m]
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.001000e+00 |   2.835613e-01 |   1.538186e-01 |   4.376119e-01 |  -1.130908e-01 |
+|   1.002200e+00 |   2.647243e-01 |   1.554109e-01 |   3.331345e-01 |  -9.614553e-02 |
+|   1.003640e+00 |   2.702486e-01 |   1.796980e-01 |   3.416586e-01 |  -9.251241e-02 |
+|   1.005368e+00 |   2.822712e-01 |   1.978002e-01 |   3.471308e-01 |  -1.024888e-01 |
+|   1.007442e+00 |   2.981902e-01 |   2.136495e-01 |   3.529287e-01 |  -1.403051e-01 |
+|   1.009930e+00 |   3.155550e-01 |   2.289398e-01 |   3.595188e-01 |  -1.856208e-01 |
+|   1.012916e+00 |   3.352167e-01 |   2.448361e-01 |   3.669878e-01 |  -2.472091e-01 |
+|   1.016499e+00 |   3.578984e-01 |   2.620792e-01 |   3.754090e-01 |  -3.233772e-01 |
+|   1.020799e+00 |   3.860785e-01 |   2.811623e-01 |   3.848562e-01 |  -4.117173e-01 |
+|   1.025959e+00 |   4.206296e-01 |   3.024247e-01 |   3.953886e-01 |  -5.123408e-01 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 11, time = 1.03215, dt = 0.00619174
+ 0 Nonlinear |R| = [32m2.666046e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.97 s[39m] [[33m  999 MB[39m]
+      0 Linear |R| = [32m2.666046e+03[39m
+      1 Linear |R| = [32m3.797047e-12[39m
+ 1 Nonlinear |R| = [32m2.593955e+00[39m
+
+    Computing Jacobian..                                                                 [[33m 21.86 s[39m] [[33m 1227 MB[39m]
+      0 Linear |R| = [32m2.593955e+00[39m
+      1 Linear |R| = [32m2.503165e-14[39m
+ 2 Nonlinear |R| = [32m2.057922e-04[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 92.04 s[39m] [[33m 1026 MB[39m]
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.001000e+00 |   2.835613e-01 |   1.538186e-01 |   4.376119e-01 |  -1.130908e-01 |
+|   1.002200e+00 |   2.647243e-01 |   1.554109e-01 |   3.331345e-01 |  -9.614553e-02 |
+|   1.003640e+00 |   2.702486e-01 |   1.796980e-01 |   3.416586e-01 |  -9.251241e-02 |
+|   1.005368e+00 |   2.822712e-01 |   1.978002e-01 |   3.471308e-01 |  -1.024888e-01 |
+|   1.007442e+00 |   2.981902e-01 |   2.136495e-01 |   3.529287e-01 |  -1.403051e-01 |
+|   1.009930e+00 |   3.155550e-01 |   2.289398e-01 |   3.595188e-01 |  -1.856208e-01 |
+|   1.012916e+00 |   3.352167e-01 |   2.448361e-01 |   3.669878e-01 |  -2.472091e-01 |
+|   1.016499e+00 |   3.578984e-01 |   2.620792e-01 |   3.754090e-01 |  -3.233772e-01 |
+|   1.020799e+00 |   3.860785e-01 |   2.811623e-01 |   3.848562e-01 |  -4.117173e-01 |
+|   1.025959e+00 |   4.206296e-01 |   3.024247e-01 |   3.953886e-01 |  -5.123408e-01 |
+|   1.032150e+00 |   4.617531e-01 |   3.454944e-01 |   4.070440e-01 |  -6.251647e-01 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 12, time = 1.03958, dt = 0.00743008
+ 0 Nonlinear |R| = [32m2.658139e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.75 s[39m] [[33m 1026 MB[39m]
+      0 Linear |R| = [32m2.658139e+03[39m
+      1 Linear |R| = [32m2.472743e-11[39m
+ 1 Nonlinear |R| = [32m3.558214e+00[39m
+
+    Computing Jacobian..                                                                 [[33m 21.90 s[39m] [[33m 1188 MB[39m]
+      0 Linear |R| = [32m3.558214e+00[39m
+      1 Linear |R| = [32m2.884035e-14[39m
+ 2 Nonlinear |R| = [32m1.833339e-04[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 90.63 s[39m] [[33m  996 MB[39m]
+
+Outlier Variable Residual Norms:
+  vel_z: [33m1.328276e-04[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.001000e+00 |   2.835613e-01 |   1.538186e-01 |   4.376119e-01 |  -1.130908e-01 |
+|   1.002200e+00 |   2.647243e-01 |   1.554109e-01 |   3.331345e-01 |  -9.614553e-02 |
+|   1.003640e+00 |   2.702486e-01 |   1.796980e-01 |   3.416586e-01 |  -9.251241e-02 |
+|   1.005368e+00 |   2.822712e-01 |   1.978002e-01 |   3.471308e-01 |  -1.024888e-01 |
+|   1.007442e+00 |   2.981902e-01 |   2.136495e-01 |   3.529287e-01 |  -1.403051e-01 |
+|   1.009930e+00 |   3.155550e-01 |   2.289398e-01 |   3.595188e-01 |  -1.856208e-01 |
+|   1.012916e+00 |   3.352167e-01 |   2.448361e-01 |   3.669878e-01 |  -2.472091e-01 |
+|   1.016499e+00 |   3.578984e-01 |   2.620792e-01 |   3.754090e-01 |  -3.233772e-01 |
+|   1.020799e+00 |   3.860785e-01 |   2.811623e-01 |   3.848562e-01 |  -4.117173e-01 |
+|   1.025959e+00 |   4.206296e-01 |   3.024247e-01 |   3.953886e-01 |  -5.123408e-01 |
+|   1.032150e+00 |   4.617531e-01 |   3.454944e-01 |   4.070440e-01 |  -6.251647e-01 |
+|   1.039581e+00 |   5.105285e-01 |   3.978622e-01 |   4.198386e-01 |  -7.464878e-01 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 13, time = 1.0485, dt = 0.0089161
+ 0 Nonlinear |R| = [32m2.647227e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.62 s[39m] [[33m  996 MB[39m]
+      0 Linear |R| = [32m2.647227e+03[39m
+      1 Linear |R| = [32m4.710307e-12[39m
+ 1 Nonlinear |R| = [32m4.830507e+00[39m
+
+    Computing Jacobian..                                                                 [[33m 21.69 s[39m] [[33m 1199 MB[39m]
+      0 Linear |R| = [32m4.830507e+00[39m
+      1 Linear |R| = [32m5.675519e-14[39m
+ 2 Nonlinear |R| = [32m1.125832e-03[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 94.35 s[39m] [[33m  967 MB[39m]
+
+Outlier Variable Residual Norms:
+  vel_y: [33m8.220682e-04[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.001000e+00 |   2.835613e-01 |   1.538186e-01 |   4.376119e-01 |  -1.130908e-01 |
+|   1.002200e+00 |   2.647243e-01 |   1.554109e-01 |   3.331345e-01 |  -9.614553e-02 |
+|   1.003640e+00 |   2.702486e-01 |   1.796980e-01 |   3.416586e-01 |  -9.251241e-02 |
+|   1.005368e+00 |   2.822712e-01 |   1.978002e-01 |   3.471308e-01 |  -1.024888e-01 |
+|   1.007442e+00 |   2.981902e-01 |   2.136495e-01 |   3.529287e-01 |  -1.403051e-01 |
+|   1.009930e+00 |   3.155550e-01 |   2.289398e-01 |   3.595188e-01 |  -1.856208e-01 |
+|   1.012916e+00 |   3.352167e-01 |   2.448361e-01 |   3.669878e-01 |  -2.472091e-01 |
+|   1.016499e+00 |   3.578984e-01 |   2.620792e-01 |   3.754090e-01 |  -3.233772e-01 |
+|   1.020799e+00 |   3.860785e-01 |   2.811623e-01 |   3.848562e-01 |  -4.117173e-01 |
+|   1.025959e+00 |   4.206296e-01 |   3.024247e-01 |   3.953886e-01 |  -5.123408e-01 |
+|   1.032150e+00 |   4.617531e-01 |   3.454944e-01 |   4.070440e-01 |  -6.251647e-01 |
+|   1.039581e+00 |   5.105285e-01 |   3.978622e-01 |   4.198386e-01 |  -7.464878e-01 |
+|   1.048497e+00 |   5.786409e-01 |   4.618032e-01 |   4.337882e-01 |  -8.693597e-01 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 14, time = 1.0592, dt = 0.0106993
+ 0 Nonlinear |R| = [32m2.632282e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.69 s[39m] [[33m  967 MB[39m]
+      0 Linear |R| = [32m2.632282e+03[39m
+      1 Linear |R| = [32m1.623204e-11[39m
+ 1 Nonlinear |R| = [32m6.515501e+00[39m
+
+    Computing Jacobian..                                                                 [[33m 21.71 s[39m] [[33m 1202 MB[39m]
+      0 Linear |R| = [32m6.515501e+00[39m
+      1 Linear |R| = [32m5.508476e-14[39m
+ 2 Nonlinear |R| = [32m1.406067e-03[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 92.17 s[39m] [[33m  967 MB[39m]
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.001000e+00 |   2.835613e-01 |   1.538186e-01 |   4.376119e-01 |  -1.130908e-01 |
+|   1.002200e+00 |   2.647243e-01 |   1.554109e-01 |   3.331345e-01 |  -9.614553e-02 |
+|   1.003640e+00 |   2.702486e-01 |   1.796980e-01 |   3.416586e-01 |  -9.251241e-02 |
+|   1.005368e+00 |   2.822712e-01 |   1.978002e-01 |   3.471308e-01 |  -1.024888e-01 |
+|   1.007442e+00 |   2.981902e-01 |   2.136495e-01 |   3.529287e-01 |  -1.403051e-01 |
+|   1.009930e+00 |   3.155550e-01 |   2.289398e-01 |   3.595188e-01 |  -1.856208e-01 |
+|   1.012916e+00 |   3.352167e-01 |   2.448361e-01 |   3.669878e-01 |  -2.472091e-01 |
+|   1.016499e+00 |   3.578984e-01 |   2.620792e-01 |   3.754090e-01 |  -3.233772e-01 |
+|   1.020799e+00 |   3.860785e-01 |   2.811623e-01 |   3.848562e-01 |  -4.117173e-01 |
+|   1.025959e+00 |   4.206296e-01 |   3.024247e-01 |   3.953886e-01 |  -5.123408e-01 |
+|   1.032150e+00 |   4.617531e-01 |   3.454944e-01 |   4.070440e-01 |  -6.251647e-01 |
+|   1.039581e+00 |   5.105285e-01 |   3.978622e-01 |   4.198386e-01 |  -7.464878e-01 |
+|   1.048497e+00 |   5.786409e-01 |   4.618032e-01 |   4.337882e-01 |  -8.693597e-01 |
+|   1.059196e+00 |   6.873549e-01 |   5.401636e-01 |   4.489705e-01 |  -1.047213e+00 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 15, time = 1.07204, dt = 0.0128392
+ 0 Nonlinear |R| = [32m2.612053e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.69 s[39m] [[33m  967 MB[39m]
+      0 Linear |R| = [32m2.612053e+03[39m
+      1 Linear |R| = [32m5.305377e-12[39m
+ 1 Nonlinear |R| = [32m8.900957e+00[39m
+
+    Computing Jacobian..                                                                 [[33m 21.68 s[39m] [[33m 1208 MB[39m]
+      0 Linear |R| = [32m8.900957e+00[39m
+      1 Linear |R| = [32m7.489858e-14[39m
+ 2 Nonlinear |R| = [32m8.350376e-03[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 93.23 s[39m] [[33m  967 MB[39m]
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :
+|   1.001000e+00 |   2.835613e-01 |   1.538186e-01 |   4.376119e-01 |  -1.130908e-01 |
+|   1.002200e+00 |   2.647243e-01 |   1.554109e-01 |   3.331345e-01 |  -9.614553e-02 |
+|   1.003640e+00 |   2.702486e-01 |   1.796980e-01 |   3.416586e-01 |  -9.251241e-02 |
+|   1.005368e+00 |   2.822712e-01 |   1.978002e-01 |   3.471308e-01 |  -1.024888e-01 |
+|   1.007442e+00 |   2.981902e-01 |   2.136495e-01 |   3.529287e-01 |  -1.403051e-01 |
+|   1.009930e+00 |   3.155550e-01 |   2.289398e-01 |   3.595188e-01 |  -1.856208e-01 |
+|   1.012916e+00 |   3.352167e-01 |   2.448361e-01 |   3.669878e-01 |  -2.472091e-01 |
+|   1.016499e+00 |   3.578984e-01 |   2.620792e-01 |   3.754090e-01 |  -3.233772e-01 |
+|   1.020799e+00 |   3.860785e-01 |   2.811623e-01 |   3.848562e-01 |  -4.117173e-01 |
+|   1.025959e+00 |   4.206296e-01 |   3.024247e-01 |   3.953886e-01 |  -5.123408e-01 |
+|   1.032150e+00 |   4.617531e-01 |   3.454944e-01 |   4.070440e-01 |  -6.251647e-01 |
+|   1.039581e+00 |   5.105285e-01 |   3.978622e-01 |   4.198386e-01 |  -7.464878e-01 |
+|   1.048497e+00 |   5.786409e-01 |   4.618032e-01 |   4.337882e-01 |  -8.693597e-01 |
+|   1.059196e+00 |   6.873549e-01 |   5.401636e-01 |   4.489705e-01 |  -1.047213e+00 |
+|   1.072035e+00 |   8.152193e-01 |   6.365117e-01 |   4.675396e-01 |  -1.260444e+00 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 16, time = 1.08744, dt = 0.015407
+ 0 Nonlinear |R| = [32m2.585072e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.46 s[39m] [[33m  967 MB[39m]
+      0 Linear |R| = [32m2.585072e+03[39m
+      1 Linear |R| = [32m9.266201e-12[39m
+ 1 Nonlinear |R| = [32m1.225833e+01[39m
+
+    Computing Jacobian..                                                                 [[33m 21.55 s[39m] [[33m 1214 MB[39m]
+      0 Linear |R| = [32m1.225833e+01[39m
+      1 Linear |R| = [32m1.018413e-13[39m
+ 2 Nonlinear |R| = [32m1.530629e-02[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 92.90 s[39m] [[33m 1031 MB[39m]
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :
+|   1.002200e+00 |   2.647243e-01 |   1.554109e-01 |   3.331345e-01 |  -9.614553e-02 |
+|   1.003640e+00 |   2.702486e-01 |   1.796980e-01 |   3.416586e-01 |  -9.251241e-02 |
+|   1.005368e+00 |   2.822712e-01 |   1.978002e-01 |   3.471308e-01 |  -1.024888e-01 |
+|   1.007442e+00 |   2.981902e-01 |   2.136495e-01 |   3.529287e-01 |  -1.403051e-01 |
+|   1.009930e+00 |   3.155550e-01 |   2.289398e-01 |   3.595188e-01 |  -1.856208e-01 |
+|   1.012916e+00 |   3.352167e-01 |   2.448361e-01 |   3.669878e-01 |  -2.472091e-01 |
+|   1.016499e+00 |   3.578984e-01 |   2.620792e-01 |   3.754090e-01 |  -3.233772e-01 |
+|   1.020799e+00 |   3.860785e-01 |   2.811623e-01 |   3.848562e-01 |  -4.117173e-01 |
+|   1.025959e+00 |   4.206296e-01 |   3.024247e-01 |   3.953886e-01 |  -5.123408e-01 |
+|   1.032150e+00 |   4.617531e-01 |   3.454944e-01 |   4.070440e-01 |  -6.251647e-01 |
+|   1.039581e+00 |   5.105285e-01 |   3.978622e-01 |   4.198386e-01 |  -7.464878e-01 |
+|   1.048497e+00 |   5.786409e-01 |   4.618032e-01 |   4.337882e-01 |  -8.693597e-01 |
+|   1.059196e+00 |   6.873549e-01 |   5.401636e-01 |   4.489705e-01 |  -1.047213e+00 |
+|   1.072035e+00 |   8.152193e-01 |   6.365117e-01 |   4.675396e-01 |  -1.260444e+00 |
+|   1.087442e+00 |   9.936641e-01 |   7.553313e-01 |   4.905903e-01 |  -1.513911e+00 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 17, time = 1.10593, dt = 0.0184884
+ 0 Nonlinear |R| = [32m2.549732e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.56 s[39m] [[33m 1031 MB[39m]
+      0 Linear |R| = [32m2.549732e+03[39m
+      1 Linear |R| = [32m3.479251e-12[39m
+ 1 Nonlinear |R| = [32m1.638263e+01[39m
+
+    Computing Jacobian..                                                                 [[33m 21.75 s[39m] [[33m 1214 MB[39m]
+      0 Linear |R| = [32m1.638263e+01[39m
+      1 Linear |R| = [32m1.702114e-13[39m
+ 2 Nonlinear |R| = [32m2.379701e-02[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m 91.11 s[39m] [[33m  967 MB[39m]
+
+Outlier Variable Residual Norms:
+  vel_z: [33m1.771588e-02[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :
+|   1.003640e+00 |   2.702486e-01 |   1.796980e-01 |   3.416586e-01 |  -9.251241e-02 |
+|   1.005368e+00 |   2.822712e-01 |   1.978002e-01 |   3.471308e-01 |  -1.024888e-01 |
+|   1.007442e+00 |   2.981902e-01 |   2.136495e-01 |   3.529287e-01 |  -1.403051e-01 |
+|   1.009930e+00 |   3.155550e-01 |   2.289398e-01 |   3.595188e-01 |  -1.856208e-01 |
+|   1.012916e+00 |   3.352167e-01 |   2.448361e-01 |   3.669878e-01 |  -2.472091e-01 |
+|   1.016499e+00 |   3.578984e-01 |   2.620792e-01 |   3.754090e-01 |  -3.233772e-01 |
+|   1.020799e+00 |   3.860785e-01 |   2.811623e-01 |   3.848562e-01 |  -4.117173e-01 |
+|   1.025959e+00 |   4.206296e-01 |   3.024247e-01 |   3.953886e-01 |  -5.123408e-01 |
+|   1.032150e+00 |   4.617531e-01 |   3.454944e-01 |   4.070440e-01 |  -6.251647e-01 |
+|   1.039581e+00 |   5.105285e-01 |   3.978622e-01 |   4.198386e-01 |  -7.464878e-01 |
+|   1.048497e+00 |   5.786409e-01 |   4.618032e-01 |   4.337882e-01 |  -8.693597e-01 |
+|   1.059196e+00 |   6.873549e-01 |   5.401636e-01 |   4.489705e-01 |  -1.047213e+00 |
+|   1.072035e+00 |   8.152193e-01 |   6.365117e-01 |   4.675396e-01 |  -1.260444e+00 |
+|   1.087442e+00 |   9.936641e-01 |   7.553313e-01 |   4.905903e-01 |  -1.513911e+00 |
+|   1.105931e+00 |   1.185661e+00 |   9.022940e-01 |   5.141552e-01 |  -1.818510e+00 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 18, time = 1.12812, dt = 0.0221861
+ 0 Nonlinear |R| = [32m2.504405e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.51 s[39m] [[33m  967 MB[39m]
+      0 Linear |R| = [32m2.504405e+03[39m
+      1 Linear |R| = [32m2.113820e-11[39m
+ 1 Nonlinear |R| = [32m2.134128e+01[39m
+
+    Computing Jacobian..                                                                 [[33m 21.54 s[39m] [[33m 1216 MB[39m]
+      0 Linear |R| = [32m2.134128e+01[39m
+      1 Linear |R| = [32m2.042841e-13[39m
+ 2 Nonlinear |R| = [32m4.619887e-02[39m
+
+    Computing Jacobian..                                                                 [[33m 21.56 s[39m] [[33m 1216 MB[39m]
+      0 Linear |R| = [32m4.619887e-02[39m
+      1 Linear |R| = [32m1.881043e-16[39m
+ 3 Nonlinear |R| = [32m3.596123e-05[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m135.92 s[39m] [[33m 1031 MB[39m]
+
+Outlier Variable Residual Norms:
+  vel_x: [33m2.643039e-05[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :
+|   1.005368e+00 |   2.822712e-01 |   1.978002e-01 |   3.471308e-01 |  -1.024888e-01 |
+|   1.007442e+00 |   2.981902e-01 |   2.136495e-01 |   3.529287e-01 |  -1.403051e-01 |
+|   1.009930e+00 |   3.155550e-01 |   2.289398e-01 |   3.595188e-01 |  -1.856208e-01 |
+|   1.012916e+00 |   3.352167e-01 |   2.448361e-01 |   3.669878e-01 |  -2.472091e-01 |
+|   1.016499e+00 |   3.578984e-01 |   2.620792e-01 |   3.754090e-01 |  -3.233772e-01 |
+|   1.020799e+00 |   3.860785e-01 |   2.811623e-01 |   3.848562e-01 |  -4.117173e-01 |
+|   1.025959e+00 |   4.206296e-01 |   3.024247e-01 |   3.953886e-01 |  -5.123408e-01 |
+|   1.032150e+00 |   4.617531e-01 |   3.454944e-01 |   4.070440e-01 |  -6.251647e-01 |
+|   1.039581e+00 |   5.105285e-01 |   3.978622e-01 |   4.198386e-01 |  -7.464878e-01 |
+|   1.048497e+00 |   5.786409e-01 |   4.618032e-01 |   4.337882e-01 |  -8.693597e-01 |
+|   1.059196e+00 |   6.873549e-01 |   5.401636e-01 |   4.489705e-01 |  -1.047213e+00 |
+|   1.072035e+00 |   8.152193e-01 |   6.365117e-01 |   4.675396e-01 |  -1.260444e+00 |
+|   1.087442e+00 |   9.936641e-01 |   7.553313e-01 |   4.905903e-01 |  -1.513911e+00 |
+|   1.105931e+00 |   1.185661e+00 |   9.022940e-01 |   5.141552e-01 |  -1.818510e+00 |
+|   1.128117e+00 |   1.386461e+00 |   1.084629e+00 |   5.512623e-01 |  -2.189354e+00 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 19, time = 1.15474, dt = 0.0266233
+ 0 Nonlinear |R| = [32m2.447679e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.39 s[39m] [[33m 1031 MB[39m]
+      0 Linear |R| = [32m2.447679e+03[39m
+      1 Linear |R| = [32m7.214034e-12[39m
+ 1 Nonlinear |R| = [32m3.326251e+01[39m
+
+    Computing Jacobian..                                                                 [[33m 21.56 s[39m] [[33m 1205 MB[39m]
+      0 Linear |R| = [32m3.326251e+01[39m
+      1 Linear |R| = [32m3.253779e-13[39m
+ 2 Nonlinear |R| = [32m3.614299e-01[39m
+
+    Computing Jacobian..                                                                 [[33m 21.59 s[39m] [[33m 1219 MB[39m]
+      0 Linear |R| = [32m3.614299e-01[39m
+      1 Linear |R| = [32m1.026521e-15[39m
+ 3 Nonlinear |R| = [32m6.208644e-04[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m133.88 s[39m] [[33m 1003 MB[39m]
+
+Outlier Variable Residual Norms:
+  vel_x: [33m5.276797e-04[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :
+|   1.007442e+00 |   2.981902e-01 |   2.136495e-01 |   3.529287e-01 |  -1.403051e-01 |
+|   1.009930e+00 |   3.155550e-01 |   2.289398e-01 |   3.595188e-01 |  -1.856208e-01 |
+|   1.012916e+00 |   3.352167e-01 |   2.448361e-01 |   3.669878e-01 |  -2.472091e-01 |
+|   1.016499e+00 |   3.578984e-01 |   2.620792e-01 |   3.754090e-01 |  -3.233772e-01 |
+|   1.020799e+00 |   3.860785e-01 |   2.811623e-01 |   3.848562e-01 |  -4.117173e-01 |
+|   1.025959e+00 |   4.206296e-01 |   3.024247e-01 |   3.953886e-01 |  -5.123408e-01 |
+|   1.032150e+00 |   4.617531e-01 |   3.454944e-01 |   4.070440e-01 |  -6.251647e-01 |
+|   1.039581e+00 |   5.105285e-01 |   3.978622e-01 |   4.198386e-01 |  -7.464878e-01 |
+|   1.048497e+00 |   5.786409e-01 |   4.618032e-01 |   4.337882e-01 |  -8.693597e-01 |
+|   1.059196e+00 |   6.873549e-01 |   5.401636e-01 |   4.489705e-01 |  -1.047213e+00 |
+|   1.072035e+00 |   8.152193e-01 |   6.365117e-01 |   4.675396e-01 |  -1.260444e+00 |
+|   1.087442e+00 |   9.936641e-01 |   7.553313e-01 |   4.905903e-01 |  -1.513911e+00 |
+|   1.105931e+00 |   1.185661e+00 |   9.022940e-01 |   5.141552e-01 |  -1.818510e+00 |
+|   1.128117e+00 |   1.386461e+00 |   1.084629e+00 |   5.512623e-01 |  -2.189354e+00 |
+|   1.154740e+00 |   1.593793e+00 |   1.311813e+00 |   6.318335e-01 |  -2.646952e+00 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 20, time = 1.18669, dt = 0.031948
+ 0 Nonlinear |R| = [32m2.378617e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.52 s[39m] [[33m 1003 MB[39m]
+      0 Linear |R| = [32m2.378617e+03[39m
+      1 Linear |R| = [32m1.413119e-11[39m
+ 1 Nonlinear |R| = [32m4.215639e+01[39m
+
+    Computing Jacobian..                                                                 [[33m 21.44 s[39m] [[33m 1217 MB[39m]
+      0 Linear |R| = [32m4.215639e+01[39m
+      1 Linear |R| = [32m8.080456e-13[39m
+ 2 Nonlinear |R| = [32m4.054124e+00[39m
+
+    Computing Jacobian..                                                                 [[33m 21.60 s[39m] [[33m 1210 MB[39m]
+      0 Linear |R| = [32m4.054124e+00[39m
+      1 Linear |R| = [32m1.582422e-14[39m
+ 3 Nonlinear |R| = [32m9.965958e-01[39m
+
+    Computing Jacobian..                                                                 [[33m 21.78 s[39m] [[33m 1208 MB[39m]
+      0 Linear |R| = [32m9.965958e-01[39m
+      1 Linear |R| = [32m2.102009e-15[39m
+ 4 Nonlinear |R| = [32m3.217701e-01[39m
+
+    Computing Jacobian..                                                                 [[33m 21.99 s[39m] [[33m 1208 MB[39m]
+      0 Linear |R| = [32m3.217701e-01[39m
+      1 Linear |R| = [32m1.785306e-15[39m
+ 5 Nonlinear |R| = [32m8.264941e-02[39m
+
+    Computing Jacobian..                                                                 [[33m 21.94 s[39m] [[33m 1208 MB[39m]
+      0 Linear |R| = [32m8.264941e-02[39m
+      1 Linear |R| = [32m5.514256e-15[39m
+ 6 Nonlinear |R| = [33m8.256566e-02[39m
+
+    Computing Jacobian..                                                                 [[33m 21.98 s[39m] [[33m 1210 MB[39m]
+      0 Linear |R| = [32m8.256566e-02[39m
+      1 Linear |R| = [32m7.066163e-15[39m
+ 7 Nonlinear |R| = [33m8.248208e-02[39m
+
+    Computing Jacobian..                                                                 [[33m 21.97 s[39m] [[33m 1210 MB[39m]
+      0 Linear |R| = [32m8.248208e-02[39m
+      1 Linear |R| = [32m3.393206e-15[39m
+ 8 Nonlinear |R| = [33m8.239867e-02[39m
+
+    Computing Jacobian..                                                                 [[33m 21.88 s[39m] [[33m 1210 MB[39m]
+      0 Linear |R| = [32m8.239867e-02[39m
+      1 Linear |R| = [32m3.459976e-15[39m
+ 9 Nonlinear |R| = [33m8.231541e-02[39m
+
+    Computing Jacobian..                                                                 [[33m 21.90 s[39m] [[33m 1210 MB[39m]
+      0 Linear |R| = [32m8.231541e-02[39m
+      1 Linear |R| = [32m2.939557e-15[39m
+10 Nonlinear |R| = [33m8.231449e-02[39m
+
+    Computing Jacobian..                                                                 [[33m 21.87 s[39m] [[33m 1210 MB[39m]
+      0 Linear |R| = [32m8.231449e-02[39m
+      1 Linear |R| = [32m8.395620e-15[39m
+11 Nonlinear |R| = [33m8.231367e-02[39m
+
+    Computing Jacobian..                                                                 [[33m 21.84 s[39m] [[33m 1210 MB[39m]
+      0 Linear |R| = [32m8.231367e-02[39m
+      1 Linear |R| = [32m4.345048e-15[39m
+12 Nonlinear |R| = [33m8.231310e-02[39m
+
+    Computing Jacobian..                                                                 [[33m 21.77 s[39m] [[33m 1210 MB[39m]
+      0 Linear |R| = [32m8.231310e-02[39m
+      1 Linear |R| = [32m1.369909e-16[39m
+13 Nonlinear |R| = [32m6.663478e-02[39m
+
+    Computing Jacobian..                                                                 [[33m 21.45 s[39m] [[33m 1210 MB[39m]
+      0 Linear |R| = [32m6.663478e-02[39m
+      1 Linear |R| = [32m1.302552e-16[39m
+14 Nonlinear |R| = [32m1.565418e-03[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m650.93 s[39m] [[33m 1030 MB[39m]
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :
+|   1.009930e+00 |   3.155550e-01 |   2.289398e-01 |   3.595188e-01 |  -1.856208e-01 |
+|   1.012916e+00 |   3.352167e-01 |   2.448361e-01 |   3.669878e-01 |  -2.472091e-01 |
+|   1.016499e+00 |   3.578984e-01 |   2.620792e-01 |   3.754090e-01 |  -3.233772e-01 |
+|   1.020799e+00 |   3.860785e-01 |   2.811623e-01 |   3.848562e-01 |  -4.117173e-01 |
+|   1.025959e+00 |   4.206296e-01 |   3.024247e-01 |   3.953886e-01 |  -5.123408e-01 |
+|   1.032150e+00 |   4.617531e-01 |   3.454944e-01 |   4.070440e-01 |  -6.251647e-01 |
+|   1.039581e+00 |   5.105285e-01 |   3.978622e-01 |   4.198386e-01 |  -7.464878e-01 |
+|   1.048497e+00 |   5.786409e-01 |   4.618032e-01 |   4.337882e-01 |  -8.693597e-01 |
+|   1.059196e+00 |   6.873549e-01 |   5.401636e-01 |   4.489705e-01 |  -1.047213e+00 |
+|   1.072035e+00 |   8.152193e-01 |   6.365117e-01 |   4.675396e-01 |  -1.260444e+00 |
+|   1.087442e+00 |   9.936641e-01 |   7.553313e-01 |   4.905903e-01 |  -1.513911e+00 |
+|   1.105931e+00 |   1.185661e+00 |   9.022940e-01 |   5.141552e-01 |  -1.818510e+00 |
+|   1.128117e+00 |   1.386461e+00 |   1.084629e+00 |   5.512623e-01 |  -2.189354e+00 |
+|   1.154740e+00 |   1.593793e+00 |   1.311813e+00 |   6.318335e-01 |  -2.646952e+00 |
+|   1.186688e+00 |   1.809112e+00 |   1.599357e+00 |   7.096064e-01 |  -3.218397e+00 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 21, time = 1.20266, dt = 0.015974
+ 0 Nonlinear |R| = [32m2.263342e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.56 s[39m] [[33m 1030 MB[39m]
+      0 Linear |R| = [32m2.263342e+03[39m
+      1 Linear |R| = [32m1.101164e-11[39m
+ 1 Nonlinear |R| = [32m9.566195e+01[39m
+
+    Computing Jacobian..                                                                 [[33m 21.93 s[39m] [[33m 1211 MB[39m]
+      0 Linear |R| = [32m9.566195e+01[39m
+      1 Linear |R| = [32m4.599901e-13[39m
+ 2 Nonlinear |R| = [32m1.381762e+00[39m
+
+    Computing Jacobian..                                                                 [[33m 21.76 s[39m] [[33m 1205 MB[39m]
+      0 Linear |R| = [32m1.381762e+00[39m
+      1 Linear |R| = [32m1.371909e-14[39m
+ 3 Nonlinear |R| = [32m4.436356e-02[39m
+
+    Computing Jacobian..                                                                 [[33m 21.75 s[39m] [[33m 1205 MB[39m]
+      0 Linear |R| = [32m4.436356e-02[39m
+      1 Linear |R| = [32m3.118345e-16[39m
+ 4 Nonlinear |R| = [32m7.902003e-04[39m
+[32m Solve Converged![39m
+  Finished Solving                                                                       [[33m178.48 s[39m] [[33m  966 MB[39m]
+
+Outlier Variable Residual Norms:
+  vel_x: [33m6.174785e-04[39m
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+:                :                :                :                :                :
+|   1.012916e+00 |   3.352167e-01 |   2.448361e-01 |   3.669878e-01 |  -2.472091e-01 |
+|   1.016499e+00 |   3.578984e-01 |   2.620792e-01 |   3.754090e-01 |  -3.233772e-01 |
+|   1.020799e+00 |   3.860785e-01 |   2.811623e-01 |   3.848562e-01 |  -4.117173e-01 |
+|   1.025959e+00 |   4.206296e-01 |   3.024247e-01 |   3.953886e-01 |  -5.123408e-01 |
+|   1.032150e+00 |   4.617531e-01 |   3.454944e-01 |   4.070440e-01 |  -6.251647e-01 |
+|   1.039581e+00 |   5.105285e-01 |   3.978622e-01 |   4.198386e-01 |  -7.464878e-01 |
+|   1.048497e+00 |   5.786409e-01 |   4.618032e-01 |   4.337882e-01 |  -8.693597e-01 |
+|   1.059196e+00 |   6.873549e-01 |   5.401636e-01 |   4.489705e-01 |  -1.047213e+00 |
+|   1.072035e+00 |   8.152193e-01 |   6.365117e-01 |   4.675396e-01 |  -1.260444e+00 |
+|   1.087442e+00 |   9.936641e-01 |   7.553313e-01 |   4.905903e-01 |  -1.513911e+00 |
+|   1.105931e+00 |   1.185661e+00 |   9.022940e-01 |   5.141552e-01 |  -1.818510e+00 |
+|   1.128117e+00 |   1.386461e+00 |   1.084629e+00 |   5.512623e-01 |  -2.189354e+00 |
+|   1.154740e+00 |   1.593793e+00 |   1.311813e+00 |   6.318335e-01 |  -2.646952e+00 |
+|   1.186688e+00 |   1.809112e+00 |   1.599357e+00 |   7.096064e-01 |  -3.218397e+00 |
+|   1.202662e+00 |   1.884285e+00 |   1.785970e+00 |   7.346719e-01 |  -3.489607e+00 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 22, time = 1.22183, dt = 0.0191688
+ 0 Nonlinear |R| = [32m2.347577e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.66 s[39m] [[33m  966 MB[39m]
+      0 Linear |R| = [32m2.347577e+03[39m
+      1 Linear |R| = [32m1.950257e-11[39m
+ 1 Nonlinear |R| = [32m2.672006e+01[39m
+
+    Computing Jacobian..                                                                 [[33m 22.11 s[39m] [[33m 1200 MB[39m]
+      0 Linear |R| = [32m2.672006e+01[39m
+      1 Linear |R| = [32m2.753047e-13[39m
+ 2 Nonlinear |R| = [32m3.987542e-01[39m
+
+    Computing Jacobian..                                                                 [[33m 22.10 s[39m] [[33m 1204 MB[39m]
