@@ -373,3 +373,49 @@ INSFVBodyForce 加在動量方程右側：
 - ParsedFunctorMaterial 每個區塊只能定義一個 property_name（不能同時輸出多個）
 - INSFVBodyForce 的 functor 可以直接引用 FunctorMaterial 的 property_name
 - 不需要透過 ParsedAux 轉存 AuxVariable
+
+---
+
+## 2026-05-11 工作記錄（RTXWS）
+
+### 重大里程碑：Transient Newton 求解器首次成功收斂 🎉
+
+#### 今日完成事項
+
+1. **人工阻尼（Artificial Damping）實作完成**
+   - `ADParsedFunctorMaterial` 定義 drag_force_x/y/z
+   - `INSFVBodyForce` 施加到動量方程
+   - 效果：成功消除 overflow（6.7e+45 → 正常數值）
+   - 但 SIMPLE 仍在 iter 14 Flip-Flop 震盪
+
+2. **確認 MSFR 無穩態解（Gemini 診斷）**
+   - Re≈446000 球形爐心 16 噴流 → 物理上是統計穩態
+   - SIMPLE 穩態求解器無法處理 → 必須切換 Transient URANS
+
+3. **Transient Newton 求解器建立（th_transient_v2.i）**
+   - 從 SIMPLE 切換的六項關鍵修改：
+     - 移除 pressure_tag、nl_sys_names
+     - INSFVRhieChowInterpolatorSegregated → INSFVRhieChowInterpolator
+     - 移除各變數 solver_sys
+     - 加入 INSFVMomentumTimeDerivative（x/y/z）
+     - 移除 p_diffusion、p_source，加入 INSFVMassAdvection
+     - Executioner 改為 Transient + Newton + LU
+   - pressure scaling = 1e-4（Gemini 建議，解決 6004.574 殘差鎖死問題）
+
+4. **LU 預條件器診斷成功**
+   - 每步 2次 Newton 迭代收斂（殘差 5994 → 67 → 4.7e-3）
+   - 速度場正常發展，出現回流（min_vel_z < 0）
+   - 問題：每步 ~90 秒，生產計算需換更快的預條件器
+
+#### 目前狀態
+- th_transient_v2.i 正在 RTXWS 背景執行（LU 預條件器）
+- Step 20+ 速度成長加速（max_vel_x > 1.8 m/s），觀察中
+- 下一步：換 MUMPS 或 hypre 預條件器加速計算
+
+#### 關鍵學習
+- SIMPLE 的 p_diffusion/p_source 是壓力修正 kernel，Transient 不需要
+- Transient 必須用 INSFVMassAdvection 作為連續方程式 kernel
+- pressure scaling = 1e-4 是 Newton 收斂的關鍵
+- fieldsplit 需要額外 [Preconditioning] block，不能只靠 petsc_options
+- LU（superlu_dist）是診斷用，生產計算需換 MUMPS 或 AMG
+
