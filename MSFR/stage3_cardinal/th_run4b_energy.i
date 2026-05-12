@@ -398,7 +398,7 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   #   壓力：0.3（標準值，通常比動量小以維持穩定）
   #   湍流：0.2（比動量更保守，k-ε 方程式非線性強）
   #   能量：0.9（溫度方程式線性較好，可以較大）
-  momentum_equation_relaxation = 0.1
+  momentum_equation_relaxation = 0.001  # Lock-in：速度場幾乎凍結，專注溫度場
   pressure_variable_relaxation = 0.1
   turbulence_equation_relaxation = '0.2 0.2'
   energy_equation_relaxation = 0.1   # 保守但合理
