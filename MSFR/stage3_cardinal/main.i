@@ -57,7 +57,7 @@
   [density]
     type = ParsedAux
     variable = density
-    expression = '-0.882*temp+4983.6'
+    expression = '-0.882*max(800.0,min(1800.0,temp))+4983.6'  # 截斷：防止非物理溫度造成負密度
     coupled_variables = temp
     execute_on = timestep_begin
   []
@@ -85,7 +85,7 @@
 # ── MoabSkinner：溫度/密度分 bin ──────────────────────────────
 nb   = 15.0
 tmin = 800.0
-tmax = 1150.0
+tmax = 1800.0
 
 [UserObjects]
   [moab]
@@ -122,14 +122,14 @@ tmax = 1150.0
 [Transfers]
   # TH → OpenMC：溫度場（T_fluid → temp）
   [temp_from_th]
-    type = MultiAppGeneralFieldNearestLocationTransfer
+    type = MultiAppGeneralFieldShapeEvaluationTransfer
     from_multi_app = th
     variable = temp
     source_variable = T_fluid
   []
   # OpenMC → TH：功率密度（kappa_fission → power_density）
   [power_to_th]
-    type = MultiAppGeneralFieldNearestLocationTransfer
+    type = MultiAppGeneralFieldShapeEvaluationTransfer
     to_multi_app = th
     source_variable = kappa_fission
     variable = power_density
