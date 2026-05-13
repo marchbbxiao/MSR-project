@@ -66,6 +66,8 @@
 # ── OpenMC 問題設定 ───────────────────────────────────────────
 [Problem]
   type = OpenMCCellAverageProblem
+  temperature_min = 800.0
+  temperature_max = 1800.0
   power = 3.0e9                 # MSFR 設計熱功率 3000 MWth
   temperature_blocks = '1'
   density_blocks = '1'
@@ -84,8 +86,8 @@
 
 # ── MoabSkinner：溫度/密度分 bin ──────────────────────────────
 nb   = 15.0
-tmin = 800.0
-tmax = 1800.0
+tmin = 600.0   # 入口邊界溫度可能低於 800K
+tmax = 1e6   # MoabSkinner 不崩潰，核數據截斷靠 OpenMCCellAverageProblem
 
 [UserObjects]
   [moab]
@@ -96,8 +98,8 @@ tmax = 1800.0
     temperature_max = ${tmax}
     density = density
     n_density_bins = ${nb}
-    density_min = ${fparse -0.882*tmax+4983.6}
-    density_max = ${fparse -0.882*tmin+4983.6}
+    density_min = 3000.0   # 固定值，不隨 tmax 變化
+    density_max = 4500.0   # 固定值
     build_graveyard = true
     output_skins = true
   []
