@@ -1,5 +1,5 @@
 # MSR 耦合模擬專案 — CLAUDE.md
-# 最後更新：2026-04-22 晚
+# 最後更新：2026-05-13
 
 ---
 
@@ -17,15 +17,14 @@ OpenMC + Thermochimica + Zapdos PNP 耦合框架，
 - Ubuntu 24.04，WinFast WS2030
 - Dual Xeon Silver 4216（32核），2×Tesla V100S 32GB
 - 512GB NVMe (/)，4TB HDD (~/data)，IP 192.168.27.190
-- Cardinal 安裝位置：`~/cardinal`（非 ~/MSR-project/cardinal）
-- OpenMC 執行：`mpirun -n 4 --mca btl_vader_single_copy_mechanism none openmc`
+- Cardinal 安裝位置：`~/cardinal`
 - 截面資料庫：ENDF/B-VII.1，路徑 `~/data/cross_sections/endfb-vii.1-hdf5/`
 - conda env：`moose`（`conda activate moose`）
-- `~/.bashrc` 含 NEKRS_HOME、cardinal/install/bin in PATH、msr-sync alias
+- 執行 Cardinal：`mpirun -n 16 --mca btl_vader_single_copy_mechanism none ~/cardinal/cardinal-opt -i main.i`
 
-### A電腦（次要/測試）
+### A電腦（次要/同步）
 - Windows 11 + WSL2 Ubuntu 22.04，username=bruce
-- Cardinal b1e271b638，ENABLE_NEK=false，614/614 tests passing
+- Cardinal b1e271b638，ENABLE_NEK=false
 
 ---
 
@@ -33,107 +32,158 @@ OpenMC + Thermochimica + Zapdos PNP 耦合框架，
 
 ### Stage 1：MSRE keff 驗證 ✅
 - keff = 1.00637 ± 0.00113
-- 幾何：msre_full.h5m（309MB DAGMC）
-- 截面：ENDF/B-VIII.0
-- 執行時間：~2.7hr
 
-### Stage 2：MSFR 單獨 OpenMC ✅（2026-04-15 完成）
-- 最終燃料鹽成分：
-  - U233=0.02135 ao, Li7=0.779961, Li6=3.9e-5
-  - F19=1.66, Th232=0.19985, density=4.1249 g/cm³, T=898K
-- 幾何：msr_reflecting.h5m（boundary: Reflecting）
+### Stage 2：MSFR 單獨 OpenMC ✅（2026-04-15）
 - keff = 1.047 ± 0.004
-- Batches=100（50 inactive + 50 active），particles=1000
-- 工作目錄：`~/MSR-project/MSFR/`
-- 重要檔案：msr.h5m、msr.e、msr_reflecting.h5m、msr_white.h5m
+- 燃料鹽：U233=0.02135, Li7=0.779961, Li6=3.9e-5, F19=1.66, Th232=0.19985
+- density = 4.1249 g/cm³, T=898K
+- 幾何：msr_reflecting.h5m（Reflecting 邊界）
 
-### Stage 3：Cardinal 耦合 — 進行中 🔧
+### Stage 3a：Cardinal 穩態 Picard 耦合 ✅（2026-05-13，run12）
 
-#### 目前工作目錄
-`~/MSR-project/MSFR/stage3_cardinal/`
+**框架驗證成功，5 個 Picard 步全部完成。**
 
-#### 已完成的檔案
-- `neutronics.i`：OpenMC 中子學輸入檔（已完成）
-- `th.i`：MOOSE RANS TH 熱流輸入檔（語法驗證通過，運行調試中）
-- `~/MSR-project/MSFR/msr_with_sidesets.e`：正確的網格（含3個 side sets）
+```
+| time | avg_T    | keff      | max_T  |
+| 1    | 936.0    | 0.91015   | 936.0  |
+| 2    | 1234.0   | 0.87670   | 1800.0 |
+| 3    | 1239.9   | 0.87696   | 1800.0 |
+| 4    | 1245.7   | 0.87716   | 1800.0 |
+| 5    | 1251.4   | 0.87357   | 1800.0 |
+計算時間：198.52 秒（16 核）
+```
+
+**物理問題（已知，待修復）：**
+- avg_T 偏高（1234K vs 預期 1000K）
+- keff 偏低（0.877 vs 目標 1.047，差 17,300 pcm）
+- 原因：313 個 Sliver Elements 數值污染被截斷到 1800K，假收斂
+
+### Stage 3b：暫態耦合 ⏳ 待開始
 
 ---
 
-## th.i 目前狀態（最重要）
+## 當前最重要任務：重寫 th_physics.i
 
-### 架構
-SIMPLE 穩態求解器（SIMPLENonlinearAssembly），7個獨立求解系統：
-- u_system（vel_x）、v_system（vel_y）、w_system（vel_z）
-- pressure_system、TKE_system、TKED_system、energy_system
+**決策：放棄手動 [FVKernels]，改用 MOOSE [Physics] 系統 + Pseudo-Transient**
 
-### 已完成的區塊
-- [GlobalParams]：rhie_chow='rc', advected_interp_method='upwind'
-- [Problem]：type=FEProblem, nl_sys_names 7個系統
-- [UserObjects]：INSFVRhieChowInterpolatorSegregated
-- [Variables]：7個變數，各有 solver_sys + two_term_boundary_expansion=false
-- [AuxVariables]：power_density（0.0）、mu_t（0.162）、yplus
-- [AuxKernels]：kEpsilonViscosityAux（mu_t）、RANSYPlusAux（yplus）
-- [FVKernels]：完整 25+ kernels（質量/動量/能量/TKE/TKED）
-- [FunctorMaterials]：INSFVEnthalpyFunctorMaterial（提供 rho_h）
-- [FVBCs]：入口/出口/壁面三類邊界條件
-- [Executioner]：SIMPLENonlinearAssembly
+### 為什麼要換
 
-### 關鍵 kernel 對應（易混淆的地方）
-- 質量守恆：FVAnisotropicDiffusion + FVDivergence（不是 INSFVMassAdvection）
-- 能量擴散：FVDiffusion（INSFVEnergyDiffusion 在此版本不存在）
-- 能量源項：FVCoupledForce（INSFVBodyForce 只能用於動量）
-- 動量擴散：兩個 kernel（μ 和 μt 分開）
-- TKE/TKED 時間項：已用 # 註解停用（SIMPLE 穩態不需要）
-- 棄用參數：k=TKE → tke=TKE（kEpsilonViscosityAux 等）
+原本 `th_run4b_energy.i` 的根本問題：
+- 手動 SIMPLE [FVKernels]：缺乏 skewness-corrected、Rhie-Chow 等穩定機制
+- 313 個 Sliver Elements（SJ < 0.1）使矩陣對角線→0，速度飆到 3.39e6 m/s
+- 人工阻尼無效（顯式 vs 隱式時機問題）
+- T_clipped 防火牆只是掩蓋問題，avg_T/keff 物理不準確
 
-### 運行測試歷史
-1. relaxation=0.7 → Iter ~50 發散（inf）
-2. relaxation=0.5 → Iter 92 壓力震盪後發散
-3. relaxation=0.3/0.1 → 不發散但收斂慢，後來再次發散
+### 新架構設計
 
-### 明日診斷計劃（最優先）
-**暫時移除能量方程式，先確認純流場能收斂**：
+```ini
+[Physics]
+  [Flow]
+    [flow_physics]
+      compressibility = 'incompressible'
+      momentum_advection_interpolation = 'upwind'
+      pressure_face_interpolation = 'skewness-corrected'  # 消除 Sliver 幾何偏斜
+      velocity_interpolation = 'rc'                        # Rhie-Chow
+      inlet_boundaries = 'gap_enter_boundary'
+      momentum_inlet_types = 'fixed-velocity'
+      wall_boundaries = 'wall'
+      momentum_wall_types = 'noslip'
+      outlet_boundaries = 'gap_exit_boundary'
+      momentum_outlet_types = 'fixed-pressure'
+      pressure_functors = '0'
+    []
+  []
+  [FluidHeatTransfer]
+    [energy_physics]
+      energy_advection_interpolation = 'upwind'
+      energy_face_interpolation = 'skewness-corrected'
+      energy_inlet_types = 'fixed-temperature'
+      energy_inlet_functors = '898.0'
+      energy_wall_types = 'heatflux'
+      energy_wall_functors = '0'
+    []
+  []
+  [Turbulence]
+    [sst_physics]
+      turbulence_handling = 'k-omega-sst'   # 一行取代所有手動 k-ε kernels
+    []
+  []
+[]
 
-在 th.i 中：
-1. `[Variables]` 移除 T_fluid（或將其 solver_sys 改為不存在的系統）
-2. `[FVKernels]` 用 # 停用 energy_advection、energy_diffusion、energy_source
-3. `[FVBCs]` 用 # 停用 inlet_T
-4. `[Problem]` nl_sys_names 移除 energy_system
-5. `[Executioner]` 移除所有 energy_* 參數
-6. `[FunctorMaterials]` 可暫時保留或移除
-
-執行：
-```bash
-cd ~/MSR-project/MSFR/stage3_cardinal
-mpirun -n 4 --mca btl_vader_single_copy_mechanism none ~/cardinal/cardinal-opt -i th.i 2>&1 | tee th_pure_flow.log | tail -20
+[Executioner]
+  type = Transient                # Pseudo-Transient（關鍵！ρV_C/Δt 壓制矩陣病態）
+  solve_type = 'NEWTON'
+  petsc_options_iname = '-pc_type -pc_factor_mat_solver_type
+                          -pc_factor_shift_type -snes_linesearch_type'
+  petsc_options_value  = 'lu     mumps  NONZERO  bt'
+  [TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1e-4
+    cutback_factor = 0.5
+    growth_factor = 1.2
+    dtmax = 1.0
+  []
+  steady_state_detection = true
+  steady_state_tolerance = 1e-6
+  end_time = 1e5
+[]
 ```
 
-若純流場收斂 → 逐步加回能量方程式
+### 關鍵穩定機制
+
+| 機制 | 作用 |
+|------|------|
+| skewness-corrected 面插值 | 消除 Sliver 幾何偏斜導致的梯度估算錯誤 |
+| Rhie-Chow (rc) | 防止同位網格壓力震盪 |
+| upwind 梯度限制器 | 防止局部速度過衝 |
+| Pseudo-Transient ∂(ρu)/∂t | ρV_C/Δt 加到對角線，強制矩陣對角佔優 |
+
+### 開發步驟
+
+1. `th_physics.i`：新架構（[Physics] + Pseudo-Transient）
+2. 單獨跑 TH，確認 Outlier 速度消失
+3. Cardinal run13：接新 TH，確認 keff 回到 ~1.0 附近
+4. 撤除 T_clipped 防火牆
+5. Stage 3b：暫態耦合
 
 ---
 
 ## 網格資訊
 
-### msr_with_sidesets.e
-- 由 `~/MSR-project/MSFR/read_mesh.py` 從 `msr.e` 產生
-- 格式：Exodus II，TETRA4 元素，9245 nodes，35186 elements
-- **三個 side sets（面集合）**：
-  - `gap_exit_boundary`：334 個面（上方截斷面，Z > 0）→ 出口
-  - `gap_enter_boundary`：336 個面（下方截斷面，Z < 0）→ 入口
-  - `wall`：11304 個面（球形爐心外壁）→ 壁面
-- ⚠️ 之前的版本只有 node sets，已修正為 side sets
+### msr_with_sidesets.e（現有網格，繼續使用）
+- Exodus II，TETRA4，9245 nodes，35186 elements
+- Side sets：`gap_enter_boundary`（入口）、`gap_exit_boundary`（出口）、`wall`（壁面）
+- **已知問題：313 個 Sliver Elements（SJ < 0.1），最差 SJ=0.01912**
+- 位置：入口槽與球壁銳角交界
+- 決策：不重建網格，靠 [Physics] 系統的穩定機制應對
 
 ---
 
-## 燃料鹽物性（th.i 使用）
+## 關鍵檔案
+
+```
+工作目錄：~/MSR-project/MSFR/stage3_cardinal/
+網格（TH）：../msr_with_sidesets.e
+網格（OpenMC）：../msr.e
+DAGMC：../msr_reflecting.h5m
+IC（乾淨基準）：th_run4b_out.e（April 24，SIMPLE 動量場收斂）
+當前 TH 輸入：th_run4b_energy.i（舊版，手動 k-ε + T_clipped 防火牆）
+當前耦合主程式：main.i（T_clipped Transfer，tmin=1K，ShapeEvaluation）
+最新 run log：cardinal_run12.log（5 步成功）
+工作日誌：工作日誌/2026-05-12_13.md
+```
+
+---
+
+## 燃料鹽物性
 
 來源：Rouch et al. 2014，ANL Cardinal tutorial
-- rho = 4147.3 kg/m³
+- rho = 4147.3 kg/m³（線性：-0.882T + 4983.6）
 - mu = 0.011266321 Pa·s
 - cp = 1524.86 J/kg/K
-- k = 1.0 W/m·K（暫用）
+- k = 1.0 W/m·K
 - 入口速度 = 1.1838 m/s（+z 方向）
-- 入口溫度 = 898 K，目標平均 936 K
+- 入口溫度 = 898K，目標平均 936K
 
 ---
 
@@ -141,281 +191,54 @@ mpirun -n 4 --mca btl_vader_single_copy_mechanism none ~/cardinal/cardinal-opt -
 
 **Tano et al. 2025 並未耦合 MOOSE RANS TH！**
 - 論文假設固定均勻溫度場 936K
-- 實際耦合：OpenMC + Thermochimica + Zapdos PNP
-- 我們做完整 TH 耦合是超越論文的工作，物理更正確但數值更困難
+- 我們做完整 TH 耦合是超越論文的工作
 
-**SIMPLE 求解器原則：**
-- 求解穩態，不需要時間項（TimeDerivative kernel 會報錯）
-- 鬆弛因子控制收斂穩定性（目前用 momentum=0.3, pressure=0.1, turbulence=0.1）
-- 未來事故暫態分析才需要改用 Transient executioner
+**Sliver Elements 的根本機制：**
+- V_i → 0 → A_diag → 0 → Iteration 1 隱式求解速度飆 3.39e6 m/s
+- Outlier 每次完全相同（3.388682e+06 / 4.181225e+06 / 6.053793e+06）
+- 顯式阻尼無效，T_clipped 只是隔離，[Physics] + Pseudo-Transient 才是根治
+
+**MOOSE [Physics] 系統（2024/2025）：**
+- 舊版 [Modules]/NSFVAction 已棄用（Deprecated）
+- 新版 [Physics] 自動生成標準變數（vel_x, vel_y, vel_z, pressure, T_fluid）
+- Cardinal Transfer 直接對應，不需修改 main.i
 
 ---
 
 ## 工具鏈
 
-### Cardinal 測試結果（RTXWS）
-- Cardinal：783/815（32個失敗集中在 relaxation/triggers 系列）
-- Thermochimica：77/77（需加 --cli-args "Problem/type=FEProblem"）
-- Zapdos：58/62
-
-### 重要路徑
 ```bash
 ~/cardinal/cardinal-opt          # 主執行檔
 ~/cardinal/contrib/moose/        # MOOSE 框架
-~/data/cross_sections/endfb-vii.1-hdf5/  # 截面資料庫
 ~/MSR-project/MSFR/              # MSFR 工作目錄
 ~/MSR-project/MSFR/stage3_cardinal/  # Stage 3 輸入檔
-```
 
-### 語法驗證指令
-```bash
-~/cardinal/cardinal-opt --check-input -i th.i 2>&1 | head -50
-```
+# 語法驗證
+~/cardinal/cardinal-opt --check-input -i th_physics.i 2>&1 | tail -5
 
-### 關鍵 MOOSE 參考範本
+# 單獨跑 TH
+mpirun -n 16 --mca btl_vader_single_copy_mechanism none \
+  ~/cardinal/cardinal-opt -i th_physics.i 2>&1 | tee th_physics.log &
+
+# Cardinal 耦合
+mpirun -n 16 --mca btl_vader_single_copy_mechanism none \
+  ~/cardinal/cardinal-opt -i main.i 2>&1 | tee cardinal_run13.log &
 ```
-~/cardinal/contrib/moose/modules/navier_stokes/test/tests/finite_volume/ins/turbulence/channel/segregated/channel_ERCOFTAC.i
-```
-（作者是 Dr. Mauricio Tano，與論文同一人）
 
 ---
 
 ## GitHub
 
 Repo：marchbbxiao/MSR-project（private）
-日常同步：`msr-sync` alias（git add -A && commit && push）
+日常同步：`msr-sync` alias
 
 ---
 
 ## 下一步（優先順序）
 
-1. **【明日最優先】** 純流場診斷版 th.i，移除能量方程式
-2. 若純流場收斂 → 加回能量方程式
-3. 若仍不收斂 → 考慮改善網格（四面體品質）或初始條件
-4. th.i 收斂後 → 開始寫 neutronics.i（OpenMC Cardinal 版本）
-5. 兩者都收斂後 → 寫 main.i 耦合（MultiApp + Transfers + Picard 迭代）
-6. 最後 → 加入 Thermochimica 和 Zapdos（Steps 8a/8b）
-
----
-
-## 教學工具
-
-`~/MSR-project/MSFR/note/NS_RANS_ke_完整教學工具_v4.html`
-（v4 尚未上傳 repo，需從昨天的 Claude 對話下載）
-## 2026-05-09 A電腦調試記錄（補充 Stage 3 狀態）
-
-### 本日工作摘要
-在 A電腦（家用，4核 WSL2）繼續 Phase 1 SIMPLE 調試。
-承接 RTXWS 的 th_phase1_from_th.i，進行 6 次系統性測試。
-
-### 關鍵物理認知更新
-
-**μt 初始值策略（Mixing Length 模型）：**
-- 0.162 Pa·s：k-ε 公式，與 Mixing Length 不自洽，已棄用
-- 0.56 Pa·s：Re 經驗關係（μt/μ≈50），Re_eff=940，仍震盪
-- 5.6 Pa·s：μt/μ≈500，Re_eff≈96，當前使用
-
-**Re_eff 公式：**
-Re_eff = Re / (1 + μt/μ) = 48000 / (1 + 500) ≈ 96
-
-**execute_on 機制：**
-- NONLINEAR：每步重算，Stokes 熱啟動場速度≈0 → μt 第一步被覆蓋歸零
-- INITIAL：只算一次，凍結 μt 在設定值
-- 當前設定：execute_on = 'INITIAL'
-
-### 六次測試結果摘要
-
-| Test | momentum | pressure | mu_t | 崩潰時間 | 關鍵發現 |
-|------|----------|----------|------|----------|----------|
-| 1 | 0.1 | 0.05 | 0.162/NONLINEAR | iter ~15 | mu_t 被覆蓋歸零 |
-| 2 | 0.1 | 0.05 | 5.6/INITIAL | iter 16 | Momentum 改善 |
-| 3 | 0.1 | 0.05 | 5.6 + l_tol修正 | iter 15 | 線性容忍值無效 |
-| 4 | 0.1 | 0.05 | LU 診斷 | iter 8 | 確認元兇為動量過衝 |
-| 5 | 0.01 | 0.05 | 5.6 | iter 21 | Momentum ↓一個數量級 |
-| 6 | 0.01 | 0.01 | 5.6 | iter 18 | 更早崩潰（反直覺）|
-
-### 未解決問題（待 Gemini 診斷）
-
-每次崩潰前的固定模式：
-```
-某特定 iter：Momentum 三分量同時暴衝至 0.5~0.9
-             Pressure 同步出現極低谷（1e-8~1e-10）
-→ 降低鬆弛因子無法解決
-→ 疑為 Stokes 初始場局部奇異點觸發 A_inv 爆炸
-```
-
-### 當前 th_phase1_from_th.i 設定（最新）
-
-```
-mu_t initial_condition = 5.6
-execute_on = 'INITIAL'
-momentum_equation_relaxation = 0.01
-pressure_variable_relaxation = 0.01
-momentum_l_tol = 1e-6
-momentum_l_abs_tol = 1e-10
-pressure_l_tol = 1e-6
-pressure_l_abs_tol = 1e-10
-pressure_petsc: hypre boomeramg
-momentum_petsc: hypre boomeramg
-```
-
-### 新增工具
-- `monitor.py`：修改為 Phase 1 版本（Pressure 觸發，移除 TKE/TKED）
-
-## 2026-05-10 奇異點診斷（A電腦）
-
-### 重大發現：iter 15 固定爆炸的根本原因
-- MOOSE 內部保護機制：前 14 iter 壓制對流項高階修正，iter 15 解除
-- 與 Ramping、鬆弛因子無關，硬寫在程式碼中
-- iter 15 殘差永遠相同：Momentum 0.994, 0.999, 0.969 / Pressure 1.65e-10
-
-### 奇異點位置（ParaView 確認）
-- 位置：爐心側面壁面中間高度
-- 類型：凹角（Re-entrant Corner）奇異點
-- 具體：入口通道（gap_enter_boundary）切割球形壁面（wall）的垂直溝槽交界處
-- 速度值：6.7e+45 m/s（單一 Sliver element 網格）
-- 診斷檔案：MSFR/stage3_cardinal/th_phase1_from_th_exodus_out.e（iter 14 快照）
-
-### 崩潰物理機制
-凹角導致 Sliver element（極扁四面體），體積極小：
-A_diag ∝ 面積/體積 → 0
-A_inv = 1/A_diag → ∞
-壓力修正量 p' → inf → overflow
-
-### 已嘗試但無效的方法
-- lower_bound/upper_bound：INSFVVelocityVariable 不支援（unused parameter）
-- Velocity Ramping：推遲 2 iter，無法避開 iter 15
-- 降低鬆弛因子（αm=0.01, αp=0.01）：αm+αp 太小導致壓力速度脫節，更早崩潰
-- LU 直接求解器：語法問題，壓力殘差全為 0
-
-### 鬆弛因子耦合原理（重要）
-αm + αp ≈ 1 是 SIMPLE 穩定的必要條件
-αp 太小 → 壓力修正不足 → 質量誤差累積 → A_diag→0 → overflow
-兩者都壓低（0.01/0.01）→ 壓力速度脫節，反而更早崩潰
-
-### 明日任務（RTXWS）
-1. 等 Gemini 確認 ParsedFunctorMaterial 語法後，實作人工阻尼（橡皮牆）
-   - vel > 5.0 m/s → drag = -1e5 × velocity
-   - 壓制 Sliver element 的速度暴衝
-2. num_iterations 恢復 1000，測試能否跑超過 iter 15
-3. 治本方案：Cubit 對凹角施加幾何倒角（Fillet），重切網格
-   - 工具：Coreform Cubit 2026.4（/opt/Coreform-Cubit-2026.4/bin/coreform_cubit）
-   - 目標：消除入口通道與球壁交界處的銳角
-
-## 2026-05-10 晚間補充：人工阻尼語法確認（Gemini v4 回覆）
-
-### 明日實作內容（RTXWS 優先）
-
-**Step 1：在 [FunctorMaterials] 加入三個阻尼材料**
-
-```
-[FunctorMaterials]
-  [drag_calc_x]
-    type = ParsedFunctorMaterial
-    property_name = 'drag_force_x'
-    expression = 'vel_mag := sqrt(vel_x^2 + vel_y^2 + vel_z^2); if(vel_mag > 5.0, -1e5 * vel_x, 0.0)'
-    functor_names = 'vel_x vel_y vel_z'
-  []
-  [drag_calc_y]
-    type = ParsedFunctorMaterial
-    property_name = 'drag_force_y'
-    expression = 'vel_mag := sqrt(vel_x^2 + vel_y^2 + vel_z^2); if(vel_mag > 5.0, -1e5 * vel_y, 0.0)'
-    functor_names = 'vel_x vel_y vel_z'
-  []
-  [drag_calc_z]
-    type = ParsedFunctorMaterial
-    property_name = 'drag_force_z'
-    expression = 'vel_mag := sqrt(vel_x^2 + vel_y^2 + vel_z^2); if(vel_mag > 5.0, -1e5 * vel_z, 0.0)'
-    functor_names = 'vel_x vel_y vel_z'
-  []
-[]
-```
-
-**Step 2：在 [FVKernels] 加入三個 Body Force**
-
-```
-[rubber_wall_x]
-  type = INSFVBodyForce
-  variable = vel_x
-  functor = drag_force_x
-[]
-[rubber_wall_y]
-  type = INSFVBodyForce
-  variable = vel_y
-  functor = drag_force_y
-[]
-[rubber_wall_z]
-  type = INSFVBodyForce
-  variable = vel_z
-  functor = drag_force_z
-[]
-```
-
-**Step 3：Executioner 參數恢復**
-
-```
-num_iterations = 1000
-momentum_equation_relaxation = 0.5
-pressure_variable_relaxation = 0.3
-```
-
-### 人工阻尼物理原理
-INSFVBodyForce 加在動量方程右側：
-ρ Dv/Dt = -∇p + ∇·[(μ+μt)∇v] + ρg + F_body
-
-當 vel_mag > 5.0 m/s：F_body = -1e5 × velocity（巨大反向阻力）
-當 vel_mag ≤ 5.0 m/s：F_body = 0（不干擾正常流場）
-
-效果：Sliver element 在 iter 15 想暴衝時，瞬間撞上橡皮牆被壓回 5 m/s 以內
-→ A_diag 不會趨近於零 → A_inv 不會爆炸 → SIMPLE 可以繼續跑
-
-### 語法注意事項
-- ParsedFunctorMaterial 每個區塊只能定義一個 property_name（不能同時輸出多個）
-- INSFVBodyForce 的 functor 可以直接引用 FunctorMaterial 的 property_name
-- 不需要透過 ParsedAux 轉存 AuxVariable
-
----
-
-## 2026-05-11 工作記錄（RTXWS）
-
-### 重大里程碑：Transient Newton 求解器首次成功收斂 🎉
-
-#### 今日完成事項
-
-1. **人工阻尼（Artificial Damping）實作完成**
-   - `ADParsedFunctorMaterial` 定義 drag_force_x/y/z
-   - `INSFVBodyForce` 施加到動量方程
-   - 效果：成功消除 overflow（6.7e+45 → 正常數值）
-   - 但 SIMPLE 仍在 iter 14 Flip-Flop 震盪
-
-2. **確認 MSFR 無穩態解（Gemini 診斷）**
-   - Re≈446000 球形爐心 16 噴流 → 物理上是統計穩態
-   - SIMPLE 穩態求解器無法處理 → 必須切換 Transient URANS
-
-3. **Transient Newton 求解器建立（th_transient_v2.i）**
-   - 從 SIMPLE 切換的六項關鍵修改：
-     - 移除 pressure_tag、nl_sys_names
-     - INSFVRhieChowInterpolatorSegregated → INSFVRhieChowInterpolator
-     - 移除各變數 solver_sys
-     - 加入 INSFVMomentumTimeDerivative（x/y/z）
-     - 移除 p_diffusion、p_source，加入 INSFVMassAdvection
-     - Executioner 改為 Transient + Newton + LU
-   - pressure scaling = 1e-4（Gemini 建議，解決 6004.574 殘差鎖死問題）
-
-4. **LU 預條件器診斷成功**
-   - 每步 2次 Newton 迭代收斂（殘差 5994 → 67 → 4.7e-3）
-   - 速度場正常發展，出現回流（min_vel_z < 0）
-   - 問題：每步 ~90 秒，生產計算需換更快的預條件器
-
-#### 目前狀態
-- th_transient_v2.i 正在 RTXWS 背景執行（LU 預條件器）
-- Step 20+ 速度成長加速（max_vel_x > 1.8 m/s），觀察中
-- 下一步：換 MUMPS 或 hypre 預條件器加速計算
-
-#### 關鍵學習
-- SIMPLE 的 p_diffusion/p_source 是壓力修正 kernel，Transient 不需要
-- Transient 必須用 INSFVMassAdvection 作為連續方程式 kernel
-- pressure scaling = 1e-4 是 Newton 收斂的關鍵
-- fieldsplit 需要額外 [Preconditioning] block，不能只靠 petsc_options
-- LU（superlu_dist）是診斷用，生產計算需換 MUMPS 或 AMG
-
+1. **【最優先】重寫 th_physics.i**（[Physics] + k-ω SST + Pseudo-Transient）
+2. **單獨測試 TH**：確認 Outlier 速度消失，速度場物理收斂
+3. **Cardinal run13**：接新 TH，確認 keff 回到 ~1.0
+4. **驗證撤除 T_clipped**：avg_T 回到 ~1000K，keff 回到 ~1.047
+5. **Stage 3b**：暫態耦合（Transient Newton + DNP 漂移）
+6. **Stage 4**：燃耗循環（openmc.deplete + Thermochimica + Zapdos）
