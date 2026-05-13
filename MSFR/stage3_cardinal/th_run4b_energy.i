@@ -283,9 +283,14 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     type = MooseVariableFVReal
     two_term_boundary_expansion = false
   []
+  [T_clipped]
+    family = MONOMIAL
+    order = CONSTANT
+  []
 []
 
 # ============================================================
+
 # [AuxKernels]：輔助變數的計算方式
 # ============================================================
 # AuxVariables 只是「容器」，AuxKernels 才是「計算公式」。
@@ -295,6 +300,13 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 #   每次非線性迭代時重新計算，確保 μt 和 y⁺ 隨速度場即時更新。
 #   若設 'TIMESTEP_END' 則每個時間步才更新一次（精度較低）。
 [AuxKernels]
+  [clip_T_firewall]
+    type = ParsedAux
+    variable = T_clipped
+    expression = 'max(800.0, min(1800.0, T_fluid))'
+    coupled_variables = 'T_fluid'
+    execute_on = 'timestep_end nonlinear'
+  []
   [compute_mu_t]
     # 計算湍流動黏度：μt = Cμ × k²/ε
     # kEpsilonViscosityAux 是 MOOSE Navier-Stokes 模組內建的 kernel，
@@ -351,24 +363,9 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 #   對流帶走的是焓（enthalpy），不是溫度本身。
 
 [FunctorMaterials]
-  [drag_x]
-    type = ADParsedFunctorMaterial
-    property_name = 'drag_force_x'
-    expression = 'vel_mag := sqrt(vel_x*vel_x + vel_y*vel_y + vel_z*vel_z); if(vel_mag > 10.0, -1e6 * vel_x, 0.0)'
-    functor_names = 'vel_x vel_y vel_z'
-  []
-  [drag_y]
-    type = ADParsedFunctorMaterial
-    property_name = 'drag_force_y'
-    expression = 'vel_mag := sqrt(vel_x*vel_x + vel_y*vel_y + vel_z*vel_z); if(vel_mag > 10.0, -1e6 * vel_y, 0.0)'
-    functor_names = 'vel_x vel_y vel_z'
-  []
-  [drag_z]
-    type = ADParsedFunctorMaterial
-    property_name = 'drag_force_z'
-    expression = 'vel_mag := sqrt(vel_x*vel_x + vel_y*vel_y + vel_z*vel_z); if(vel_mag > 10.0, -1e6 * vel_z, 0.0)'
-    functor_names = 'vel_x vel_y vel_z'
-  []
+
+
+
   [enthalpy]
     type = INSFVEnthalpyFunctorMaterial
     rho = ${rho}
@@ -689,24 +686,9 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   []
 
   # ----------------------------------------------------------
-  [rubber_wall_x]
-    type = INSFVBodyForce
-    variable = vel_x
-    functor = drag_force_x
-    momentum_component = x
-  []
-  [rubber_wall_y]
-    type = INSFVBodyForce
-    variable = vel_y
-    functor = drag_force_y
-    momentum_component = y
-  []
-  [rubber_wall_z]
-    type = INSFVBodyForce
-    variable = vel_z
-    functor = drag_force_z
-    momentum_component = z
-  []
+
+
+
   # 4. TKE 輸送方程式（k-ε 模型第一條）
   # ----------------------------------------------------------
   # 完整形式（SIMPLE 穩態，無時間項）：

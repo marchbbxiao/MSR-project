@@ -127,7 +127,7 @@ tmax = 1e6   # MoabSkinner 不崩潰，核數據截斷靠 OpenMCCellAverageProbl
     type = MultiAppGeneralFieldShapeEvaluationTransfer
     from_multi_app = th
     variable = temp
-    source_variable = T_fluid
+    source_variable = T_clipped  # 只傳截斷後的乾淨數據
   []
   # OpenMC → TH：功率密度（kappa_fission → power_density）
   [power_to_th]
