@@ -1,0 +1,3344 @@
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+
+[33m
+*** Deprecation Warning ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:1052.5:
+Outputs/exodus_out/interval: 'interval' has been deprecated and will be removed on 02/01/2025. Please use 'time_step_interval' instead.
+
+[39m
+
+[36m
+*** Info ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:82.1:
+The following occurred in the Problem 'MOOSE Problem' of type FEProblem.
+
+Using /home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_stokes_checkpoint_cp/0001 for restart.[39m
+Finished Setting Up                                                                      [[33m  1.98 s[39m] [[33m  266 MB[39m]
+Framework Information:
+MOOSE Version:           git commit b1e271b638 on 2025-10-10
+LibMesh Version:         
+PETSc Version:           3.23.4
+SLEPc Version:           3.23.2
+Current Time:            Mon May 11 11:25:12 2026
+Executable Timestamp:    Tue Apr 14 14:29:53 2026
+
+Input File(s):
+  /home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  User Checkpoint:         Disabled
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          4
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 9245
+    Local:                 2162
+    Min/Max/Avg:           2004/2614/2311
+  Elems:                   
+    Total:                 35186
+    Local:                 8797
+    Min/Max/Avg:           8796/8797/8796
+  Num Subdomains:          1
+  Num Partitions:          4
+  Partitioner:             metis
+
+Nonlinear System:
+  Num DOFs:                140744
+  Num Local DOFs:          35188
+  Variables:               { "vel_x" "vel_y" "vel_z" "pressure" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Auxiliary System:
+  Num DOFs:                105558
+  Num Local DOFs:          26391
+  Variables:               { "power_density" "mixing_len" "mu_t" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             IterationAdaptiveDT
+  TimeIntegrator(s):       ImplicitEuler
+  Solver Mode:             NEWTON 
+  PETSc Preconditioner:    hypre boomeramg strong_threshold: 0.7 (auto)
+  MOOSE Preconditioner:    SMP (auto) 
+
+[33m
+*** Warning ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:36.1: unused parameter 'cp'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:37.1: unused parameter 'k'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:188.5: unused parameter 'Variables/vel_x/lower_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:189.5: unused parameter 'Variables/vel_x/upper_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:203.5: unused parameter 'Variables/vel_y/lower_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:204.5: unused parameter 'Variables/vel_y/upper_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:218.5: unused parameter 'Variables/vel_z/lower_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:219.5: unused parameter 'Variables/vel_z/upper_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:427.5: unused parameter 'FunctorMaterials/drag_force_x/use_ad'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:434.5: unused parameter 'FunctorMaterials/drag_force_y/use_ad'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:441.5: unused parameter 'FunctorMaterials/drag_force_z/use_ad'[39m
+
+Time Step 0, time = 1
+
+Postprocessor Values:
++----------------+----------------+----------------+----------------+----------------+
+| time           | max_vel_x      | max_vel_y      | max_vel_z      | min_vel_z      |
++----------------+----------------+----------------+----------------+----------------+
+|   1.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
++----------------+----------------+----------------+----------------+----------------+
+
+
+Time Step 1, time = 1.001, dt = 0.001
+ 0 Nonlinear |R| = [32m5.994609e+03[39m
+Currently Executing
+    Computing Jacobian..                                                                 [[33m 21.83 s[39m] [[33m  443 MB[39m]
+      0 Linear |R| = [32m5.994609e+03[39m
+      1 Linear |R| = [33m5.994608e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994119e+03[39m
+      4 Linear |R| = [33m5.994101e+03[39m
+      5 Linear |R| = [33m5.994084e+03[39m
+      6 Linear |R| = [33m5.994067e+03[39m
+      7 Linear |R| = [33m5.994049e+03[39m
+      8 Linear |R| = [33m5.994032e+03[39m
+      9 Linear |R| = [33m5.994015e+03[39m
+     10 Linear |R| = [33m5.993998e+03[39m
+     11 Linear |R| = [33m5.993980e+03[39m
+     12 Linear |R| = [33m5.993963e+03[39m
+     13 Linear |R| = [33m5.993946e+03[39m
+     14 Linear |R| = [33m5.993929e+03[39m
+     15 Linear |R| = [33m5.993911e+03[39m
+     16 Linear |R| = [33m5.993894e+03[39m
+     17 Linear |R| = [33m5.993877e+03[39m
+     18 Linear |R| = [33m5.993860e+03[39m
+     19 Linear |R| = [33m5.993842e+03[39m
+     20 Linear |R| = [33m5.993825e+03[39m
+     21 Linear |R| = [33m5.993808e+03[39m
+     22 Linear |R| = [33m5.993790e+03[39m
+     23 Linear |R| = [33m5.993773e+03[39m
+     24 Linear |R| = [33m5.993756e+03[39m
+     25 Linear |R| = [33m5.993739e+03[39m
+     26 Linear |R| = [33m5.993721e+03[39m
+     27 Linear |R| = [33m5.993704e+03[39m
+     28 Linear |R| = [33m5.993687e+03[39m
+     29 Linear |R| = [33m5.993670e+03[39m
+     30 Linear |R| = [31m6.006773e+03[39m
+     31 Linear |R| = [33m6.006773e+03[39m
+     32 Linear |R| = [33m6.006773e+03[39m
+     33 Linear |R| = [33m5.997217e+03[39m
+     34 Linear |R| = [33m5.986963e+03[39m
+     35 Linear |R| = [33m5.976688e+03[39m
+     36 Linear |R| = [33m5.966460e+03[39m
+     37 Linear |R| = [33m5.956285e+03[39m
+     38 Linear |R| = [33m5.946161e+03[39m
+     39 Linear |R| = [33m5.936089e+03[39m
+     40 Linear |R| = [33m5.926068e+03[39m
+     41 Linear |R| = [33m5.916097e+03[39m
+     42 Linear |R| = [33m5.906176e+03[39m
+     43 Linear |R| = [33m5.896306e+03[39m
+     44 Linear |R| = [33m5.886484e+03[39m
+     45 Linear |R| = [33m5.876712e+03[39m
+     46 Linear |R| = [33m5.866988e+03[39m
+     47 Linear |R| = [33m5.857312e+03[39m
+     48 Linear |R| = [33m5.847684e+03[39m
+     49 Linear |R| = [33m5.838103e+03[39m
+     50 Linear |R| = [33m5.828569e+03[39m
+     51 Linear |R| = [33m5.819081e+03[39m
+     52 Linear |R| = [33m5.809640e+03[39m
+     53 Linear |R| = [33m5.800245e+03[39m
+     54 Linear |R| = [33m5.790895e+03[39m
+     55 Linear |R| = [33m5.781590e+03[39m
+     56 Linear |R| = [33m5.772330e+03[39m
+     57 Linear |R| = [33m5.763114e+03[39m
+     58 Linear |R| = [33m5.753942e+03[39m
+     59 Linear |R| = [33m5.744814e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 53.72 s[39m] [[33m  544 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1.0005, dt = 0.0005
+ 0 Nonlinear |R| = [32m5.994609e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 22.07 s[39m] [[33m  581 MB[39m]
+      0 Linear |R| = [32m5.994609e+03[39m
+      1 Linear |R| = [33m5.994608e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994118e+03[39m
+      4 Linear |R| = [33m5.994093e+03[39m
+      5 Linear |R| = [33m5.994067e+03[39m
+      6 Linear |R| = [33m5.994041e+03[39m
+      7 Linear |R| = [33m5.994016e+03[39m
+      8 Linear |R| = [33m5.993990e+03[39m
+      9 Linear |R| = [33m5.993964e+03[39m
+     10 Linear |R| = [33m5.993939e+03[39m
+     11 Linear |R| = [33m5.993913e+03[39m
+     12 Linear |R| = [33m5.993888e+03[39m
+     13 Linear |R| = [33m5.993862e+03[39m
+     14 Linear |R| = [33m5.993836e+03[39m
+     15 Linear |R| = [33m5.993811e+03[39m
+     16 Linear |R| = [33m5.993785e+03[39m
+     17 Linear |R| = [33m5.993760e+03[39m
+     18 Linear |R| = [33m5.993734e+03[39m
+     19 Linear |R| = [33m5.993708e+03[39m
+     20 Linear |R| = [33m5.993683e+03[39m
+     21 Linear |R| = [33m5.993657e+03[39m
+     22 Linear |R| = [33m5.993632e+03[39m
+     23 Linear |R| = [33m5.993606e+03[39m
+     24 Linear |R| = [33m5.993580e+03[39m
+     25 Linear |R| = [33m5.993555e+03[39m
+     26 Linear |R| = [33m5.993529e+03[39m
+     27 Linear |R| = [33m5.993503e+03[39m
+     28 Linear |R| = [33m5.993478e+03[39m
+     29 Linear |R| = [33m5.993452e+03[39m
+     30 Linear |R| = [31m6.012659e+03[39m
+     31 Linear |R| = [33m6.012659e+03[39m
+     32 Linear |R| = [33m6.012659e+03[39m
+     33 Linear |R| = [33m5.995312e+03[39m
+     34 Linear |R| = [33m5.979410e+03[39m
+     35 Linear |R| = [33m5.964013e+03[39m
+     36 Linear |R| = [33m5.948842e+03[39m
+     37 Linear |R| = [33m5.933819e+03[39m
+     38 Linear |R| = [33m5.918921e+03[39m
+     39 Linear |R| = [33m5.904139e+03[39m
+     40 Linear |R| = [33m5.889469e+03[39m
+     41 Linear |R| = [33m5.874908e+03[39m
+     42 Linear |R| = [33m5.860455e+03[39m
+     43 Linear |R| = [33m5.846108e+03[39m
+     44 Linear |R| = [33m5.831866e+03[39m
+     45 Linear |R| = [33m5.817728e+03[39m
+     46 Linear |R| = [33m5.803692e+03[39m
+     47 Linear |R| = [33m5.789758e+03[39m
+     48 Linear |R| = [33m5.775923e+03[39m
+     49 Linear |R| = [33m5.762187e+03[39m
+     50 Linear |R| = [33m5.748549e+03[39m
+     51 Linear |R| = [33m5.735008e+03[39m
+     52 Linear |R| = [33m5.721564e+03[39m
+     53 Linear |R| = [33m5.708188e+03[39m
+     54 Linear |R| = [33m5.695021e+03[39m
+     55 Linear |R| = [33m5.681776e+03[39m
+     56 Linear |R| = [33m5.668906e+03[39m
+     57 Linear |R| = [33m5.655856e+03[39m
+     58 Linear |R| = [33m5.643093e+03[39m
+     59 Linear |R| = [33m5.630270e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 53.89 s[39m] [[33m  627 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1.00025, dt = 0.00025
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.84 s[39m] [[33m  627 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994608e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994118e+03[39m
+      4 Linear |R| = [33m5.994098e+03[39m
+      5 Linear |R| = [33m5.994078e+03[39m
+      6 Linear |R| = [33m5.994059e+03[39m
+      7 Linear |R| = [33m5.994039e+03[39m
+      8 Linear |R| = [33m5.994019e+03[39m
+      9 Linear |R| = [33m5.993999e+03[39m
+     10 Linear |R| = [33m5.993979e+03[39m
+     11 Linear |R| = [33m5.993960e+03[39m
+     12 Linear |R| = [33m5.993940e+03[39m
+     13 Linear |R| = [33m5.993920e+03[39m
+     14 Linear |R| = [33m5.993900e+03[39m
+     15 Linear |R| = [33m5.993881e+03[39m
+     16 Linear |R| = [33m5.993861e+03[39m
+     17 Linear |R| = [33m5.993841e+03[39m
+     18 Linear |R| = [33m5.993821e+03[39m
+     19 Linear |R| = [33m5.993802e+03[39m
+     20 Linear |R| = [33m5.993782e+03[39m
+     21 Linear |R| = [33m5.993762e+03[39m
+     22 Linear |R| = [33m5.993742e+03[39m
+     23 Linear |R| = [33m5.993723e+03[39m
+     24 Linear |R| = [33m5.993703e+03[39m
+     25 Linear |R| = [33m5.993683e+03[39m
+     26 Linear |R| = [33m5.993663e+03[39m
+     27 Linear |R| = [33m5.993644e+03[39m
+     28 Linear |R| = [33m5.993624e+03[39m
+     29 Linear |R| = [33m5.993604e+03[39m
+     30 Linear |R| = [31m6.008262e+03[39m
+     31 Linear |R| = [33m6.008262e+03[39m
+     32 Linear |R| = [33m6.008262e+03[39m
+     33 Linear |R| = [33m6.007910e+03[39m
+     34 Linear |R| = [33m6.007902e+03[39m
+     35 Linear |R| = [33m6.007464e+03[39m
+     36 Linear |R| = [33m5.994811e+03[39m
+     37 Linear |R| = [33m5.992143e+03[39m
+     38 Linear |R| = [33m5.989238e+03[39m
+     39 Linear |R| = [33m5.986347e+03[39m
+     40 Linear |R| = [33m5.983459e+03[39m
+     41 Linear |R| = [33m5.980576e+03[39m
+     42 Linear |R| = [33m5.977696e+03[39m
+     43 Linear |R| = [33m5.974821e+03[39m
+     44 Linear |R| = [33m5.971950e+03[39m
+     45 Linear |R| = [33m5.969083e+03[39m
+     46 Linear |R| = [33m5.966220e+03[39m
+     47 Linear |R| = [33m5.963361e+03[39m
+     48 Linear |R| = [33m5.960507e+03[39m
+     49 Linear |R| = [33m5.957656e+03[39m
+     50 Linear |R| = [33m5.954810e+03[39m
+     51 Linear |R| = [33m5.951967e+03[39m
+     52 Linear |R| = [33m5.949129e+03[39m
+     53 Linear |R| = [33m5.946295e+03[39m
+     54 Linear |R| = [33m5.943465e+03[39m
+     55 Linear |R| = [33m5.940639e+03[39m
+     56 Linear |R| = [33m5.937816e+03[39m
+     57 Linear |R| = [33m5.934998e+03[39m
+     58 Linear |R| = [33m5.932184e+03[39m
+     59 Linear |R| = [33m5.929374e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+ 1 Nonlinear |R| = [33m5.994605e+03[39m
+    Computing Jacobian...                                                                [[33m 25.96 s[39m] [[33m  627 MB[39m]
+      0 Linear |R| = [32m5.994605e+03[39m
+      1 Linear |R| = [33m5.994604e+03[39m
+      2 Linear |R| = [33m5.994149e+03[39m
+      3 Linear |R| = [33m5.994125e+03[39m
+      4 Linear |R| = [33m5.994103e+03[39m
+      5 Linear |R| = [33m5.994082e+03[39m
+      6 Linear |R| = [33m5.994060e+03[39m
+      7 Linear |R| = [33m5.994039e+03[39m
+      8 Linear |R| = [33m5.994017e+03[39m
+      9 Linear |R| = [33m5.993996e+03[39m
+     10 Linear |R| = [33m5.993974e+03[39m
+     11 Linear |R| = [33m5.993953e+03[39m
+     12 Linear |R| = [33m5.993931e+03[39m
+     13 Linear |R| = [33m5.993910e+03[39m
+     14 Linear |R| = [33m5.993888e+03[39m
+     15 Linear |R| = [33m5.993867e+03[39m
+     16 Linear |R| = [33m5.993845e+03[39m
+     17 Linear |R| = [33m5.993824e+03[39m
+     18 Linear |R| = [33m5.993803e+03[39m
+     19 Linear |R| = [33m5.993781e+03[39m
+     20 Linear |R| = [33m5.993760e+03[39m
+     21 Linear |R| = [33m5.993738e+03[39m
+     22 Linear |R| = [33m5.993717e+03[39m
+     23 Linear |R| = [33m5.993695e+03[39m
+     24 Linear |R| = [33m5.993674e+03[39m
+     25 Linear |R| = [33m5.993652e+03[39m
+     26 Linear |R| = [33m5.993631e+03[39m
+     27 Linear |R| = [33m5.993609e+03[39m
+     28 Linear |R| = [33m5.993588e+03[39m
+     29 Linear |R| = [33m5.993566e+03[39m
+     30 Linear |R| = [31m6.009115e+03[39m
+     31 Linear |R| = [33m6.009115e+03[39m
+     32 Linear |R| = [33m6.009115e+03[39m
+     33 Linear |R| = [33m6.009115e+03[39m
+     34 Linear |R| = [33m6.004831e+03[39m
+     35 Linear |R| = [33m6.004623e+03[39m
+     36 Linear |R| = [33m5.989901e+03[39m
+     37 Linear |R| = [33m5.980806e+03[39m
+     38 Linear |R| = [33m5.970699e+03[39m
+     39 Linear |R| = [33m5.960739e+03[39m
+     40 Linear |R| = [33m5.950821e+03[39m
+     41 Linear |R| = [33m5.940953e+03[39m
+     42 Linear |R| = [33m5.931135e+03[39m
+     43 Linear |R| = [33m5.921364e+03[39m
+     44 Linear |R| = [33m5.911642e+03[39m
+     45 Linear |R| = [33m5.901968e+03[39m
+     46 Linear |R| = [33m5.892341e+03[39m
+     47 Linear |R| = [33m5.882760e+03[39m
+     48 Linear |R| = [33m5.873227e+03[39m
+     49 Linear |R| = [33m5.863739e+03[39m
+     50 Linear |R| = [33m5.854298e+03[39m
+     51 Linear |R| = [33m5.844902e+03[39m
+     52 Linear |R| = [33m5.835551e+03[39m
+     53 Linear |R| = [33m5.826245e+03[39m
+     54 Linear |R| = [33m5.816983e+03[39m
+     55 Linear |R| = [33m5.807765e+03[39m
+     56 Linear |R| = [33m5.798591e+03[39m
+     57 Linear |R| = [33m5.789460e+03[39m
+     58 Linear |R| = [33m5.780372e+03[39m
+     59 Linear |R| = [33m5.771327e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 82.94 s[39m] [[33m  580 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1.00012, dt = 0.000125
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.57 s[39m] [[33m  580 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994607e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994118e+03[39m
+      4 Linear |R| = [33m5.994116e+03[39m
+      5 Linear |R| = [33m5.994114e+03[39m
+      6 Linear |R| = [33m5.994112e+03[39m
+      7 Linear |R| = [33m5.994110e+03[39m
+      8 Linear |R| = [33m5.994108e+03[39m
+      9 Linear |R| = [33m5.994107e+03[39m
+     10 Linear |R| = [33m5.994105e+03[39m
+     11 Linear |R| = [33m5.994103e+03[39m
+     12 Linear |R| = [33m5.994101e+03[39m
+     13 Linear |R| = [33m5.994099e+03[39m
+     14 Linear |R| = [33m5.994097e+03[39m
+     15 Linear |R| = [33m5.994095e+03[39m
+     16 Linear |R| = [33m5.994093e+03[39m
+     17 Linear |R| = [33m5.994091e+03[39m
+     18 Linear |R| = [33m5.994089e+03[39m
+     19 Linear |R| = [33m5.994087e+03[39m
+     20 Linear |R| = [33m5.994085e+03[39m
+     21 Linear |R| = [33m5.994083e+03[39m
+     22 Linear |R| = [33m5.994081e+03[39m
+     23 Linear |R| = [33m5.994080e+03[39m
+     24 Linear |R| = [33m5.994078e+03[39m
+     25 Linear |R| = [33m5.994076e+03[39m
+     26 Linear |R| = [33m5.994074e+03[39m
+     27 Linear |R| = [33m5.994072e+03[39m
+     28 Linear |R| = [33m5.994070e+03[39m
+     29 Linear |R| = [33m5.994068e+03[39m
+     30 Linear |R| = [31m5.995397e+03[39m
+     31 Linear |R| = [33m5.995397e+03[39m
+     32 Linear |R| = [33m5.995397e+03[39m
+     33 Linear |R| = [33m5.995378e+03[39m
+     34 Linear |R| = [33m5.994124e+03[39m
+     35 Linear |R| = [33m5.992842e+03[39m
+     36 Linear |R| = [33m5.991561e+03[39m
+     37 Linear |R| = [33m5.990281e+03[39m
+     38 Linear |R| = [33m5.989001e+03[39m
+     39 Linear |R| = [33m5.987723e+03[39m
+     40 Linear |R| = [33m5.986445e+03[39m
+     41 Linear |R| = [33m5.985168e+03[39m
+     42 Linear |R| = [33m5.983891e+03[39m
+     43 Linear |R| = [33m5.982616e+03[39m
+     44 Linear |R| = [33m5.981341e+03[39m
+     45 Linear |R| = [33m5.980068e+03[39m
+     46 Linear |R| = [33m5.978795e+03[39m
+     47 Linear |R| = [33m5.977522e+03[39m
+     48 Linear |R| = [33m5.976251e+03[39m
+     49 Linear |R| = [33m5.974981e+03[39m
+     50 Linear |R| = [33m5.973711e+03[39m
+     51 Linear |R| = [33m5.972442e+03[39m
+     52 Linear |R| = [33m5.971174e+03[39m
+     53 Linear |R| = [33m5.969906e+03[39m
+     54 Linear |R| = [33m5.968640e+03[39m
+     55 Linear |R| = [33m5.967374e+03[39m
+     56 Linear |R| = [33m5.966109e+03[39m
+     57 Linear |R| = [33m5.964845e+03[39m
+     58 Linear |R| = [33m5.963582e+03[39m
+     59 Linear |R| = [33m5.962319e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 48.65 s[39m] [[33m  627 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1.00006, dt = 6.25e-05
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.59 s[39m] [[33m  627 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994607e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994119e+03[39m
+      4 Linear |R| = [33m5.994115e+03[39m
+      5 Linear |R| = [33m5.994112e+03[39m
+      6 Linear |R| = [33m5.994109e+03[39m
+      7 Linear |R| = [33m5.994106e+03[39m
+      8 Linear |R| = [33m5.994103e+03[39m
+      9 Linear |R| = [33m5.994100e+03[39m
+     10 Linear |R| = [33m5.994097e+03[39m
+     11 Linear |R| = [33m5.994094e+03[39m
+     12 Linear |R| = [33m5.994091e+03[39m
+     13 Linear |R| = [33m5.994088e+03[39m
+     14 Linear |R| = [33m5.994085e+03[39m
+     15 Linear |R| = [33m5.994082e+03[39m
+     16 Linear |R| = [33m5.994079e+03[39m
+     17 Linear |R| = [33m5.994076e+03[39m
+     18 Linear |R| = [33m5.994072e+03[39m
+     19 Linear |R| = [33m5.994069e+03[39m
+     20 Linear |R| = [33m5.994066e+03[39m
+     21 Linear |R| = [33m5.994063e+03[39m
+     22 Linear |R| = [33m5.994060e+03[39m
+     23 Linear |R| = [33m5.994057e+03[39m
+     24 Linear |R| = [33m5.994054e+03[39m
+     25 Linear |R| = [33m5.994051e+03[39m
+     26 Linear |R| = [33m5.994048e+03[39m
+     27 Linear |R| = [33m5.994045e+03[39m
+     28 Linear |R| = [33m5.994042e+03[39m
+     29 Linear |R| = [33m5.994039e+03[39m
+     30 Linear |R| = [31m5.996155e+03[39m
+     31 Linear |R| = [33m5.996155e+03[39m
+     32 Linear |R| = [33m5.996155e+03[39m
+     33 Linear |R| = [33m5.996117e+03[39m
+     34 Linear |R| = [33m5.994303e+03[39m
+     35 Linear |R| = [33m5.992353e+03[39m
+     36 Linear |R| = [33m5.990407e+03[39m
+     37 Linear |R| = [33m5.988462e+03[39m
+     38 Linear |R| = [33m5.986519e+03[39m
+     39 Linear |R| = [33m5.984578e+03[39m
+     40 Linear |R| = [33m5.982639e+03[39m
+     41 Linear |R| = [33m5.980702e+03[39m
+     42 Linear |R| = [33m5.978766e+03[39m
+     43 Linear |R| = [33m5.976833e+03[39m
+     44 Linear |R| = [33m5.974901e+03[39m
+     45 Linear |R| = [33m5.972971e+03[39m
+     46 Linear |R| = [33m5.971044e+03[39m
+     47 Linear |R| = [33m5.969118e+03[39m
+     48 Linear |R| = [33m5.967193e+03[39m
+     49 Linear |R| = [33m5.965271e+03[39m
+     50 Linear |R| = [33m5.963351e+03[39m
+     51 Linear |R| = [33m5.961432e+03[39m
+     52 Linear |R| = [33m5.959515e+03[39m
+     53 Linear |R| = [33m5.957601e+03[39m
+     54 Linear |R| = [33m5.955688e+03[39m
+     55 Linear |R| = [33m5.953776e+03[39m
+     56 Linear |R| = [33m5.951867e+03[39m
+     57 Linear |R| = [33m5.949960e+03[39m
+     58 Linear |R| = [33m5.948054e+03[39m
+     59 Linear |R| = [33m5.946150e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 48.63 s[39m] [[33m  627 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1.00003, dt = 3.125e-05
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.52 s[39m] [[33m  627 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994607e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994119e+03[39m
+      4 Linear |R| = [33m5.994108e+03[39m
+      5 Linear |R| = [33m5.994099e+03[39m
+      6 Linear |R| = [33m5.994090e+03[39m
+      7 Linear |R| = [33m5.994082e+03[39m
+      8 Linear |R| = [33m5.994073e+03[39m
+      9 Linear |R| = [33m5.994064e+03[39m
+     10 Linear |R| = [33m5.994055e+03[39m
+     11 Linear |R| = [33m5.994047e+03[39m
+     12 Linear |R| = [33m5.994038e+03[39m
+     13 Linear |R| = [33m5.994029e+03[39m
+     14 Linear |R| = [33m5.994020e+03[39m
+     15 Linear |R| = [33m5.994012e+03[39m
+     16 Linear |R| = [33m5.994003e+03[39m
+     17 Linear |R| = [33m5.993994e+03[39m
+     18 Linear |R| = [33m5.993985e+03[39m
+     19 Linear |R| = [33m5.993976e+03[39m
+     20 Linear |R| = [33m5.993968e+03[39m
+     21 Linear |R| = [33m5.993959e+03[39m
+     22 Linear |R| = [33m5.993950e+03[39m
+     23 Linear |R| = [33m5.993941e+03[39m
+     24 Linear |R| = [33m5.993933e+03[39m
+     25 Linear |R| = [33m5.993924e+03[39m
+     26 Linear |R| = [33m5.993915e+03[39m
+     27 Linear |R| = [33m5.993906e+03[39m
+     28 Linear |R| = [33m5.993898e+03[39m
+     29 Linear |R| = [33m5.993889e+03[39m
+     30 Linear |R| = [31m6.000231e+03[39m
+     31 Linear |R| = [33m6.000231e+03[39m
+     32 Linear |R| = [33m6.000231e+03[39m
+     33 Linear |R| = [33m6.000231e+03[39m
+     34 Linear |R| = [33m5.994111e+03[39m
+     35 Linear |R| = [33m5.988091e+03[39m
+     36 Linear |R| = [33m5.982082e+03[39m
+     37 Linear |R| = [33m5.976091e+03[39m
+     38 Linear |R| = [33m5.970118e+03[39m
+     39 Linear |R| = [33m5.964163e+03[39m
+     40 Linear |R| = [33m5.958225e+03[39m
+     41 Linear |R| = [33m5.952305e+03[39m
+     42 Linear |R| = [33m5.946403e+03[39m
+     43 Linear |R| = [33m5.940518e+03[39m
+     44 Linear |R| = [33m5.934651e+03[39m
+     45 Linear |R| = [33m5.928801e+03[39m
+     46 Linear |R| = [33m5.922969e+03[39m
+     47 Linear |R| = [33m5.917153e+03[39m
+     48 Linear |R| = [33m5.911355e+03[39m
+     49 Linear |R| = [33m5.905574e+03[39m
+     50 Linear |R| = [33m5.899809e+03[39m
+     51 Linear |R| = [33m5.894062e+03[39m
+     52 Linear |R| = [33m5.888331e+03[39m
+     53 Linear |R| = [33m5.882617e+03[39m
+     54 Linear |R| = [33m5.876919e+03[39m
+     55 Linear |R| = [33m5.871238e+03[39m
+     56 Linear |R| = [33m5.865574e+03[39m
+     57 Linear |R| = [33m5.859926e+03[39m
+     58 Linear |R| = [33m5.854294e+03[39m
+     59 Linear |R| = [33m5.848678e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 48.57 s[39m] [[33m  627 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1.00002, dt = 1.5625e-05
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.65 s[39m] [[33m  627 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994607e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994121e+03[39m
+      4 Linear |R| = [33m5.994114e+03[39m
+      5 Linear |R| = [33m5.994113e+03[39m
+      6 Linear |R| = [33m5.994110e+03[39m
+      7 Linear |R| = [33m5.994107e+03[39m
+      8 Linear |R| = [33m5.994105e+03[39m
+      9 Linear |R| = [33m5.994102e+03[39m
+     10 Linear |R| = [33m5.994100e+03[39m
+     11 Linear |R| = [33m5.994097e+03[39m
+     12 Linear |R| = [33m5.994095e+03[39m
+     13 Linear |R| = [33m5.994092e+03[39m
+     14 Linear |R| = [33m5.994090e+03[39m
+     15 Linear |R| = [33m5.994087e+03[39m
+     16 Linear |R| = [33m5.994085e+03[39m
+     17 Linear |R| = [33m5.994082e+03[39m
+     18 Linear |R| = [33m5.994080e+03[39m
+     19 Linear |R| = [33m5.994077e+03[39m
+     20 Linear |R| = [33m5.994075e+03[39m
+     21 Linear |R| = [33m5.994072e+03[39m
+     22 Linear |R| = [33m5.994070e+03[39m
+     23 Linear |R| = [33m5.994067e+03[39m
+     24 Linear |R| = [33m5.994065e+03[39m
+     25 Linear |R| = [33m5.994062e+03[39m
+     26 Linear |R| = [33m5.994060e+03[39m
+     27 Linear |R| = [33m5.994057e+03[39m
+     28 Linear |R| = [33m5.994055e+03[39m
+     29 Linear |R| = [33m5.994052e+03[39m
+     30 Linear |R| = [31m5.995803e+03[39m
+     31 Linear |R| = [33m5.995803e+03[39m
+     32 Linear |R| = [33m5.995803e+03[39m
+     33 Linear |R| = [33m5.995756e+03[39m
+     34 Linear |R| = [33m5.994156e+03[39m
+     35 Linear |R| = [33m5.992465e+03[39m
+     36 Linear |R| = [33m5.990769e+03[39m
+     37 Linear |R| = [33m5.989107e+03[39m
+     38 Linear |R| = [33m5.987438e+03[39m
+     39 Linear |R| = [33m5.985771e+03[39m
+     40 Linear |R| = [33m5.984105e+03[39m
+     41 Linear |R| = [33m5.982441e+03[39m
+     42 Linear |R| = [33m5.980778e+03[39m
+     43 Linear |R| = [33m5.979116e+03[39m
+     44 Linear |R| = [33m5.977456e+03[39m
+     45 Linear |R| = [33m5.975797e+03[39m
+     46 Linear |R| = [33m5.974140e+03[39m
+     47 Linear |R| = [33m5.972484e+03[39m
+     48 Linear |R| = [33m5.970829e+03[39m
+     49 Linear |R| = [33m5.969176e+03[39m
+     50 Linear |R| = [33m5.967524e+03[39m
+     51 Linear |R| = [33m5.965874e+03[39m
+     52 Linear |R| = [33m5.964224e+03[39m
+     53 Linear |R| = [33m5.962577e+03[39m
+     54 Linear |R| = [33m5.960930e+03[39m
+     55 Linear |R| = [33m5.959285e+03[39m
+     56 Linear |R| = [33m5.957641e+03[39m
+     57 Linear |R| = [33m5.955999e+03[39m
+     58 Linear |R| = [33m5.954358e+03[39m
+     59 Linear |R| = [33m5.952718e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 48.51 s[39m] [[33m  627 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1.00001, dt = 7.8125e-06
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.12 s[39m] [[33m  627 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994607e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994124e+03[39m
+      4 Linear |R| = [33m5.994114e+03[39m
+      5 Linear |R| = [33m5.994034e+03[39m
+      6 Linear |R| = [33m5.993958e+03[39m
+      7 Linear |R| = [33m5.993882e+03[39m
+      8 Linear |R| = [33m5.993807e+03[39m
+      9 Linear |R| = [33m5.993731e+03[39m
+     10 Linear |R| = [33m5.993655e+03[39m
+     11 Linear |R| = [33m5.993579e+03[39m
+     12 Linear |R| = [33m5.993503e+03[39m
+     13 Linear |R| = [33m5.993427e+03[39m
+     14 Linear |R| = [33m5.993351e+03[39m
+     15 Linear |R| = [33m5.993275e+03[39m
+     16 Linear |R| = [33m5.993200e+03[39m
+     17 Linear |R| = [33m5.993124e+03[39m
+     18 Linear |R| = [33m5.993048e+03[39m
+     19 Linear |R| = [33m5.992972e+03[39m
+     20 Linear |R| = [33m5.992896e+03[39m
+     21 Linear |R| = [33m5.992820e+03[39m
+     22 Linear |R| = [33m5.992744e+03[39m
+     23 Linear |R| = [33m5.992669e+03[39m
+     24 Linear |R| = [33m5.992593e+03[39m
+     25 Linear |R| = [33m5.992517e+03[39m
+     26 Linear |R| = [33m5.992441e+03[39m
+     27 Linear |R| = [33m5.992365e+03[39m
+     28 Linear |R| = [33m5.992289e+03[39m
+     29 Linear |R| = [33m5.992214e+03[39m
+     30 Linear |R| = [31m6.041819e+03[39m
+     31 Linear |R| = [33m6.041819e+03[39m
+     32 Linear |R| = [33m6.041819e+03[39m
+     33 Linear |R| = [33m6.037923e+03[39m
+     34 Linear |R| = [33m6.026687e+03[39m
+     35 Linear |R| = [33m6.007269e+03[39m
+     36 Linear |R| = [33m5.987917e+03[39m
+     37 Linear |R| = [33m5.967783e+03[39m
+     38 Linear |R| = [33m5.948007e+03[39m
+     39 Linear |R| = [33m5.928387e+03[39m
+     40 Linear |R| = [33m5.908967e+03[39m
+     41 Linear |R| = [33m5.889735e+03[39m
+     42 Linear |R| = [33m5.870690e+03[39m
+     43 Linear |R| = [33m5.851828e+03[39m
+     44 Linear |R| = [33m5.833147e+03[39m
+     45 Linear |R| = [33m5.814644e+03[39m
+     46 Linear |R| = [33m5.796316e+03[39m
+     47 Linear |R| = [33m5.778160e+03[39m
+     48 Linear |R| = [33m5.760174e+03[39m
+     49 Linear |R| = [33m5.742354e+03[39m
+     50 Linear |R| = [33m5.724699e+03[39m
+     51 Linear |R| = [33m5.707206e+03[39m
+     52 Linear |R| = [33m5.689872e+03[39m
+     53 Linear |R| = [33m5.672695e+03[39m
+     54 Linear |R| = [33m5.655673e+03[39m
+     55 Linear |R| = [33m5.638803e+03[39m
+     56 Linear |R| = [33m5.622083e+03[39m
+     57 Linear |R| = [33m5.605511e+03[39m
+     58 Linear |R| = [33m5.589085e+03[39m
+     59 Linear |R| = [33m5.572802e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 48.06 s[39m] [[33m  627 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 3.90625e-06
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.70 s[39m] [[33m  627 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994607e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994131e+03[39m
+      4 Linear |R| = [33m5.994114e+03[39m
+      5 Linear |R| = [33m5.994024e+03[39m
+      6 Linear |R| = [33m5.993926e+03[39m
+      7 Linear |R| = [33m5.993829e+03[39m
+      8 Linear |R| = [33m5.993732e+03[39m
+      9 Linear |R| = [33m5.993635e+03[39m
+     10 Linear |R| = [33m5.993538e+03[39m
+     11 Linear |R| = [33m5.993441e+03[39m
+     12 Linear |R| = [33m5.993343e+03[39m
+     13 Linear |R| = [33m5.993246e+03[39m
+     14 Linear |R| = [33m5.993149e+03[39m
+     15 Linear |R| = [33m5.993052e+03[39m
+     16 Linear |R| = [33m5.992955e+03[39m
+     17 Linear |R| = [33m5.992858e+03[39m
+     18 Linear |R| = [33m5.992761e+03[39m
+     19 Linear |R| = [33m5.992664e+03[39m
+     20 Linear |R| = [33m5.992567e+03[39m
+     21 Linear |R| = [33m5.992469e+03[39m
+     22 Linear |R| = [33m5.992372e+03[39m
+     23 Linear |R| = [33m5.992275e+03[39m
+     24 Linear |R| = [33m5.992178e+03[39m
+     25 Linear |R| = [33m5.992081e+03[39m
+     26 Linear |R| = [33m5.991984e+03[39m
+     27 Linear |R| = [33m5.991887e+03[39m
+     28 Linear |R| = [33m5.991790e+03[39m
+     29 Linear |R| = [33m5.991693e+03[39m
+     30 Linear |R| = [31m6.054126e+03[39m
+     31 Linear |R| = [33m6.054126e+03[39m
+     32 Linear |R| = [33m6.054126e+03[39m
+     33 Linear |R| = [33m6.052283e+03[39m
+     34 Linear |R| = [33m6.049565e+03[39m
+     35 Linear |R| = [33m6.044907e+03[39m
+     36 Linear |R| = [33m6.042198e+03[39m
+     37 Linear |R| = [33m6.038677e+03[39m
+     38 Linear |R| = [33m6.035091e+03[39m
+     39 Linear |R| = [33m6.031503e+03[39m
+     40 Linear |R| = [33m6.027920e+03[39m
+     41 Linear |R| = [33m6.024342e+03[39m
+     42 Linear |R| = [33m6.020772e+03[39m
+     43 Linear |R| = [33m6.017207e+03[39m
+     44 Linear |R| = [33m6.013649e+03[39m
+     45 Linear |R| = [33m6.010097e+03[39m
+     46 Linear |R| = [33m6.006552e+03[39m
+     47 Linear |R| = [33m6.003013e+03[39m
+     48 Linear |R| = [33m5.999480e+03[39m
+     49 Linear |R| = [33m5.995953e+03[39m
+     50 Linear |R| = [33m5.992432e+03[39m
+     51 Linear |R| = [33m5.988918e+03[39m
+     52 Linear |R| = [33m5.985410e+03[39m
+     53 Linear |R| = [33m5.981908e+03[39m
+     54 Linear |R| = [33m5.978412e+03[39m
+     55 Linear |R| = [33m5.974922e+03[39m
+     56 Linear |R| = [33m5.971439e+03[39m
+     57 Linear |R| = [33m5.967961e+03[39m
+     58 Linear |R| = [33m5.964490e+03[39m
+     59 Linear |R| = [33m5.961024e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+ 1 Nonlinear |R| = [33m5.994590e+03[39m
+    Computing Jacobian..                                                                 [[33m 21.64 s[39m] [[33m  627 MB[39m]
+      0 Linear |R| = [32m5.994590e+03[39m
+      1 Linear |R| = [33m5.994589e+03[39m
+      2 Linear |R| = [33m5.994135e+03[39m
+      3 Linear |R| = [33m5.994098e+03[39m
+      4 Linear |R| = [33m5.994097e+03[39m
+      5 Linear |R| = [33m5.994082e+03[39m
+      6 Linear |R| = [33m5.994048e+03[39m
+      7 Linear |R| = [33m5.994010e+03[39m
+      8 Linear |R| = [33m5.993973e+03[39m
+      9 Linear |R| = [33m5.993936e+03[39m
+     10 Linear |R| = [33m5.993899e+03[39m
+     11 Linear |R| = [33m5.993862e+03[39m
+     12 Linear |R| = [33m5.993825e+03[39m
+     13 Linear |R| = [33m5.993789e+03[39m
+     14 Linear |R| = [33m5.993752e+03[39m
+     15 Linear |R| = [33m5.993715e+03[39m
+     16 Linear |R| = [33m5.993678e+03[39m
+     17 Linear |R| = [33m5.993641e+03[39m
+     18 Linear |R| = [33m5.993604e+03[39m
+     19 Linear |R| = [33m5.993567e+03[39m
+     20 Linear |R| = [33m5.993530e+03[39m
+     21 Linear |R| = [33m5.993493e+03[39m
+     22 Linear |R| = [33m5.993456e+03[39m
+     23 Linear |R| = [33m5.993419e+03[39m
+     24 Linear |R| = [33m5.993382e+03[39m
+     25 Linear |R| = [33m5.993345e+03[39m
+     26 Linear |R| = [33m5.993308e+03[39m
+     27 Linear |R| = [33m5.993272e+03[39m
+     28 Linear |R| = [33m5.993235e+03[39m
+     29 Linear |R| = [33m5.993198e+03[39m
+     30 Linear |R| = [31m6.017888e+03[39m
+     31 Linear |R| = [33m6.017888e+03[39m
+     32 Linear |R| = [33m6.017888e+03[39m
+     33 Linear |R| = [33m6.016512e+03[39m
+     34 Linear |R| = [33m5.993642e+03[39m
+     35 Linear |R| = [33m5.973053e+03[39m
+     36 Linear |R| = [33m5.955004e+03[39m
+     37 Linear |R| = [33m5.942243e+03[39m
+     38 Linear |R| = [33m5.931052e+03[39m
+     39 Linear |R| = [33m5.919471e+03[39m
+     40 Linear |R| = [33m5.907806e+03[39m
+     41 Linear |R| = [33m5.896204e+03[39m
+     42 Linear |R| = [33m5.884673e+03[39m
+     43 Linear |R| = [33m5.873209e+03[39m
+     44 Linear |R| = [33m5.861813e+03[39m
+     45 Linear |R| = [33m5.850482e+03[39m
+     46 Linear |R| = [33m5.839217e+03[39m
+     47 Linear |R| = [33m5.828016e+03[39m
+     48 Linear |R| = [33m5.816880e+03[39m
+     49 Linear |R| = [33m5.805808e+03[39m
+     50 Linear |R| = [33m5.794798e+03[39m
+     51 Linear |R| = [33m5.783851e+03[39m
+     52 Linear |R| = [33m5.772965e+03[39m
+     53 Linear |R| = [33m5.762141e+03[39m
+     54 Linear |R| = [33m5.751378e+03[39m
+     55 Linear |R| = [33m5.740674e+03[39m
+     56 Linear |R| = [33m5.730030e+03[39m
+     57 Linear |R| = [33m5.719445e+03[39m
+     58 Linear |R| = [33m5.708919e+03[39m
+     59 Linear |R| = [33m5.698450e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 76.48 s[39m] [[33m  580 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 1.95313e-06
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.61 s[39m] [[33m  580 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994607e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994141e+03[39m
+      4 Linear |R| = [33m5.994114e+03[39m
+      5 Linear |R| = [33m5.994067e+03[39m
+      6 Linear |R| = [33m5.994021e+03[39m
+      7 Linear |R| = [33m5.993974e+03[39m
+      8 Linear |R| = [33m5.993928e+03[39m
+      9 Linear |R| = [33m5.993881e+03[39m
+     10 Linear |R| = [33m5.993835e+03[39m
+     11 Linear |R| = [33m5.993789e+03[39m
+     12 Linear |R| = [33m5.993742e+03[39m
+     13 Linear |R| = [33m5.993696e+03[39m
+     14 Linear |R| = [33m5.993650e+03[39m
+     15 Linear |R| = [33m5.993603e+03[39m
+     16 Linear |R| = [33m5.993557e+03[39m
+     17 Linear |R| = [33m5.993511e+03[39m
+     18 Linear |R| = [33m5.993465e+03[39m
+     19 Linear |R| = [33m5.993418e+03[39m
+     20 Linear |R| = [33m5.993372e+03[39m
+     21 Linear |R| = [33m5.993326e+03[39m
+     22 Linear |R| = [33m5.993279e+03[39m
+     23 Linear |R| = [33m5.993233e+03[39m
+     24 Linear |R| = [33m5.993187e+03[39m
+     25 Linear |R| = [33m5.993140e+03[39m
+     26 Linear |R| = [33m5.993094e+03[39m
+     27 Linear |R| = [33m5.993048e+03[39m
+     28 Linear |R| = [33m5.993001e+03[39m
+     29 Linear |R| = [33m5.992955e+03[39m
+     30 Linear |R| = [31m6.022643e+03[39m
+     31 Linear |R| = [33m6.022643e+03[39m
+     32 Linear |R| = [33m6.022643e+03[39m
+     33 Linear |R| = [33m6.011433e+03[39m
+     34 Linear |R| = [33m6.010013e+03[39m
+     35 Linear |R| = [33m6.001298e+03[39m
+     36 Linear |R| = [33m5.994064e+03[39m
+     37 Linear |R| = [33m5.986806e+03[39m
+     38 Linear |R| = [33m5.979576e+03[39m
+     39 Linear |R| = [33m5.972371e+03[39m
+     40 Linear |R| = [33m5.965193e+03[39m
+     41 Linear |R| = [33m5.958041e+03[39m
+     42 Linear |R| = [33m5.950914e+03[39m
+     43 Linear |R| = [33m5.943813e+03[39m
+     44 Linear |R| = [33m5.936737e+03[39m
+     45 Linear |R| = [33m5.929686e+03[39m
+     46 Linear |R| = [33m5.922660e+03[39m
+     47 Linear |R| = [33m5.915660e+03[39m
+     48 Linear |R| = [33m5.908684e+03[39m
+     49 Linear |R| = [33m5.901732e+03[39m
+     50 Linear |R| = [33m5.894805e+03[39m
+     51 Linear |R| = [33m5.887903e+03[39m
+     52 Linear |R| = [33m5.881025e+03[39m
+     53 Linear |R| = [33m5.874170e+03[39m
+     54 Linear |R| = [33m5.867340e+03[39m
+     55 Linear |R| = [33m5.860533e+03[39m
+     56 Linear |R| = [33m5.853750e+03[39m
+     57 Linear |R| = [33m5.846991e+03[39m
+     58 Linear |R| = [33m5.840255e+03[39m
+     59 Linear |R| = [33m5.833542e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+ 1 Nonlinear |R| = [33m5.994569e+03[39m
+    Computing Jacobian..                                                                 [[33m 21.75 s[39m] [[33m  627 MB[39m]
+      0 Linear |R| = [32m5.994569e+03[39m
+      1 Linear |R| = [33m5.994568e+03[39m
+      2 Linear |R| = [33m5.994114e+03[39m
+      3 Linear |R| = [33m5.994106e+03[39m
+      4 Linear |R| = [33m5.994096e+03[39m
+      5 Linear |R| = [33m5.994018e+03[39m
+      6 Linear |R| = [33m5.993935e+03[39m
+      7 Linear |R| = [33m5.993852e+03[39m
+      8 Linear |R| = [33m5.993769e+03[39m
+      9 Linear |R| = [33m5.993686e+03[39m
+     10 Linear |R| = [33m5.993603e+03[39m
+     11 Linear |R| = [33m5.993520e+03[39m
+     12 Linear |R| = [33m5.993437e+03[39m
+     13 Linear |R| = [33m5.993354e+03[39m
+     14 Linear |R| = [33m5.993271e+03[39m
+     15 Linear |R| = [33m5.993188e+03[39m
+     16 Linear |R| = [33m5.993105e+03[39m
+     17 Linear |R| = [33m5.993022e+03[39m
+     18 Linear |R| = [33m5.992939e+03[39m
+     19 Linear |R| = [33m5.992856e+03[39m
+     20 Linear |R| = [33m5.992773e+03[39m
+     21 Linear |R| = [33m5.992690e+03[39m
+     22 Linear |R| = [33m5.992607e+03[39m
+     23 Linear |R| = [33m5.992524e+03[39m
+     24 Linear |R| = [33m5.992441e+03[39m
+     25 Linear |R| = [33m5.992358e+03[39m
+     26 Linear |R| = [33m5.992275e+03[39m
+     27 Linear |R| = [33m5.992192e+03[39m
+     28 Linear |R| = [33m5.992109e+03[39m
+     29 Linear |R| = [33m5.992026e+03[39m
+     30 Linear |R| = [31m6.045335e+03[39m
+     31 Linear |R| = [33m6.045335e+03[39m
+     32 Linear |R| = [33m6.045335e+03[39m
+     33 Linear |R| = [33m6.044599e+03[39m
+     34 Linear |R| = [33m6.044572e+03[39m
+     35 Linear |R| = [33m6.040614e+03[39m
+     36 Linear |R| = [33m6.022144e+03[39m
+     37 Linear |R| = [33m6.004750e+03[39m
+     38 Linear |R| = [33m5.987494e+03[39m
+     39 Linear |R| = [33m5.970387e+03[39m
+     40 Linear |R| = [33m5.953425e+03[39m
+     41 Linear |R| = [33m5.936607e+03[39m
+     42 Linear |R| = [33m5.919930e+03[39m
+     43 Linear |R| = [33m5.903394e+03[39m
+     44 Linear |R| = [33m5.886995e+03[39m
+     45 Linear |R| = [33m5.870732e+03[39m
+     46 Linear |R| = [33m5.854603e+03[39m
+     47 Linear |R| = [33m5.838607e+03[39m
+     48 Linear |R| = [33m5.822740e+03[39m
+     49 Linear |R| = [33m5.807003e+03[39m
+     50 Linear |R| = [33m5.791392e+03[39m
+     51 Linear |R| = [33m5.775907e+03[39m
+     52 Linear |R| = [33m5.760545e+03[39m
+     53 Linear |R| = [33m5.745305e+03[39m
+     54 Linear |R| = [33m5.730185e+03[39m
+     55 Linear |R| = [33m5.715184e+03[39m
+     56 Linear |R| = [33m5.700301e+03[39m
+     57 Linear |R| = [33m5.685533e+03[39m
+     58 Linear |R| = [33m5.670879e+03[39m
+     59 Linear |R| = [33m5.656338e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 78.04 s[39m] [[33m  580 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 9.76563e-07
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.98 s[39m] [[33m  580 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994607e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994149e+03[39m
+      4 Linear |R| = [33m5.994113e+03[39m
+      5 Linear |R| = [33m5.994094e+03[39m
+      6 Linear |R| = [33m5.994073e+03[39m
+      7 Linear |R| = [33m5.994053e+03[39m
+      8 Linear |R| = [33m5.994033e+03[39m
+      9 Linear |R| = [33m5.994013e+03[39m
+     10 Linear |R| = [33m5.993992e+03[39m
+     11 Linear |R| = [33m5.993972e+03[39m
+     12 Linear |R| = [33m5.993952e+03[39m
+     13 Linear |R| = [33m5.993932e+03[39m
+     14 Linear |R| = [33m5.993911e+03[39m
+     15 Linear |R| = [33m5.993891e+03[39m
+     16 Linear |R| = [33m5.993871e+03[39m
+     17 Linear |R| = [33m5.993851e+03[39m
+     18 Linear |R| = [33m5.993830e+03[39m
+     19 Linear |R| = [33m5.993810e+03[39m
+     20 Linear |R| = [33m5.993790e+03[39m
+     21 Linear |R| = [33m5.993770e+03[39m
+     22 Linear |R| = [33m5.993749e+03[39m
+     23 Linear |R| = [33m5.993729e+03[39m
+     24 Linear |R| = [33m5.993709e+03[39m
+     25 Linear |R| = [33m5.993689e+03[39m
+     26 Linear |R| = [33m5.993668e+03[39m
+     27 Linear |R| = [33m5.993648e+03[39m
+     28 Linear |R| = [33m5.993628e+03[39m
+     29 Linear |R| = [33m5.993608e+03[39m
+     30 Linear |R| = [31m6.006416e+03[39m
+     31 Linear |R| = [33m6.006416e+03[39m
+     32 Linear |R| = [33m6.006416e+03[39m
+     33 Linear |R| = [33m5.997142e+03[39m
+     34 Linear |R| = [33m5.997136e+03[39m
+     35 Linear |R| = [33m5.991517e+03[39m
+     36 Linear |R| = [33m5.985876e+03[39m
+     37 Linear |R| = [33m5.980260e+03[39m
+     38 Linear |R| = [33m5.974660e+03[39m
+     39 Linear |R| = [33m5.969076e+03[39m
+     40 Linear |R| = [33m5.963507e+03[39m
+     41 Linear |R| = [33m5.957954e+03[39m
+     42 Linear |R| = [33m5.952416e+03[39m
+     43 Linear |R| = [33m5.946894e+03[39m
+     44 Linear |R| = [33m5.941387e+03[39m
+     45 Linear |R| = [33m5.935895e+03[39m
+     46 Linear |R| = [33m5.930419e+03[39m
+     47 Linear |R| = [33m5.924957e+03[39m
+     48 Linear |R| = [33m5.919511e+03[39m
+     49 Linear |R| = [33m5.914080e+03[39m
+     50 Linear |R| = [33m5.908663e+03[39m
+     51 Linear |R| = [33m5.903262e+03[39m
+     52 Linear |R| = [33m5.897875e+03[39m
+     53 Linear |R| = [33m5.892503e+03[39m
+     54 Linear |R| = [33m5.887146e+03[39m
+     55 Linear |R| = [33m5.881803e+03[39m
+     56 Linear |R| = [33m5.876475e+03[39m
+     57 Linear |R| = [33m5.871161e+03[39m
+     58 Linear |R| = [33m5.865862e+03[39m
+     59 Linear |R| = [33m5.860577e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+ 1 Nonlinear |R| = [33m5.994566e+03[39m
+    Computing Jacobian...                                                                [[33m 25.77 s[39m] [[33m  627 MB[39m]
+      0 Linear |R| = [32m5.994566e+03[39m
+      1 Linear |R| = [33m5.994565e+03[39m
+      2 Linear |R| = [33m5.994112e+03[39m
+      3 Linear |R| = [33m5.994093e+03[39m
+      4 Linear |R| = [33m5.994085e+03[39m
+      5 Linear |R| = [33m5.994016e+03[39m
+      6 Linear |R| = [33m5.993947e+03[39m
+      7 Linear |R| = [33m5.993878e+03[39m
+      8 Linear |R| = [33m5.993809e+03[39m
+      9 Linear |R| = [33m5.993740e+03[39m
+     10 Linear |R| = [33m5.993671e+03[39m
+     11 Linear |R| = [33m5.993602e+03[39m
+     12 Linear |R| = [33m5.993533e+03[39m
+     13 Linear |R| = [33m5.993464e+03[39m
+     14 Linear |R| = [33m5.993395e+03[39m
+     15 Linear |R| = [33m5.993326e+03[39m
+     16 Linear |R| = [33m5.993257e+03[39m
+     17 Linear |R| = [33m5.993189e+03[39m
+     18 Linear |R| = [33m5.993120e+03[39m
+     19 Linear |R| = [33m5.993051e+03[39m
+     20 Linear |R| = [33m5.992982e+03[39m
+     21 Linear |R| = [33m5.992913e+03[39m
+     22 Linear |R| = [33m5.992844e+03[39m
+     23 Linear |R| = [33m5.992775e+03[39m
+     24 Linear |R| = [33m5.992706e+03[39m
+     25 Linear |R| = [33m5.992637e+03[39m
+     26 Linear |R| = [33m5.992568e+03[39m
+     27 Linear |R| = [33m5.992499e+03[39m
+     28 Linear |R| = [33m5.992430e+03[39m
+     29 Linear |R| = [33m5.992361e+03[39m
+     30 Linear |R| = [31m6.038525e+03[39m
+     31 Linear |R| = [33m6.038525e+03[39m
+     32 Linear |R| = [33m6.038525e+03[39m
+     33 Linear |R| = [33m6.006661e+03[39m
+     34 Linear |R| = [33m6.006334e+03[39m
+     35 Linear |R| = [33m5.985964e+03[39m
+     36 Linear |R| = [33m5.968496e+03[39m
+     37 Linear |R| = [33m5.951064e+03[39m
+     38 Linear |R| = [33m5.933788e+03[39m
+     39 Linear |R| = [33m5.916661e+03[39m
+     40 Linear |R| = [33m5.899681e+03[39m
+     41 Linear |R| = [33m5.882847e+03[39m
+     42 Linear |R| = [33m5.866156e+03[39m
+     43 Linear |R| = [33m5.849606e+03[39m
+     44 Linear |R| = [33m5.833196e+03[39m
+     45 Linear |R| = [33m5.816923e+03[39m
+     46 Linear |R| = [33m5.800785e+03[39m
+     47 Linear |R| = [33m5.784781e+03[39m
+     48 Linear |R| = [33m5.768909e+03[39m
+     49 Linear |R| = [33m5.753166e+03[39m
+     50 Linear |R| = [33m5.737552e+03[39m
+     51 Linear |R| = [33m5.722064e+03[39m
+     52 Linear |R| = [33m5.706701e+03[39m
+     53 Linear |R| = [33m5.691461e+03[39m
+     54 Linear |R| = [33m5.676343e+03[39m
+     55 Linear |R| = [33m5.661344e+03[39m
+     56 Linear |R| = [33m5.646464e+03[39m
+     57 Linear |R| = [33m5.631700e+03[39m
+     58 Linear |R| = [33m5.617052e+03[39m
+     59 Linear |R| = [33m5.602517e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+ 2 Nonlinear |R| = [33m5.994566e+03[39m
+    Computing Jacobian..                                                                 [[33m 21.68 s[39m] [[33m  627 MB[39m]
+      0 Linear |R| = [32m5.994566e+03[39m
+      1 Linear |R| = [33m5.994565e+03[39m
+      2 Linear |R| = [33m5.994112e+03[39m
+      3 Linear |R| = [33m5.994093e+03[39m
+      4 Linear |R| = [33m5.994085e+03[39m
+      5 Linear |R| = [33m5.994010e+03[39m
+      6 Linear |R| = [33m5.993935e+03[39m
+      7 Linear |R| = [33m5.993860e+03[39m
+      8 Linear |R| = [33m5.993784e+03[39m
+      9 Linear |R| = [33m5.993709e+03[39m
+     10 Linear |R| = [33m5.993634e+03[39m
+     11 Linear |R| = [33m5.993559e+03[39m
+     12 Linear |R| = [33m5.993484e+03[39m
+     13 Linear |R| = [33m5.993409e+03[39m
+     14 Linear |R| = [33m5.993333e+03[39m
+     15 Linear |R| = [33m5.993258e+03[39m
+     16 Linear |R| = [33m5.993183e+03[39m
+     17 Linear |R| = [33m5.993108e+03[39m
+     18 Linear |R| = [33m5.993033e+03[39m
+     19 Linear |R| = [33m5.992958e+03[39m
+     20 Linear |R| = [33m5.992882e+03[39m
+     21 Linear |R| = [33m5.992807e+03[39m
+     22 Linear |R| = [33m5.992732e+03[39m
+     23 Linear |R| = [33m5.992657e+03[39m
+     24 Linear |R| = [33m5.992582e+03[39m
+     25 Linear |R| = [33m5.992507e+03[39m
+     26 Linear |R| = [33m5.992432e+03[39m
+     27 Linear |R| = [33m5.992356e+03[39m
+     28 Linear |R| = [33m5.992281e+03[39m
+     29 Linear |R| = [33m5.992206e+03[39m
+     30 Linear |R| = [31m6.042349e+03[39m
+     31 Linear |R| = [33m6.042349e+03[39m
+     32 Linear |R| = [33m6.042349e+03[39m
+     33 Linear |R| = [33m6.010678e+03[39m
+     34 Linear |R| = [33m6.010592e+03[39m
+     35 Linear |R| = [33m5.989195e+03[39m
+     36 Linear |R| = [33m5.971896e+03[39m
+     37 Linear |R| = [33m5.954433e+03[39m
+     38 Linear |R| = [33m5.937139e+03[39m
+     39 Linear |R| = [33m5.919994e+03[39m
+     40 Linear |R| = [33m5.902997e+03[39m
+     41 Linear |R| = [33m5.886145e+03[39m
+     42 Linear |R| = [33m5.869436e+03[39m
+     43 Linear |R| = [33m5.852870e+03[39m
+     44 Linear |R| = [33m5.836442e+03[39m
+     45 Linear |R| = [33m5.820152e+03[39m
+     46 Linear |R| = [33m5.803998e+03[39m
+     47 Linear |R| = [33m5.787978e+03[39m
+     48 Linear |R| = [33m5.772089e+03[39m
+     49 Linear |R| = [33m5.756331e+03[39m
+     50 Linear |R| = [33m5.740701e+03[39m
+     51 Linear |R| = [33m5.725198e+03[39m
+     52 Linear |R| = [33m5.709819e+03[39m
+     53 Linear |R| = [33m5.694564e+03[39m
+     54 Linear |R| = [33m5.679430e+03[39m
+     55 Linear |R| = [33m5.664417e+03[39m
+     56 Linear |R| = [33m5.649522e+03[39m
+     57 Linear |R| = [33m5.634744e+03[39m
+     58 Linear |R| = [33m5.620081e+03[39m
+     59 Linear |R| = [33m5.605532e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 2
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m129.64 s[39m] [[33m  579 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 4.88281e-07
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.66 s[39m] [[33m  579 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994607e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994151e+03[39m
+      4 Linear |R| = [33m5.994111e+03[39m
+      5 Linear |R| = [33m5.994022e+03[39m
+      6 Linear |R| = [33m5.993923e+03[39m
+      7 Linear |R| = [33m5.993823e+03[39m
+      8 Linear |R| = [33m5.993724e+03[39m
+      9 Linear |R| = [33m5.993625e+03[39m
+     10 Linear |R| = [33m5.993526e+03[39m
+     11 Linear |R| = [33m5.993426e+03[39m
+     12 Linear |R| = [33m5.993327e+03[39m
+     13 Linear |R| = [33m5.993228e+03[39m
+     14 Linear |R| = [33m5.993129e+03[39m
+     15 Linear |R| = [33m5.993030e+03[39m
+     16 Linear |R| = [33m5.992930e+03[39m
+     17 Linear |R| = [33m5.992831e+03[39m
+     18 Linear |R| = [33m5.992732e+03[39m
+     19 Linear |R| = [33m5.992633e+03[39m
+     20 Linear |R| = [33m5.992534e+03[39m
+     21 Linear |R| = [33m5.992434e+03[39m
+     22 Linear |R| = [33m5.992335e+03[39m
+     23 Linear |R| = [33m5.992236e+03[39m
+     24 Linear |R| = [33m5.992137e+03[39m
+     25 Linear |R| = [33m5.992038e+03[39m
+     26 Linear |R| = [33m5.991939e+03[39m
+     27 Linear |R| = [33m5.991839e+03[39m
+     28 Linear |R| = [33m5.991740e+03[39m
+     29 Linear |R| = [33m5.991641e+03[39m
+     30 Linear |R| = [31m6.055647e+03[39m
+     31 Linear |R| = [33m6.055647e+03[39m
+     32 Linear |R| = [33m6.055647e+03[39m
+     33 Linear |R| = [33m6.046042e+03[39m
+     34 Linear |R| = [33m6.045902e+03[39m
+     35 Linear |R| = [33m6.042812e+03[39m
+     36 Linear |R| = [33m6.042634e+03[39m
+     37 Linear |R| = [33m6.042510e+03[39m
+     38 Linear |R| = [33m6.042365e+03[39m
+     39 Linear |R| = [33m6.042221e+03[39m
+     40 Linear |R| = [33m6.042076e+03[39m
+     41 Linear |R| = [33m6.041932e+03[39m
+     42 Linear |R| = [33m6.041787e+03[39m
+     43 Linear |R| = [33m6.041643e+03[39m
+     44 Linear |R| = [33m6.041499e+03[39m
+     45 Linear |R| = [33m6.041354e+03[39m
+     46 Linear |R| = [33m6.041210e+03[39m
+     47 Linear |R| = [33m6.041065e+03[39m
+     48 Linear |R| = [33m6.040921e+03[39m
+     49 Linear |R| = [33m6.040777e+03[39m
+     50 Linear |R| = [33m6.040632e+03[39m
+     51 Linear |R| = [33m6.040488e+03[39m
+     52 Linear |R| = [33m6.040344e+03[39m
+     53 Linear |R| = [33m6.040199e+03[39m
+     54 Linear |R| = [33m6.040055e+03[39m
+     55 Linear |R| = [33m6.039911e+03[39m
+     56 Linear |R| = [33m6.039766e+03[39m
+     57 Linear |R| = [33m6.039622e+03[39m
+     58 Linear |R| = [33m6.039478e+03[39m
+     59 Linear |R| = [33m6.039333e+03[39m
+     60 Linear |R| = [31m6.173858e+03[39m
+     61 Linear |R| = [33m6.173858e+03[39m
+     62 Linear |R| = [33m6.173858e+03[39m
+     63 Linear |R| = [33m6.100488e+03[39m
+     64 Linear |R| = [33m6.055604e+03[39m
+     65 Linear |R| = [33m5.989173e+03[39m
+     66 Linear |R| = [33m5.924930e+03[39m
+     67 Linear |R| = [33m5.862726e+03[39m
+     68 Linear |R| = [33m5.802441e+03[39m
+     69 Linear |R| = [33m5.743978e+03[39m
+     70 Linear |R| = [33m5.687248e+03[39m
+     71 Linear |R| = [33m5.632166e+03[39m
+     72 Linear |R| = [33m5.578654e+03[39m
+     73 Linear |R| = [33m5.526638e+03[39m
+     74 Linear |R| = [33m5.476051e+03[39m
+     75 Linear |R| = [33m5.426829e+03[39m
+     76 Linear |R| = [33m5.378910e+03[39m
+     77 Linear |R| = [33m5.332238e+03[39m
+     78 Linear |R| = [33m5.286761e+03[39m
+     79 Linear |R| = [33m5.242428e+03[39m
+     80 Linear |R| = [33m5.199192e+03[39m
+     81 Linear |R| = [33m5.157008e+03[39m
+     82 Linear |R| = [33m5.115834e+03[39m
+     83 Linear |R| = [33m5.075631e+03[39m
+     84 Linear |R| = [33m5.036362e+03[39m
+     85 Linear |R| = [33m4.997990e+03[39m
+     86 Linear |R| = [33m4.960482e+03[39m
+     87 Linear |R| = [33m4.923805e+03[39m
+     88 Linear |R| = [33m4.887931e+03[39m
+     89 Linear |R| = [33m4.852829e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 90
+ 1 Nonlinear |R| = [33m5.994554e+03[39m
+    Computing Jacobian...                                                                [[33m 25.75 s[39m] [[33m  627 MB[39m]
+      0 Linear |R| = [32m5.994554e+03[39m
+      1 Linear |R| = [33m5.994552e+03[39m
+      2 Linear |R| = [33m5.994097e+03[39m
+      3 Linear |R| = [33m5.994097e+03[39m
+      4 Linear |R| = [33m5.994096e+03[39m
+      5 Linear |R| = [33m5.994049e+03[39m
+      6 Linear |R| = [33m5.994005e+03[39m
+      7 Linear |R| = [33m5.993962e+03[39m
+      8 Linear |R| = [33m5.993919e+03[39m
+      9 Linear |R| = [33m5.993875e+03[39m
+     10 Linear |R| = [33m5.993832e+03[39m
+     11 Linear |R| = [33m5.993788e+03[39m
+     12 Linear |R| = [33m5.993745e+03[39m
+     13 Linear |R| = [33m5.993702e+03[39m
+     14 Linear |R| = [33m5.993658e+03[39m
+     15 Linear |R| = [33m5.993615e+03[39m
+     16 Linear |R| = [33m5.993571e+03[39m
+     17 Linear |R| = [33m5.993528e+03[39m
+     18 Linear |R| = [33m5.993485e+03[39m
+     19 Linear |R| = [33m5.993441e+03[39m
+     20 Linear |R| = [33m5.993398e+03[39m
+     21 Linear |R| = [33m5.993355e+03[39m
+     22 Linear |R| = [33m5.993311e+03[39m
+     23 Linear |R| = [33m5.993268e+03[39m
+     24 Linear |R| = [33m5.993224e+03[39m
+     25 Linear |R| = [33m5.993181e+03[39m
+     26 Linear |R| = [33m5.993138e+03[39m
+     27 Linear |R| = [33m5.993094e+03[39m
+     28 Linear |R| = [33m5.993051e+03[39m
+     29 Linear |R| = [33m5.993008e+03[39m
+     30 Linear |R| = [31m6.021114e+03[39m
+     31 Linear |R| = [33m6.021114e+03[39m
+     32 Linear |R| = [33m6.021114e+03[39m
+     33 Linear |R| = [33m6.006575e+03[39m
+     34 Linear |R| = [33m6.006493e+03[39m
+     35 Linear |R| = [33m6.002795e+03[39m
+     36 Linear |R| = [33m5.998468e+03[39m
+     37 Linear |R| = [33m5.994152e+03[39m
+     38 Linear |R| = [33m5.989845e+03[39m
+     39 Linear |R| = [33m5.985547e+03[39m
+     40 Linear |R| = [33m5.981259e+03[39m
+     41 Linear |R| = [33m5.976979e+03[39m
+     42 Linear |R| = [33m5.972709e+03[39m
+     43 Linear |R| = [33m5.968448e+03[39m
+     44 Linear |R| = [33m5.964197e+03[39m
+     45 Linear |R| = [33m5.959954e+03[39m
+     46 Linear |R| = [33m5.955720e+03[39m
+     47 Linear |R| = [33m5.951495e+03[39m
+     48 Linear |R| = [33m5.947280e+03[39m
+     49 Linear |R| = [33m5.943073e+03[39m
+     50 Linear |R| = [33m5.938875e+03[39m
+     51 Linear |R| = [33m5.934686e+03[39m
+     52 Linear |R| = [33m5.930506e+03[39m
+     53 Linear |R| = [33m5.926335e+03[39m
+     54 Linear |R| = [33m5.922172e+03[39m
+     55 Linear |R| = [33m5.918018e+03[39m
+     56 Linear |R| = [33m5.913873e+03[39m
+     57 Linear |R| = [33m5.909737e+03[39m
+     58 Linear |R| = [33m5.905609e+03[39m
+     59 Linear |R| = [33m5.901490e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 83.05 s[39m] [[33m  579 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 2.44141e-07
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.69 s[39m] [[33m  579 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994607e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994150e+03[39m
+      4 Linear |R| = [33m5.994107e+03[39m
+      5 Linear |R| = [33m5.994008e+03[39m
+      6 Linear |R| = [33m5.993903e+03[39m
+      7 Linear |R| = [33m5.993798e+03[39m
+      8 Linear |R| = [33m5.993694e+03[39m
+      9 Linear |R| = [33m5.993589e+03[39m
+     10 Linear |R| = [33m5.993484e+03[39m
+     11 Linear |R| = [33m5.993379e+03[39m
+     12 Linear |R| = [33m5.993274e+03[39m
+     13 Linear |R| = [33m5.993170e+03[39m
+     14 Linear |R| = [33m5.993065e+03[39m
+     15 Linear |R| = [33m5.992960e+03[39m
+     16 Linear |R| = [33m5.992855e+03[39m
+     17 Linear |R| = [33m5.992750e+03[39m
+     18 Linear |R| = [33m5.992646e+03[39m
+     19 Linear |R| = [33m5.992541e+03[39m
+     20 Linear |R| = [33m5.992436e+03[39m
+     21 Linear |R| = [33m5.992331e+03[39m
+     22 Linear |R| = [33m5.992227e+03[39m
+     23 Linear |R| = [33m5.992122e+03[39m
+     24 Linear |R| = [33m5.992017e+03[39m
+     25 Linear |R| = [33m5.991912e+03[39m
+     26 Linear |R| = [33m5.991808e+03[39m
+     27 Linear |R| = [33m5.991703e+03[39m
+     28 Linear |R| = [33m5.991598e+03[39m
+     29 Linear |R| = [33m5.991494e+03[39m
+     30 Linear |R| = [31m6.059308e+03[39m
+     31 Linear |R| = [33m6.059308e+03[39m
+     32 Linear |R| = [33m6.059308e+03[39m
+     33 Linear |R| = [33m6.050598e+03[39m
+     34 Linear |R| = [33m6.050247e+03[39m
+     35 Linear |R| = [33m6.046688e+03[39m
+     36 Linear |R| = [33m6.042111e+03[39m
+     37 Linear |R| = [33m6.037799e+03[39m
+     38 Linear |R| = [33m6.033461e+03[39m
+     39 Linear |R| = [33m6.029134e+03[39m
+     40 Linear |R| = [33m6.024817e+03[39m
+     41 Linear |R| = [33m6.020510e+03[39m
+     42 Linear |R| = [33m6.016211e+03[39m
+     43 Linear |R| = [33m6.011922e+03[39m
+     44 Linear |R| = [33m6.007642e+03[39m
+     45 Linear |R| = [33m6.003371e+03[39m
+     46 Linear |R| = [33m5.999109e+03[39m
+     47 Linear |R| = [33m5.994856e+03[39m
+     48 Linear |R| = [33m5.990612e+03[39m
+     49 Linear |R| = [33m5.986377e+03[39m
+     50 Linear |R| = [33m5.982151e+03[39m
+     51 Linear |R| = [33m5.977935e+03[39m
+     52 Linear |R| = [33m5.973726e+03[39m
+     53 Linear |R| = [33m5.969527e+03[39m
+     54 Linear |R| = [33m5.965337e+03[39m
+     55 Linear |R| = [33m5.961156e+03[39m
+     56 Linear |R| = [33m5.956983e+03[39m
+     57 Linear |R| = [33m5.952819e+03[39m
+     58 Linear |R| = [33m5.948664e+03[39m
+     59 Linear |R| = [33m5.944517e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+ 1 Nonlinear |R| = [33m5.994601e+03[39m
+    Computing Jacobian..                                                                 [[33m 21.65 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994601e+03[39m
+      1 Linear |R| = [33m5.994599e+03[39m
+      2 Linear |R| = [33m5.994145e+03[39m
+      3 Linear |R| = [33m5.994131e+03[39m
+      4 Linear |R| = [33m5.994094e+03[39m
+      5 Linear |R| = [33m5.993996e+03[39m
+      6 Linear |R| = [33m5.993888e+03[39m
+      7 Linear |R| = [33m5.993780e+03[39m
+      8 Linear |R| = [33m5.993672e+03[39m
+      9 Linear |R| = [33m5.993565e+03[39m
+     10 Linear |R| = [33m5.993457e+03[39m
+     11 Linear |R| = [33m5.993349e+03[39m
+     12 Linear |R| = [33m5.993242e+03[39m
+     13 Linear |R| = [33m5.993134e+03[39m
+     14 Linear |R| = [33m5.993026e+03[39m
+     15 Linear |R| = [33m5.992919e+03[39m
+     16 Linear |R| = [33m5.992811e+03[39m
+     17 Linear |R| = [33m5.992703e+03[39m
+     18 Linear |R| = [33m5.992596e+03[39m
+     19 Linear |R| = [33m5.992488e+03[39m
+     20 Linear |R| = [33m5.992380e+03[39m
+     21 Linear |R| = [33m5.992273e+03[39m
+     22 Linear |R| = [33m5.992165e+03[39m
+     23 Linear |R| = [33m5.992057e+03[39m
+     24 Linear |R| = [33m5.991950e+03[39m
+     25 Linear |R| = [33m5.991842e+03[39m
+     26 Linear |R| = [33m5.991734e+03[39m
+     27 Linear |R| = [33m5.991627e+03[39m
+     28 Linear |R| = [33m5.991519e+03[39m
+     29 Linear |R| = [33m5.991412e+03[39m
+     30 Linear |R| = [31m6.061135e+03[39m
+     31 Linear |R| = [33m6.061135e+03[39m
+     32 Linear |R| = [33m6.061135e+03[39m
+     33 Linear |R| = [33m6.058840e+03[39m
+     34 Linear |R| = [33m6.058614e+03[39m
+     35 Linear |R| = [33m6.022845e+03[39m
+     36 Linear |R| = [33m5.983741e+03[39m
+     37 Linear |R| = [33m5.945416e+03[39m
+     38 Linear |R| = [33m5.907818e+03[39m
+     39 Linear |R| = [33m5.870924e+03[39m
+     40 Linear |R| = [33m5.834713e+03[39m
+     41 Linear |R| = [33m5.799163e+03[39m
+     42 Linear |R| = [33m5.764256e+03[39m
+     43 Linear |R| = [33m5.729971e+03[39m
+     44 Linear |R| = [33m5.696291e+03[39m
+     45 Linear |R| = [33m5.663198e+03[39m
+     46 Linear |R| = [33m5.630676e+03[39m
+     47 Linear |R| = [33m5.598707e+03[39m
+     48 Linear |R| = [33m5.567276e+03[39m
+     49 Linear |R| = [33m5.536369e+03[39m
+     50 Linear |R| = [33m5.505972e+03[39m
+     51 Linear |R| = [33m5.476069e+03[39m
+     52 Linear |R| = [33m5.446648e+03[39m
+     53 Linear |R| = [33m5.417697e+03[39m
+     54 Linear |R| = [33m5.389202e+03[39m
+     55 Linear |R| = [33m5.361152e+03[39m
+     56 Linear |R| = [33m5.333536e+03[39m
+     57 Linear |R| = [33m5.306342e+03[39m
+     58 Linear |R| = [33m5.279560e+03[39m
+     59 Linear |R| = [33m5.253179e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 77.72 s[39m] [[33m  580 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 1.2207e-07
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.71 s[39m] [[33m  580 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994607e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994149e+03[39m
+      4 Linear |R| = [33m5.994102e+03[39m
+      5 Linear |R| = [33m5.994052e+03[39m
+      6 Linear |R| = [33m5.993982e+03[39m
+      7 Linear |R| = [33m5.993913e+03[39m
+      8 Linear |R| = [33m5.993843e+03[39m
+      9 Linear |R| = [33m5.993774e+03[39m
+     10 Linear |R| = [33m5.993705e+03[39m
+     11 Linear |R| = [33m5.993636e+03[39m
+     12 Linear |R| = [33m5.993566e+03[39m
+     13 Linear |R| = [33m5.993497e+03[39m
+     14 Linear |R| = [33m5.993428e+03[39m
+     15 Linear |R| = [33m5.993358e+03[39m
+     16 Linear |R| = [33m5.993289e+03[39m
+     17 Linear |R| = [33m5.993220e+03[39m
+     18 Linear |R| = [33m5.993151e+03[39m
+     19 Linear |R| = [33m5.993081e+03[39m
+     20 Linear |R| = [33m5.993012e+03[39m
+     21 Linear |R| = [33m5.992943e+03[39m
+     22 Linear |R| = [33m5.992873e+03[39m
+     23 Linear |R| = [33m5.992804e+03[39m
+     24 Linear |R| = [33m5.992735e+03[39m
+     25 Linear |R| = [33m5.992666e+03[39m
+     26 Linear |R| = [33m5.992596e+03[39m
+     27 Linear |R| = [33m5.992527e+03[39m
+     28 Linear |R| = [33m5.992458e+03[39m
+     29 Linear |R| = [33m5.992389e+03[39m
+     30 Linear |R| = [31m6.036543e+03[39m
+     31 Linear |R| = [33m6.036543e+03[39m
+     32 Linear |R| = [33m6.036543e+03[39m
+     33 Linear |R| = [33m6.026394e+03[39m
+     34 Linear |R| = [33m6.025406e+03[39m
+     35 Linear |R| = [33m6.023648e+03[39m
+     36 Linear |R| = [33m6.022955e+03[39m
+     37 Linear |R| = [33m6.020562e+03[39m
+     38 Linear |R| = [33m6.019417e+03[39m
+     39 Linear |R| = [33m6.016988e+03[39m
+     40 Linear |R| = [33m6.015554e+03[39m
+     41 Linear |R| = [33m6.011831e+03[39m
+     42 Linear |R| = [33m6.009984e+03[39m
+     43 Linear |R| = [33m6.008173e+03[39m
+     44 Linear |R| = [33m6.006368e+03[39m
+     45 Linear |R| = [33m6.004564e+03[39m
+     46 Linear |R| = [33m6.002762e+03[39m
+     47 Linear |R| = [33m6.000962e+03[39m
+     48 Linear |R| = [33m5.999163e+03[39m
+     49 Linear |R| = [33m5.997366e+03[39m
+     50 Linear |R| = [33m5.995571e+03[39m
+     51 Linear |R| = [33m5.993777e+03[39m
+     52 Linear |R| = [33m5.991985e+03[39m
+     53 Linear |R| = [33m5.990194e+03[39m
+     54 Linear |R| = [33m5.988405e+03[39m
+     55 Linear |R| = [33m5.986618e+03[39m
+     56 Linear |R| = [33m5.984832e+03[39m
+     57 Linear |R| = [33m5.983048e+03[39m
+     58 Linear |R| = [33m5.981265e+03[39m
+     59 Linear |R| = [33m5.979484e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+ 1 Nonlinear |R| = [33m5.994595e+03[39m
+    Computing Jacobian...                                                                [[33m 25.69 s[39m] [[33m  627 MB[39m]
+      0 Linear |R| = [32m5.994595e+03[39m
+      1 Linear |R| = [33m5.994594e+03[39m
+      2 Linear |R| = [33m5.994147e+03[39m
+      3 Linear |R| = [33m5.994063e+03[39m
+      4 Linear |R| = [33m5.994006e+03[39m
+      5 Linear |R| = [33m5.993921e+03[39m
+      6 Linear |R| = [33m5.993808e+03[39m
+      7 Linear |R| = [33m5.993695e+03[39m
+      8 Linear |R| = [33m5.993582e+03[39m
+      9 Linear |R| = [33m5.993470e+03[39m
+     10 Linear |R| = [33m5.993357e+03[39m
+     11 Linear |R| = [33m5.993244e+03[39m
+     12 Linear |R| = [33m5.993131e+03[39m
+     13 Linear |R| = [33m5.993018e+03[39m
+     14 Linear |R| = [33m5.992905e+03[39m
+     15 Linear |R| = [33m5.992792e+03[39m
+     16 Linear |R| = [33m5.992679e+03[39m
+     17 Linear |R| = [33m5.992567e+03[39m
+     18 Linear |R| = [33m5.992454e+03[39m
+     19 Linear |R| = [33m5.992341e+03[39m
+     20 Linear |R| = [33m5.992228e+03[39m
+     21 Linear |R| = [33m5.992115e+03[39m
+     22 Linear |R| = [33m5.992003e+03[39m
+     23 Linear |R| = [33m5.991890e+03[39m
+     24 Linear |R| = [33m5.991777e+03[39m
+     25 Linear |R| = [33m5.991664e+03[39m
+     26 Linear |R| = [33m5.991551e+03[39m
+     27 Linear |R| = [33m5.991439e+03[39m
+     28 Linear |R| = [33m5.991326e+03[39m
+     29 Linear |R| = [33m5.991213e+03[39m
+     30 Linear |R| = [31m6.067969e+03[39m
+     31 Linear |R| = [33m6.067969e+03[39m
+     32 Linear |R| = [33m6.067969e+03[39m
+     33 Linear |R| = [33m6.018225e+03[39m
+     34 Linear |R| = [33m6.013774e+03[39m
+     35 Linear |R| = [33m5.990617e+03[39m
+     36 Linear |R| = [33m5.966651e+03[39m
+     37 Linear |R| = [33m5.942477e+03[39m
+     38 Linear |R| = [33m5.918624e+03[39m
+     39 Linear |R| = [33m5.895055e+03[39m
+     40 Linear |R| = [33m5.871766e+03[39m
+     41 Linear |R| = [33m5.848750e+03[39m
+     42 Linear |R| = [33m5.826003e+03[39m
+     43 Linear |R| = [33m5.803519e+03[39m
+     44 Linear |R| = [33m5.781293e+03[39m
+     45 Linear |R| = [33m5.759321e+03[39m
+     46 Linear |R| = [33m5.737598e+03[39m
+     47 Linear |R| = [33m5.716118e+03[39m
+     48 Linear |R| = [33m5.694878e+03[39m
+     49 Linear |R| = [33m5.673873e+03[39m
+     50 Linear |R| = [33m5.653099e+03[39m
+     51 Linear |R| = [33m5.632551e+03[39m
+     52 Linear |R| = [33m5.612226e+03[39m
+     53 Linear |R| = [33m5.592119e+03[39m
+     54 Linear |R| = [33m5.572227e+03[39m
+     55 Linear |R| = [33m5.552545e+03[39m
+     56 Linear |R| = [33m5.533071e+03[39m
+     57 Linear |R| = [33m5.513800e+03[39m
+     58 Linear |R| = [33m5.494729e+03[39m
+     59 Linear |R| = [33m5.475854e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 80.90 s[39m] [[33m  579 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 6.10352e-08
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.76 s[39m] [[33m  579 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994607e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994148e+03[39m
+      4 Linear |R| = [33m5.994084e+03[39m
+      5 Linear |R| = [33m5.993991e+03[39m
+      6 Linear |R| = [33m5.993874e+03[39m
+      7 Linear |R| = [33m5.993759e+03[39m
+      8 Linear |R| = [33m5.993644e+03[39m
+      9 Linear |R| = [33m5.993528e+03[39m
+     10 Linear |R| = [33m5.993413e+03[39m
+     11 Linear |R| = [33m5.993297e+03[39m
+     12 Linear |R| = [33m5.993182e+03[39m
+     13 Linear |R| = [33m5.993067e+03[39m
+     14 Linear |R| = [33m5.992951e+03[39m
+     15 Linear |R| = [33m5.992836e+03[39m
+     16 Linear |R| = [33m5.992721e+03[39m
+     17 Linear |R| = [33m5.992605e+03[39m
+     18 Linear |R| = [33m5.992490e+03[39m
+     19 Linear |R| = [33m5.992375e+03[39m
+     20 Linear |R| = [33m5.992259e+03[39m
+     21 Linear |R| = [33m5.992144e+03[39m
+     22 Linear |R| = [33m5.992029e+03[39m
+     23 Linear |R| = [33m5.991913e+03[39m
+     24 Linear |R| = [33m5.991798e+03[39m
+     25 Linear |R| = [33m5.991683e+03[39m
+     26 Linear |R| = [33m5.991567e+03[39m
+     27 Linear |R| = [33m5.991452e+03[39m
+     28 Linear |R| = [33m5.991337e+03[39m
+     29 Linear |R| = [33m5.991222e+03[39m
+     30 Linear |R| = [31m6.066767e+03[39m
+     31 Linear |R| = [33m6.066767e+03[39m
+     32 Linear |R| = [33m6.066767e+03[39m
+     33 Linear |R| = [33m6.051205e+03[39m
+     34 Linear |R| = [33m6.039582e+03[39m
+     35 Linear |R| = [33m6.038103e+03[39m
+     36 Linear |R| = [33m6.029108e+03[39m
+     37 Linear |R| = [33m6.017607e+03[39m
+     38 Linear |R| = [33m6.006243e+03[39m
+     39 Linear |R| = [33m5.995410e+03[39m
+     40 Linear |R| = [33m5.984684e+03[39m
+     41 Linear |R| = [33m5.974024e+03[39m
+     42 Linear |R| = [33m5.963422e+03[39m
+     43 Linear |R| = [33m5.952877e+03[39m
+     44 Linear |R| = [33m5.942387e+03[39m
+     45 Linear |R| = [33m5.931952e+03[39m
+     46 Linear |R| = [33m5.921572e+03[39m
+     47 Linear |R| = [33m5.911247e+03[39m
+     48 Linear |R| = [33m5.900975e+03[39m
+     49 Linear |R| = [33m5.890757e+03[39m
+     50 Linear |R| = [33m5.880591e+03[39m
+     51 Linear |R| = [33m5.870478e+03[39m
+     52 Linear |R| = [33m5.860417e+03[39m
+     53 Linear |R| = [33m5.850408e+03[39m
+     54 Linear |R| = [33m5.840449e+03[39m
+     55 Linear |R| = [33m5.830542e+03[39m
+     56 Linear |R| = [33m5.820684e+03[39m
+     57 Linear |R| = [33m5.810876e+03[39m
+     58 Linear |R| = [33m5.801118e+03[39m
+     59 Linear |R| = [33m5.791409e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+ 1 Nonlinear |R| = [33m5.994608e+03[39m
+    Computing Jacobian...                                                                [[33m 24.89 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994150e+03[39m
+      3 Linear |R| = [33m5.994144e+03[39m
+      4 Linear |R| = [33m5.994084e+03[39m
+      5 Linear |R| = [33m5.994008e+03[39m
+      6 Linear |R| = [33m5.993900e+03[39m
+      7 Linear |R| = [33m5.993794e+03[39m
+      8 Linear |R| = [33m5.993688e+03[39m
+      9 Linear |R| = [33m5.993581e+03[39m
+     10 Linear |R| = [33m5.993475e+03[39m
+     11 Linear |R| = [33m5.993369e+03[39m
+     12 Linear |R| = [33m5.993262e+03[39m
+     13 Linear |R| = [33m5.993156e+03[39m
+     14 Linear |R| = [33m5.993050e+03[39m
+     15 Linear |R| = [33m5.992943e+03[39m
+     16 Linear |R| = [33m5.992837e+03[39m
+     17 Linear |R| = [33m5.992731e+03[39m
+     18 Linear |R| = [33m5.992625e+03[39m
+     19 Linear |R| = [33m5.992518e+03[39m
+     20 Linear |R| = [33m5.992412e+03[39m
+     21 Linear |R| = [33m5.992306e+03[39m
+     22 Linear |R| = [33m5.992200e+03[39m
+     23 Linear |R| = [33m5.992093e+03[39m
+     24 Linear |R| = [33m5.991987e+03[39m
+     25 Linear |R| = [33m5.991881e+03[39m
+     26 Linear |R| = [33m5.991775e+03[39m
+     27 Linear |R| = [33m5.991669e+03[39m
+     28 Linear |R| = [33m5.991562e+03[39m
+     29 Linear |R| = [33m5.991456e+03[39m
+     30 Linear |R| = [31m6.059876e+03[39m
+     31 Linear |R| = [33m6.059876e+03[39m
+     32 Linear |R| = [33m6.059876e+03[39m
+     33 Linear |R| = [33m6.059875e+03[39m
+     34 Linear |R| = [33m6.057201e+03[39m
+     35 Linear |R| = [33m6.050027e+03[39m
+     36 Linear |R| = [33m6.031617e+03[39m
+     37 Linear |R| = [33m6.004498e+03[39m
+     38 Linear |R| = [33m5.978443e+03[39m
+     39 Linear |R| = [33m5.952614e+03[39m
+     40 Linear |R| = [33m5.927126e+03[39m
+     41 Linear |R| = [33m5.901962e+03[39m
+     42 Linear |R| = [33m5.877116e+03[39m
+     43 Linear |R| = [33m5.852581e+03[39m
+     44 Linear |R| = [33m5.828350e+03[39m
+     45 Linear |R| = [33m5.804419e+03[39m
+     46 Linear |R| = [33m5.780779e+03[39m
+     47 Linear |R| = [33m5.757426e+03[39m
+     48 Linear |R| = [33m5.734354e+03[39m
+     49 Linear |R| = [33m5.711557e+03[39m
+     50 Linear |R| = [33m5.689030e+03[39m
+     51 Linear |R| = [33m5.666767e+03[39m
+     52 Linear |R| = [33m5.644764e+03[39m
+     53 Linear |R| = [33m5.623014e+03[39m
+     54 Linear |R| = [33m5.601515e+03[39m
+     55 Linear |R| = [33m5.580260e+03[39m
+     56 Linear |R| = [33m5.559245e+03[39m
+     57 Linear |R| = [33m5.538466e+03[39m
+     58 Linear |R| = [33m5.517918e+03[39m
+     59 Linear |R| = [33m5.497597e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 82.73 s[39m] [[33m  579 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 3.05176e-08
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.54 s[39m] [[33m  579 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994148e+03[39m
+      4 Linear |R| = [33m5.994055e+03[39m
+      5 Linear |R| = [33m5.993972e+03[39m
+      6 Linear |R| = [33m5.993842e+03[39m
+      7 Linear |R| = [33m5.993716e+03[39m
+      8 Linear |R| = [33m5.993589e+03[39m
+      9 Linear |R| = [33m5.993463e+03[39m
+     10 Linear |R| = [33m5.993336e+03[39m
+     11 Linear |R| = [33m5.993210e+03[39m
+     12 Linear |R| = [33m5.993083e+03[39m
+     13 Linear |R| = [33m5.992957e+03[39m
+     14 Linear |R| = [33m5.992831e+03[39m
+     15 Linear |R| = [33m5.992704e+03[39m
+     16 Linear |R| = [33m5.992578e+03[39m
+     17 Linear |R| = [33m5.992451e+03[39m
+     18 Linear |R| = [33m5.992325e+03[39m
+     19 Linear |R| = [33m5.992199e+03[39m
+     20 Linear |R| = [33m5.992072e+03[39m
+     21 Linear |R| = [33m5.991946e+03[39m
+     22 Linear |R| = [33m5.991820e+03[39m
+     23 Linear |R| = [33m5.991693e+03[39m
+     24 Linear |R| = [33m5.991567e+03[39m
+     25 Linear |R| = [33m5.991441e+03[39m
+     26 Linear |R| = [33m5.991314e+03[39m
+     27 Linear |R| = [33m5.991188e+03[39m
+     28 Linear |R| = [33m5.991062e+03[39m
+     29 Linear |R| = [33m5.990935e+03[39m
+     30 Linear |R| = [31m6.074180e+03[39m
+     31 Linear |R| = [33m6.074180e+03[39m
+     32 Linear |R| = [33m6.074180e+03[39m
+     33 Linear |R| = [33m6.064830e+03[39m
+     34 Linear |R| = [33m6.058384e+03[39m
+     35 Linear |R| = [33m6.053976e+03[39m
+     36 Linear |R| = [33m6.043548e+03[39m
+     37 Linear |R| = [33m6.028940e+03[39m
+     38 Linear |R| = [33m6.014599e+03[39m
+     39 Linear |R| = [33m6.000194e+03[39m
+     40 Linear |R| = [33m5.985916e+03[39m
+     41 Linear |R| = [33m5.971735e+03[39m
+     42 Linear |R| = [33m5.957656e+03[39m
+     43 Linear |R| = [33m5.943675e+03[39m
+     44 Linear |R| = [33m5.929793e+03[39m
+     45 Linear |R| = [33m5.916007e+03[39m
+     46 Linear |R| = [33m5.902317e+03[39m
+     47 Linear |R| = [33m5.888721e+03[39m
+     48 Linear |R| = [33m5.875219e+03[39m
+     49 Linear |R| = [33m5.861810e+03[39m
+     50 Linear |R| = [33m5.848492e+03[39m
+     51 Linear |R| = [33m5.835264e+03[39m
+     52 Linear |R| = [33m5.822126e+03[39m
+     53 Linear |R| = [33m5.809076e+03[39m
+     54 Linear |R| = [33m5.796113e+03[39m
+     55 Linear |R| = [33m5.783237e+03[39m
+     56 Linear |R| = [33m5.770446e+03[39m
+     57 Linear |R| = [33m5.757739e+03[39m
+     58 Linear |R| = [33m5.745117e+03[39m
+     59 Linear |R| = [33m5.732577e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 48.53 s[39m] [[33m  626 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 1.52588e-08
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.67 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994022e+03[39m
+      5 Linear |R| = [33m5.994013e+03[39m
+      6 Linear |R| = [33m5.993869e+03[39m
+      7 Linear |R| = [33m5.993752e+03[39m
+      8 Linear |R| = [33m5.993628e+03[39m
+      9 Linear |R| = [33m5.993504e+03[39m
+     10 Linear |R| = [33m5.993380e+03[39m
+     11 Linear |R| = [33m5.993257e+03[39m
+     12 Linear |R| = [33m5.993133e+03[39m
+     13 Linear |R| = [33m5.993009e+03[39m
+     14 Linear |R| = [33m5.992885e+03[39m
+     15 Linear |R| = [33m5.992762e+03[39m
+     16 Linear |R| = [33m5.992638e+03[39m
+     17 Linear |R| = [33m5.992514e+03[39m
+     18 Linear |R| = [33m5.992390e+03[39m
+     19 Linear |R| = [33m5.992267e+03[39m
+     20 Linear |R| = [33m5.992143e+03[39m
+     21 Linear |R| = [33m5.992019e+03[39m
+     22 Linear |R| = [33m5.991896e+03[39m
+     23 Linear |R| = [33m5.991772e+03[39m
+     24 Linear |R| = [33m5.991648e+03[39m
+     25 Linear |R| = [33m5.991525e+03[39m
+     26 Linear |R| = [33m5.991401e+03[39m
+     27 Linear |R| = [33m5.991277e+03[39m
+     28 Linear |R| = [33m5.991154e+03[39m
+     29 Linear |R| = [33m5.991030e+03[39m
+     30 Linear |R| = [31m6.070576e+03[39m
+     31 Linear |R| = [33m6.070576e+03[39m
+     32 Linear |R| = [33m6.070576e+03[39m
+     33 Linear |R| = [33m6.070386e+03[39m
+     34 Linear |R| = [33m6.069344e+03[39m
+     35 Linear |R| = [33m6.026939e+03[39m
+     36 Linear |R| = [33m5.994386e+03[39m
+     37 Linear |R| = [33m5.963042e+03[39m
+     38 Linear |R| = [33m5.932202e+03[39m
+     39 Linear |R| = [33m5.901836e+03[39m
+     40 Linear |R| = [33m5.871931e+03[39m
+     41 Linear |R| = [33m5.842477e+03[39m
+     42 Linear |R| = [33m5.813461e+03[39m
+     43 Linear |R| = [33m5.784873e+03[39m
+     44 Linear |R| = [33m5.756703e+03[39m
+     45 Linear |R| = [33m5.728941e+03[39m
+     46 Linear |R| = [33m5.701576e+03[39m
+     47 Linear |R| = [33m5.674600e+03[39m
+     48 Linear |R| = [33m5.648003e+03[39m
+     49 Linear |R| = [33m5.621777e+03[39m
+     50 Linear |R| = [33m5.595912e+03[39m
+     51 Linear |R| = [33m5.570402e+03[39m
+     52 Linear |R| = [33m5.545237e+03[39m
+     53 Linear |R| = [33m5.520410e+03[39m
+     54 Linear |R| = [33m5.495914e+03[39m
+     55 Linear |R| = [33m5.471740e+03[39m
+     56 Linear |R| = [33m5.447883e+03[39m
+     57 Linear |R| = [33m5.424336e+03[39m
+     58 Linear |R| = [33m5.401091e+03[39m
+     59 Linear |R| = [33m5.378142e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 48.95 s[39m] [[33m  626 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 7.62939e-09
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.56 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994151e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994027e+03[39m
+      5 Linear |R| = [33m5.994005e+03[39m
+      6 Linear |R| = [33m5.993903e+03[39m
+      7 Linear |R| = [33m5.993828e+03[39m
+      8 Linear |R| = [33m5.993742e+03[39m
+      9 Linear |R| = [33m5.993658e+03[39m
+     10 Linear |R| = [33m5.993574e+03[39m
+     11 Linear |R| = [33m5.993490e+03[39m
+     12 Linear |R| = [33m5.993406e+03[39m
+     13 Linear |R| = [33m5.993322e+03[39m
+     14 Linear |R| = [33m5.993238e+03[39m
+     15 Linear |R| = [33m5.993154e+03[39m
+     16 Linear |R| = [33m5.993070e+03[39m
+     17 Linear |R| = [33m5.992986e+03[39m
+     18 Linear |R| = [33m5.992902e+03[39m
+     19 Linear |R| = [33m5.992818e+03[39m
+     20 Linear |R| = [33m5.992734e+03[39m
+     21 Linear |R| = [33m5.992650e+03[39m
+     22 Linear |R| = [33m5.992566e+03[39m
+     23 Linear |R| = [33m5.992482e+03[39m
+     24 Linear |R| = [33m5.992398e+03[39m
+     25 Linear |R| = [33m5.992314e+03[39m
+     26 Linear |R| = [33m5.992230e+03[39m
+     27 Linear |R| = [33m5.992146e+03[39m
+     28 Linear |R| = [33m5.992062e+03[39m
+     29 Linear |R| = [33m5.991978e+03[39m
+     30 Linear |R| = [31m6.049169e+03[39m
+     31 Linear |R| = [33m6.049169e+03[39m
+     32 Linear |R| = [33m6.049169e+03[39m
+     33 Linear |R| = [33m6.023572e+03[39m
+     34 Linear |R| = [33m5.999070e+03[39m
+     35 Linear |R| = [33m5.974745e+03[39m
+     36 Linear |R| = [33m5.950781e+03[39m
+     37 Linear |R| = [33m5.927116e+03[39m
+     38 Linear |R| = [33m5.903733e+03[39m
+     39 Linear |R| = [33m5.880625e+03[39m
+     40 Linear |R| = [33m5.857786e+03[39m
+     41 Linear |R| = [33m5.835211e+03[39m
+     42 Linear |R| = [33m5.812895e+03[39m
+     43 Linear |R| = [33m5.790833e+03[39m
+     44 Linear |R| = [33m5.769020e+03[39m
+     45 Linear |R| = [33m5.747452e+03[39m
+     46 Linear |R| = [33m5.726124e+03[39m
+     47 Linear |R| = [33m5.705032e+03[39m
+     48 Linear |R| = [33m5.684172e+03[39m
+     49 Linear |R| = [33m5.663538e+03[39m
+     50 Linear |R| = [33m5.643127e+03[39m
+     51 Linear |R| = [33m5.622936e+03[39m
+     52 Linear |R| = [33m5.602960e+03[39m
+     53 Linear |R| = [33m5.583195e+03[39m
+     54 Linear |R| = [33m5.563638e+03[39m
+     55 Linear |R| = [33m5.544285e+03[39m
+     56 Linear |R| = [33m5.525132e+03[39m
+     57 Linear |R| = [33m5.506177e+03[39m
+     58 Linear |R| = [33m5.487415e+03[39m
+     59 Linear |R| = [33m5.468844e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 48.71 s[39m] [[33m  626 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 3.8147e-09
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.54 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994150e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994008e+03[39m
+      5 Linear |R| = [33m5.993862e+03[39m
+      6 Linear |R| = [33m5.993717e+03[39m
+      7 Linear |R| = [33m5.993572e+03[39m
+      8 Linear |R| = [33m5.993428e+03[39m
+      9 Linear |R| = [33m5.993283e+03[39m
+     10 Linear |R| = [33m5.993139e+03[39m
+     11 Linear |R| = [33m5.992995e+03[39m
+     12 Linear |R| = [33m5.992850e+03[39m
+     13 Linear |R| = [33m5.992706e+03[39m
+     14 Linear |R| = [33m5.992562e+03[39m
+     15 Linear |R| = [33m5.992418e+03[39m
+     16 Linear |R| = [33m5.992273e+03[39m
+     17 Linear |R| = [33m5.992129e+03[39m
+     18 Linear |R| = [33m5.991985e+03[39m
+     19 Linear |R| = [33m5.991841e+03[39m
+     20 Linear |R| = [33m5.991697e+03[39m
+     21 Linear |R| = [33m5.991552e+03[39m
+     22 Linear |R| = [33m5.991408e+03[39m
+     23 Linear |R| = [33m5.991264e+03[39m
+     24 Linear |R| = [33m5.991120e+03[39m
+     25 Linear |R| = [33m5.990976e+03[39m
+     26 Linear |R| = [33m5.990832e+03[39m
+     27 Linear |R| = [33m5.990688e+03[39m
+     28 Linear |R| = [33m5.990544e+03[39m
+     29 Linear |R| = [33m5.990399e+03[39m
+     30 Linear |R| = [31m6.090226e+03[39m
+     31 Linear |R| = [33m6.090226e+03[39m
+     32 Linear |R| = [33m6.090226e+03[39m
+     33 Linear |R| = [33m6.087232e+03[39m
+     34 Linear |R| = [33m6.084669e+03[39m
+     35 Linear |R| = [33m6.082075e+03[39m
+     36 Linear |R| = [33m6.079469e+03[39m
+     37 Linear |R| = [33m6.076863e+03[39m
+     38 Linear |R| = [33m6.074259e+03[39m
+     39 Linear |R| = [33m6.071658e+03[39m
+     40 Linear |R| = [33m6.069061e+03[39m
+     41 Linear |R| = [33m6.066467e+03[39m
+     42 Linear |R| = [33m6.063877e+03[39m
+     43 Linear |R| = [33m6.061290e+03[39m
+     44 Linear |R| = [33m6.058706e+03[39m
+     45 Linear |R| = [33m6.056125e+03[39m
+     46 Linear |R| = [33m6.053548e+03[39m
+     47 Linear |R| = [33m6.050974e+03[39m
+     48 Linear |R| = [33m6.048403e+03[39m
+     49 Linear |R| = [33m6.045836e+03[39m
+     50 Linear |R| = [33m6.043272e+03[39m
+     51 Linear |R| = [33m6.040711e+03[39m
+     52 Linear |R| = [33m6.038153e+03[39m
+     53 Linear |R| = [33m6.035599e+03[39m
+     54 Linear |R| = [33m6.033048e+03[39m
+     55 Linear |R| = [33m6.030500e+03[39m
+     56 Linear |R| = [33m6.027955e+03[39m
+     57 Linear |R| = [33m6.025414e+03[39m
+     58 Linear |R| = [33m6.022875e+03[39m
+     59 Linear |R| = [33m6.020340e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+ 1 Nonlinear |R| = [33m5.994606e+03[39m
+    Computing Jacobian..                                                                 [[33m 21.71 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994606e+03[39m
+      1 Linear |R| = [33m5.994604e+03[39m
+      2 Linear |R| = [33m5.994149e+03[39m
+      3 Linear |R| = [33m5.994139e+03[39m
+      4 Linear |R| = [33m5.994030e+03[39m
+      5 Linear |R| = [33m5.993925e+03[39m
+      6 Linear |R| = [33m5.993900e+03[39m
+      7 Linear |R| = [33m5.993797e+03[39m
+      8 Linear |R| = [33m5.993718e+03[39m
+      9 Linear |R| = [33m5.993630e+03[39m
+     10 Linear |R| = [33m5.993544e+03[39m
+     11 Linear |R| = [33m5.993458e+03[39m
+     12 Linear |R| = [33m5.993372e+03[39m
+     13 Linear |R| = [33m5.993286e+03[39m
+     14 Linear |R| = [33m5.993200e+03[39m
+     15 Linear |R| = [33m5.993114e+03[39m
+     16 Linear |R| = [33m5.993028e+03[39m
+     17 Linear |R| = [33m5.992941e+03[39m
+     18 Linear |R| = [33m5.992855e+03[39m
+     19 Linear |R| = [33m5.992769e+03[39m
+     20 Linear |R| = [33m5.992683e+03[39m
+     21 Linear |R| = [33m5.992597e+03[39m
+     22 Linear |R| = [33m5.992511e+03[39m
+     23 Linear |R| = [33m5.992425e+03[39m
+     24 Linear |R| = [33m5.992339e+03[39m
+     25 Linear |R| = [33m5.992253e+03[39m
+     26 Linear |R| = [33m5.992167e+03[39m
+     27 Linear |R| = [33m5.992081e+03[39m
+     28 Linear |R| = [33m5.991994e+03[39m
+     29 Linear |R| = [33m5.991908e+03[39m
+     30 Linear |R| = [31m6.048878e+03[39m
+     31 Linear |R| = [33m6.048878e+03[39m
+     32 Linear |R| = [33m6.048878e+03[39m
+     33 Linear |R| = [33m6.048291e+03[39m
+     34 Linear |R| = [33m6.048066e+03[39m
+     35 Linear |R| = [33m6.047824e+03[39m
+     36 Linear |R| = [33m6.047582e+03[39m
+     37 Linear |R| = [33m6.047340e+03[39m
+     38 Linear |R| = [33m6.047098e+03[39m
+     39 Linear |R| = [33m6.046856e+03[39m
+     40 Linear |R| = [33m6.046614e+03[39m
+     41 Linear |R| = [33m6.046372e+03[39m
+     42 Linear |R| = [33m6.046130e+03[39m
+     43 Linear |R| = [33m6.045888e+03[39m
+     44 Linear |R| = [33m6.045646e+03[39m
+     45 Linear |R| = [33m6.045404e+03[39m
+     46 Linear |R| = [33m6.045163e+03[39m
+     47 Linear |R| = [33m6.044921e+03[39m
+     48 Linear |R| = [33m6.044679e+03[39m
+     49 Linear |R| = [33m6.044437e+03[39m
+     50 Linear |R| = [33m6.044196e+03[39m
+     51 Linear |R| = [33m6.043954e+03[39m
+     52 Linear |R| = [33m6.043713e+03[39m
+     53 Linear |R| = [33m6.043471e+03[39m
+     54 Linear |R| = [33m6.043229e+03[39m
+     55 Linear |R| = [33m6.042988e+03[39m
+     56 Linear |R| = [33m6.042746e+03[39m
+     57 Linear |R| = [33m6.042505e+03[39m
+     58 Linear |R| = [33m6.042263e+03[39m
+     59 Linear |R| = [33m6.042022e+03[39m
+     60 Linear |R| = [31m6.227261e+03[39m
+     61 Linear |R| = [33m6.227261e+03[39m
+     62 Linear |R| = [33m6.226993e+03[39m
+     63 Linear |R| = [33m6.070269e+03[39m
+     64 Linear |R| = [33m5.924780e+03[39m
+     65 Linear |R| = [33m5.789275e+03[39m
+     66 Linear |R| = [33m5.662661e+03[39m
+     67 Linear |R| = [33m5.544007e+03[39m
+     68 Linear |R| = [33m5.432511e+03[39m
+     69 Linear |R| = [33m5.327483e+03[39m
+     70 Linear |R| = [33m5.228321e+03[39m
+     71 Linear |R| = [33m5.134497e+03[39m
+     72 Linear |R| = [33m5.045549e+03[39m
+     73 Linear |R| = [33m4.961070e+03[39m
+     74 Linear |R| = [33m4.880696e+03[39m
+     75 Linear |R| = [33m4.804107e+03[39m
+     76 Linear |R| = [33m4.731013e+03[39m
+     77 Linear |R| = [33m4.661157e+03[39m
+     78 Linear |R| = [33m4.594307e+03[39m
+     79 Linear |R| = [33m4.530254e+03[39m
+     80 Linear |R| = [33m4.468806e+03[39m
+     81 Linear |R| = [33m4.409794e+03[39m
+     82 Linear |R| = [33m4.353059e+03[39m
+     83 Linear |R| = [33m4.298458e+03[39m
+     84 Linear |R| = [33m4.245863e+03[39m
+     85 Linear |R| = [33m4.195151e+03[39m
+     86 Linear |R| = [33m4.146215e+03[39m
+     87 Linear |R| = [33m4.098952e+03[39m
+     88 Linear |R| = [33m4.053269e+03[39m
+     89 Linear |R| = [33m4.009080e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 90
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 79.88 s[39m] [[33m  579 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 1.90735e-09
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.91 s[39m] [[33m  579 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994150e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994039e+03[39m
+      5 Linear |R| = [33m5.993931e+03[39m
+      6 Linear |R| = [33m5.993824e+03[39m
+      7 Linear |R| = [33m5.993716e+03[39m
+      8 Linear |R| = [33m5.993608e+03[39m
+      9 Linear |R| = [33m5.993500e+03[39m
+     10 Linear |R| = [33m5.993392e+03[39m
+     11 Linear |R| = [33m5.993284e+03[39m
+     12 Linear |R| = [33m5.993176e+03[39m
+     13 Linear |R| = [33m5.993068e+03[39m
+     14 Linear |R| = [33m5.992960e+03[39m
+     15 Linear |R| = [33m5.992852e+03[39m
+     16 Linear |R| = [33m5.992744e+03[39m
+     17 Linear |R| = [33m5.992636e+03[39m
+     18 Linear |R| = [33m5.992528e+03[39m
+     19 Linear |R| = [33m5.992420e+03[39m
+     20 Linear |R| = [33m5.992313e+03[39m
+     21 Linear |R| = [33m5.992205e+03[39m
+     22 Linear |R| = [33m5.992097e+03[39m
+     23 Linear |R| = [33m5.991989e+03[39m
+     24 Linear |R| = [33m5.991881e+03[39m
+     25 Linear |R| = [33m5.991773e+03[39m
+     26 Linear |R| = [33m5.991665e+03[39m
+     27 Linear |R| = [33m5.991557e+03[39m
+     28 Linear |R| = [33m5.991450e+03[39m
+     29 Linear |R| = [33m5.991342e+03[39m
+     30 Linear |R| = [31m6.066860e+03[39m
+     31 Linear |R| = [33m6.066860e+03[39m
+     32 Linear |R| = [33m6.066857e+03[39m
+     33 Linear |R| = [33m6.046755e+03[39m
+     34 Linear |R| = [33m6.027014e+03[39m
+     35 Linear |R| = [33m6.007467e+03[39m
+     36 Linear |R| = [33m5.988110e+03[39m
+     37 Linear |R| = [33m5.968939e+03[39m
+     38 Linear |R| = [33m5.949951e+03[39m
+     39 Linear |R| = [33m5.931142e+03[39m
+     40 Linear |R| = [33m5.912511e+03[39m
+     41 Linear |R| = [33m5.894055e+03[39m
+     42 Linear |R| = [33m5.875770e+03[39m
+     43 Linear |R| = [33m5.857654e+03[39m
+     44 Linear |R| = [33m5.839705e+03[39m
+     45 Linear |R| = [33m5.821920e+03[39m
+     46 Linear |R| = [33m5.804297e+03[39m
+     47 Linear |R| = [33m5.786832e+03[39m
+     48 Linear |R| = [33m5.769524e+03[39m
+     49 Linear |R| = [33m5.752371e+03[39m
+     50 Linear |R| = [33m5.735369e+03[39m
+     51 Linear |R| = [33m5.718518e+03[39m
+     52 Linear |R| = [33m5.701814e+03[39m
+     53 Linear |R| = [33m5.685256e+03[39m
+     54 Linear |R| = [33m5.668841e+03[39m
+     55 Linear |R| = [33m5.652568e+03[39m
+     56 Linear |R| = [33m5.636433e+03[39m
+     57 Linear |R| = [33m5.620437e+03[39m
+     58 Linear |R| = [33m5.604575e+03[39m
+     59 Linear |R| = [33m5.588847e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 51.89 s[39m] [[33m  626 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 9.53674e-10
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.72 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994150e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994100e+03[39m
+      5 Linear |R| = [33m5.994053e+03[39m
+      6 Linear |R| = [33m5.994006e+03[39m
+      7 Linear |R| = [33m5.993959e+03[39m
+      8 Linear |R| = [33m5.993912e+03[39m
+      9 Linear |R| = [33m5.993865e+03[39m
+     10 Linear |R| = [33m5.993818e+03[39m
+     11 Linear |R| = [33m5.993771e+03[39m
+     12 Linear |R| = [33m5.993724e+03[39m
+     13 Linear |R| = [33m5.993677e+03[39m
+     14 Linear |R| = [33m5.993630e+03[39m
+     15 Linear |R| = [33m5.993584e+03[39m
+     16 Linear |R| = [33m5.993537e+03[39m
+     17 Linear |R| = [33m5.993490e+03[39m
+     18 Linear |R| = [33m5.993443e+03[39m
+     19 Linear |R| = [33m5.993396e+03[39m
+     20 Linear |R| = [33m5.993349e+03[39m
+     21 Linear |R| = [33m5.993302e+03[39m
+     22 Linear |R| = [33m5.993255e+03[39m
+     23 Linear |R| = [33m5.993208e+03[39m
+     24 Linear |R| = [33m5.993161e+03[39m
+     25 Linear |R| = [33m5.993114e+03[39m
+     26 Linear |R| = [33m5.993067e+03[39m
+     27 Linear |R| = [33m5.993020e+03[39m
+     28 Linear |R| = [33m5.992973e+03[39m
+     29 Linear |R| = [33m5.992926e+03[39m
+     30 Linear |R| = [31m6.025431e+03[39m
+     31 Linear |R| = [33m6.025431e+03[39m
+     32 Linear |R| = [33m6.025394e+03[39m
+     33 Linear |R| = [33m6.008550e+03[39m
+     34 Linear |R| = [33m5.991894e+03[39m
+     35 Linear |R| = [33m5.975377e+03[39m
+     36 Linear |R| = [33m5.958996e+03[39m
+     37 Linear |R| = [33m5.942749e+03[39m
+     38 Linear |R| = [33m5.926635e+03[39m
+     39 Linear |R| = [33m5.910650e+03[39m
+     40 Linear |R| = [33m5.894795e+03[39m
+     41 Linear |R| = [33m5.879066e+03[39m
+     42 Linear |R| = [33m5.863462e+03[39m
+     43 Linear |R| = [33m5.847982e+03[39m
+     44 Linear |R| = [33m5.832624e+03[39m
+     45 Linear |R| = [33m5.817387e+03[39m
+     46 Linear |R| = [33m5.802268e+03[39m
+     47 Linear |R| = [33m5.787266e+03[39m
+     48 Linear |R| = [33m5.772380e+03[39m
+     49 Linear |R| = [33m5.757609e+03[39m
+     50 Linear |R| = [33m5.742950e+03[39m
+     51 Linear |R| = [33m5.728403e+03[39m
+     52 Linear |R| = [33m5.713965e+03[39m
+     53 Linear |R| = [33m5.699637e+03[39m
+     54 Linear |R| = [33m5.685415e+03[39m
+     55 Linear |R| = [33m5.671300e+03[39m
+     56 Linear |R| = [33m5.657289e+03[39m
+     57 Linear |R| = [33m5.643381e+03[39m
+     58 Linear |R| = [33m5.629576e+03[39m
+     59 Linear |R| = [33m5.615871e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+ 1 Nonlinear |R| = [33m5.994603e+03[39m
+    Computing Jacobian...                                                                [[33m 27.17 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994603e+03[39m
+      1 Linear |R| = [33m5.994601e+03[39m
+      2 Linear |R| = [33m5.994146e+03[39m
+      3 Linear |R| = [33m5.994144e+03[39m
+      4 Linear |R| = [33m5.994087e+03[39m
+      5 Linear |R| = [33m5.994029e+03[39m
+      6 Linear |R| = [33m5.993971e+03[39m
+      7 Linear |R| = [33m5.993913e+03[39m
+      8 Linear |R| = [33m5.993856e+03[39m
+      9 Linear |R| = [33m5.993798e+03[39m
+     10 Linear |R| = [33m5.993740e+03[39m
+     11 Linear |R| = [33m5.993682e+03[39m
+     12 Linear |R| = [33m5.993624e+03[39m
+     13 Linear |R| = [33m5.993567e+03[39m
+     14 Linear |R| = [33m5.993509e+03[39m
+     15 Linear |R| = [33m5.993451e+03[39m
+     16 Linear |R| = [33m5.993393e+03[39m
+     17 Linear |R| = [33m5.993336e+03[39m
+     18 Linear |R| = [33m5.993278e+03[39m
+     19 Linear |R| = [33m5.993220e+03[39m
+     20 Linear |R| = [33m5.993162e+03[39m
+     21 Linear |R| = [33m5.993105e+03[39m
+     22 Linear |R| = [33m5.993047e+03[39m
+     23 Linear |R| = [33m5.992989e+03[39m
+     24 Linear |R| = [33m5.992931e+03[39m
+     25 Linear |R| = [33m5.992874e+03[39m
+     26 Linear |R| = [33m5.992816e+03[39m
+     27 Linear |R| = [33m5.992758e+03[39m
+     28 Linear |R| = [33m5.992701e+03[39m
+     29 Linear |R| = [33m5.992643e+03[39m
+     30 Linear |R| = [31m6.032622e+03[39m
+     31 Linear |R| = [33m6.032622e+03[39m
+     32 Linear |R| = [33m6.032589e+03[39m
+     33 Linear |R| = [33m6.016678e+03[39m
+     34 Linear |R| = [33m6.000934e+03[39m
+     35 Linear |R| = [33m5.985312e+03[39m
+     36 Linear |R| = [33m5.969812e+03[39m
+     37 Linear |R| = [33m5.954431e+03[39m
+     38 Linear |R| = [33m5.939168e+03[39m
+     39 Linear |R| = [33m5.924023e+03[39m
+     40 Linear |R| = [33m5.908992e+03[39m
+     41 Linear |R| = [33m5.894076e+03[39m
+     42 Linear |R| = [33m5.879271e+03[39m
+     43 Linear |R| = [33m5.864578e+03[39m
+     44 Linear |R| = [33m5.849994e+03[39m
+     45 Linear |R| = [33m5.835519e+03[39m
+     46 Linear |R| = [33m5.821151e+03[39m
+     47 Linear |R| = [33m5.806888e+03[39m
+     48 Linear |R| = [33m5.792729e+03[39m
+     49 Linear |R| = [33m5.778674e+03[39m
+     50 Linear |R| = [33m5.764720e+03[39m
+     51 Linear |R| = [33m5.750867e+03[39m
+     52 Linear |R| = [33m5.737114e+03[39m
+     53 Linear |R| = [33m5.723458e+03[39m
+     54 Linear |R| = [33m5.709900e+03[39m
+     55 Linear |R| = [33m5.696437e+03[39m
+     56 Linear |R| = [33m5.683070e+03[39m
+     57 Linear |R| = [33m5.669796e+03[39m
+     58 Linear |R| = [33m5.656614e+03[39m
+     59 Linear |R| = [33m5.643524e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+ 2 Nonlinear |R| = [33m5.994599e+03[39m
+    Computing Jacobian..                                                                 [[33m 21.53 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994599e+03[39m
+      1 Linear |R| = [33m5.994598e+03[39m
+      2 Linear |R| = [33m5.994143e+03[39m
+      3 Linear |R| = [33m5.994141e+03[39m
+      4 Linear |R| = [33m5.994039e+03[39m
+      5 Linear |R| = [33m5.993937e+03[39m
+      6 Linear |R| = [33m5.993836e+03[39m
+      7 Linear |R| = [33m5.993734e+03[39m
+      8 Linear |R| = [33m5.993632e+03[39m
+      9 Linear |R| = [33m5.993531e+03[39m
+     10 Linear |R| = [33m5.993429e+03[39m
+     11 Linear |R| = [33m5.993327e+03[39m
+     12 Linear |R| = [33m5.993226e+03[39m
+     13 Linear |R| = [33m5.993124e+03[39m
+     14 Linear |R| = [33m5.993022e+03[39m
+     15 Linear |R| = [33m5.992921e+03[39m
+     16 Linear |R| = [33m5.992819e+03[39m
+     17 Linear |R| = [33m5.992718e+03[39m
+     18 Linear |R| = [33m5.992616e+03[39m
+     19 Linear |R| = [33m5.992514e+03[39m
+     20 Linear |R| = [33m5.992413e+03[39m
+     21 Linear |R| = [33m5.992311e+03[39m
+     22 Linear |R| = [33m5.992210e+03[39m
+     23 Linear |R| = [33m5.992108e+03[39m
+     24 Linear |R| = [33m5.992006e+03[39m
+     25 Linear |R| = [33m5.991905e+03[39m
+     26 Linear |R| = [33m5.991803e+03[39m
+     27 Linear |R| = [33m5.991702e+03[39m
+     28 Linear |R| = [33m5.991600e+03[39m
+     29 Linear |R| = [33m5.991499e+03[39m
+     30 Linear |R| = [31m6.062544e+03[39m
+     31 Linear |R| = [33m6.062544e+03[39m
+     32 Linear |R| = [33m6.062451e+03[39m
+     33 Linear |R| = [33m6.049196e+03[39m
+     34 Linear |R| = [33m6.036023e+03[39m
+     35 Linear |R| = [33m6.022935e+03[39m
+     36 Linear |R| = [33m6.009931e+03[39m
+     37 Linear |R| = [33m5.997011e+03[39m
+     38 Linear |R| = [33m5.984175e+03[39m
+     39 Linear |R| = [33m5.971420e+03[39m
+     40 Linear |R| = [33m5.958747e+03[39m
+     41 Linear |R| = [33m5.946153e+03[39m
+     42 Linear |R| = [33m5.933640e+03[39m
+     43 Linear |R| = [33m5.921205e+03[39m
+     44 Linear |R| = [33m5.908848e+03[39m
+     45 Linear |R| = [33m5.896568e+03[39m
+     46 Linear |R| = [33m5.884364e+03[39m
+     47 Linear |R| = [33m5.872236e+03[39m
+     48 Linear |R| = [33m5.860182e+03[39m
+     49 Linear |R| = [33m5.848202e+03[39m
+     50 Linear |R| = [33m5.836296e+03[39m
+     51 Linear |R| = [33m5.824462e+03[39m
+     52 Linear |R| = [33m5.812699e+03[39m
+     53 Linear |R| = [33m5.801008e+03[39m
+     54 Linear |R| = [33m5.789387e+03[39m
+     55 Linear |R| = [33m5.777835e+03[39m
+     56 Linear |R| = [33m5.766352e+03[39m
+     57 Linear |R| = [33m5.754938e+03[39m
+     58 Linear |R| = [33m5.743591e+03[39m
+     59 Linear |R| = [33m5.732311e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 2
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m112.48 s[39m] [[33m  579 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 4.76837e-10
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.91 s[39m] [[33m  579 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994183e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994109e+03[39m
+      5 Linear |R| = [33m5.994071e+03[39m
+      6 Linear |R| = [33m5.994033e+03[39m
+      7 Linear |R| = [33m5.993995e+03[39m
+      8 Linear |R| = [33m5.993957e+03[39m
+      9 Linear |R| = [33m5.993918e+03[39m
+     10 Linear |R| = [33m5.993880e+03[39m
+     11 Linear |R| = [33m5.993842e+03[39m
+     12 Linear |R| = [33m5.993804e+03[39m
+     13 Linear |R| = [33m5.993766e+03[39m
+     14 Linear |R| = [33m5.993728e+03[39m
+     15 Linear |R| = [33m5.993690e+03[39m
+     16 Linear |R| = [33m5.993651e+03[39m
+     17 Linear |R| = [33m5.993613e+03[39m
+     18 Linear |R| = [33m5.993575e+03[39m
+     19 Linear |R| = [33m5.993537e+03[39m
+     20 Linear |R| = [33m5.993499e+03[39m
+     21 Linear |R| = [33m5.993461e+03[39m
+     22 Linear |R| = [33m5.993423e+03[39m
+     23 Linear |R| = [33m5.993384e+03[39m
+     24 Linear |R| = [33m5.993346e+03[39m
+     25 Linear |R| = [33m5.993308e+03[39m
+     26 Linear |R| = [33m5.993270e+03[39m
+     27 Linear |R| = [33m5.993232e+03[39m
+     28 Linear |R| = [33m5.993194e+03[39m
+     29 Linear |R| = [33m5.993156e+03[39m
+     30 Linear |R| = [31m6.021917e+03[39m
+     31 Linear |R| = [33m6.021917e+03[39m
+     32 Linear |R| = [33m6.017949e+03[39m
+     33 Linear |R| = [33m5.994192e+03[39m
+     34 Linear |R| = [33m5.970627e+03[39m
+     35 Linear |R| = [33m5.947336e+03[39m
+     36 Linear |R| = [33m5.924317e+03[39m
+     37 Linear |R| = [33m5.901562e+03[39m
+     38 Linear |R| = [33m5.879068e+03[39m
+     39 Linear |R| = [33m5.856829e+03[39m
+     40 Linear |R| = [33m5.834840e+03[39m
+     41 Linear |R| = [33m5.813098e+03[39m
+     42 Linear |R| = [33m5.791596e+03[39m
+     43 Linear |R| = [33m5.770332e+03[39m
+     44 Linear |R| = [33m5.749300e+03[39m
+     45 Linear |R| = [33m5.728496e+03[39m
+     46 Linear |R| = [33m5.707916e+03[39m
+     47 Linear |R| = [33m5.687557e+03[39m
+     48 Linear |R| = [33m5.667414e+03[39m
+     49 Linear |R| = [33m5.647483e+03[39m
+     50 Linear |R| = [33m5.627762e+03[39m
+     51 Linear |R| = [33m5.608245e+03[39m
+     52 Linear |R| = [33m5.588930e+03[39m
+     53 Linear |R| = [33m5.569813e+03[39m
+     54 Linear |R| = [33m5.550892e+03[39m
+     55 Linear |R| = [33m5.532161e+03[39m
+     56 Linear |R| = [33m5.513619e+03[39m
+     57 Linear |R| = [33m5.495262e+03[39m
+     58 Linear |R| = [33m5.477088e+03[39m
+     59 Linear |R| = [33m5.459092e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+ 1 Nonlinear |R| = [33m5.994607e+03[39m
+    Computing Jacobian..                                                                 [[33m 21.48 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994607e+03[39m
+      1 Linear |R| = [33m5.994605e+03[39m
+      2 Linear |R| = [33m5.994234e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994063e+03[39m
+      5 Linear |R| = [33m5.993980e+03[39m
+      6 Linear |R| = [33m5.993896e+03[39m
+      7 Linear |R| = [33m5.993812e+03[39m
+      8 Linear |R| = [33m5.993728e+03[39m
+      9 Linear |R| = [33m5.993644e+03[39m
+     10 Linear |R| = [33m5.993560e+03[39m
+     11 Linear |R| = [33m5.993476e+03[39m
+     12 Linear |R| = [33m5.993392e+03[39m
+     13 Linear |R| = [33m5.993309e+03[39m
+     14 Linear |R| = [33m5.993225e+03[39m
+     15 Linear |R| = [33m5.993141e+03[39m
+     16 Linear |R| = [33m5.993057e+03[39m
+     17 Linear |R| = [33m5.992973e+03[39m
+     18 Linear |R| = [33m5.992889e+03[39m
+     19 Linear |R| = [33m5.992806e+03[39m
+     20 Linear |R| = [33m5.992722e+03[39m
+     21 Linear |R| = [33m5.992638e+03[39m
+     22 Linear |R| = [33m5.992554e+03[39m
+     23 Linear |R| = [33m5.992470e+03[39m
+     24 Linear |R| = [33m5.992387e+03[39m
+     25 Linear |R| = [33m5.992303e+03[39m
+     26 Linear |R| = [33m5.992219e+03[39m
+     27 Linear |R| = [33m5.992135e+03[39m
+     28 Linear |R| = [33m5.992051e+03[39m
+     29 Linear |R| = [33m5.991968e+03[39m
+     30 Linear |R| = [31m6.054855e+03[39m
+     31 Linear |R| = [33m6.054855e+03[39m
+     32 Linear |R| = [33m6.047056e+03[39m
+     33 Linear |R| = [33m5.994109e+03[39m
+     34 Linear |R| = [33m5.942393e+03[39m
+     35 Linear |R| = [33m5.891992e+03[39m
+     36 Linear |R| = [33m5.842853e+03[39m
+     37 Linear |R| = [33m5.794923e+03[39m
+     38 Linear |R| = [33m5.748153e+03[39m
+     39 Linear |R| = [33m5.702498e+03[39m
+     40 Linear |R| = [33m5.657914e+03[39m
+     41 Linear |R| = [33m5.614359e+03[39m
+     42 Linear |R| = [33m5.571795e+03[39m
+     43 Linear |R| = [33m5.530185e+03[39m
+     44 Linear |R| = [33m5.489493e+03[39m
+     45 Linear |R| = [33m5.449686e+03[39m
+     46 Linear |R| = [33m5.410733e+03[39m
+     47 Linear |R| = [33m5.372604e+03[39m
+     48 Linear |R| = [33m5.335269e+03[39m
+     49 Linear |R| = [33m5.298702e+03[39m
+     50 Linear |R| = [33m5.262877e+03[39m
+     51 Linear |R| = [33m5.227769e+03[39m
+     52 Linear |R| = [33m5.193354e+03[39m
+     53 Linear |R| = [33m5.159610e+03[39m
+     54 Linear |R| = [33m5.126515e+03[39m
+     55 Linear |R| = [33m5.094049e+03[39m
+     56 Linear |R| = [33m5.062192e+03[39m
+     57 Linear |R| = [33m5.030926e+03[39m
+     58 Linear |R| = [33m5.000231e+03[39m
+     59 Linear |R| = [33m4.970092e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 1
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 78.26 s[39m] [[33m  579 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 2.38419e-10
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.46 s[39m] [[33m  579 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994153e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994144e+03[39m
+      5 Linear |R| = [33m5.994141e+03[39m
+      6 Linear |R| = [33m5.994138e+03[39m
+      7 Linear |R| = [33m5.994135e+03[39m
+      8 Linear |R| = [33m5.994132e+03[39m
+      9 Linear |R| = [33m5.994129e+03[39m
+     10 Linear |R| = [33m5.994125e+03[39m
+     11 Linear |R| = [33m5.994122e+03[39m
+     12 Linear |R| = [33m5.994119e+03[39m
+     13 Linear |R| = [33m5.994116e+03[39m
+     14 Linear |R| = [33m5.994113e+03[39m
+     15 Linear |R| = [33m5.994110e+03[39m
+     16 Linear |R| = [33m5.994107e+03[39m
+     17 Linear |R| = [33m5.994104e+03[39m
+     18 Linear |R| = [33m5.994101e+03[39m
+     19 Linear |R| = [33m5.994097e+03[39m
+     20 Linear |R| = [33m5.994094e+03[39m
+     21 Linear |R| = [33m5.994091e+03[39m
+     22 Linear |R| = [33m5.994088e+03[39m
+     23 Linear |R| = [33m5.994085e+03[39m
+     24 Linear |R| = [33m5.994082e+03[39m
+     25 Linear |R| = [33m5.994079e+03[39m
+     26 Linear |R| = [33m5.994076e+03[39m
+     27 Linear |R| = [33m5.994072e+03[39m
+     28 Linear |R| = [33m5.994069e+03[39m
+     29 Linear |R| = [33m5.994066e+03[39m
+     30 Linear |R| = [31m5.996460e+03[39m
+     31 Linear |R| = [33m5.996460e+03[39m
+     32 Linear |R| = [33m5.996460e+03[39m
+     33 Linear |R| = [33m5.994191e+03[39m
+     34 Linear |R| = [33m5.991914e+03[39m
+     35 Linear |R| = [33m5.989639e+03[39m
+     36 Linear |R| = [33m5.987367e+03[39m
+     37 Linear |R| = [33m5.985098e+03[39m
+     38 Linear |R| = [33m5.982831e+03[39m
+     39 Linear |R| = [33m5.980567e+03[39m
+     40 Linear |R| = [33m5.978305e+03[39m
+     41 Linear |R| = [33m5.976046e+03[39m
+     42 Linear |R| = [33m5.973790e+03[39m
+     43 Linear |R| = [33m5.971536e+03[39m
+     44 Linear |R| = [33m5.969285e+03[39m
+     45 Linear |R| = [33m5.967036e+03[39m
+     46 Linear |R| = [33m5.964790e+03[39m
+     47 Linear |R| = [33m5.962546e+03[39m
+     48 Linear |R| = [33m5.960305e+03[39m
+     49 Linear |R| = [33m5.958066e+03[39m
+     50 Linear |R| = [33m5.955830e+03[39m
+     51 Linear |R| = [33m5.953596e+03[39m
+     52 Linear |R| = [33m5.951365e+03[39m
+     53 Linear |R| = [33m5.949136e+03[39m
+     54 Linear |R| = [33m5.946910e+03[39m
+     55 Linear |R| = [33m5.944687e+03[39m
+     56 Linear |R| = [33m5.942466e+03[39m
+     57 Linear |R| = [33m5.940247e+03[39m
+     58 Linear |R| = [33m5.938031e+03[39m
+     59 Linear |R| = [33m5.935817e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 48.54 s[39m] [[33m  626 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 1.19209e-10
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.46 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994152e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994144e+03[39m
+      5 Linear |R| = [33m5.994141e+03[39m
+      6 Linear |R| = [33m5.994137e+03[39m
+      7 Linear |R| = [33m5.994134e+03[39m
+      8 Linear |R| = [33m5.994130e+03[39m
+      9 Linear |R| = [33m5.994127e+03[39m
+     10 Linear |R| = [33m5.994124e+03[39m
+     11 Linear |R| = [33m5.994120e+03[39m
+     12 Linear |R| = [33m5.994117e+03[39m
+     13 Linear |R| = [33m5.994113e+03[39m
+     14 Linear |R| = [33m5.994110e+03[39m
+     15 Linear |R| = [33m5.994107e+03[39m
+     16 Linear |R| = [33m5.994103e+03[39m
+     17 Linear |R| = [33m5.994100e+03[39m
+     18 Linear |R| = [33m5.994096e+03[39m
+     19 Linear |R| = [33m5.994093e+03[39m
+     20 Linear |R| = [33m5.994090e+03[39m
+     21 Linear |R| = [33m5.994086e+03[39m
+     22 Linear |R| = [33m5.994083e+03[39m
+     23 Linear |R| = [33m5.994080e+03[39m
+     24 Linear |R| = [33m5.994076e+03[39m
+     25 Linear |R| = [33m5.994073e+03[39m
+     26 Linear |R| = [33m5.994069e+03[39m
+     27 Linear |R| = [33m5.994066e+03[39m
+     28 Linear |R| = [33m5.994063e+03[39m
+     29 Linear |R| = [33m5.994059e+03[39m
+     30 Linear |R| = [31m5.996630e+03[39m
+     31 Linear |R| = [33m5.996630e+03[39m
+     32 Linear |R| = [33m5.996629e+03[39m
+     33 Linear |R| = [33m5.994162e+03[39m
+     34 Linear |R| = [33m5.991695e+03[39m
+     35 Linear |R| = [33m5.989231e+03[39m
+     36 Linear |R| = [33m5.986769e+03[39m
+     37 Linear |R| = [33m5.984311e+03[39m
+     38 Linear |R| = [33m5.981856e+03[39m
+     39 Linear |R| = [33m5.979403e+03[39m
+     40 Linear |R| = [33m5.976954e+03[39m
+     41 Linear |R| = [33m5.974508e+03[39m
+     42 Linear |R| = [33m5.972065e+03[39m
+     43 Linear |R| = [33m5.969624e+03[39m
+     44 Linear |R| = [33m5.967187e+03[39m
+     45 Linear |R| = [33m5.964753e+03[39m
+     46 Linear |R| = [33m5.962322e+03[39m
+     47 Linear |R| = [33m5.959893e+03[39m
+     48 Linear |R| = [33m5.957468e+03[39m
+     49 Linear |R| = [33m5.955046e+03[39m
+     50 Linear |R| = [33m5.952626e+03[39m
+     51 Linear |R| = [33m5.950210e+03[39m
+     52 Linear |R| = [33m5.947796e+03[39m
+     53 Linear |R| = [33m5.945385e+03[39m
+     54 Linear |R| = [33m5.942978e+03[39m
+     55 Linear |R| = [33m5.940573e+03[39m
+     56 Linear |R| = [33m5.938171e+03[39m
+     57 Linear |R| = [33m5.935772e+03[39m
+     58 Linear |R| = [33m5.933376e+03[39m
+     59 Linear |R| = [33m5.930983e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 48.52 s[39m] [[33m  626 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 5.96046e-11
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.69 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994152e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994143e+03[39m
+      5 Linear |R| = [33m5.994139e+03[39m
+      6 Linear |R| = [33m5.994135e+03[39m
+      7 Linear |R| = [33m5.994131e+03[39m
+      8 Linear |R| = [33m5.994127e+03[39m
+      9 Linear |R| = [33m5.994123e+03[39m
+     10 Linear |R| = [33m5.994119e+03[39m
+     11 Linear |R| = [33m5.994114e+03[39m
+     12 Linear |R| = [33m5.994110e+03[39m
+     13 Linear |R| = [33m5.994106e+03[39m
+     14 Linear |R| = [33m5.994102e+03[39m
+     15 Linear |R| = [33m5.994098e+03[39m
+     16 Linear |R| = [33m5.994094e+03[39m
+     17 Linear |R| = [33m5.994090e+03[39m
+     18 Linear |R| = [33m5.994086e+03[39m
+     19 Linear |R| = [33m5.994082e+03[39m
+     20 Linear |R| = [33m5.994077e+03[39m
+     21 Linear |R| = [33m5.994073e+03[39m
+     22 Linear |R| = [33m5.994069e+03[39m
+     23 Linear |R| = [33m5.994065e+03[39m
+     24 Linear |R| = [33m5.994061e+03[39m
+     25 Linear |R| = [33m5.994057e+03[39m
+     26 Linear |R| = [33m5.994053e+03[39m
+     27 Linear |R| = [33m5.994049e+03[39m
+     28 Linear |R| = [33m5.994045e+03[39m
+     29 Linear |R| = [33m5.994041e+03[39m
+     30 Linear |R| = [31m5.997130e+03[39m
+     31 Linear |R| = [33m5.997130e+03[39m
+     32 Linear |R| = [33m5.997130e+03[39m
+     33 Linear |R| = [33m5.994138e+03[39m
+     34 Linear |R| = [33m5.991149e+03[39m
+     35 Linear |R| = [33m5.988164e+03[39m
+     36 Linear |R| = [33m5.985184e+03[39m
+     37 Linear |R| = [33m5.982209e+03[39m
+     38 Linear |R| = [33m5.979238e+03[39m
+     39 Linear |R| = [33m5.976271e+03[39m
+     40 Linear |R| = [33m5.973309e+03[39m
+     41 Linear |R| = [33m5.970351e+03[39m
+     42 Linear |R| = [33m5.967398e+03[39m
+     43 Linear |R| = [33m5.964449e+03[39m
+     44 Linear |R| = [33m5.961504e+03[39m
+     45 Linear |R| = [33m5.958563e+03[39m
+     46 Linear |R| = [33m5.955627e+03[39m
+     47 Linear |R| = [33m5.952696e+03[39m
+     48 Linear |R| = [33m5.949768e+03[39m
+     49 Linear |R| = [33m5.946845e+03[39m
+     50 Linear |R| = [33m5.943927e+03[39m
+     51 Linear |R| = [33m5.941012e+03[39m
+     52 Linear |R| = [33m5.938102e+03[39m
+     53 Linear |R| = [33m5.935196e+03[39m
+     54 Linear |R| = [33m5.932295e+03[39m
+     55 Linear |R| = [33m5.929397e+03[39m
+     56 Linear |R| = [33m5.926504e+03[39m
+     57 Linear |R| = [33m5.923615e+03[39m
+     58 Linear |R| = [33m5.920731e+03[39m
+     59 Linear |R| = [33m5.917850e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 48.64 s[39m] [[33m  626 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 2.98023e-11
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.59 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994152e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994143e+03[39m
+      5 Linear |R| = [33m5.994139e+03[39m
+      6 Linear |R| = [33m5.994136e+03[39m
+      7 Linear |R| = [33m5.994132e+03[39m
+      8 Linear |R| = [33m5.994128e+03[39m
+      9 Linear |R| = [33m5.994124e+03[39m
+     10 Linear |R| = [33m5.994120e+03[39m
+     11 Linear |R| = [33m5.994116e+03[39m
+     12 Linear |R| = [33m5.994112e+03[39m
+     13 Linear |R| = [33m5.994108e+03[39m
+     14 Linear |R| = [33m5.994104e+03[39m
+     15 Linear |R| = [33m5.994100e+03[39m
+     16 Linear |R| = [33m5.994096e+03[39m
+     17 Linear |R| = [33m5.994092e+03[39m
+     18 Linear |R| = [33m5.994088e+03[39m
+     19 Linear |R| = [33m5.994085e+03[39m
+     20 Linear |R| = [33m5.994081e+03[39m
+     21 Linear |R| = [33m5.994077e+03[39m
+     22 Linear |R| = [33m5.994073e+03[39m
+     23 Linear |R| = [33m5.994069e+03[39m
+     24 Linear |R| = [33m5.994065e+03[39m
+     25 Linear |R| = [33m5.994061e+03[39m
+     26 Linear |R| = [33m5.994057e+03[39m
+     27 Linear |R| = [33m5.994053e+03[39m
+     28 Linear |R| = [33m5.994049e+03[39m
+     29 Linear |R| = [33m5.994045e+03[39m
+     30 Linear |R| = [31m5.996999e+03[39m
+     31 Linear |R| = [33m5.996999e+03[39m
+     32 Linear |R| = [33m5.996999e+03[39m
+     33 Linear |R| = [33m5.994141e+03[39m
+     34 Linear |R| = [33m5.991286e+03[39m
+     35 Linear |R| = [33m5.988436e+03[39m
+     36 Linear |R| = [33m5.985590e+03[39m
+     37 Linear |R| = [33m5.982748e+03[39m
+     38 Linear |R| = [33m5.979909e+03[39m
+     39 Linear |R| = [33m5.977075e+03[39m
+     40 Linear |R| = [33m5.974245e+03[39m
+     41 Linear |R| = [33m5.971419e+03[39m
+     42 Linear |R| = [33m5.968597e+03[39m
+     43 Linear |R| = [33m5.965779e+03[39m
+     44 Linear |R| = [33m5.962965e+03[39m
+     45 Linear |R| = [33m5.960155e+03[39m
+     46 Linear |R| = [33m5.957349e+03[39m
+     47 Linear |R| = [33m5.954546e+03[39m
+     48 Linear |R| = [33m5.951748e+03[39m
+     49 Linear |R| = [33m5.948954e+03[39m
+     50 Linear |R| = [33m5.946163e+03[39m
+     51 Linear |R| = [33m5.943377e+03[39m
+     52 Linear |R| = [33m5.940594e+03[39m
+     53 Linear |R| = [33m5.937816e+03[39m
+     54 Linear |R| = [33m5.935041e+03[39m
+     55 Linear |R| = [33m5.932270e+03[39m
+     56 Linear |R| = [33m5.929503e+03[39m
+     57 Linear |R| = [33m5.926740e+03[39m
+     58 Linear |R| = [33m5.923981e+03[39m
+     59 Linear |R| = [33m5.921226e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 50.22 s[39m] [[33m  626 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 1.49012e-11
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.49 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994152e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994144e+03[39m
+      5 Linear |R| = [33m5.994141e+03[39m
+      6 Linear |R| = [33m5.994138e+03[39m
+      7 Linear |R| = [33m5.994135e+03[39m
+      8 Linear |R| = [33m5.994133e+03[39m
+      9 Linear |R| = [33m5.994130e+03[39m
+     10 Linear |R| = [33m5.994127e+03[39m
+     11 Linear |R| = [33m5.994124e+03[39m
+     12 Linear |R| = [33m5.994121e+03[39m
+     13 Linear |R| = [33m5.994118e+03[39m
+     14 Linear |R| = [33m5.994115e+03[39m
+     15 Linear |R| = [33m5.994112e+03[39m
+     16 Linear |R| = [33m5.994109e+03[39m
+     17 Linear |R| = [33m5.994106e+03[39m
+     18 Linear |R| = [33m5.994103e+03[39m
+     19 Linear |R| = [33m5.994100e+03[39m
+     20 Linear |R| = [33m5.994097e+03[39m
+     21 Linear |R| = [33m5.994094e+03[39m
+     22 Linear |R| = [33m5.994091e+03[39m
+     23 Linear |R| = [33m5.994088e+03[39m
+     24 Linear |R| = [33m5.994085e+03[39m
+     25 Linear |R| = [33m5.994082e+03[39m
+     26 Linear |R| = [33m5.994079e+03[39m
+     27 Linear |R| = [33m5.994076e+03[39m
+     28 Linear |R| = [33m5.994073e+03[39m
+     29 Linear |R| = [33m5.994070e+03[39m
+     30 Linear |R| = [31m5.996334e+03[39m
+     31 Linear |R| = [33m5.996334e+03[39m
+     32 Linear |R| = [33m5.996333e+03[39m
+     33 Linear |R| = [33m5.994165e+03[39m
+     34 Linear |R| = [33m5.991999e+03[39m
+     35 Linear |R| = [33m5.989836e+03[39m
+     36 Linear |R| = [33m5.987674e+03[39m
+     37 Linear |R| = [33m5.985516e+03[39m
+     38 Linear |R| = [33m5.983359e+03[39m
+     39 Linear |R| = [33m5.981205e+03[39m
+     40 Linear |R| = [33m5.979053e+03[39m
+     41 Linear |R| = [33m5.976903e+03[39m
+     42 Linear |R| = [33m5.974756e+03[39m
+     43 Linear |R| = [33m5.972611e+03[39m
+     44 Linear |R| = [33m5.970468e+03[39m
+     45 Linear |R| = [33m5.968327e+03[39m
+     46 Linear |R| = [33m5.966189e+03[39m
+     47 Linear |R| = [33m5.964053e+03[39m
+     48 Linear |R| = [33m5.961920e+03[39m
+     49 Linear |R| = [33m5.959789e+03[39m
+     50 Linear |R| = [33m5.957660e+03[39m
+     51 Linear |R| = [33m5.955533e+03[39m
+     52 Linear |R| = [33m5.953409e+03[39m
+     53 Linear |R| = [33m5.951286e+03[39m
+     54 Linear |R| = [33m5.949167e+03[39m
+     55 Linear |R| = [33m5.947049e+03[39m
+     56 Linear |R| = [33m5.944934e+03[39m
+     57 Linear |R| = [33m5.942821e+03[39m
+     58 Linear |R| = [33m5.940710e+03[39m
+     59 Linear |R| = [33m5.938601e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 52.94 s[39m] [[33m  626 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 7.45058e-12
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.96 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994152e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994144e+03[39m
+      5 Linear |R| = [33m5.994141e+03[39m
+      6 Linear |R| = [33m5.994138e+03[39m
+      7 Linear |R| = [33m5.994134e+03[39m
+      8 Linear |R| = [33m5.994131e+03[39m
+      9 Linear |R| = [33m5.994128e+03[39m
+     10 Linear |R| = [33m5.994125e+03[39m
+     11 Linear |R| = [33m5.994122e+03[39m
+     12 Linear |R| = [33m5.994118e+03[39m
+     13 Linear |R| = [33m5.994115e+03[39m
+     14 Linear |R| = [33m5.994112e+03[39m
+     15 Linear |R| = [33m5.994109e+03[39m
+     16 Linear |R| = [33m5.994105e+03[39m
+     17 Linear |R| = [33m5.994102e+03[39m
+     18 Linear |R| = [33m5.994099e+03[39m
+     19 Linear |R| = [33m5.994096e+03[39m
+     20 Linear |R| = [33m5.994093e+03[39m
+     21 Linear |R| = [33m5.994089e+03[39m
+     22 Linear |R| = [33m5.994086e+03[39m
+     23 Linear |R| = [33m5.994083e+03[39m
+     24 Linear |R| = [33m5.994080e+03[39m
+     25 Linear |R| = [33m5.994077e+03[39m
+     26 Linear |R| = [33m5.994073e+03[39m
+     27 Linear |R| = [33m5.994070e+03[39m
+     28 Linear |R| = [33m5.994067e+03[39m
+     29 Linear |R| = [33m5.994064e+03[39m
+     30 Linear |R| = [31m5.996501e+03[39m
+     31 Linear |R| = [33m5.996501e+03[39m
+     32 Linear |R| = [33m5.996500e+03[39m
+     33 Linear |R| = [33m5.994159e+03[39m
+     34 Linear |R| = [33m5.991820e+03[39m
+     35 Linear |R| = [33m5.989483e+03[39m
+     36 Linear |R| = [33m5.987149e+03[39m
+     37 Linear |R| = [33m5.984819e+03[39m
+     38 Linear |R| = [33m5.982490e+03[39m
+     39 Linear |R| = [33m5.980165e+03[39m
+     40 Linear |R| = [33m5.977842e+03[39m
+     41 Linear |R| = [33m5.975522e+03[39m
+     42 Linear |R| = [33m5.973204e+03[39m
+     43 Linear |R| = [33m5.970890e+03[39m
+     44 Linear |R| = [33m5.968578e+03[39m
+     45 Linear |R| = [33m5.966268e+03[39m
+     46 Linear |R| = [33m5.963962e+03[39m
+     47 Linear |R| = [33m5.961658e+03[39m
+     48 Linear |R| = [33m5.959356e+03[39m
+     49 Linear |R| = [33m5.957058e+03[39m
+     50 Linear |R| = [33m5.954762e+03[39m
+     51 Linear |R| = [33m5.952468e+03[39m
+     52 Linear |R| = [33m5.950178e+03[39m
+     53 Linear |R| = [33m5.947889e+03[39m
+     54 Linear |R| = [33m5.945604e+03[39m
+     55 Linear |R| = [33m5.943321e+03[39m
+     56 Linear |R| = [33m5.941041e+03[39m
+     57 Linear |R| = [33m5.938764e+03[39m
+     58 Linear |R| = [33m5.936489e+03[39m
+     59 Linear |R| = [33m5.934216e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 53.59 s[39m] [[33m  626 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 3.72529e-12
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.76 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994152e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994144e+03[39m
+      5 Linear |R| = [33m5.994140e+03[39m
+      6 Linear |R| = [33m5.994137e+03[39m
+      7 Linear |R| = [33m5.994133e+03[39m
+      8 Linear |R| = [33m5.994129e+03[39m
+      9 Linear |R| = [33m5.994126e+03[39m
+     10 Linear |R| = [33m5.994122e+03[39m
+     11 Linear |R| = [33m5.994119e+03[39m
+     12 Linear |R| = [33m5.994115e+03[39m
+     13 Linear |R| = [33m5.994112e+03[39m
+     14 Linear |R| = [33m5.994108e+03[39m
+     15 Linear |R| = [33m5.994104e+03[39m
+     16 Linear |R| = [33m5.994101e+03[39m
+     17 Linear |R| = [33m5.994097e+03[39m
+     18 Linear |R| = [33m5.994094e+03[39m
+     19 Linear |R| = [33m5.994090e+03[39m
+     20 Linear |R| = [33m5.994087e+03[39m
+     21 Linear |R| = [33m5.994083e+03[39m
+     22 Linear |R| = [33m5.994079e+03[39m
+     23 Linear |R| = [33m5.994076e+03[39m
+     24 Linear |R| = [33m5.994072e+03[39m
+     25 Linear |R| = [33m5.994069e+03[39m
+     26 Linear |R| = [33m5.994065e+03[39m
+     27 Linear |R| = [33m5.994062e+03[39m
+     28 Linear |R| = [33m5.994058e+03[39m
+     29 Linear |R| = [33m5.994054e+03[39m
+     30 Linear |R| = [31m5.996751e+03[39m
+     31 Linear |R| = [33m5.996751e+03[39m
+     32 Linear |R| = [33m5.996751e+03[39m
+     33 Linear |R| = [33m5.994150e+03[39m
+     34 Linear |R| = [33m5.991552e+03[39m
+     35 Linear |R| = [33m5.988958e+03[39m
+     36 Linear |R| = [33m5.986366e+03[39m
+     37 Linear |R| = [33m5.983779e+03[39m
+     38 Linear |R| = [33m5.981194e+03[39m
+     39 Linear |R| = [33m5.978613e+03[39m
+     40 Linear |R| = [33m5.976035e+03[39m
+     41 Linear |R| = [33m5.973461e+03[39m
+     42 Linear |R| = [33m5.970890e+03[39m
+     43 Linear |R| = [33m5.968322e+03[39m
+     44 Linear |R| = [33m5.965757e+03[39m
+     45 Linear |R| = [33m5.963196e+03[39m
+     46 Linear |R| = [33m5.960638e+03[39m
+     47 Linear |R| = [33m5.958084e+03[39m
+     48 Linear |R| = [33m5.955532e+03[39m
+     49 Linear |R| = [33m5.952984e+03[39m
+     50 Linear |R| = [33m5.950440e+03[39m
+     51 Linear |R| = [33m5.947898e+03[39m
+     52 Linear |R| = [33m5.945360e+03[39m
+     53 Linear |R| = [33m5.942825e+03[39m
+     54 Linear |R| = [33m5.940293e+03[39m
+     55 Linear |R| = [33m5.937764e+03[39m
+     56 Linear |R| = [33m5.935239e+03[39m
+     57 Linear |R| = [33m5.932717e+03[39m
+     58 Linear |R| = [33m5.930198e+03[39m
+     59 Linear |R| = [33m5.927682e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 53.55 s[39m] [[33m  626 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 1.86265e-12
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.53 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994152e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994144e+03[39m
+      5 Linear |R| = [33m5.994140e+03[39m
+      6 Linear |R| = [33m5.994136e+03[39m
+      7 Linear |R| = [33m5.994133e+03[39m
+      8 Linear |R| = [33m5.994129e+03[39m
+      9 Linear |R| = [33m5.994126e+03[39m
+     10 Linear |R| = [33m5.994122e+03[39m
+     11 Linear |R| = [33m5.994119e+03[39m
+     12 Linear |R| = [33m5.994115e+03[39m
+     13 Linear |R| = [33m5.994112e+03[39m
+     14 Linear |R| = [33m5.994108e+03[39m
+     15 Linear |R| = [33m5.994105e+03[39m
+     16 Linear |R| = [33m5.994101e+03[39m
+     17 Linear |R| = [33m5.994097e+03[39m
+     18 Linear |R| = [33m5.994094e+03[39m
+     19 Linear |R| = [33m5.994090e+03[39m
+     20 Linear |R| = [33m5.994087e+03[39m
+     21 Linear |R| = [33m5.994083e+03[39m
+     22 Linear |R| = [33m5.994080e+03[39m
+     23 Linear |R| = [33m5.994076e+03[39m
+     24 Linear |R| = [33m5.994073e+03[39m
+     25 Linear |R| = [33m5.994069e+03[39m
+     26 Linear |R| = [33m5.994065e+03[39m
+     27 Linear |R| = [33m5.994062e+03[39m
+     28 Linear |R| = [33m5.994058e+03[39m
+     29 Linear |R| = [33m5.994055e+03[39m
+     30 Linear |R| = [31m5.996738e+03[39m
+     31 Linear |R| = [33m5.996738e+03[39m
+     32 Linear |R| = [33m5.996737e+03[39m
+     33 Linear |R| = [33m5.994147e+03[39m
+     34 Linear |R| = [33m5.991561e+03[39m
+     35 Linear |R| = [33m5.988977e+03[39m
+     36 Linear |R| = [33m5.986397e+03[39m
+     37 Linear |R| = [33m5.983820e+03[39m
+     38 Linear |R| = [33m5.981247e+03[39m
+     39 Linear |R| = [33m5.978676e+03[39m
+     40 Linear |R| = [33m5.976109e+03[39m
+     41 Linear |R| = [33m5.973546e+03[39m
+     42 Linear |R| = [33m5.970986e+03[39m
+     43 Linear |R| = [33m5.968429e+03[39m
+     44 Linear |R| = [33m5.965875e+03[39m
+     45 Linear |R| = [33m5.963324e+03[39m
+     46 Linear |R| = [33m5.960777e+03[39m
+     47 Linear |R| = [33m5.958233e+03[39m
+     48 Linear |R| = [33m5.955693e+03[39m
+     49 Linear |R| = [33m5.953155e+03[39m
+     50 Linear |R| = [33m5.950621e+03[39m
+     51 Linear |R| = [33m5.948090e+03[39m
+     52 Linear |R| = [33m5.945562e+03[39m
+     53 Linear |R| = [33m5.943038e+03[39m
+     54 Linear |R| = [33m5.940517e+03[39m
+     55 Linear |R| = [33m5.937999e+03[39m
+     56 Linear |R| = [33m5.935484e+03[39m
+     57 Linear |R| = [33m5.932972e+03[39m
+     58 Linear |R| = [33m5.930464e+03[39m
+     59 Linear |R| = [33m5.927958e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 48.76 s[39m] [[33m  626 MB[39m]
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1, dt = 1e-12
+ 0 Nonlinear |R| = [32m5.994608e+03[39m
+
+    Computing Jacobian..                                                                 [[33m 21.76 s[39m] [[33m  626 MB[39m]
+      0 Linear |R| = [32m5.994608e+03[39m
+      1 Linear |R| = [33m5.994606e+03[39m
+      2 Linear |R| = [33m5.994152e+03[39m
+      3 Linear |R| = [33m5.994147e+03[39m
+      4 Linear |R| = [33m5.994144e+03[39m
+      5 Linear |R| = [33m5.994140e+03[39m
+      6 Linear |R| = [33m5.994136e+03[39m
+      7 Linear |R| = [33m5.994133e+03[39m
+      8 Linear |R| = [33m5.994129e+03[39m
+      9 Linear |R| = [33m5.994125e+03[39m
+     10 Linear |R| = [33m5.994122e+03[39m
+     11 Linear |R| = [33m5.994118e+03[39m
+     12 Linear |R| = [33m5.994114e+03[39m
+     13 Linear |R| = [33m5.994111e+03[39m
+     14 Linear |R| = [33m5.994107e+03[39m
+     15 Linear |R| = [33m5.994103e+03[39m
+     16 Linear |R| = [33m5.994099e+03[39m
+     17 Linear |R| = [33m5.994096e+03[39m
+     18 Linear |R| = [33m5.994092e+03[39m
+     19 Linear |R| = [33m5.994088e+03[39m
+     20 Linear |R| = [33m5.994085e+03[39m
+     21 Linear |R| = [33m5.994081e+03[39m
+     22 Linear |R| = [33m5.994077e+03[39m
+     23 Linear |R| = [33m5.994074e+03[39m
+     24 Linear |R| = [33m5.994070e+03[39m
+     25 Linear |R| = [33m5.994066e+03[39m
+     26 Linear |R| = [33m5.994063e+03[39m
+     27 Linear |R| = [33m5.994059e+03[39m
+     28 Linear |R| = [33m5.994055e+03[39m
+     29 Linear |R| = [33m5.994052e+03[39m
+     30 Linear |R| = [31m5.996829e+03[39m
+     31 Linear |R| = [33m5.996829e+03[39m
+     32 Linear |R| = [33m5.996829e+03[39m
+     33 Linear |R| = [33m5.994147e+03[39m
+     34 Linear |R| = [33m5.991469e+03[39m
+     35 Linear |R| = [33m5.988794e+03[39m
+     36 Linear |R| = [33m5.986122e+03[39m
+     37 Linear |R| = [33m5.983454e+03[39m
+     38 Linear |R| = [33m5.980790e+03[39m
+     39 Linear |R| = [33m5.978130e+03[39m
+     40 Linear |R| = [33m5.975472e+03[39m
+     41 Linear |R| = [33m5.972819e+03[39m
+     42 Linear |R| = [33m5.970169e+03[39m
+     43 Linear |R| = [33m5.967522e+03[39m
+     44 Linear |R| = [33m5.964879e+03[39m
+     45 Linear |R| = [33m5.962240e+03[39m
+     46 Linear |R| = [33m5.959604e+03[39m
+     47 Linear |R| = [33m5.956971e+03[39m
+     48 Linear |R| = [33m5.954342e+03[39m
+     49 Linear |R| = [33m5.951717e+03[39m
+     50 Linear |R| = [33m5.949095e+03[39m
+     51 Linear |R| = [33m5.946476e+03[39m
+     52 Linear |R| = [33m5.943861e+03[39m
+     53 Linear |R| = [33m5.941249e+03[39m
+     54 Linear |R| = [33m5.938641e+03[39m
+     55 Linear |R| = [33m5.936036e+03[39m
+     56 Linear |R| = [33m5.933435e+03[39m
+     57 Linear |R| = [33m5.930837e+03[39m
+     58 Linear |R| = [33m5.928242e+03[39m
+     59 Linear |R| = [33m5.925651e+03[39m
+    Linear solve did not converge due to DIVERGED_BREAKDOWN iterations 60
+  Nonlinear solve did not converge due to DIVERGED_LINE_SEARCH iterations 0
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m 53.36 s[39m] [[33m  626 MB[39m]
+Aborting as solve did not converge
+
+[31m
+*** ERROR ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:494.3:
+The following occurred in the TimeStepper 'IterationAdaptiveDT' of type IterationAdaptiveDT.
+
+Solve failed and timestep already at dtmin, cannot continue![39m
+
+
+[31m
+*** ERROR ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:494.3:
+The following occurred in the TimeStepper 'IterationAdaptiveDT' of type IterationAdaptiveDT.
+
+Solve failed and timestep already at dtmin, cannot continue![39m
+
+
+[31m
+*** ERROR ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:494.3:
+The following occurred in the TimeStepper 'IterationAdaptiveDT' of type IterationAdaptiveDT.
+
+Solve failed and timestep already at dtmin, cannot continue![39m
+
+
+[31m
+*** ERROR ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient_v2.i:494.3:
+The following occurred in the TimeStepper 'IterationAdaptiveDT' of type IterationAdaptiveDT.
+
+Solve failed and timestep already at dtmin, cannot continue![39m
+
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 0 in communicator MPI_COMM_WORLD
+with errorcode 1.
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------
+[RTXWS:36862] 3 more processes have sent help message help-mpi-api.txt / mpi-abort
+[RTXWS:36862] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages

@@ -1,0 +1,247 @@
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+
+[36m
+*** Info ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_ml.i:39.1:
+The following occurred in the Problem 'MOOSE Problem' of type FEProblem.
+
+Using /home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_stokes_checkpoint_cp/0001 for restart.[39m
+
+[36m
+*** Info ***
+'execute_on' parameter specified in [Outputs] block is ignored for object 'checkpoint'.
+Define this object in its own sub-block of [Outputs] to modify its execution schedule.[39m
+Finished Setting Up                                                                      [[33m  1.98 s[39m] [[33m  264 MB[39m]
+Framework Information:
+MOOSE Version:           git commit b1e271b638 on 2025-10-10
+LibMesh Version:         
+PETSc Version:           3.23.4
+SLEPc Version:           3.23.2
+Current Time:            Mon Apr 27 13:15:13 2026
+Executable Timestamp:    Tue Apr 14 14:29:53 2026
+
+Input File(s):
+  /home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_ml.i
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  User Checkpoint:         Outputs/checkpoint
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          4
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 9245
+    Local:                 2162
+    Min/Max/Avg:           2004/2614/2311
+  Elems:                   
+    Total:                 35186
+    Local:                 8797
+    Min/Max/Avg:           8796/8797/8796
+  Num Subdomains:          1
+  Num Partitions:          4
+  Partitioner:             metis
+
+Nonlinear System:
+  Num DOFs:                140744
+  Num Local DOFs:          35188
+  Variables:               { "vel_x" "vel_y" "vel_z" "pressure" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Auxiliary System:
+  Num DOFs:                70372
+  Num Local DOFs:          17594
+  Variables:               { "mixing_len" "mu_t" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             IterationAdaptiveDT
+  TimeIntegrator(s):       ImplicitEuler
+  Solver Mode:             Preconditioned JFNK 
+  PETSc Preconditioner:    lu 
+Currently Executing
+  Performing Initial Setup..
+  Finished Performing Initial Setup                                                      [[33m 20.75 s[39m] [[33m  267 MB[39m]
+
+Time Step 0, time = 1
+
+Time Step 1, time = 1.00001, dt = 1e-05
+
+[33m
+*** Warning ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_ml.i:142.3:
+The following occurred in the FVKernel 'u_viscosity_rans' of type INSFVMomentumDiffusion.
+
+Negative face viscosity has been encountered. Value -5.8544e-11 at (x,y,z)=(-0.525745, 0.252838,  0.92763) limiting it to 0!
+Further warnings for this issue will be silenced, but the occurrences will be recorded through the solution invalidity interface.[39m
+    Finished Computing Residual                                                          [[33m  1.57 s[39m] [[33m  428 MB[39m]
+ 0 Nonlinear |R| = [32m5.995403e+03[39m
+      0 Linear |R| = [32m5.995403e+03[39m
+      1 Linear |R| = [31m1.018854e+04[39m
+ 1 Nonlinear |R| = [32m5.395863e+03[39m
+      0 Linear |R| = [32m5.395863e+03[39m
+      1 Linear |R| = [31m2.790829e+09[39m
+ 2 Nonlinear |R| = [32m4.856277e+03[39m
+      0 Linear |R| = [32m4.856277e+03[39m
+      1 Linear |R| = [31m1.532740e+09[39m
+ 3 Nonlinear |R| = [32m4.370649e+03[39m
+      0 Linear |R| = [32m4.370649e+03[39m
+      1 Linear |R| = [31m9.988999e+08[39m
+ 4 Nonlinear |R| = [32m3.933584e+03[39m
+      0 Linear |R| = [32m3.933584e+03[39m
+      1 Linear |R| = [31m7.075444e+08[39m
+ 5 Nonlinear |R| = [32m3.540226e+03[39m
+      0 Linear |R| = [32m3.540226e+03[39m
+      1 Linear |R| = [31m5.275520e+08[39m
+ 6 Nonlinear |R| = [32m3.186203e+03[39m
+      0 Linear |R| = [32m3.186203e+03[39m
+      1 Linear |R| = [31m4.068128e+08[39m
+ 7 Nonlinear |R| = [32m2.867583e+03[39m
+      0 Linear |R| = [32m2.867583e+03[39m
+      1 Linear |R| = [31m3.206947e+08[39m
+ 8 Nonlinear |R| = [32m2.580825e+03[39m
+      0 Linear |R| = [32m2.580825e+03[39m
+      1 Linear |R| = [31m2.563341e+08[39m
+ 9 Nonlinear |R| = [32m2.322742e+03[39m
+      0 Linear |R| = [32m2.322742e+03[39m
+      1 Linear |R| = [31m2.066668e+08[39m
+10 Nonlinear |R| = [32m2.090468e+03[39m
+  Nonlinear solve did not converge due to DIVERGED_MAX_IT iterations 10
+
+Solution Invalid Warnings:
+------------------------------------------------------------------------------------------------------------------
+|         Object         | Converged | Timestep |  Total |                        Message                        |
+------------------------------------------------------------------------------------------------------------------
+| INSFVMomentumDiffusion |     17409 |   577071 | 577071 | Negative face dynamic viscosity has been encountered. |
+------------------------------------------------------------------------------------------------------------------
+
+[33m
+*** Warning ***
+The solution is not converged due to the solution being invalid.[39m
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m236.24 s[39m] [[33m  570 MB[39m]
+
+
+Solution Invalid Warnings History:
+----------------------------------------------------------------------------------------------------------------------------
+|                                     Object                                     | Time | Stepinterval Count | Total Count |
+----------------------------------------------------------------------------------------------------------------------------
+| INSFVMomentumDiffusion : Negative face dynamic viscosity has been encountered. | 0-1  |                  0 |           0 |
+----------------------------------------------------------------------------------------------------------------------------
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 1.00001, dt = 5e-06
+ 0 Nonlinear |R| = [32m5.995403e+03[39m
+      0 Linear |R| = [32m5.995403e+03[39m
+      1 Linear |R| = [31m2.445639e+14[39m
+ 1 Nonlinear |R| = [32m5.395863e+03[39m
+      0 Linear |R| = [32m5.395863e+03[39m
+      1 Linear |R| = [31m3.943256e+09[39m
+ 2 Nonlinear |R| = [32m4.856277e+03[39m

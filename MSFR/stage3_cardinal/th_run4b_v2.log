@@ -1,0 +1,130 @@
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+
+[31m
+*** ERROR ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_run4b.i:948.3: parameter 'Outputs/execute_on' supplied multiple times
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_run4b.i:949.3: parameter 'Outputs/execute_on' supplied multiple times[39m
+
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 0 in communicator MPI_COMM_WORLD
+with errorcode 1.
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------
+
+[31m
+*** ERROR ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_run4b.i:948.3: parameter 'Outputs/execute_on' supplied multiple times
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_run4b.i:949.3: parameter 'Outputs/execute_on' supplied multiple times[39m
+
+
+[31m
+*** ERROR ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_run4b.i:948.3: parameter 'Outputs/execute_on' supplied multiple times
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_run4b.i:949.3: parameter 'Outputs/execute_on' supplied multiple times[39m
+
+
+[31m
+*** ERROR ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_run4b.i:948.3: parameter 'Outputs/execute_on' supplied multiple times
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_run4b.i:949.3: parameter 'Outputs/execute_on' supplied multiple times[39m
+
+[RTXWS:161216] 3 more processes have sent help message help-mpi-api.txt / mpi-abort
+[RTXWS:161216] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages

@@ -223,6 +223,8 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     # 初始值 0.0：壓力以出口為參考點（錶壓），絕對值不影響流場
     type = INSFVPressureVariable
     initial_condition = 0.0
+    scaling = 1e-4  # Gemini 建議：速度量級~1，壓力量級~1e5，差距導致 Jacobian 條件數爆炸
+                    # scaling = 1e-4 讓壓力項縮放到與速度項同量級，Newton 迭代才能收斂
     solver_sys = pressure_system
     two_term_boundary_expansion = false
   []
@@ -388,6 +390,52 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 #   對流帶走的是焓（enthalpy），不是溫度本身。
 [FunctorMaterials]
   #[enthalpy] # Phase 1 停用：無能量方程式不需要焓材料
+
+  # ── 人工阻尼（Artificial Damping）────────────────────────────
+  # 目的：防止 Sliver element 速度暴衝導致 SIMPLE 求解器崩潰
+  #
+  # 物理原理：
+  #   SIMPLE 求解壓力修正時，分母含 A_diag（動量方程係數）
+  #   當某 cell 速度暴衝 → 對流係數飆高 → A_diag → 0
+  #   → A_inv → ∞ → 壓力修正量爆炸 → overflow 崩潰
+  #
+  # 解法：在動量方程右側加一個體積力 F_body
+  #   當 |v| > 5.0 m/s：F_body = -1e5 × v（巨大反向阻力）
+  #   當 |v| ≤ 5.0 m/s：F_body = 0（不干擾正常流場）
+  #
+  # 閾值選擇依據：
+  #   入口速度 U_in = 1.1838 m/s
+  #   爐心最大合理速度 ≈ 5.0 m/s（約 4.2 倍入口速度）
+  #   超過此值視為非物理暴衝，立即施加阻力
+  #
+  # 注意：ParsedFunctorMaterial 每個 block 只能定義一個 property_name
+  #   因此 x/y/z 三個分量必須分開定義為三個獨立 block
+  #   這三個 functor 會在 [FVKernels] 的 INSFVBodyForce 中被引用
+
+  [drag_force_x]
+    type = ADParsedFunctorMaterial
+    property_name = 'drag_force_x'
+    # vel_mag：先計算速度大小，判斷是否超過閾值
+    # 超過 5.0 m/s：回傳 -1e5 × vel_x（反向阻力）
+    # 未超過：回傳 0（不施加任何力）
+    expression = 'vel_mag := sqrt(vel_x^2 + vel_y^2 + vel_z^2); if(vel_mag > 5.0, -1e5 * vel_x, 0.0)'
+    functor_names = 'vel_x vel_y vel_z'
+    use_ad = true  # vel_x/y/z 是 AD 變數，必須用 AD 模式讀取，否則會丟失導數資訊導致 Jacobian 錯誤
+  []
+  [drag_force_y]
+    type = ADParsedFunctorMaterial
+    property_name = 'drag_force_y'
+    expression = 'vel_mag := sqrt(vel_x^2 + vel_y^2 + vel_z^2); if(vel_mag > 5.0, -1e5 * vel_y, 0.0)'
+    functor_names = 'vel_x vel_y vel_z'
+    use_ad = true  # vel_x/y/z 是 AD 變數，必須用 AD 模式讀取，否則會丟失導數資訊導致 Jacobian 錯誤
+  []
+  [drag_force_z]
+    type = ADParsedFunctorMaterial
+    property_name = 'drag_force_z'
+    expression = 'vel_mag := sqrt(vel_x^2 + vel_y^2 + vel_z^2); if(vel_mag > 5.0, -1e5 * vel_z, 0.0)'
+    functor_names = 'vel_x vel_y vel_z'
+    use_ad = true  # vel_x/y/z 是 AD 變數，必須用 AD 模式讀取，否則會丟失導數資訊導致 Jacobian 錯誤
+  []
 []
 # ============================================================
 # [Executioner]：求解器設定
@@ -844,6 +892,31 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   #[TKED_diffusion] # Phase 1 停用
   #[TKED_diffusion_turbulent] # Phase 1 停用
   #[TKED_source] # Phase 1 停用
+  # ── 人工阻尼 Body Force ──────────────────────────────────────
+  # 把 FunctorMaterials 定義的 drag_force 施加到動量方程右側
+  # 當 |v| > 5.0 m/s 時，INSFVBodyForce 在動量求解步加入反向阻力
+  # 防止 Sliver element 暴衝導致 A_diag → 0 → overflow
+  [rubber_wall_x]
+    type = INSFVBodyForce
+    variable = vel_x
+    functor = drag_force_x
+    rhie_chow_user_object = 'rc'
+    momentum_component = 'x'
+  []
+  [rubber_wall_y]
+    type = INSFVBodyForce
+    variable = vel_y
+    functor = drag_force_y
+    rhie_chow_user_object = 'rc'
+    momentum_component = 'y'
+  []
+  [rubber_wall_z]
+    type = INSFVBodyForce
+    variable = vel_z
+    functor = drag_force_z
+    rhie_chow_user_object = 'rc'
+    momentum_component = 'z'
+  []
 []
 # ============================================================
 # [Functions]：定義隨迭代變化的函數

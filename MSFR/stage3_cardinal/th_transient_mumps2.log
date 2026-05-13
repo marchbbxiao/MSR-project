@@ -1,0 +1,156 @@
+
+[36m
+*** Info ***
+'execute_on' parameter specified in [Outputs] block is ignored for object 'checkpoint'.
+Define this object in its own sub-block of [Outputs] to modify its execution schedule.[39m
+Setting Up
+  Finished Initializing                                                                  [[33m  2.07 s[39m] [[33m  328 MB[39m]
+Finished Setting Up                                                                      [[33m  2.62 s[39m] [[33m  328 MB[39m]
+Framework Information:
+MOOSE Version:           git commit b1e271b638 on 2025-10-10
+LibMesh Version:         
+PETSc Version:           3.23.4
+SLEPc Version:           3.23.2
+Current Time:            Mon Apr 27 11:08:50 2026
+Executable Timestamp:    Tue Apr 14 14:29:53 2026
+
+Input File(s):
+  /home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient.i
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  User Checkpoint:         Outputs/checkpoint
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          4
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 9245
+    Local:                 2162
+    Min/Max/Avg:           2004/2614/2311
+  Elems:                   
+    Total:                 35186
+    Local:                 8797
+    Min/Max/Avg:           8796/8797/8796
+  Num Subdomains:          1
+  Num Partitions:          4
+  Partitioner:             metis
+
+Nonlinear System:
+  Num DOFs:                211116
+  Num Local DOFs:          52782
+  Variables:               { "vel_x" "vel_y" "vel_z" "pressure" "TKE" "TKED" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Auxiliary System:
+  Num DOFs:                105558
+  Num Local DOFs:          26391
+  Variables:               { "power_density" "mu_t" "yplus" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             IterationAdaptiveDT
+  TimeIntegrator(s):       ImplicitEuler
+  Solver Mode:             Preconditioned JFNK 
+  PETSc Preconditioner:    lu 
+
+[33m
+*** Warning ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient.i:36.1: unused parameter 'cp'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient.i:37.1: unused parameter 'k'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient.i:215.5: unused parameter 'Variables/TKE/lower_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient.i:231.5: unused parameter 'Variables/TKED/lower_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient.i:895.3: unused parameter 'Outputs/output_frequency'[39m
+
+Time Step 0, time = 0
+
+Time Step 1, time = 0.0001, dt = 0.0001
+Currently Executing
+    Computing Residual
+      Finished Computing Rhie-Chow coefficients                                          [[33m  0.83 s[39m] [[33m  468 MB[39m]
+    Finished Computing Residual                                                          [[33m  1.79 s[39m] [[33m  554 MB[39m]
+ 0 Nonlinear |R| = [32m6.004574e+03[39m
+      0 Linear |R| = [32m6.004574e+03[39m
+      1 Linear |R| = [31m5.903598e+17[39m
+ 1 Nonlinear |R| = [32m7.112104e+01[39m
+
+[33m
+*** Warning ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient.i:482.3:
+The following occurred in the FVKernel 'vel_x_diffusion_turbulent' of type INSFVMomentumDiffusion.
+
+Negative face viscosity has been encountered. Value -0.12207 at (x,y,z)=(-0.482479, 0.313408, 0.883525) limiting it to 0!
+Further warnings for this issue will be silenced, but the occurrences will be recorded through the solution invalidity interface.[39m
+      0 Linear |R| = [32m7.112104e+01[39m
+      1 Linear |R| = [31m3.710180e+09[39m
+  Nonlinear solve did not converge due to DIVERGED_FNORM_NAN iterations 1
+
+Solution Invalid Warnings:
+------------------------------------------------------------------------------------------------------------------
+|         Object         | Converged | Timestep |  Total |                        Message                        |
+------------------------------------------------------------------------------------------------------------------
+| INSFVMomentumDiffusion |    166272 |   498816 | 498816 | Negative face dynamic viscosity has been encountered. |
+------------------------------------------------------------------------------------------------------------------
+
+[33m
+*** Warning ***
+The solution is not converged due to the solution being invalid.[39m
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m111.08 s[39m] [[33m  683 MB[39m]
+
+
+Solution Invalid Warnings History:
+----------------------------------------------------------------------------------------------------------------------------
+|                                     Object                                     | Time | Stepinterval Count | Total Count |
+----------------------------------------------------------------------------------------------------------------------------
+| INSFVMomentumDiffusion : Negative face dynamic viscosity has been encountered. | 0-1  |                  0 |           0 |
+----------------------------------------------------------------------------------------------------------------------------
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 5e-05, dt = 5e-05
+ 0 Nonlinear |R| = [32m6.004574e+03[39m
+      0 Linear |R| = [32m6.004574e+03[39m
+      1 Linear |R| = [31m1.186564e+18[39m
+ 1 Nonlinear |R| = [32m7.127554e+01[39m
+      0 Linear |R| = [32m7.127554e+01[39m
+      1 Linear |R| = [31m2.588888e+09[39m
+  Nonlinear solve did not converge due to DIVERGED_FNORM_NAN iterations 1
+
+Solution Invalid Warnings:
+------------------------------------------------------------------------------------------------------------------
+|         Object         | Converged | Timestep |  Total |                        Message                        |
+------------------------------------------------------------------------------------------------------------------
+| INSFVMomentumDiffusion |    166116 |   498348 | 997164 | Negative face dynamic viscosity has been encountered. |
+------------------------------------------------------------------------------------------------------------------
+
+[33m
+*** Warning ***
+The solution is not converged due to the solution being invalid.[39m
+[31m Solve Did NOT Converge![39m
+  Finished Solving                                                                       [[33m110.79 s[39m] [[33m  682 MB[39m]
+
+
+Solution Invalid Warnings History:
+----------------------------------------------------------------------------------------------------------------------------
+|                                     Object                                     | Time | Stepinterval Count | Total Count |
+----------------------------------------------------------------------------------------------------------------------------
+| INSFVMomentumDiffusion : Negative face dynamic viscosity has been encountered. | 0-1  |                  0 |           0 |
+----------------------------------------------------------------------------------------------------------------------------
+Aborting as solve did not converge
+
+Solve failed, cutting timestep.
+
+Time Step 1, time = 2.5e-05, dt = 2.5e-05
+ 0 Nonlinear |R| = [32m6.004574e+03[39m

@@ -81,6 +81,9 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 #   會要求 NekRS 相關參數而報錯
 [Problem]
   type = FEProblem
+  # 遇到負黏度等 invalid solution 時，改為警告而非 abort
+  # 系統已有自動 clamp 機制（limiting to 0），讓 Newton 繼續嘗試收斂
+  solution_invalidity_behavior = WARN
   allow_initial_conditions_with_restart = true
   previous_nl_solution_required = true
   # 純流場診斷版：移除 energy_system，隔離能量方程式
@@ -126,8 +129,8 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 [Mesh]
   [file]
     type = FileMeshGenerator
-    file = msr_with_sidesets.e
-    # use_for_exodus_restart = true
+    file = th_run4b_out.e
+    use_for_exodus_restart = true  # 啟用 Exodus 熱啟動，讀取 vel、TKE、TKED 初始場
   # initial solution from steady-state run
   # (loaded via initial_from_file_var in Variables)
   []
@@ -154,9 +157,9 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 #       而是從外部傳入或由 AuxKernel 計算的輔助量，不需要 solver_sys
 [Variables]
   [vel_x]
-    # initial_from_file_var = vel_x
+      initial_from_file_var = vel_x
     # initial_from_file_timestep = 1
-    initial_condition = 0.0
+    # initial_condition = 0.0
     # x 方向速度分量 [m/s]
     # 對應動量方程式 x 分量：ρ Dvx/Dt = -∂p/∂x + ∇⋅[(μ+μt)∇vx]
     # 初始速度為零（靜止起始），SIMPLE 迭代過程中逐漸建立流場
@@ -165,9 +168,9 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     two_term_boundary_expansion = false
   []
   [vel_y]
-    # initial_from_file_var = vel_y
+      initial_from_file_var = vel_y
     # initial_from_file_timestep = 1
-    initial_condition = 0.0
+    # initial_condition = 0.0
     # y 方向速度分量 [m/s]
     # MSFR 是球形對稱爐心，主流方向為 z，
     # x、y 方向速度由湍流和幾何不對稱產生，初始為零
@@ -176,9 +179,9 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     two_term_boundary_expansion = false
   []
   [vel_z]
-    # initial_from_file_var = vel_z
+      initial_from_file_var = vel_z
     # initial_from_file_timestep = 1
-    initial_condition = 0.1
+    # initial_condition = 0.1
     # z 方向速度分量 [m/s]，主流方向（向上）
     # 初始為均勻流速，與入口BC一致，避免冷啟動震盪
     type = INSFVVelocityVariable
@@ -196,13 +199,14 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     #   對應的變數是 pressure 而非速度。
     # 初始值 0.0：壓力以出口為參考點（錶壓），絕對值不影響流場
     type = INSFVPressureVariable
+    scaling = 1e-3  # 壓力 O(10^3)→O(1)，改善矩陣條件數
     # initial_condition = 0.0
     two_term_boundary_expansion = false
   []
   [TKE]
-    # initial_from_file_var = TKE
+      initial_from_file_var = TKE
     # initial_from_file_timestep = 1
-    initial_condition = 3.75e-4
+    # initial_condition = 3.75e-4
     # 湍流動能 k [m²/s²]
     # 描述湍流的「激烈程度」：k = (1/2)(vx'² + vy'² + vz'²)
     # 初始值估算：k = 1.5×(I×U)²
@@ -212,13 +216,14 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     #   TKED 源項分母含 k（C2ρε²/k），k=0 → 除以零 → 求解器爆掉
     type = INSFVEnergyVariable
     # initial_condition = 3.75e-4
+    scaling = 1e4   # TKE O(10^-4)→O(1)，防止 LU 分解捨入誤差
     lower_bound = 1e-10
     two_term_boundary_expansion = false
   []
   [TKED]
-    # initial_from_file_var = TKED
+      initial_from_file_var = TKED
     # initial_from_file_timestep = 1
-    initial_condition = 3.87e-6
+    # initial_condition = 3.87e-6
     # 湍流動能耗散率 ε [m²/s³]
     # 描述湍流消退的速率：大渦旋→小渦旋→分子熱能
     # 初始值估算：ε = Cμ^0.75 × k^1.5 / L
@@ -228,6 +233,7 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     #   μt = Cμ×k²/ε，ε=0 → μt 無限大 → 數值發散
     type = INSFVEnergyVariable
     # initial_condition = 3.87e-6
+    scaling = 1e6   # TKED O(10^-6)→O(1)，同上
     lower_bound = 1e-12
     two_term_boundary_expansion = false
   []
@@ -383,20 +389,19 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
 # ============================================================
 [Executioner]
   type = Transient
-  solve_type = 'PJFNK'
-  petsc_options_iname = '-pc_type -sub_pc_type -sub_pc_factor_levels -ksp_gmres_restart'
-  petsc_options_value = 'asm      ilu          1                     200'
-  line_search = none
+  solve_type = 'NEWTON'
+  petsc_options_iname = '-pc_type -pc_factor_mat_solver_type -ksp_type -mat_mumps_icntl_14 -snes_linesearch_type -snes_linesearch_damping'
+  petsc_options_value = 'lu       mumps                      preonly   200                 basic              0.01'
   nl_rel_tol = 1e-6
   nl_abs_tol = 1e-8
   nl_max_its = 10
   l_tol = 1e-6
   l_max_its = 100
-  dt = 1e-4
+  dt = 1e-5
   end_time = 10.0
   [TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1e-4
+    dt = 1e-5
     cutback_factor = 0.5
     growth_factor = 1.2
     optimal_iterations = 6

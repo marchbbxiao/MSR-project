@@ -1,0 +1,320 @@
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+
+[36m
+*** Info ***
+'execute_on' parameter specified in [Outputs] block is ignored for object 'checkpoint'.
+Define this object in its own sub-block of [Outputs] to modify its execution schedule.[39m
+                                                                               [[33m  2.10 s[39m] [[33m  275 MB[39m]
+Framework Information:
+MOOSE Version:           git commit b1e271b638 on 2025-10-10
+LibMesh Version:         
+PETSc Version:           3.23.4
+SLEPc Version:           3.23.2
+Current Time:            Tue Apr 28 13:08:10 2026
+Executable Timestamp:    Tue Apr 14 14:29:53 2026
+
+Input File(s):
+  /home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_phase1_simple.i
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  User Checkpoint:         Outputs/checkpoint
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          4
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 9245
+    Local:                 2162
+    Min/Max/Avg:           2004/2614/2311
+  Elems:                   
+    Total:                 35186
+    Local:                 8797
+    Min/Max/Avg:           8796/8797/8796
+  Num Subdomains:          1
+  Num Partitions:          4
+  Partitioner:             metis
+
+Nonlinear System [u_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_x" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [v_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_y" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [w_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_z" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [pressure_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "pressure" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Auxiliary System:
+  Num DOFs:                70372
+  Num Local DOFs:          17594
+  Variables:               { "mixing_len" "mu_t" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Execution Information:
+  Executioner:             SIMPLENonlinearAssembly
+  Solver Mode:             [u_system]: Preconditioned JFNK [v_system]: Preconditioned JFNK [w_system]: Preconditioned JFNK [pressure_system]: Preconditioned JFNK 
+Currently Executing
+  Performing Initial Setup..
+  Finished Performing Initial Setup                                                      [[33m 20.37 s[39m] [[33m  279 MB[39m]
+Iteration 1 Initial residual norms:
+ Momentum equation: Component 1 [32m0[39m
+ Momentum equation: Component 2 [32m0[39m
+ Momentum equation: Component 3 [32m1[39m
+ Pressure equation: [32m1[39m
+Iteration 2 Initial residual norms:
+ Momentum equation: Component 1 [32m0.831735[39m
+ Momentum equation: Component 2 [32m0.81441[39m
+ Momentum equation: Component 3 [32m0.612281[39m
+ Pressure equation: [32m0.104733[39m
+Iteration 3 Initial residual norms:
+ Momentum equation: Component 1 [32m0.690982[39m
+ Momentum equation: Component 2 [32m0.541987[39m
+ Momentum equation: Component 3 [32m0.581207[39m
+ Pressure equation: [32m0.35552[39m
+Iteration 4 Initial residual norms:
+ Momentum equation: Component 1 [32m0.549622[39m
+ Momentum equation: Component 2 [32m0.976829[39m
+ Momentum equation: Component 3 [32m0.840963[39m
+ Pressure equation: [32m0.161314[39m
+Iteration 5 Initial residual norms:
+ Momentum equation: Component 1 [32m0.96339[39m
+ Momentum equation: Component 2 [32m0.644741[39m
+ Momentum equation: Component 3 [32m0.998575[39m
+ Pressure equation: [32m0.966141[39m
+Iteration 6 Initial residual norms:
+ Momentum equation: Component 1 [32m0.5259[39m
+ Momentum equation: Component 2 [32m0.551555[39m
+ Momentum equation: Component 3 [32m0.543372[39m
+ Pressure equation: [32m0.0976993[39m
+Iteration 7 Initial residual norms:
+ Momentum equation: Component 1 [32m0.651726[39m
+ Momentum equation: Component 2 [32m0.581341[39m
+ Momentum equation: Component 3 [32m0.554933[39m
+ Pressure equation: [32m0.063379[39m
+Iteration 8 Initial residual norms:
+ Momentum equation: Component 1 [32m0.873892[39m
+ Momentum equation: Component 2 [32m0.876585[39m
+ Momentum equation: Component 3 [32m0.429362[39m
+ Pressure equation: [32m0.975407[39m
+Iteration 9 Initial residual norms:
+ Momentum equation: Component 1 [32m0.593064[39m
+ Momentum equation: Component 2 [32m0.317214[39m
+ Momentum equation: Component 3 [32m0.582226[39m
+ Pressure equation: [32m0.0252588[39m
+Iteration 10 Initial residual norms:
+ Momentum equation: Component 1 [32m0.69004[39m
+ Momentum equation: Component 2 [32m0.768087[39m
+ Momentum equation: Component 3 [32m0.637034[39m
+ Pressure equation: [32m0.021002[39m
+Iteration 11 Initial residual norms:
+ Momentum equation: Component 1 [32m0.848783[39m
+ Momentum equation: Component 2 [32m0.580737[39m
+ Momentum equation: Component 3 [32m0.582469[39m
+ Pressure equation: [32m0.154416[39m
+Iteration 12 Initial residual norms:
+ Momentum equation: Component 1 [32m0.626613[39m
+ Momentum equation: Component 2 [32m0.580414[39m
+ Momentum equation: Component 3 [32m0.59318[39m
+ Pressure equation: [32m0.884037[39m
+Iteration 13 Initial residual norms:
+ Momentum equation: Component 1 [32m0.997779[39m
+ Momentum equation: Component 2 [32m0.996886[39m
+ Momentum equation: Component 3 [32m0.999954[39m
+ Pressure equation: [32m0.249775[39m
+Iteration 14 Initial residual norms:
+ Momentum equation: Component 1 [32m0.576451[39m
+ Momentum equation: Component 2 [32m0.579802[39m
+ Momentum equation: Component 3 [32m0.569657[39m
+ Pressure equation: [32m0.00376524[39m
+Iteration 15 Initial residual norms:
+ Momentum equation: Component 1 [32m0.953943[39m
+ Momentum equation: Component 2 [32m0.91983[39m
+ Momentum equation: Component 3 [32m0.936529[39m
+ Pressure equation: [32m0.00212593[39m
+Iteration 16 Initial residual norms:
+ Momentum equation: Component 1 [32m0.581099[39m
+ Momentum equation: Component 2 [32m0.561061[39m
+ Momentum equation: Component 3 [32m0.986436[39m
+ Pressure equation: [32m0.00222613[39m
+Iteration 17 Initial residual norms:
+ Momentum equation: Component 1 [32m0.589179[39m
+ Momentum equation: Component 2 [32m0.737411[39m
+ Momentum equation: Component 3 [32m0.987311[39m
+ Pressure equation: [32m0.66767[39m
+Iteration 18 Initial residual norms:
+ Momentum equation: Component 1 [32m0.620373[39m
+ Momentum equation: Component 2 [32m0.871598[39m
+ Momentum equation: Component 3 [32m0.723796[39m
+ Pressure equation: [32m0.969014[39m
+Iteration 19 Initial residual norms:
+ Momentum equation: Component 1 [32m0.556925[39m
+ Momentum equation: Component 2 [32m0.59257[39m
+ Momentum equation: Component 3 [32m0.982314[39m
+ Pressure equation: [32m0.913497[39m
+Iteration 20 Initial residual norms:
+ Momentum equation: Component 1 [32m0.924929[39m
+ Momentum equation: Component 2 [32m0.661215[39m
+ Momentum equation: Component 3 [32m0.655176[39m
+ Pressure equation: [32m0.0100403[39m
+Iteration 21 Initial residual norms:
+ Momentum equation: Component 1 [32m0.760877[39m
+ Momentum equation: Component 2 [32m0.547668[39m
+ Momentum equation: Component 3 [32m0.598483[39m
+ Pressure equation: [32m0.0378497[39m
+Iteration 22 Initial residual norms:
+ Momentum equation: Component 1 [32m0.680166[39m
+ Momentum equation: Component 2 [32m0.566586[39m
+ Momentum equation: Component 3 [32m0.573948[39m
+ Pressure equation: [32m0.0698732[39m
+Iteration 23 Initial residual norms:
+ Momentum equation: Component 1 [32m0.546189[39m
+ Momentum equation: Component 2 [32m0.560603[39m
+ Momentum equation: Component 3 [32m0.820968[39m
+ Pressure equation: [32m0.139018[39m
+Iteration 24 Initial residual norms:
+ Momentum equation: Component 1 [32m0.993975[39m
+ Momentum equation: Component 2 [32m0.674383[39m
+ Momentum equation: Component 3 [32m0.663951[39m
+ Pressure equation: [32m0.596034[39m
+Iteration 25 Initial residual norms:
+ Momentum equation: Component 1 [32m0.801231[39m
+ Momentum equation: Component 2 [32m0.793176[39m
+ Momentum equation: Component 3 [32m0.752121[39m
+ Pressure equation: [32m0.12879[39m
+Iteration 26 Initial residual norms:
+ Momentum equation: Component 1 [32m0.690859[39m
+ Momentum equation: Component 2 [32m0.766968[39m
+ Momentum equation: Component 3 [32m0.7099[39m
+ Pressure equation: [32m0.0105265[39m
+Iteration 27 Initial residual norms:
+ Momentum equation: Component 1 [32m0.58554[39m
+ Momentum equation: Component 2 [32m0.536151[39m
+ Momentum equation: Component 3 [32m0.876153[39m
+ Pressure equation: [32m0.92494[39m
+Iteration 28 Initial residual norms:
+ Momentum equation: Component 1 [32m0.911786[39m
+ Momentum equation: Component 2 [32m0.857479[39m
+ Momentum equation: Component 3 [32m0.761699[39m
+ Pressure equation: [32m0.999957[39m

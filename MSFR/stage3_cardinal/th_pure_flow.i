@@ -170,9 +170,9 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   []
   [vel_z]
     # z 方向速度分量 [m/s]，主流方向（向上）
-    # 初始為零，入口邊界條件（1.1838 m/s）會驅動流場建立
+    # 初始為均勻流速，與入口BC一致，避免冷啟動震盪
     type = INSFVVelocityVariable
-    initial_condition = 0.0
+    initial_condition = 1.1838
     solver_sys = w_system
     two_term_boundary_expansion = false
   []
@@ -400,9 +400,9 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   #   壓力：0.3（標準值，通常比動量小以維持穩定）
   #   湍流：0.2（比動量更保守，k-ε 方程式非線性強）
   #   能量：0.9（溫度方程式線性較好，可以較大）
-  momentum_equation_relaxation = 0.3
-  pressure_variable_relaxation = 0.1
-  turbulence_equation_relaxation = '0.1 0.1'
+  momentum_equation_relaxation = 0.5
+  pressure_variable_relaxation = 0.3
+  turbulence_equation_relaxation = '0.2 0.2'
   # energy_equation_relaxation = 0.5
 
   # 最大迭代次數
@@ -435,6 +435,7 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   pressure_l_max_its = 30
   momentum_l_tol = 0.0
   pressure_l_tol = 0.0
+  turbulence_l_max_its = 200
   turbulence_l_tol = 0.0
   # energy_l_tol = 0.0
 
@@ -726,6 +727,7 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
     epsilon = TKED
     walls = 'wall'
     wall_treatment = 'eq_newton'
+    C_pl = 1e10
   []
 
   # ----------------------------------------------------------

@@ -1,0 +1,250 @@
+
+[36m
+*** Info ***
+'execute_on' parameter specified in [Outputs] block is ignored for object 'checkpoint'.
+Define this object in its own sub-block of [Outputs] to modify its execution schedule.[39m
+Setting Up
+  Finished Initializing                                                                  [[33m  2.19 s[39m] [[33m  325 MB[39m]
+Finished Setting Up                                                                      [[33m  2.70 s[39m] [[33m  325 MB[39m]
+Framework Information:
+MOOSE Version:           git commit b1e271b638 on 2025-10-10
+LibMesh Version:         
+PETSc Version:           3.23.4
+SLEPc Version:           3.23.2
+Current Time:            Mon Apr 27 11:00:48 2026
+Executable Timestamp:    Tue Apr 14 14:29:53 2026
+
+Input File(s):
+  /home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient.i
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  User Checkpoint:         Outputs/checkpoint
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          4
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 9245
+    Local:                 2162
+    Min/Max/Avg:           2004/2614/2311
+  Elems:                   
+    Total:                 35186
+    Local:                 8797
+    Min/Max/Avg:           8796/8797/8796
+  Num Subdomains:          1
+  Num Partitions:          4
+  Partitioner:             metis
+
+Nonlinear System:
+  Num DOFs:                211116
+  Num Local DOFs:          52782
+  Variables:               { "vel_x" "vel_y" "vel_z" "pressure" "TKE" "TKED" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Auxiliary System:
+  Num DOFs:                105558
+  Num Local DOFs:          26391
+  Variables:               { "power_density" "mu_t" "yplus" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             IterationAdaptiveDT
+  TimeIntegrator(s):       ImplicitEuler
+  Solver Mode:             Preconditioned JFNK 
+  PETSc Preconditioner:    lu 
+
+[33m
+*** Warning ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient.i:36.1: unused parameter 'cp'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient.i:37.1: unused parameter 'k'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient.i:215.5: unused parameter 'Variables/TKE/lower_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient.i:231.5: unused parameter 'Variables/TKED/lower_bound'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient.i:895.3: unused parameter 'Outputs/output_frequency'[39m
+
+Time Step 0, time = 0
+
+Time Step 1, time = 0.0001, dt = 0.0001
+Currently Executing
+    Computing Residual
+      Finished Computing Rhie-Chow coefficients                                          [[33m  0.99 s[39m] [[33m  464 MB[39m]
+    Finished Computing Residual                                                          [[33m  2.03 s[39m] [[33m  551 MB[39m]
+ 0 Nonlinear |R| = [32m6.004574e+03[39m
+      0 Linear |R| = [32m6.004574e+03[39m
+      1 Linear |R| = [33m6.004106e+03[39m
+      2 Linear |R| = [33m6.003953e+03[39m
+      3 Linear |R| = [33m6.003800e+03[39m
+      4 Linear |R| = [33m6.003646e+03[39m
+      5 Linear |R| = [33m6.003493e+03[39m
+      6 Linear |R| = [33m6.003340e+03[39m
+      7 Linear |R| = [33m6.003186e+03[39m
+      8 Linear |R| = [33m6.003033e+03[39m
+      9 Linear |R| = [33m6.002880e+03[39m
+     10 Linear |R| = [33m6.002727e+03[39m
+     11 Linear |R| = [33m6.002574e+03[39m
+     12 Linear |R| = [33m6.002420e+03[39m
+     13 Linear |R| = [33m6.002267e+03[39m
+     14 Linear |R| = [33m6.002114e+03[39m
+     15 Linear |R| = [33m6.001961e+03[39m
+     16 Linear |R| = [33m6.001808e+03[39m
+     17 Linear |R| = [33m6.001655e+03[39m
+     18 Linear |R| = [33m6.001501e+03[39m
+     19 Linear |R| = [33m6.001348e+03[39m
+     20 Linear |R| = [33m6.001195e+03[39m
+     21 Linear |R| = [33m6.001042e+03[39m
+     22 Linear |R| = [33m6.000889e+03[39m
+     23 Linear |R| = [33m6.000736e+03[39m
+     24 Linear |R| = [33m6.000583e+03[39m
+     25 Linear |R| = [33m6.000430e+03[39m
+     26 Linear |R| = [33m6.000277e+03[39m
+     27 Linear |R| = [33m6.000124e+03[39m
+     28 Linear |R| = [33m5.999971e+03[39m
+     29 Linear |R| = [33m5.999818e+03[39m
+     30 Linear |R| = [33m5.999665e+03[39m
+     31 Linear |R| = [33m5.999512e+03[39m
+     32 Linear |R| = [33m5.999359e+03[39m
+     33 Linear |R| = [33m5.999206e+03[39m
+     34 Linear |R| = [33m5.999053e+03[39m
+     35 Linear |R| = [33m5.998900e+03[39m
+     36 Linear |R| = [33m5.998747e+03[39m
+     37 Linear |R| = [33m5.998594e+03[39m
+     38 Linear |R| = [33m5.998441e+03[39m
+     39 Linear |R| = [33m5.998288e+03[39m
+     40 Linear |R| = [33m5.998135e+03[39m
+     41 Linear |R| = [33m5.997983e+03[39m
+     42 Linear |R| = [33m5.997830e+03[39m
+     43 Linear |R| = [33m5.997677e+03[39m
+     44 Linear |R| = [33m5.997524e+03[39m
+     45 Linear |R| = [33m5.997371e+03[39m
+     46 Linear |R| = [33m5.997218e+03[39m
+     47 Linear |R| = [33m5.997066e+03[39m
+     48 Linear |R| = [33m5.996913e+03[39m
+     49 Linear |R| = [33m5.996760e+03[39m
+     50 Linear |R| = [33m5.996607e+03[39m
+     51 Linear |R| = [33m5.996455e+03[39m
+     52 Linear |R| = [33m5.996302e+03[39m
+     53 Linear |R| = [33m5.996149e+03[39m
+     54 Linear |R| = [33m5.995996e+03[39m
+     55 Linear |R| = [33m5.995844e+03[39m
+     56 Linear |R| = [33m5.995691e+03[39m
+     57 Linear |R| = [33m5.995538e+03[39m
+     58 Linear |R| = [33m5.995386e+03[39m
+     59 Linear |R| = [33m5.995233e+03[39m
+     60 Linear |R| = [33m5.995080e+03[39m
+     61 Linear |R| = [33m5.994928e+03[39m
+     62 Linear |R| = [33m5.994775e+03[39m
+     63 Linear |R| = [33m5.994623e+03[39m
+     64 Linear |R| = [33m5.994470e+03[39m
+     65 Linear |R| = [33m5.994317e+03[39m
+     66 Linear |R| = [33m5.994165e+03[39m
+     67 Linear |R| = [33m5.994012e+03[39m
+     68 Linear |R| = [33m5.993860e+03[39m
+     69 Linear |R| = [33m5.993707e+03[39m
+     70 Linear |R| = [33m5.993555e+03[39m
+     71 Linear |R| = [33m5.993402e+03[39m
+     72 Linear |R| = [33m5.993250e+03[39m
+     73 Linear |R| = [33m5.993097e+03[39m
+     74 Linear |R| = [33m5.992945e+03[39m
+     75 Linear |R| = [33m5.992792e+03[39m
+     76 Linear |R| = [33m5.992640e+03[39m
+     77 Linear |R| = [33m5.992487e+03[39m
+     78 Linear |R| = [33m5.992335e+03[39m
+     79 Linear |R| = [33m5.992182e+03[39m
+     80 Linear |R| = [33m5.992030e+03[39m
+     81 Linear |R| = [33m5.991878e+03[39m
+     82 Linear |R| = [33m5.991725e+03[39m
+     83 Linear |R| = [33m5.991573e+03[39m
+     84 Linear |R| = [33m5.991421e+03[39m
+     85 Linear |R| = [33m5.991268e+03[39m
+     86 Linear |R| = [33m5.991116e+03[39m
+     87 Linear |R| = [33m5.990963e+03[39m
+     88 Linear |R| = [33m5.990811e+03[39m
+     89 Linear |R| = [33m5.990659e+03[39m
+     90 Linear |R| = [33m5.990507e+03[39m
+     91 Linear |R| = [33m5.990354e+03[39m
+     92 Linear |R| = [33m5.990202e+03[39m
+     93 Linear |R| = [33m5.990050e+03[39m
+     94 Linear |R| = [33m5.989898e+03[39m
+     95 Linear |R| = [33m5.989745e+03[39m
+     96 Linear |R| = [33m5.989593e+03[39m
+     97 Linear |R| = [33m5.989441e+03[39m
+     98 Linear |R| = [33m5.989289e+03[39m
+     99 Linear |R| = [33m5.989136e+03[39m
+    100 Linear |R| = [33m5.988984e+03[39m
+    Linear solve did not converge due to DIVERGED_ITS iterations 100
+ 1 Nonlinear |R| = [31m6.592889e+03[39m
+
+[33m
+*** Warning ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_transient.i:482.3:
+The following occurred in the FVKernel 'vel_x_diffusion_turbulent' of type INSFVMomentumDiffusion.
+
+Negative face viscosity has been encountered. Value -26.8018 at (x,y,z)=( 2.00841, 0.389381, 0.472314) limiting it to 0!
+Further warnings for this issue will be silenced, but the occurrences will be recorded through the solution invalidity interface.[39m
+      0 Linear |R| = [32m6.592889e+03[39m
+      1 Linear |R| = [33m6.592734e+03[39m
+      2 Linear |R| = [32m4.059168e+02[39m
+      3 Linear |R| = [32m2.872991e+02[39m
+      4 Linear |R| = [32m2.346531e+02[39m
+      5 Linear |R| = [32m2.032478e+02[39m
+      6 Linear |R| = [32m1.818076e+02[39m
+      7 Linear |R| = [32m1.659774e+02[39m
+      8 Linear |R| = [32m1.536722e+02[39m
+      9 Linear |R| = [32m1.437521e+02[39m
+     10 Linear |R| = [32m1.355343e+02[39m
+     11 Linear |R| = [32m1.285819e+02[39m
+     12 Linear |R| = [33m1.226001e+02[39m
+     13 Linear |R| = [33m1.173824e+02[39m
+     14 Linear |R| = [33m1.127787e+02[39m
+     15 Linear |R| = [33m1.086774e+02[39m
+     16 Linear |R| = [33m1.049933e+02[39m
+     17 Linear |R| = [33m1.016601e+02[39m
+     18 Linear |R| = [33m9.862552e+01[39m
+     19 Linear |R| = [33m9.584737e+01[39m
+     20 Linear |R| = [33m9.329150e+01[39m
+     21 Linear |R| = [33m9.092976e+01[39m
+     22 Linear |R| = [33m8.873877e+01[39m
+     23 Linear |R| = [33m8.669888e+01[39m
+     24 Linear |R| = [33m8.479349e+01[39m
+     25 Linear |R| = [33m8.300845e+01[39m
+     26 Linear |R| = [33m8.133160e+01[39m
+     27 Linear |R| = [33m7.975243e+01[39m
+     28 Linear |R| = [33m7.826181e+01[39m
+     29 Linear |R| = [33m7.685177e+01[39m
+     30 Linear |R| = [33m7.551529e+01[39m
+     31 Linear |R| = [33m7.424620e+01[39m
+     32 Linear |R| = [33m7.303901e+01[39m
+     33 Linear |R| = [33m7.188886e+01[39m
+     34 Linear |R| = [33m7.079138e+01[39m
+     35 Linear |R| = [33m6.974268e+01[39m
+     36 Linear |R| = [33m6.873924e+01[39m
+     37 Linear |R| = [33m6.777791e+01[39m
+     38 Linear |R| = [33m6.685582e+01[39m
+     39 Linear |R| = [33m6.597036e+01[39m
+     40 Linear |R| = [33m6.511918e+01[39m
+     41 Linear |R| = [33m6.430011e+01[39m
+     42 Linear |R| = [33m6.351120e+01[39m
+     43 Linear |R| = [33m6.275063e+01[39m
+     44 Linear |R| = [33m6.201674e+01[39m
+     45 Linear |R| = [33m6.130802e+01[39m
+     46 Linear |R| = [33m6.062305e+01[39m
+     47 Linear |R| = [33m5.996054e+01[39m
+     48 Linear |R| = [33m5.931928e+01[39m
+     49 Linear |R| = [33m5.869817e+01[39m
+     50 Linear |R| = [33m5.809617e+01[39m
+     51 Linear |R| = [33m5.751232e+01[39m
+     52 Linear |R| = [33m5.694572e+01[39m
+     53 Linear |R| = [33m5.639555e+01[39m
+     54 Linear |R| = [33m5.586102e+01[39m
+     55 Linear |R| = [33m5.534141e+01[39m
+     56 Linear |R| = [33m5.483603e+01[39m

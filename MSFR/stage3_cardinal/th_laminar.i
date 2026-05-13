@@ -86,6 +86,9 @@ k = 1.0             # 熱傳導係數 [W/m·K]（暫用，待確認正確值）
   # 純層流診斷版：移除 TKE_system TKED_system，隔離湍流方程式
   nl_sys_names = 'u_system v_system w_system pressure_system'
   previous_nl_solution_required = true
+  # 熱啟動：從 Stokes 收斂解出發，避免冷啟動對流項震盪
+  restart_file_base = 'th_stokes_checkpoint_cp/0001'
+  allow_initial_conditions_with_restart = true
 []
 
 # ============================================================

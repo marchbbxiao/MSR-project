@@ -1,0 +1,745 @@
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+A requested component was not found, or was unable to be opened.  This
+means that this component is either not installed or is unable to be
+used on your system (e.g., sometimes this means that shared libraries
+that the component requires are unable to be found/loaded).  Note that
+PMIX stopped checking at the first component that it did not find.
+
+Host:      RTXWS
+Framework: gds
+Component: shmem
+--------------------------------------------------------------------------
+
+                                                                               [[33m  2.59 s[39m] [[33m  297 MB[39m]
+Framework Information:
+MOOSE Version:           git commit b1e271b638 on 2025-10-10
+LibMesh Version:         
+PETSc Version:           3.23.4
+SLEPc Version:           3.23.2
+Current Time:            Fri Apr 24 08:53:05 2026
+Executable Timestamp:    Tue Apr 14 14:29:53 2026
+
+Input File(s):
+  /home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_pure_flow.i
+
+Checkpoint:
+  Wall Time Interval:      Every 3600 s
+  User Checkpoint:         Disabled
+  # Checkpoints Kept:      2
+  Execute On:              TIMESTEP_END 
+
+Parallelism:
+  Num Processors:          4
+  Num Threads:             1
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          3
+  Spatial Dimension:       3
+  Nodes:                   
+    Total:                 9245
+    Local:                 2162
+    Min/Max/Avg:           2004/2614/2311
+  Elems:                   
+    Total:                 35186
+    Local:                 8797
+    Min/Max/Avg:           8796/8797/8796
+  Num Subdomains:          1
+  Num Partitions:          4
+  Partitioner:             metis
+
+Nonlinear System [u_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_x" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [v_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_y" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [w_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "vel_z" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [pressure_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "pressure" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [TKE_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "TKE" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Nonlinear System [TKED_system]:
+  Num DOFs:                35186
+  Num Local DOFs:          8797
+  Variables:               "TKED" 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Auxiliary System:
+  Num DOFs:                105558
+  Num Local DOFs:          26391
+  Variables:               { "power_density" "mu_t" "yplus" } 
+  Finite Element Types:    "MONOMIAL" 
+  Approximation Orders:    "CONSTANT" 
+
+Execution Information:
+  Executioner:             SIMPLENonlinearAssembly
+  Solver Mode:             [u_system]: Preconditioned JFNK [v_system]: Preconditioned JFNK [w_system]: Preconditioned JFNK [pressure_system]: Preconditioned JFNK [TKE_system]: Preconditioned JFNK [TKED_system]: Preconditioned JFNK 
+
+[33m
+*** Warning ***
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_pure_flow.i:36.1: unused parameter 'cp'
+/home/ubuntu/MSR-project/MSFR/stage3_cardinal/th_pure_flow.i:37.1: unused parameter 'k'[39m
+Iteration 1 Initial residual norms:
+ Momentum equation: Component 1 [32m0[39m
+ Momentum equation: Component 2 [32m0[39m
+ Momentum equation: Component 3 [32m1[39m
+ Pressure equation: [32m1[39m
+Turbulence Iteration 
+TKE_system [32m1[39m
+TKED_system [32m1[39m
+Iteration 2 Initial residual norms:
+ Momentum equation: Component 1 [32m0.521528[39m
+ Momentum equation: Component 2 [32m0.416681[39m
+ Momentum equation: Component 3 [32m0.770341[39m
+ Pressure equation: [32m0.387841[39m
+Turbulence Iteration 
+TKE_system [32m0.335616[39m
+TKED_system [32m0.331685[39m
+Iteration 3 Initial residual norms:
+ Momentum equation: Component 1 [32m0.208724[39m
+ Momentum equation: Component 2 [32m0.175035[39m
+ Momentum equation: Component 3 [32m0.353004[39m
+ Pressure equation: [32m0.395152[39m
+Turbulence Iteration 
+TKE_system [32m0.200357[39m
+TKED_system [32m0.192344[39m
+Iteration 4 Initial residual norms:
+ Momentum equation: Component 1 [32m0.17638[39m
+ Momentum equation: Component 2 [32m0.113852[39m
+ Momentum equation: Component 3 [32m0.157851[39m
+ Pressure equation: [32m0.1019[39m
+Turbulence Iteration 
+TKE_system [32m0.148012[39m
+TKED_system [32m0.136364[39m
+Iteration 5 Initial residual norms:
+ Momentum equation: Component 1 [32m0.179952[39m
+ Momentum equation: Component 2 [32m0.156772[39m
+ Momentum equation: Component 3 [32m0.200949[39m
+ Pressure equation: [32m0.0701328[39m
+Turbulence Iteration 
+TKE_system [32m0.125667[39m
+TKED_system [32m0.106648[39m
+Iteration 6 Initial residual norms:
+ Momentum equation: Component 1 [32m0.158369[39m
+ Momentum equation: Component 2 [32m0.258731[39m
+ Momentum equation: Component 3 [32m0.188223[39m
+ Pressure equation: [32m0.12102[39m
+Turbulence Iteration 
+TKE_system [32m0.114542[39m
+TKED_system [32m0.0884123[39m
+Iteration 7 Initial residual norms:
+ Momentum equation: Component 1 [32m0.157807[39m
+ Momentum equation: Component 2 [32m0.277778[39m
+ Momentum equation: Component 3 [32m0.177297[39m
+ Pressure equation: [32m0.194114[39m
+Turbulence Iteration 
+TKE_system [32m0.108765[39m
+TKED_system [32m0.0761901[39m
+Iteration 8 Initial residual norms:
+ Momentum equation: Component 1 [32m0.168471[39m
+ Momentum equation: Component 2 [32m0.217327[39m
+ Momentum equation: Component 3 [32m0.179604[39m
+ Pressure equation: [32m0.216443[39m
+Turbulence Iteration 
+TKE_system [32m0.105894[39m
+TKED_system [32m0.067378[39m
+Iteration 9 Initial residual norms:
+ Momentum equation: Component 1 [32m0.170798[39m
+ Momentum equation: Component 2 [32m0.180802[39m
+ Momentum equation: Component 3 [32m0.181904[39m
+ Pressure equation: [32m0.248057[39m
+Turbulence Iteration 
+TKE_system [32m0.104787[39m
+TKED_system [32m0.0605298[39m
+Iteration 10 Initial residual norms:
+ Momentum equation: Component 1 [32m0.17151[39m
+ Momentum equation: Component 2 [32m0.168861[39m
+ Momentum equation: Component 3 [32m0.18241[39m
+ Pressure equation: [32m0.262376[39m
+Turbulence Iteration 
+TKE_system [32m0.104543[39m
+TKED_system [32m0.0549149[39m
+Iteration 11 Initial residual norms:
+ Momentum equation: Component 1 [32m0.173679[39m
+ Momentum equation: Component 2 [32m0.168567[39m
+ Momentum equation: Component 3 [32m0.182031[39m
+ Pressure equation: [32m0.256086[39m
+Turbulence Iteration 
+TKE_system [32m0.104272[39m
+TKED_system [32m0.0501598[39m
+Iteration 12 Initial residual norms:
+ Momentum equation: Component 1 [32m0.172562[39m
+ Momentum equation: Component 2 [32m0.165009[39m
+ Momentum equation: Component 3 [32m0.176634[39m
+ Pressure equation: [32m0.261647[39m
+Turbulence Iteration 
+TKE_system [32m0.103414[39m
+TKED_system [32m0.0462537[39m
+Iteration 13 Initial residual norms:
+ Momentum equation: Component 1 [32m0.164861[39m
+ Momentum equation: Component 2 [32m0.156723[39m
+ Momentum equation: Component 3 [32m0.166515[39m
+ Pressure equation: [32m0.250407[39m
+Turbulence Iteration 
+TKE_system [32m0.102053[39m
+TKED_system [32m0.04289[39m
+Iteration 14 Initial residual norms:
+ Momentum equation: Component 1 [32m0.159828[39m
+ Momentum equation: Component 2 [32m0.152929[39m
+ Momentum equation: Component 3 [32m0.160484[39m
+ Pressure equation: [32m0.212324[39m
+Turbulence Iteration 
+TKE_system [32m0.100486[39m
+TKED_system [32m0.0400934[39m
+Iteration 15 Initial residual norms:
+ Momentum equation: Component 1 [32m0.154594[39m
+ Momentum equation: Component 2 [32m0.151912[39m
+ Momentum equation: Component 3 [32m0.158317[39m
+ Pressure equation: [32m0.157407[39m
+Turbulence Iteration 
+TKE_system [32m0.0989296[39m
+TKED_system [32m0.0377178[39m
+Iteration 16 Initial residual norms:
+ Momentum equation: Component 1 [32m0.149191[39m
+ Momentum equation: Component 2 [32m0.150106[39m
+ Momentum equation: Component 3 [32m0.156695[39m
+ Pressure equation: [32m0.111987[39m
+Turbulence Iteration 
+TKE_system [32m0.0975578[39m
+TKED_system [32m0.0359298[39m
+Iteration 17 Initial residual norms:
+ Momentum equation: Component 1 [32m0.143959[39m
+ Momentum equation: Component 2 [32m0.143197[39m
+ Momentum equation: Component 3 [32m0.152921[39m
+ Pressure equation: [32m0.0889772[39m
+Turbulence Iteration 
+TKE_system [32m0.0964773[39m
+TKED_system [32m0.0345215[39m
+Iteration 18 Initial residual norms:
+ Momentum equation: Component 1 [32m0.141583[39m
+ Momentum equation: Component 2 [32m0.134669[39m
+ Momentum equation: Component 3 [32m0.14956[39m
+ Pressure equation: [32m0.0638432[39m
+Turbulence Iteration 
+TKE_system [32m0.0956874[39m
+TKED_system [32m0.0334856[39m
+Iteration 19 Initial residual norms:
+ Momentum equation: Component 1 [32m0.140603[39m
+ Momentum equation: Component 2 [32m0.123745[39m
+ Momentum equation: Component 3 [32m0.142351[39m
+ Pressure equation: [32m0.0487152[39m
+Turbulence Iteration 
+TKE_system [32m0.0950792[39m
+TKED_system [32m0.0331714[39m
+Iteration 20 Initial residual norms:
+ Momentum equation: Component 1 [32m0.13945[39m
+ Momentum equation: Component 2 [32m0.111942[39m
+ Momentum equation: Component 3 [32m0.129838[39m
+ Pressure equation: [32m0.0360532[39m
+Turbulence Iteration 
+TKE_system [32m0.0946259[39m
+TKED_system [32m0.0327306[39m
+Iteration 21 Initial residual norms:
+ Momentum equation: Component 1 [32m0.132495[39m
+ Momentum equation: Component 2 [32m0.101342[39m
+ Momentum equation: Component 3 [32m0.101618[39m
+ Pressure equation: [32m0.0319563[39m
+Turbulence Iteration 
+TKE_system [32m0.0942757[39m
+TKED_system [32m0.0305492[39m
+Iteration 22 Initial residual norms:
+ Momentum equation: Component 1 [32m0.108207[39m
+ Momentum equation: Component 2 [32m0.0863766[39m
+ Momentum equation: Component 3 [32m0.0760771[39m
+ Pressure equation: [32m0.031144[39m
+Turbulence Iteration 
+TKE_system [32m0.0939735[39m
+TKED_system [32m0.0338758[39m
+Iteration 23 Initial residual norms:
+ Momentum equation: Component 1 [32m0.0845028[39m
+ Momentum equation: Component 2 [32m0.0839853[39m
+ Momentum equation: Component 3 [32m0.0678272[39m
+ Pressure equation: [32m0.0420188[39m
+Turbulence Iteration 
+TKE_system [32m0.0937018[39m
+TKED_system [32m0.0301806[39m
+Iteration 24 Initial residual norms:
+ Momentum equation: Component 1 [32m0.087713[39m
+ Momentum equation: Component 2 [32m0.109613[39m
+ Momentum equation: Component 3 [32m0.0858561[39m
+ Pressure equation: [32m0.0395427[39m
+Turbulence Iteration 
+TKE_system [32m0.0934572[39m
+TKED_system [32m0.0310376[39m
+Iteration 25 Initial residual norms:
+ Momentum equation: Component 1 [32m0.126157[39m
+ Momentum equation: Component 2 [32m0.135428[39m
+ Momentum equation: Component 3 [32m0.127437[39m
+ Pressure equation: [32m0.025616[39m
+Turbulence Iteration 
+TKE_system [32m0.0932428[39m
+TKED_system [32m0.0325498[39m
+Iteration 26 Initial residual norms:
+ Momentum equation: Component 1 [32m0.168465[39m
+ Momentum equation: Component 2 [32m0.132305[39m
+ Momentum equation: Component 3 [32m0.157808[39m
+ Pressure equation: [32m0.0185381[39m
+Turbulence Iteration 
+TKE_system [32m0.0930701[39m
+TKED_system [32m0.0332802[39m
+Iteration 27 Initial residual norms:
+ Momentum equation: Component 1 [32m0.172267[39m
+ Momentum equation: Component 2 [32m0.115213[39m
+ Momentum equation: Component 3 [32m0.163034[39m
+ Pressure equation: [32m0.0109657[39m
+Turbulence Iteration 
+TKE_system [32m0.092921[39m
+TKED_system [32m0.0312674[39m
+Iteration 28 Initial residual norms:
+ Momentum equation: Component 1 [32m0.163188[39m
+ Momentum equation: Component 2 [32m0.0986158[39m
+ Momentum equation: Component 3 [32m0.141676[39m
+ Pressure equation: [32m0.00735328[39m
+Turbulence Iteration 
+TKE_system [32m0.0927904[39m
+TKED_system [32m0.0284839[39m
+Iteration 29 Initial residual norms:
+ Momentum equation: Component 1 [32m0.153507[39m
+ Momentum equation: Component 2 [32m0.089601[39m
+ Momentum equation: Component 3 [32m0.115784[39m
+ Pressure equation: [32m0.00676832[39m
+Turbulence Iteration 
+TKE_system [32m0.0926811[39m
+TKED_system [32m0.0260574[39m
+Iteration 30 Initial residual norms:
+ Momentum equation: Component 1 [32m0.1346[39m
+ Momentum equation: Component 2 [32m0.095104[39m
+ Momentum equation: Component 3 [32m0.123078[39m
+ Pressure equation: [32m0.0101145[39m
+Turbulence Iteration 
+TKE_system [32m0.0926026[39m
+TKED_system [32m0.0246288[39m
+Iteration 31 Initial residual norms:
+ Momentum equation: Component 1 [32m0.132865[39m
+ Momentum equation: Component 2 [32m0.0954798[39m
+ Momentum equation: Component 3 [32m0.134453[39m
+ Pressure equation: [32m0.00537323[39m
+Turbulence Iteration 
+TKE_system [32m0.0925353[39m
+TKED_system [32m0.0228324[39m
+Iteration 32 Initial residual norms:
+ Momentum equation: Component 1 [32m0.141134[39m
+ Momentum equation: Component 2 [32m0.090669[39m
+ Momentum equation: Component 3 [32m0.137269[39m
+ Pressure equation: [32m0.00433735[39m
+Turbulence Iteration 
+TKE_system [32m0.0924084[39m
+TKED_system [32m0.0213666[39m
+Iteration 33 Initial residual norms:
+ Momentum equation: Component 1 [32m0.150382[39m
+ Momentum equation: Component 2 [32m0.0885922[39m
+ Momentum equation: Component 3 [32m0.133486[39m
+ Pressure equation: [32m0.00313178[39m
+Turbulence Iteration 
+TKE_system [32m0.0920853[39m
+TKED_system [32m0.0200593[39m
+Iteration 34 Initial residual norms:
+ Momentum equation: Component 1 [32m0.154673[39m
+ Momentum equation: Component 2 [32m0.0882639[39m
+ Momentum equation: Component 3 [32m0.112767[39m
+ Pressure equation: [32m0.00337241[39m
+Turbulence Iteration 
+TKE_system [32m0.091445[39m
+TKED_system [32m0.0194007[39m
+Iteration 35 Initial residual norms:
+ Momentum equation: Component 1 [32m0.148407[39m
+ Momentum equation: Component 2 [32m0.0994815[39m
+ Momentum equation: Component 3 [32m0.128452[39m
+ Pressure equation: [32m0.00379118[39m
+Turbulence Iteration 
+TKE_system [32m0.0906846[39m
+TKED_system [32m0.019392[39m
+Iteration 36 Initial residual norms:
+ Momentum equation: Component 1 [32m0.184925[39m
+ Momentum equation: Component 2 [32m0.123453[39m
+ Momentum equation: Component 3 [32m0.0912519[39m
+ Pressure equation: [32m0.0127227[39m
+Turbulence Iteration 
+TKE_system [32m0.0905605[39m
+TKED_system [32m0.0271274[39m
+Iteration 37 Initial residual norms:
+ Momentum equation: Component 1 [32m0.348825[39m
+ Momentum equation: Component 2 [32m0.240214[39m
+ Momentum equation: Component 3 [32m0.145725[39m
+ Pressure equation: [32m0.00758411[39m
+Turbulence Iteration 
+TKE_system [32m0.0905348[39m
+TKED_system [32m0.0207632[39m
+Iteration 38 Initial residual norms:
+ Momentum equation: Component 1 [32m0.481561[39m
+ Momentum equation: Component 2 [32m0.428527[39m
+ Momentum equation: Component 3 [32m0.0975695[39m
+ Pressure equation: [32m0.227372[39m
+Turbulence Iteration 
+TKE_system [32m0.0918672[39m
+TKED_system [32m0.0229075[39m
+Iteration 39 Initial residual norms:
+ Momentum equation: Component 1 [32m0.31104[39m
+ Momentum equation: Component 2 [32m0.390317[39m
+ Momentum equation: Component 3 [32m0.284801[39m
+ Pressure equation: [32m0.0734837[39m
+Turbulence Iteration 
+TKE_system [32m0.11154[39m
+TKED_system [32m0.0212368[39m
+Iteration 40 Initial residual norms:
+ Momentum equation: Component 1 [32m0.366945[39m
+ Momentum equation: Component 2 [32m0.304871[39m
+ Momentum equation: Component 3 [32m0.458173[39m
+ Pressure equation: [32m0.439327[39m
+Turbulence Iteration 
+TKE_system [32m0.10866[39m
+TKED_system [32m0.0315582[39m
+Iteration 41 Initial residual norms:
+ Momentum equation: Component 1 [32m0.319171[39m
+ Momentum equation: Component 2 [32m0.491812[39m
+ Momentum equation: Component 3 [32m0.341434[39m
+ Pressure equation: [32m0.117694[39m
+Turbulence Iteration 
+TKE_system [32m0.093495[39m
+TKED_system [32m0.0314025[39m
+Iteration 42 Initial residual norms:
+ Momentum equation: Component 1 [32m0.376585[39m
+ Momentum equation: Component 2 [32m0.659541[39m
+ Momentum equation: Component 3 [32m0.655176[39m
+ Pressure equation: [32m0.683813[39m
+Turbulence Iteration 
+TKE_system [32m0.0910397[39m
+TKED_system [32m0.0337806[39m
+Iteration 43 Initial residual norms:
+ Momentum equation: Component 1 [32m0.327525[39m
+ Momentum equation: Component 2 [32m0.332668[39m
+ Momentum equation: Component 3 [32m0.32276[39m
+ Pressure equation: [32m0.836703[39m
+Turbulence Iteration 
+TKE_system [32m0.0924708[39m
+TKED_system [32m0.00032142[39m
+Iteration 44 Initial residual norms:
+ Momentum equation: Component 1 [32m0.632914[39m
+ Momentum equation: Component 2 [32m0.487814[39m
+ Momentum equation: Component 3 [32m0.380973[39m
+ Pressure equation: [32m0.259873[39m
+Turbulence Iteration 
+TKE_system [32m0.104911[39m
+TKED_system [32m0.0133745[39m
+Iteration 45 Initial residual norms:
+ Momentum equation: Component 1 [32m0.424935[39m
+ Momentum equation: Component 2 [32m0.333514[39m
+ Momentum equation: Component 3 [32m0.333258[39m
+ Pressure equation: [32m0.64625[39m
+Turbulence Iteration 
+TKE_system [32m0.11145[39m
+TKED_system [32m0.00199111[39m
+Iteration 46 Initial residual norms:
+ Momentum equation: Component 1 [32m0.616305[39m
+ Momentum equation: Component 2 [32m0.338166[39m
+ Momentum equation: Component 3 [32m0.334881[39m
+ Pressure equation: [32m0.935457[39m
+Turbulence Iteration 
+TKE_system [32m0.111301[39m
+TKED_system [32m0.010928[39m
+Iteration 47 Initial residual norms:
+ Momentum equation: Component 1 [32m0.334748[39m
+ Momentum equation: Component 2 [32m0.334255[39m
+ Momentum equation: Component 3 [32m0.333956[39m
+ Pressure equation: [32m0.999998[39m
+Turbulence Iteration 
+TKE_system [32m0.11978[39m
+TKED_system [32m0.000318311[39m
+Iteration 48 Initial residual norms:
+ Momentum equation: Component 1 [32m0.57851[39m
+ Momentum equation: Component 2 [32m0.345338[39m
+ Momentum equation: Component 3 [32m0.40629[39m
+ Pressure equation: [32m0.241019[39m
+Turbulence Iteration 
+TKE_system [32m0.0997832[39m
+TKED_system [32m0.0869333[39m
+Iteration 49 Initial residual norms:
+ Momentum equation: Component 1 [32m0.339241[39m
+ Momentum equation: Component 2 [32m0.339133[39m
+ Momentum equation: Component 3 [32m0.337493[39m
+ Pressure equation: [32m1[39m
+Turbulence Iteration 
+TKE_system [32m0.0956769[39m
+TKED_system [32m0.00108681[39m
+Iteration 50 Initial residual norms:
+ Momentum equation: Component 1 [32m0.418363[39m
+ Momentum equation: Component 2 [32m0.422634[39m
+ Momentum equation: Component 3 [32m0.410505[39m
+ Pressure equation: [32m1[39m
+Turbulence Iteration 
+TKE_system [32m0.0972019[39m
+TKED_system [32m0.000816312[39m
+Iteration 51 Initial residual norms:
+ Momentum equation: Component 1 [32m0.337129[39m
+ Momentum equation: Component 2 [32m0.341968[39m
+ Momentum equation: Component 3 [32m0.695858[39m
+ Pressure equation: [32m0.070727[39m
+Turbulence Iteration 
+TKE_system [32m0.0927887[39m
+TKED_system [32m0.00231482[39m
+Iteration 52 Initial residual norms:
+ Momentum equation: Component 1 [32m0.333311[39m
+ Momentum equation: Component 2 [32m0.33628[39m
+ Momentum equation: Component 3 [32m0.333628[39m
+ Pressure equation: [32m0.000145227[39m
+Turbulence Iteration 
+TKE_system [32m0.0927464[39m
+TKED_system [32m0.000931658[39m
+Iteration 53 Initial residual norms:
+ Momentum equation: Component 1 [32m0.578508[39m
+ Momentum equation: Component 2 [32m0.398911[39m
+ Momentum equation: Component 3 [32m0.361285[39m
+ Pressure equation: [32m2.86677e-08[39m
+Turbulence Iteration 
+TKE_system [32m0.097103[39m
+TKED_system [32m0.00358299[39m
+Iteration 54 Initial residual norms:
+ Momentum equation: Component 1 [32m0.316218[39m
+ Momentum equation: Component 2 [32m0.316171[39m
+ Momentum equation: Component 3 [32m0.315872[39m
+ Pressure equation: [32m1[39m
+Turbulence Iteration 
+TKE_system [32m0.0987838[39m
+TKED_system [32m0.00141413[39m
+Iteration 55 Initial residual norms:
+ Momentum equation: Component 1 [32m0.439008[39m
+ Momentum equation: Component 2 [32m0.424543[39m
+ Momentum equation: Component 3 [32m0.415313[39m
+ Pressure equation: [32m0.00334337[39m
+Turbulence Iteration 
+TKE_system [32m0.109155[39m
+TKED_system [32m0.0674006[39m
+Iteration 56 Initial residual norms:
+ Momentum equation: Component 1 [32m0.436086[39m
+ Momentum equation: Component 2 [32m0.439113[39m
+ Momentum equation: Component 3 [32m0.431486[39m
+ Pressure equation: [32m1[39m
+Turbulence Iteration 
+TKE_system [32m0.116556[39m
+TKED_system [32m0.00136799[39m
+Iteration 57 Initial residual norms:
+ Momentum equation: Component 1 [32m0.427906[39m
+ Momentum equation: Component 2 [32m0.439773[39m
+ Momentum equation: Component 3 [32m0.474084[39m
+ Pressure equation: [32m0.00117963[39m
+Turbulence Iteration 
+TKE_system [32m0.090029[39m
+TKED_system [32m0.0564097[39m
+Iteration 58 Initial residual norms:
+ Momentum equation: Component 1 [32m0.354513[39m
+ Momentum equation: Component 2 [32m0.357381[39m
+ Momentum equation: Component 3 [32m0.360544[39m
+ Pressure equation: [32m1[39m
+Turbulence Iteration 
+TKE_system [32m0.0948209[39m
+TKED_system [32m0.0170816[39m
+Iteration 59 Initial residual norms:
+ Momentum equation: Component 1 [32m0.798692[39m
+ Momentum equation: Component 2 [32m0.795058[39m
+ Momentum equation: Component 3 [32m0.393971[39m
+ Pressure equation: [32m0.0144557[39m
+Turbulence Iteration 
+TKE_system [32m0.10019[39m
+TKED_system [32m0.0110146[39m
+Iteration 60 Initial residual norms:
+ Momentum equation: Component 1 [32m0.339027[39m
+ Momentum equation: Component 2 [32m0.339016[39m
+ Momentum equation: Component 3 [32m0.338761[39m
+ Pressure equation: [32m1[39m
+Turbulence Iteration 
+TKE_system [32m0.100518[39m
+TKED_system [32m0.0327175[39m
+[3]PETSC ERROR: --------------------- Error Message --------------------------------------------------------------
+[3]PETSC ERROR: Argument out of range
+[3]PETSC ERROR: Current value inf. greater than allowed bound 1.79769e+308
+[3]PETSC ERROR: WARNING! There are unused option(s) set! Could be the program crashed before usage or a spelling mistake, etc!
+[3]PETSC ERROR:   Option left: name:--snes_linesearch_type value: basic source: code
+[3]PETSC ERROR:   Option left: name:--snes_monitor_cancel (no value) source: code
+[3]PETSC ERROR:   Option left: name:--snes_type value: ksponly source: code
+[3]PETSC ERROR:   Option left: name:-i value: th_pure_flow.i source: command line
+[3]PETSC ERROR: See https://petsc.org/release/faq/ for trouble shooting.
+[3]PETSC ERROR: PETSc Release Version 3.23.4, unknown
+[3]PETSC ERROR: /home/ubuntu/cardinal/cardinal-opt with 4 MPI process(es) and PETSC_ARCH  on RTXWS by ubuntu Fri Apr 24 08:53:02 2026
+[3]PETSC ERROR: Configure options: --with-64-bit-indices --with-cxx-dialect=C++17 --with-debugging=no --with-fortran-bindings=0 --with-mpi=1 --with-openmp=1 --with-strict-petscerrorcode=1 --with-shared-libraries=1 --with-sowing=0 --download-fblaslapack=1 --download-hpddm=1 --download-hypre=1 --download-metis=1 --download-mumps=1 --download-ptscotch=1 --download-parmetis=1 --download-scalapack=1 --download-slepc=1 --download-strumpack=1 --download-superlu_dist=1 --download-kokkos=1 --download-kokkos-kernels=1 --download-libceed=1 --with-make-np=14 --with-hdf5-dir=/home/ubuntu/miniconda3/envs/moose --COPTFLAGS=-O3 --CXXOPTFLAGS=-O3 --FOPTFLAGS=-O3 --with-x=0 --with-ssl=0 --with-mpi-dir=/home/ubuntu/miniconda3/envs/moose AR=/home/ubuntu/miniconda3/envs/moose/bin/x86_64-conda-linux-gnu-ar RANLIB=/home/ubuntu/miniconda3/envs/moose/bin/x86_64-conda-linux-gnu-ranlib CFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix " CXXFLAGS="-fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix  " CPPFLAGS="-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/ubuntu/miniconda3/envs/moose/include " FFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix " FCFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix " LDFLAGS="-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/ubuntu/miniconda3/envs/moose/lib -Wl,-rpath-link,/home/ubuntu/miniconda3/envs/moose/lib -L/home/ubuntu/miniconda3/envs/moose/lib " --prefix=/home/ubuntu/miniconda3/envs/moose/petsc
+[3]PETSC ERROR: [2]PETSC ERROR: --------------------- Error Message --------------------------------------------------------------
+[2]PETSC ERROR: Argument out of range
+[2]PETSC ERROR: Current value inf. greater than allowed bound 1.79769e+308
+[2]PETSC ERROR: WARNING! There are unused option(s) set! Could be the program crashed before usage or a spelling mistake, etc!
+[2]PETSC ERROR:   Option left: name:--snes_linesearch_type value: basic source: code
+[2]PETSC ERROR:   Option left: name:--snes_monitor_cancel (no value) source: code
+[2]PETSC ERROR:   Option left: name:--snes_type value: ksponly source: code
+[2]PETSC ERROR:   Option left: name:-i value: th_pure_flow.i source: command line
+[2]PETSC ERROR: See https://petsc.org/release/faq/ for trouble shooting.
+[2]PETSC ERROR: PETSc Release Version 3.23.4, unknown
+[2]PETSC ERROR: /home/ubuntu/cardinal/cardinal-opt with 4 MPI process(es) and PETSC_ARCH  on RTXWS by ubuntu Fri Apr 24 08:53:02 2026
+[2]PETSC ERROR: Configure options: --with-64-bit-indices --with-cxx-dialect=C++17 --with-debugging=no --with-fortran-bindings=0 --with-mpi=1 --with-openmp=1 --with-strict-petscerrorcode=1 --with-shared-libraries=1 --with-sowing=0 --download-fblaslapack=1 --download-hpddm=1 --download-hypre=1 --download-metis=1 --download-mumps=1 --download-ptscotch=1 --download-parmetis=1 --download-scalapack=1 --download-slepc=1 --download-strumpack=1 --download-superlu_dist=1 --download-kokkos=1 --download-kokkos-kernels=1 --download-libceed=1 --with-make-np=14 --with-hdf5-dir=/home/ubuntu/miniconda3/envs/moose --COPTFLAGS=-O3 --CXXOPTFLAGS=-O3 --FOPTFLAGS=-O3 --with-x=0 --with-ssl=0 --with-mpi-dir=/home/ubuntu/miniconda3/envs/moose AR=/home/ubuntu/miniconda3/envs/moose/bin/x86_64-conda-linux-gnu-ar RANLIB=/home/ubuntu/miniconda3/envs/moose/bin/x86_64-conda-linux-gnu-ranlib CFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix " CXXFLAGS="-fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix  " CPPFLAGS="-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/ubuntu/miniconda3/envs/moose/include " FFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix " FCFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix " LDFLAGS="-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/ubuntu/miniconda3/envs/moose/lib -Wl,-rpath-link,/home/ubuntu/miniconda3/envs/moose/lib -L/home/ubuntu/miniconda3/envs/moose/lib " --prefix=/home/ubuntu/miniconda3/envs/moose/petsc
+[2]PETSC ERROR: #1 PetscOptionsReal_Private() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/sys/objects/aoptions.c:782
+[2]PETSC ERROR: #2 KSPSetFromOptions() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/ksp/ksp/interface/itcl.c:422[0]PETSC ERROR: --------------------- Error Message --------------------------------------------------------------
+[0]PETSC ERROR: Argument out of range
+[0]PETSC ERROR: Current value inf. greater than allowed bound 1.79769e+308
+[0]PETSC ERROR: WARNING! There are unused option(s) set! Could be the program crashed before usage or a spelling mistake, etc!
+[0]PETSC ERROR:   Option left: name:--snes_linesearch_type value: basic source: code
+[0]PETSC ERROR:   Option left: name:--snes_monitor_cancel (no value) source: code
+[0]PETSC ERROR:   Option left: name:--snes_type value: ksponly source: code
+[0]PETSC ERROR:   Option left: name:-i value: th_pure_flow.i source: command line
+[0]PETSC ERROR: See https://petsc.org/release/faq/ for trouble shooting.
+[0]PETSC ERROR: PETSc Release Version 3.23.4, unknown
+[0]PETSC ERROR: /home/ubuntu/cardinal/cardinal-opt with 4 MPI process(es) and PETSC_ARCH  on RTXWS by ubuntu Fri Apr 24 08:53:02 2026
+[0]PETSC ERROR: Configure options: --with-64-bit-indices --with-cxx-dialect=C++17 --with-debugging=no --with-fortran-bindings=0 --with-mpi=1 --with-openmp=1 --with-strict-petscerrorcode=1 --with-shared-libraries=1 --with-sowing=0 --download-fblaslapack=1 --download-hpddm=1 --download-hypre=1 --download-metis=1 --download-mumps=1 --download-ptscotch=1 --download-parmetis=1 --download-scalapack=1 --download-slepc=1 --download-strumpack=1 --download-superlu_dist=1 --download-kokkos=1 --download-kokkos-kernels=1 --download-libceed=1 --with-make-np=14 --with-hdf5-dir=/home/ubuntu/miniconda3/envs/moose --COPTFLAGS=-O3 --CXXOPTFLAGS=-O3 --FOPTFLAGS=-O3 --with-x=0 --with-ssl=0 --with-mpi-dir=/home/ubuntu/miniconda3/envs/moose AR=/home/ubuntu/miniconda3/envs/moose/bin/x86_64-conda-linux-gnu-ar RANLIB=/home/ubuntu/miniconda3/envs/moose/bin/x86_64-conda-linux-gnu-ranlib CFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix " CXXFLAGS="-fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix  " CPPFLAGS="-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/ubuntu/miniconda3/envs/moose/include " FFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix " FCFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix " LDFLAGS="-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/ubuntu/miniconda3/envs/moose/lib -Wl,-rpath-link,/home/ubuntu/miniconda3/envs/moose/lib -L/home/ubuntu/miniconda3/envs/moose/lib " --prefix=/home/ubuntu/miniconda3/envs/moose/petsc
+[0]PETSC ERROR: #1 PetscOptionsReal_Private() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/sys/objects/aoptions.c:782
+[0]PETSC ERROR: #2 KSPSetFromOptions() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/ksp/ksp/interface/itcl.c:422[1]PETSC ERROR: --------------------- Error Message --------------------------------------------------------------
+[1]PETSC ERROR: Argument out of range
+[1]PETSC ERROR: Current value inf. greater than allowed bound 1.79769e+308
+[1]PETSC ERROR: WARNING! There are unused option(s) set! Could be the program crashed before usage or a spelling mistake, etc!
+[1]PETSC ERROR:   Option left: name:--snes_linesearch_type value: basic source: code
+[1]PETSC ERROR:   Option left: name:--snes_monitor_cancel (no value) source: code
+[1]PETSC ERROR:   Option left: name:--snes_type value: ksponly source: code
+[1]PETSC ERROR:   Option left: name:-i value: th_pure_flow.i source: command line
+[1]PETSC ERROR: See https://petsc.org/release/faq/ for trouble shooting.
+[1]PETSC ERROR: PETSc Release Version 3.23.4, unknown
+[1]PETSC ERROR: /home/ubuntu/cardinal/cardinal-opt with 4 MPI process(es) and PETSC_ARCH  on RTXWS by ubuntu Fri Apr 24 08:53:02 2026
+[1]PETSC ERROR: Configure options: --with-64-bit-indices --with-cxx-dialect=C++17 --with-debugging=no --with-fortran-bindings=0 --with-mpi=1 --with-openmp=1 --with-strict-petscerrorcode=1 --with-shared-libraries=1 --with-sowing=0 --download-fblaslapack=1 --download-hpddm=1 --download-hypre=1 --download-metis=1 --download-mumps=1 --download-ptscotch=1 --download-parmetis=1 --download-scalapack=1 --download-slepc=1 --download-strumpack=1 --download-superlu_dist=1 --download-kokkos=1 --download-kokkos-kernels=1 --download-libceed=1 --with-make-np=14 --with-hdf5-dir=/home/ubuntu/miniconda3/envs/moose --COPTFLAGS=-O3 --CXXOPTFLAGS=-O3 --FOPTFLAGS=-O3 --with-x=0 --with-ssl=0 --with-mpi-dir=/home/ubuntu/miniconda3/envs/moose AR=/home/ubuntu/miniconda3/envs/moose/bin/x86_64-conda-linux-gnu-ar RANLIB=/home/ubuntu/miniconda3/envs/moose/bin/x86_64-conda-linux-gnu-ranlib CFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix " CXXFLAGS="-fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix  " CPPFLAGS="-DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/ubuntu/miniconda3/envs/moose/include " FFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix " FCFLAGS="-march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/ubuntu/miniconda3/envs/moose/include -fdebug-prefix-map=/tmp/build/_env/conda-bld/moose-mpi_1758458599522/work=/usr/local/src/conda/moose-mpi-base-2025.09.18 -fdebug-prefix-map=/home/ubuntu/miniconda3/envs/moose=/usr/local/src/conda-prefix " LDFLAGS="-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/ubuntu/miniconda3/envs/moose/lib -Wl,-rpath-link,/home/ubuntu/miniconda3/envs/moose/lib -L/home/ubuntu/miniconda3/envs/moose/lib " --prefix=/home/ubuntu/miniconda3/envs/moose/petsc
+[1]PETSC ERROR: #1 PetscOptionsReal_Private() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/sys/objects/aoptions.c:782
+[1]PETSC ERROR: #2 KSPSetFromOptions() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/ksp/ksp/interface/itcl.c:422
+
+#1 PetscOptionsReal_Private() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/sys/objects/aoptions.c:782
+[3]PETSC ERROR: #2 KSPSetFromOptions() at /tmp/build/_env/conda-bld/moose-petsc_1758459344677/work/src/ksp/ksp/interface/itcl.c:422
+
+libMesh terminating:
+Current value inf. greater than allowed bound 1.79769e+308
+libMesh terminating:
+Current value inf. greater than allowed bound 1.79769e+308
+libMesh terminating:
+Current value inf. greater than allowed bound 1.79769e+308
+libMesh terminating:
+Current value inf. greater than allowed bound 1.79769e+308
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 3 in communicator MPI_COMM_WORLD
+with errorcode 1.
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------
+[RTXWS:128088] 3 more processes have sent help message help-mpi-api.txt / mpi-abort
+[RTXWS:128088] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
