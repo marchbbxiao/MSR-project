@@ -220,8 +220,8 @@
     [FluidHeatTransfer]
       [energy_physics]
         coupled_flow_physics = 'flow_physics'
-        fluid_heat_transfer_physics = 'energy_physics'
-        turbulence_handling = 'k-epsilon'
+        
+       
         # 耦合到 [Flow] 的流動物理
         # Physics 系統透過這個連結自動取得速度場，建立對流項 ρ cp (u·∇)T
 
