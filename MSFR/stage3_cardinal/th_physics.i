@@ -416,9 +416,9 @@
   #   對 Re~218,000 的高非線性問題尤其重要
 
   # ── Newton 收斂標準 ──
-  nl_abs_tol = 1e-8    # ||R||_2 < 1e-8（絕對殘差）
-  nl_rel_tol = 1e-6    # ||R||_2 / ||R_0||_2 < 1e-6（相對殘差）
-  nl_max_its = 20      # 每時間步最多 20 次 Newton 迭代
+  nl_abs_tol = 1e-4    # 從 1e-8 放寬到 1e-4
+  nl_rel_tol = 1e-4    # 從 1e-6 放寬到 1e-4
+  nl_max_its = 15      # 從 20 縮短到 15（更快放棄，讓 dt 切半重試）
   l_tol = 1e-5         # 線性求解相對殘差
   l_max_its = 100      # 每次 Newton 步最多 100 次線性迭代
 
