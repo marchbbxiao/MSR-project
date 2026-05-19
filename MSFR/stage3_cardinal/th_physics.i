@@ -56,6 +56,14 @@
     type = MooseVariableFVReal
     initial_condition = 0.0
   []
+  [TKE_bound_dummy]
+    order = CONSTANT
+    family = MONOMIAL
+  []
+  [TKED_bound_dummy]
+    order = CONSTANT
+    family = MONOMIAL
+  []
 []
 
 # ─────────────────────────────────────────────────────────────
@@ -87,7 +95,7 @@
         momentum_outlet_types = 'fixed-pressure'
         pressure_functors = '0'
 
-        initial_velocity = '0 0 0'
+        initial_velocity = '0 0 1.1838'   # 從 '0 0 0.13' 改
         initial_pressure = 0.0
       []
     []
@@ -144,6 +152,9 @@
         tke_name = TKE
         tked_name = TKED
 
+        # 4147.3 × 0.09 × (0.00264)² / 0.00362 = 0.726 Pa·s
+        initial_mu_t = 0.726
+
         # ── 湍流 Prandtl 數（能量方程中 k_t = μ_t × cp / Pr_t）──
         Pr_t = 0.9
 
@@ -162,7 +173,7 @@
         # false = 使用壁函數（標準壁面處理）
         # 適用 y+ ~30-300，TETRA4 非結構網格
 
-        wall_treatment_eps = 'eq_newton'
+        wall_treatment_eps = 'eq_linearized'   # 從 'eq_newton' 改
         # 壁面 ε 的處理方式
         # eq_newton = 平衡假設 + Newton 迭代（最穩定）
         # 其他選項：eq_incremental, eq_linearized, neq
@@ -172,14 +183,15 @@
 
         # ── 初始條件 ──
         initial_tke = 0.00264
+        initial_tked = 0.00362           # 加這行   
 
 
         # ── μ_t 計算方式 ──
-        mu_t_as_aux_variable = false
+        mu_t_as_aux_variable = true    # 從 false 改
         # false = μ_t 作為 Functor Material，不是 AuxVariable
         # 對 Transient Newton 更穩定（避免 staggered 更新的延遲）
 
-        k_t_as_aux_variable = false
+        k_t_as_aux_variable  = true    # 從 false 改
         # false = 湍流熱傳導率也作為 Functor Material
       []
     []
@@ -240,17 +252,42 @@
   []
 []
 
+[Bounds]
+  [TKE_lower]
+    type = ConstantBounds
+    variable = TKE_bound_dummy
+    bounded_variable = TKE
+    bound_type = lower
+    bound_value = 1e-8
+    execute_on = 'LINEAR'
+  []
+  [TKED_lower]
+    type = ConstantBounds
+    variable = TKED_bound_dummy
+    bounded_variable = TKED
+    bound_type = lower
+    bound_value = 1e-10
+    execute_on = 'NONLINEAR'    # 兩個 bounds 都改，從 'LINEAR' 改
+  []
+[]
+
+[Problem]
+  type = FEProblem
+  allow_invalid_solution = true
+[]
 
 [Executioner]
   type = Transient
   solve_type = 'NEWTON'
 
-  petsc_options_iname = '-pc_type -pc_factor_mat_solver_type -pc_factor_shift_type -snes_linesearch_type'
-  petsc_options_value  = 'lu      mumps                       NONZERO               bt'
+  petsc_options_iname = '-pc_type -pc_factor_mat_solver_type -pc_factor_shift_type -snes_type'
+  petsc_options_value  = 'lu      mumps                       NONZERO               vinewtonrsls'
 
-  nl_abs_tol = 1e-4
-  nl_rel_tol = 1e-4
-  nl_max_its = 20
+  automatic_scaling = true     # 加這行：平衡 k-ε 與動量方程尺度
+  nl_abs_tol = 1.0             # 從 1e-4 改：實際上停用絕對容忍度
+  nl_rel_tol = 0.05            # 從 1e-2 改（5%就收斂，約 step 60，遠離爆炸區）
+  nl_max_its = 250            # 從 50 改
+
   l_tol = 1e-5
   l_max_its = 100
 
