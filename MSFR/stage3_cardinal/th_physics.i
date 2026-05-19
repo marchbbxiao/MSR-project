@@ -258,8 +258,8 @@
     variable = TKE_bound_dummy
     bounded_variable = TKE
     bound_type = lower
-    bound_value = 1e-8
-    execute_on = 'LINEAR'
+    bound_value = 1e-3    # 從 1e-8 改
+    execute_on = 'NONLINEAR'    # 從 'LINEAR' 改（與 TKED 一致）
   []
   [TKED_lower]
     type = ConstantBounds
@@ -285,7 +285,7 @@
 
   automatic_scaling = true     # 加這行：平衡 k-ε 與動量方程尺度
   nl_abs_tol = 1.0             # 從 1e-4 改：實際上停用絕對容忍度
-  nl_rel_tol = 0.05            # 從 1e-2 改（5%就收斂，約 step 60，遠離爆炸區）
+  nl_rel_tol = 1e-2           # 從 0.05 改（更緊的容忍度減少誤差累積）
   nl_max_its = 250            # 從 50 改
 
   l_tol = 1e-5
